@@ -1,6 +1,6 @@
-import { promises as fs } from "node:fs";
 import type { Metadata } from "next";
 import ItemChecklist, { type Item } from "./_components/item-checklist";
+import items from "./items.json";
 
 export const metadata: Metadata = {
 	title: "Items Checklist | Useful Minecraft Tools",
@@ -8,10 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	const file = await fs.readFile(
-		`${process.cwd()}/public/minecraft/items.json`,
-		"utf8",
-	);
-	const data = JSON.parse(file) as { items: Item[] };
+	const data: { items: Item[] } = items;
 	return <ItemChecklist items={data.items} />;
 }

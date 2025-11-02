@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ExternalLinkIcon } from "./ui/icons";
 
-const geist = Geist();
+const geist = Geist({ subsets: ["latin"] });
 const year = new Date().getFullYear();
 
 export default function Footer() {

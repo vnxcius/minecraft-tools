@@ -2,6 +2,10 @@
 
 # open next
 .open-next
+.dev.vars
+
+# wrangler
+.wrangler
 
 # dependencies
 /node_modules

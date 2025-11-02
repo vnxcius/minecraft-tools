@@ -7,7 +7,9 @@ export function useHeaderHeight(): { headerHeight: number } {
 
 	useEffect(() => {
 		const header = document.querySelector("header");
-		if (header) setHeaderHeight(header.offsetHeight);
+		queueMicrotask(() => {
+			if (header) setHeaderHeight(header.offsetHeight);
+		});
 	}, []);
 
 	return { headerHeight };

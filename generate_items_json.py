@@ -15,3 +15,5 @@ data = {"items": items}
 
 with open(output_file, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
+
+print(f"Items JSON generated successfully at {output_file}")

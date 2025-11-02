@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { useState } from "react";
 import type { CellComponentProps } from "react-window";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
 	Tooltip,
 	TooltipContent,
@@ -23,6 +25,7 @@ export default function CellComponent({
 	style,
 }: CellComponentProps<Props>) {
 	const item = items[rowIndex * 11 + columnIndex];
+	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 	if (!item)
 		return (
 			// biome-ignore lint/a11y/useSemanticElements: grid should return a semantic element
@@ -38,14 +41,17 @@ export default function CellComponent({
 				style={style}
 				onClick={() => onClick(item)}
 			>
-				<Image
-					src={`/minecraft/1.21.10/${item.path}`}
-					width={32}
-					height={32}
-					alt={item.name}
-					className="w-8"
-					unoptimized
-				/>
+				<div>
+					{!isLoaded && <Skeleton className="size-8 bg-neutral-200" />}
+					<Image
+						src={`/minecraft/1.21.10/${item.path}`}
+						width={32}
+						height={32}
+						alt={item.name}
+						className="w-8"
+						onLoad={() => setIsLoaded(true)}
+					/>
+				</div>
 			</TooltipTrigger>
 			<TooltipContent>{item.name}</TooltipContent>
 		</Tooltip>

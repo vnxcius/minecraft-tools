@@ -109,6 +109,7 @@ export default function ItemChecklist({ items }: Props) {
 										alt="Diamond Pickaxe"
 										width={26}
 										height={26}
+										unoptimized
 									/>
 									Select items
 								</DialogTitle>

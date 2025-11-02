@@ -277,6 +277,14 @@
       "path": "bedrock.webp"
     },
     {
+      "name": "Bee Nest",
+      "path": "bee_nest.webp"
+    },
+    {
+      "name": "Bee Spawn Egg",
+      "path": "bee_spawn_egg.webp"
+    },
+    {
       "name": "Beef",
       "path": "beef.webp"
     },
@@ -295,14 +303,6 @@
     {
       "name": "Beetroot Soup",
       "path": "beetroot_soup.webp"
-    },
-    {
-      "name": "Bee Nest",
-      "path": "bee_nest.webp"
-    },
-    {
-      "name": "Bee Spawn Egg",
-      "path": "bee_spawn_egg.webp"
     },
     {
       "name": "Bell",
@@ -385,22 +385,6 @@
       "path": "birch_wood.webp"
     },
     {
-      "name": "Blackstone",
-      "path": "blackstone.webp"
-    },
-    {
-      "name": "Blackstone Slab",
-      "path": "blackstone_slab.webp"
-    },
-    {
-      "name": "Blackstone Stairs",
-      "path": "blackstone_stairs.webp"
-    },
-    {
-      "name": "Blackstone Wall",
-      "path": "blackstone_wall.webp"
-    },
-    {
       "name": "Black Banner",
       "path": "black_banner.webp"
     },
@@ -461,6 +445,22 @@
       "path": "black_wool.webp"
     },
     {
+      "name": "Blackstone",
+      "path": "blackstone.webp"
+    },
+    {
+      "name": "Blackstone Slab",
+      "path": "blackstone_slab.webp"
+    },
+    {
+      "name": "Blackstone Stairs",
+      "path": "blackstone_stairs.webp"
+    },
+    {
+      "name": "Blackstone Wall",
+      "path": "blackstone_wall.webp"
+    },
+    {
       "name": "Blade Pottery Sherd",
       "path": "blade_pottery_sherd.webp"
     },
@@ -479,18 +479,6 @@
     {
       "name": "Blaze Spawn Egg",
       "path": "blaze_spawn_egg.webp"
-    },
-    {
-      "name": "Blocksprite Cactus Flower",
-      "path": "cactus_flower.webp"
-    },
-    {
-      "name": "Blocksprite Short Dry Grass",
-      "path": "short_dry_grass.webp"
-    },
-    {
-      "name": "Blocksprite Tall Dry Grass",
-      "path": "tall_dry_grass.webp"
     },
     {
       "name": "Block Of Resin",
@@ -597,6 +585,10 @@
       "path": "bookshelf.webp"
     },
     {
+      "name": "Bordured Indented Banner Pattern",
+      "path": "bordured_indented_banner_pattern.webp"
+    },
+    {
       "name": "Bow",
       "path": "bow.webp"
     },
@@ -641,10 +633,6 @@
       "path": "brick.webp"
     },
     {
-      "name": "Bricks",
-      "path": "bricks.webp"
-    },
-    {
       "name": "Brick Slab",
       "path": "brick_slab.webp"
     },
@@ -655,6 +643,10 @@
     {
       "name": "Brick Wall",
       "path": "brick_wall.webp"
+    },
+    {
+      "name": "Bricks",
+      "path": "bricks.webp"
     },
     {
       "name": "Brown Banner",
@@ -769,6 +761,10 @@
       "path": "cactus.webp"
     },
     {
+      "name": "Cactus Flower",
+      "path": "cactus_flower.webp"
+    },
+    {
       "name": "Cake",
       "path": "cake.webp"
     },
@@ -825,6 +821,10 @@
       "path": "chain.webp"
     },
     {
+      "name": "Chain Command Block",
+      "path": "chain_command_block.webp"
+    },
+    {
       "name": "Chainmail Boots",
       "path": "chainmail_boots.webp"
     },
@@ -839,10 +839,6 @@
     {
       "name": "Chainmail Leggings",
       "path": "chainmail_leggings.webp"
-    },
-    {
-      "name": "Chain Command Block",
-      "path": "chain_command_block.webp"
     },
     {
       "name": "Charcoal",
@@ -1629,10 +1625,6 @@
       "path": "deepslate.webp"
     },
     {
-      "name": "Deepslate Bricks",
-      "path": "deepslate_bricks.webp"
-    },
-    {
       "name": "Deepslate Brick Slab",
       "path": "deepslate_brick_slab.webp"
     },
@@ -1643,6 +1635,10 @@
     {
       "name": "Deepslate Brick Wall",
       "path": "deepslate_brick_wall.webp"
+    },
+    {
+      "name": "Deepslate Bricks",
+      "path": "deepslate_bricks.webp"
     },
     {
       "name": "Deepslate Coal Ore",
@@ -1677,10 +1673,6 @@
       "path": "deepslate_redstone_ore.webp"
     },
     {
-      "name": "Deepslate Tiles",
-      "path": "deepslate_tiles.webp"
-    },
-    {
       "name": "Deepslate Tile Slab",
       "path": "deepslate_tile_slab.webp"
     },
@@ -1691,6 +1683,10 @@
     {
       "name": "Deepslate Tile Wall",
       "path": "deepslate_tile_wall.webp"
+    },
+    {
+      "name": "Deepslate Tiles",
+      "path": "deepslate_tiles.webp"
     },
     {
       "name": "Detector Rail",
@@ -1869,12 +1865,36 @@
       "path": "enchanting_table.webp"
     },
     {
-      "name": "Enderman Spawn Egg",
-      "path": "enderman_spawn_egg.webp"
+      "name": "End Crystal",
+      "path": "end_crystal.webp"
     },
     {
-      "name": "Endermite Spawn Egg",
-      "path": "endermite_spawn_egg.webp"
+      "name": "End Portal Frame",
+      "path": "end_portal_frame.webp"
+    },
+    {
+      "name": "End Rod",
+      "path": "end_rod.webp"
+    },
+    {
+      "name": "End Stone",
+      "path": "end_stone.webp"
+    },
+    {
+      "name": "End Stone Brick Slab",
+      "path": "end_stone_brick_slab.webp"
+    },
+    {
+      "name": "End Stone Brick Stairs",
+      "path": "end_stone_brick_stairs.webp"
+    },
+    {
+      "name": "End Stone Brick Wall",
+      "path": "end_stone_brick_wall.webp"
+    },
+    {
+      "name": "End Stone Bricks",
+      "path": "end_stone_bricks.webp"
     },
     {
       "name": "Ender Chest",
@@ -1893,36 +1913,12 @@
       "path": "ender_pearl.webp"
     },
     {
-      "name": "End Crystal",
-      "path": "end_crystal.webp"
+      "name": "Enderman Spawn Egg",
+      "path": "enderman_spawn_egg.webp"
     },
     {
-      "name": "End Portal Frame",
-      "path": "end_portal_frame.webp"
-    },
-    {
-      "name": "End Rod",
-      "path": "end_rod.webp"
-    },
-    {
-      "name": "End Stone",
-      "path": "end_stone.webp"
-    },
-    {
-      "name": "End Stone Bricks",
-      "path": "end_stone_bricks.webp"
-    },
-    {
-      "name": "End Stone Brick Slab",
-      "path": "end_stone_brick_slab.webp"
-    },
-    {
-      "name": "End Stone Brick Stairs",
-      "path": "end_stone_brick_stairs.webp"
-    },
-    {
-      "name": "End Stone Brick Wall",
-      "path": "end_stone_brick_wall.webp"
+      "name": "Endermite Spawn Egg",
+      "path": "endermite_spawn_egg.webp"
     },
     {
       "name": "Evoker Spawn Egg",
@@ -1993,20 +1989,12 @@
       "path": "fern.webp"
     },
     {
+      "name": "Field Masoned Banner Pattern",
+      "path": "field_masoned_banner_pattern.webp"
+    },
+    {
       "name": "Filled Map",
       "path": "filled_map.webp"
-    },
-    {
-      "name": "Firefly Bush",
-      "path": "firefly_bush.webp"
-    },
-    {
-      "name": "Firework Rocket",
-      "path": "firework_rocket.webp"
-    },
-    {
-      "name": "Firework Star",
-      "path": "firework_star.webp"
     },
     {
       "name": "Fire Charge",
@@ -2025,6 +2013,18 @@
       "path": "fire_coral_fan.webp"
     },
     {
+      "name": "Firefly Bush",
+      "path": "firefly_bush.webp"
+    },
+    {
+      "name": "Firework Rocket",
+      "path": "firework_rocket.webp"
+    },
+    {
+      "name": "Firework Star",
+      "path": "firework_star.webp"
+    },
+    {
       "name": "Fishing Rod",
       "path": "fishing_rod.webp"
     },
@@ -2041,22 +2041,6 @@
       "path": "flint_and_steel.webp"
     },
     {
-      "name": "Flowering Azalea",
-      "path": "flowering_azalea.webp"
-    },
-    {
-      "name": "Flowering Azalea Leaves",
-      "path": "flowering_azalea_leaves.webp"
-    },
-    {
-      "name": "Flower Banner Pattern",
-      "path": "flower_banner_pattern.webp"
-    },
-    {
-      "name": "Flower Pot",
-      "path": "flower_pot.webp"
-    },
-    {
       "name": "Flow Armor Trim Smithing Template",
       "path": "flow_armor_trim_smithing_template.webp"
     },
@@ -2069,6 +2053,22 @@
       "path": "flow_pottery_sherd.webp"
     },
     {
+      "name": "Flower Banner Pattern",
+      "path": "flower_banner_pattern.webp"
+    },
+    {
+      "name": "Flower Pot",
+      "path": "flower_pot.webp"
+    },
+    {
+      "name": "Flowering Azalea",
+      "path": "flowering_azalea.webp"
+    },
+    {
+      "name": "Flowering Azalea Leaves",
+      "path": "flowering_azalea_leaves.webp"
+    },
+    {
       "name": "Fox Spawn Egg",
       "path": "fox_spawn_egg.webp"
     },
@@ -2077,12 +2077,12 @@
       "path": "friend_pottery_sherd.webp"
     },
     {
-      "name": "Frogspawn",
-      "path": "frogspawn.webp"
-    },
-    {
       "name": "Frog Spawn Egg",
       "path": "frog_spawn_egg.webp"
+    },
+    {
+      "name": "Frogspawn",
+      "path": "frogspawn.webp"
     },
     {
       "name": "Furnace",
@@ -2125,14 +2125,6 @@
       "path": "globe_banner_pattern.webp"
     },
     {
-      "name": "Glowstone",
-      "path": "glowstone.webp"
-    },
-    {
-      "name": "Glowstone Dust",
-      "path": "glowstone_dust.webp"
-    },
-    {
       "name": "Glow Berries",
       "path": "glow_berries.webp"
     },
@@ -2153,12 +2145,36 @@
       "path": "glow_squid_spawn_egg.webp"
     },
     {
+      "name": "Glowstone",
+      "path": "glowstone.webp"
+    },
+    {
+      "name": "Glowstone Dust",
+      "path": "glowstone_dust.webp"
+    },
+    {
       "name": "Goat Horn",
       "path": "goat_horn.webp"
     },
     {
       "name": "Goat Spawn Egg",
       "path": "goat_spawn_egg.webp"
+    },
+    {
+      "name": "Gold Block",
+      "path": "gold_block.webp"
+    },
+    {
+      "name": "Gold Ingot",
+      "path": "gold_ingot.webp"
+    },
+    {
+      "name": "Gold Nugget",
+      "path": "gold_nugget.webp"
+    },
+    {
+      "name": "Gold Ore",
+      "path": "gold_ore.webp"
     },
     {
       "name": "Golden Apple",
@@ -2207,22 +2223,6 @@
     {
       "name": "Golden Sword",
       "path": "golden_sword.webp"
-    },
-    {
-      "name": "Gold Block",
-      "path": "gold_block.webp"
-    },
-    {
-      "name": "Gold Ingot",
-      "path": "gold_ingot.webp"
-    },
-    {
-      "name": "Gold Nugget",
-      "path": "gold_nugget.webp"
-    },
-    {
-      "name": "Gold Ore",
-      "path": "gold_ore.webp"
     },
     {
       "name": "Granite",
@@ -2405,16 +2405,16 @@
       "path": "hay_block.webp"
     },
     {
-      "name": "Heartbreak Pottery Sherd",
-      "path": "heartbreak_pottery_sherd.webp"
-    },
-    {
       "name": "Heart Of The Sea",
       "path": "heart_of_the_sea.webp"
     },
     {
       "name": "Heart Pottery Sherd",
       "path": "heart_pottery_sherd.webp"
+    },
+    {
+      "name": "Heartbreak Pottery Sherd",
+      "path": "heartbreak_pottery_sherd.webp"
     },
     {
       "name": "Heavy Core",
@@ -2429,20 +2429,20 @@
       "path": "hoglin_spawn_egg.webp"
     },
     {
-      "name": "Honeycomb",
-      "path": "honeycomb.webp"
-    },
-    {
-      "name": "Honeycomb Block",
-      "path": "honeycomb_block.webp"
-    },
-    {
       "name": "Honey Block",
       "path": "honey_block.webp"
     },
     {
       "name": "Honey Bottle",
       "path": "honey_bottle.webp"
+    },
+    {
+      "name": "Honeycomb",
+      "path": "honeycomb.webp"
+    },
+    {
+      "name": "Honeycomb Block",
+      "path": "honeycomb_block.webp"
     },
     {
       "name": "Hopper",
@@ -2587,14 +2587,6 @@
     {
       "name": "Iron Trapdoor",
       "path": "iron_trapdoor.webp"
-    },
-    {
-      "name": "Bordured Indented Banner Pattern",
-      "path": "bordured_indented_banner_pattern.webp"
-    },
-    {
-      "name": "Field Masoned Banner Pattern",
-      "path": "field_masoned_banner_pattern.webp"
     },
     {
       "name": "Item Frame",
@@ -2765,10 +2757,6 @@
       "path": "lever.webp"
     },
     {
-      "name": "Lightning Rod",
-      "path": "lightning_rod.webp"
-    },
-    {
       "name": "Light Blue Banner",
       "path": "light_blue_banner.webp"
     },
@@ -2891,6 +2879,10 @@
     {
       "name": "Light Weighted Pressure Plate",
       "path": "light_weighted_pressure_plate.webp"
+    },
+    {
+      "name": "Lightning Rod",
+      "path": "lightning_rod.webp"
     },
     {
       "name": "Lilac",
@@ -3173,6 +3165,14 @@
       "path": "mooshroom_spawn_egg.webp"
     },
     {
+      "name": "Moss Block",
+      "path": "moss_block.webp"
+    },
+    {
+      "name": "Moss Carpet",
+      "path": "moss_carpet.webp"
+    },
+    {
       "name": "Mossy Cobblestone",
       "path": "mossy_cobblestone.webp"
     },
@@ -3189,10 +3189,6 @@
       "path": "mossy_cobblestone_wall.webp"
     },
     {
-      "name": "Mossy Stone Bricks",
-      "path": "mossy_stone_bricks.webp"
-    },
-    {
       "name": "Mossy Stone Brick Slab",
       "path": "mossy_stone_brick_slab.webp"
     },
@@ -3205,12 +3201,8 @@
       "path": "mossy_stone_brick_wall.webp"
     },
     {
-      "name": "Moss Block",
-      "path": "moss_block.webp"
-    },
-    {
-      "name": "Moss Carpet",
-      "path": "moss_carpet.webp"
+      "name": "Mossy Stone Bricks",
+      "path": "mossy_stone_bricks.webp"
     },
     {
       "name": "Mourner Pottery Sherd",
@@ -3219,14 +3211,6 @@
     {
       "name": "Mud",
       "path": "mud.webp"
-    },
-    {
-      "name": "Muddy Mangrove Roots",
-      "path": "muddy_mangrove_roots.webp"
-    },
-    {
-      "name": "Mud Bricks",
-      "path": "mud_bricks.webp"
     },
     {
       "name": "Mud Brick Slab",
@@ -3239,6 +3223,14 @@
     {
       "name": "Mud Brick Wall",
       "path": "mud_brick_wall.webp"
+    },
+    {
+      "name": "Mud Bricks",
+      "path": "mud_bricks.webp"
+    },
+    {
+      "name": "Muddy Mangrove Roots",
+      "path": "muddy_mangrove_roots.webp"
     },
     {
       "name": "Mule Spawn Egg",
@@ -3353,6 +3345,54 @@
       "path": "nautilus_shell.webp"
     },
     {
+      "name": "Nether Brick",
+      "path": "nether_brick.webp"
+    },
+    {
+      "name": "Nether Brick Fence",
+      "path": "nether_brick_fence.webp"
+    },
+    {
+      "name": "Nether Brick Slab",
+      "path": "nether_brick_slab.webp"
+    },
+    {
+      "name": "Nether Brick Stairs",
+      "path": "nether_brick_stairs.webp"
+    },
+    {
+      "name": "Nether Brick Wall",
+      "path": "nether_brick_wall.webp"
+    },
+    {
+      "name": "Nether Bricks",
+      "path": "nether_bricks.webp"
+    },
+    {
+      "name": "Nether Gold Ore",
+      "path": "nether_gold_ore.webp"
+    },
+    {
+      "name": "Nether Quartz Ore",
+      "path": "nether_quartz_ore.webp"
+    },
+    {
+      "name": "Nether Sprouts",
+      "path": "nether_sprouts.webp"
+    },
+    {
+      "name": "Nether Star",
+      "path": "nether_star.webp"
+    },
+    {
+      "name": "Nether Wart",
+      "path": "nether_wart.webp"
+    },
+    {
+      "name": "Nether Wart Block",
+      "path": "nether_wart_block.webp"
+    },
+    {
       "name": "Netherite Axe",
       "path": "netherite_axe.webp"
     },
@@ -3407,54 +3447,6 @@
     {
       "name": "Netherrack",
       "path": "netherrack.webp"
-    },
-    {
-      "name": "Nether Brick",
-      "path": "nether_brick.webp"
-    },
-    {
-      "name": "Nether Bricks",
-      "path": "nether_bricks.webp"
-    },
-    {
-      "name": "Nether Brick Fence",
-      "path": "nether_brick_fence.webp"
-    },
-    {
-      "name": "Nether Brick Slab",
-      "path": "nether_brick_slab.webp"
-    },
-    {
-      "name": "Nether Brick Stairs",
-      "path": "nether_brick_stairs.webp"
-    },
-    {
-      "name": "Nether Brick Wall",
-      "path": "nether_brick_wall.webp"
-    },
-    {
-      "name": "Nether Gold Ore",
-      "path": "nether_gold_ore.webp"
-    },
-    {
-      "name": "Nether Quartz Ore",
-      "path": "nether_quartz_ore.webp"
-    },
-    {
-      "name": "Nether Sprouts",
-      "path": "nether_sprouts.webp"
-    },
-    {
-      "name": "Nether Star",
-      "path": "nether_star.webp"
-    },
-    {
-      "name": "Nether Wart",
-      "path": "nether_wart.webp"
-    },
-    {
-      "name": "Nether Wart Block",
-      "path": "nether_wart_block.webp"
     },
     {
       "name": "Note Block",
@@ -3793,6 +3785,10 @@
       "path": "phantom_spawn_egg.webp"
     },
     {
+      "name": "Pig Spawn Egg",
+      "path": "pig_spawn_egg.webp"
+    },
+    {
       "name": "Piglin Banner Pattern",
       "path": "piglin_banner_pattern.webp"
     },
@@ -3807,10 +3803,6 @@
     {
       "name": "Piglin Spawn Egg",
       "path": "piglin_spawn_egg.webp"
-    },
-    {
-      "name": "Pig Spawn Egg",
-      "path": "pig_spawn_egg.webp"
     },
     {
       "name": "Pillager Spawn Egg",
@@ -3941,10 +3933,6 @@
       "path": "polished_blackstone.webp"
     },
     {
-      "name": "Polished Blackstone Bricks",
-      "path": "polished_blackstone_bricks.webp"
-    },
-    {
       "name": "Polished Blackstone Brick Slab",
       "path": "polished_blackstone_brick_slab.webp"
     },
@@ -3955,6 +3943,10 @@
     {
       "name": "Polished Blackstone Brick Wall",
       "path": "polished_blackstone_brick_wall.webp"
+    },
+    {
+      "name": "Polished Blackstone Bricks",
+      "path": "polished_blackstone_bricks.webp"
     },
     {
       "name": "Polished Blackstone Button",
@@ -4065,16 +4057,16 @@
       "path": "prismarine.webp"
     },
     {
-      "name": "Prismarine Bricks",
-      "path": "prismarine_bricks.webp"
-    },
-    {
       "name": "Prismarine Brick Slab",
       "path": "prismarine_brick_slab.webp"
     },
     {
       "name": "Prismarine Brick Stairs",
       "path": "prismarine_brick_stairs.webp"
+    },
+    {
+      "name": "Prismarine Bricks",
+      "path": "prismarine_bricks.webp"
     },
     {
       "name": "Prismarine Crystals",
@@ -4285,26 +4277,6 @@
       "path": "recovery_compass.webp"
     },
     {
-      "name": "Redstone",
-      "path": "redstone.webp"
-    },
-    {
-      "name": "Redstone Block",
-      "path": "redstone_block.webp"
-    },
-    {
-      "name": "Redstone Lamp",
-      "path": "redstone_lamp.webp"
-    },
-    {
-      "name": "Redstone Ore",
-      "path": "redstone_ore.webp"
-    },
-    {
-      "name": "Redstone Torch",
-      "path": "redstone_torch.webp"
-    },
-    {
       "name": "Red Banner",
       "path": "red_banner.webp"
     },
@@ -4353,10 +4325,6 @@
       "path": "red_mushroom_block.webp"
     },
     {
-      "name": "Red Nether Bricks",
-      "path": "red_nether_bricks.webp"
-    },
-    {
       "name": "Red Nether Brick Slab",
       "path": "red_nether_brick_slab.webp"
     },
@@ -4367,6 +4335,10 @@
     {
       "name": "Red Nether Brick Wall",
       "path": "red_nether_brick_wall.webp"
+    },
+    {
+      "name": "Red Nether Bricks",
+      "path": "red_nether_bricks.webp"
     },
     {
       "name": "Red Sand",
@@ -4413,6 +4385,26 @@
       "path": "red_wool.webp"
     },
     {
+      "name": "Redstone",
+      "path": "redstone.webp"
+    },
+    {
+      "name": "Redstone Block",
+      "path": "redstone_block.webp"
+    },
+    {
+      "name": "Redstone Lamp",
+      "path": "redstone_lamp.webp"
+    },
+    {
+      "name": "Redstone Ore",
+      "path": "redstone_ore.webp"
+    },
+    {
+      "name": "Redstone Torch",
+      "path": "redstone_torch.webp"
+    },
+    {
       "name": "Reinforced Deepslate",
       "path": "reinforced_deepslate.webp"
     },
@@ -4429,10 +4421,6 @@
       "path": "resin_brick.webp"
     },
     {
-      "name": "Resin Bricks",
-      "path": "resin_bricks.webp"
-    },
-    {
       "name": "Resin Brick Slab",
       "path": "resin_brick_slab.webp"
     },
@@ -4443,6 +4431,10 @@
     {
       "name": "Resin Brick Wall",
       "path": "resin_brick_wall.webp"
+    },
+    {
+      "name": "Resin Bricks",
+      "path": "resin_bricks.webp"
     },
     {
       "name": "Resin Clump",
@@ -4537,16 +4529,16 @@
       "path": "scute.webp"
     },
     {
-      "name": "Seagrass",
-      "path": "seagrass.webp"
-    },
-    {
       "name": "Sea Lantern",
       "path": "sea_lantern.webp"
     },
     {
       "name": "Sea Pickle",
       "path": "sea_pickle.webp"
+    },
+    {
+      "name": "Seagrass",
+      "path": "seagrass.webp"
     },
     {
       "name": "Sentry Armor Trim Smithing Template",
@@ -4575,6 +4567,10 @@
     {
       "name": "Shield",
       "path": "shield.webp"
+    },
+    {
+      "name": "Short Dry Grass",
+      "path": "short_dry_grass.webp"
     },
     {
       "name": "Short Grass",
@@ -4721,16 +4717,16 @@
       "path": "snow.webp"
     },
     {
-      "name": "Snowball",
-      "path": "snowball.webp"
-    },
-    {
       "name": "Snow Block",
       "path": "snow_block.webp"
     },
     {
       "name": "Snow Golem Spawn Egg",
       "path": "snow_golem_spawn_egg.webp"
+    },
+    {
+      "name": "Snowball",
+      "path": "snowball.webp"
     },
     {
       "name": "Soul Campfire",
@@ -4877,16 +4873,8 @@
       "path": "stone.webp"
     },
     {
-      "name": "Stonecutter",
-      "path": "stonecutter.webp"
-    },
-    {
       "name": "Stone Axe",
       "path": "stone_axe.webp"
-    },
-    {
-      "name": "Stone Bricks",
-      "path": "stone_bricks.webp"
     },
     {
       "name": "Stone Brick Slab",
@@ -4899,6 +4887,10 @@
     {
       "name": "Stone Brick Wall",
       "path": "stone_brick_wall.webp"
+    },
+    {
+      "name": "Stone Bricks",
+      "path": "stone_bricks.webp"
     },
     {
       "name": "Stone Button",
@@ -4931,6 +4923,10 @@
     {
       "name": "Stone Sword",
       "path": "stone_sword.webp"
+    },
+    {
+      "name": "Stonecutter",
+      "path": "stonecutter.webp"
     },
     {
       "name": "Stray Spawn Egg",
@@ -5081,6 +5077,10 @@
       "path": "tadpole_spawn_egg.webp"
     },
     {
+      "name": "Tall Dry Grass",
+      "path": "tall_dry_grass.webp"
+    },
+    {
       "name": "Tall Grass",
       "path": "tall_grass.webp"
     },
@@ -5181,10 +5181,6 @@
       "path": "tuff.webp"
     },
     {
-      "name": "Tuff Bricks",
-      "path": "tuff_bricks.webp"
-    },
-    {
       "name": "Tuff Brick Slab",
       "path": "tuff_brick_slab.webp"
     },
@@ -5195,6 +5191,10 @@
     {
       "name": "Tuff Brick Wall",
       "path": "tuff_brick_wall.webp"
+    },
+    {
+      "name": "Tuff Bricks",
+      "path": "tuff_bricks.webp"
     },
     {
       "name": "Tuff Slab",
@@ -5261,12 +5261,12 @@
       "path": "wandering_trader_spawn_egg.webp"
     },
     {
-      "name": "Warden Spawn Egg",
-      "path": "warden_spawn_egg.webp"
-    },
-    {
       "name": "Ward Armor Trim Smithing Template",
       "path": "ward_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Warden Spawn Egg",
+      "path": "warden_spawn_egg.webp"
     },
     {
       "name": "Warped Button",
