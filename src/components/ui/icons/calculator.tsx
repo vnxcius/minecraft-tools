@@ -1,0 +1,23 @@
+import type { SVGProps } from ".";
+
+export function CalculatorIcon(props: SVGProps) {
+	return (
+		<svg
+			{...props}
+			role="img"
+			aria-label="calculator"
+			width={props.size ?? "24"}
+			height={props.size ?? "24"}
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M5 2H3V22H5H19H21V2H19H5ZM19 20H5V4H19V20ZM17 6H7V10H17V6ZM7 12H9V14H7V12ZM13 12H11V14H13V12ZM15 12H17V14H15V12ZM9 16H7V18H9V16ZM11 16H13V18H11V16ZM17 16H15V18H17V16Z"
+				fill="currentColor"
+			/>
+		</svg>
+	);
+}
