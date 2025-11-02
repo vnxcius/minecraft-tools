@@ -1,0 +1,5760 @@
+{
+  "items": [
+    {
+      "name": "Acacia Boat",
+      "path": "acacia_boat.webp"
+    },
+    {
+      "name": "Acacia Button",
+      "path": "acacia_button.webp"
+    },
+    {
+      "name": "Acacia Chest Boat",
+      "path": "acacia_chest_boat.webp"
+    },
+    {
+      "name": "Acacia Door",
+      "path": "acacia_door.webp"
+    },
+    {
+      "name": "Acacia Fence",
+      "path": "acacia_fence.webp"
+    },
+    {
+      "name": "Acacia Fence Gate",
+      "path": "acacia_fence_gate.webp"
+    },
+    {
+      "name": "Acacia Hanging Sign",
+      "path": "acacia_hanging_sign.webp"
+    },
+    {
+      "name": "Acacia Leaves",
+      "path": "acacia_leaves.webp"
+    },
+    {
+      "name": "Acacia Log",
+      "path": "acacia_log.webp"
+    },
+    {
+      "name": "Acacia Planks",
+      "path": "acacia_planks.webp"
+    },
+    {
+      "name": "Acacia Pressure Plate",
+      "path": "acacia_pressure_plate.webp"
+    },
+    {
+      "name": "Acacia Sapling",
+      "path": "acacia_sapling.webp"
+    },
+    {
+      "name": "Acacia Shelf",
+      "path": "acacia_shelf.webp"
+    },
+    {
+      "name": "Acacia Sign",
+      "path": "acacia_sign.webp"
+    },
+    {
+      "name": "Acacia Slab",
+      "path": "acacia_slab.webp"
+    },
+    {
+      "name": "Acacia Stairs",
+      "path": "acacia_stairs.webp"
+    },
+    {
+      "name": "Acacia Trapdoor",
+      "path": "acacia_trapdoor.webp"
+    },
+    {
+      "name": "Acacia Wood",
+      "path": "acacia_wood.webp"
+    },
+    {
+      "name": "Activator Rail",
+      "path": "activator_rail.webp"
+    },
+    {
+      "name": "Allay Spawn Egg",
+      "path": "allay_spawn_egg.webp"
+    },
+    {
+      "name": "Allium",
+      "path": "allium.webp"
+    },
+    {
+      "name": "Amethyst Block",
+      "path": "amethyst_block.webp"
+    },
+    {
+      "name": "Amethyst Cluster",
+      "path": "amethyst_cluster.webp"
+    },
+    {
+      "name": "Amethyst Shard",
+      "path": "amethyst_shard.webp"
+    },
+    {
+      "name": "Ancient Debris",
+      "path": "ancient_debris.webp"
+    },
+    {
+      "name": "Andesite",
+      "path": "andesite.webp"
+    },
+    {
+      "name": "Andesite Slab",
+      "path": "andesite_slab.webp"
+    },
+    {
+      "name": "Andesite Stairs",
+      "path": "andesite_stairs.webp"
+    },
+    {
+      "name": "Andesite Wall",
+      "path": "andesite_wall.webp"
+    },
+    {
+      "name": "Angler Pottery Sherd",
+      "path": "angler_pottery_sherd.webp"
+    },
+    {
+      "name": "Anvil",
+      "path": "anvil.webp"
+    },
+    {
+      "name": "Apple",
+      "path": "apple.webp"
+    },
+    {
+      "name": "Archer Pottery Sherd",
+      "path": "archer_pottery_sherd.webp"
+    },
+    {
+      "name": "Armadillo Scute",
+      "path": "armadillo_scute.webp"
+    },
+    {
+      "name": "Armadillo Spawn Egg",
+      "path": "armadillo_spawn_egg.webp"
+    },
+    {
+      "name": "Armor Stand",
+      "path": "armor_stand.webp"
+    },
+    {
+      "name": "Arms Up Pottery Sherd",
+      "path": "arms_up_pottery_sherd.webp"
+    },
+    {
+      "name": "Arrow",
+      "path": "arrow.webp"
+    },
+    {
+      "name": "Axolotl Bucket",
+      "path": "axolotl_bucket.webp"
+    },
+    {
+      "name": "Axolotl Spawn Egg",
+      "path": "axolotl_spawn_egg.webp"
+    },
+    {
+      "name": "Azalea",
+      "path": "azalea.webp"
+    },
+    {
+      "name": "Azalea Leaves",
+      "path": "azalea_leaves.webp"
+    },
+    {
+      "name": "Azure Bluet",
+      "path": "azure_bluet.webp"
+    },
+    {
+      "name": "Baked Potato",
+      "path": "baked_potato.webp"
+    },
+    {
+      "name": "Bamboo",
+      "path": "bamboo.webp"
+    },
+    {
+      "name": "Bamboo Block",
+      "path": "bamboo_block.webp"
+    },
+    {
+      "name": "Bamboo Button",
+      "path": "bamboo_button.webp"
+    },
+    {
+      "name": "Bamboo Chest Raft",
+      "path": "bamboo_chest_raft.webp"
+    },
+    {
+      "name": "Bamboo Door",
+      "path": "bamboo_door.webp"
+    },
+    {
+      "name": "Bamboo Fence",
+      "path": "bamboo_fence.webp"
+    },
+    {
+      "name": "Bamboo Fence Gate",
+      "path": "bamboo_fence_gate.webp"
+    },
+    {
+      "name": "Bamboo Hanging Sign",
+      "path": "bamboo_hanging_sign.webp"
+    },
+    {
+      "name": "Bamboo Mosaic",
+      "path": "bamboo_mosaic.webp"
+    },
+    {
+      "name": "Bamboo Mosaic Slab",
+      "path": "bamboo_mosaic_slab.webp"
+    },
+    {
+      "name": "Bamboo Mosaic Stairs",
+      "path": "bamboo_mosaic_stairs.webp"
+    },
+    {
+      "name": "Bamboo Planks",
+      "path": "bamboo_planks.webp"
+    },
+    {
+      "name": "Bamboo Pressure Plate",
+      "path": "bamboo_pressure_plate.webp"
+    },
+    {
+      "name": "Bamboo Raft",
+      "path": "bamboo_raft.webp"
+    },
+    {
+      "name": "Bamboo Shelf",
+      "path": "bamboo_shelf.webp"
+    },
+    {
+      "name": "Bamboo Sign",
+      "path": "bamboo_sign.webp"
+    },
+    {
+      "name": "Bamboo Slab",
+      "path": "bamboo_slab.webp"
+    },
+    {
+      "name": "Bamboo Stairs",
+      "path": "bamboo_stairs.webp"
+    },
+    {
+      "name": "Bamboo Trapdoor",
+      "path": "bamboo_trapdoor.webp"
+    },
+    {
+      "name": "Barrel",
+      "path": "barrel.webp"
+    },
+    {
+      "name": "Barrier",
+      "path": "barrier.webp"
+    },
+    {
+      "name": "Basalt",
+      "path": "basalt.webp"
+    },
+    {
+      "name": "Bat Spawn Egg",
+      "path": "bat_spawn_egg.webp"
+    },
+    {
+      "name": "Beacon",
+      "path": "beacon.webp"
+    },
+    {
+      "name": "Bedrock",
+      "path": "bedrock.webp"
+    },
+    {
+      "name": "Beef",
+      "path": "beef.webp"
+    },
+    {
+      "name": "Beehive",
+      "path": "beehive.webp"
+    },
+    {
+      "name": "Beetroot",
+      "path": "beetroot.webp"
+    },
+    {
+      "name": "Beetroot Seeds",
+      "path": "beetroot_seeds.webp"
+    },
+    {
+      "name": "Beetroot Soup",
+      "path": "beetroot_soup.webp"
+    },
+    {
+      "name": "Bee Nest",
+      "path": "bee_nest.webp"
+    },
+    {
+      "name": "Bee Spawn Egg",
+      "path": "bee_spawn_egg.webp"
+    },
+    {
+      "name": "Bell",
+      "path": "bell.webp"
+    },
+    {
+      "name": "Big Dripleaf",
+      "path": "big_dripleaf.webp"
+    },
+    {
+      "name": "Birch Boat",
+      "path": "birch_boat.webp"
+    },
+    {
+      "name": "Birch Button",
+      "path": "birch_button.webp"
+    },
+    {
+      "name": "Birch Chest Boat",
+      "path": "birch_chest_boat.webp"
+    },
+    {
+      "name": "Birch Door",
+      "path": "birch_door.webp"
+    },
+    {
+      "name": "Birch Fence",
+      "path": "birch_fence.webp"
+    },
+    {
+      "name": "Birch Fence Gate",
+      "path": "birch_fence_gate.webp"
+    },
+    {
+      "name": "Birch Hanging Sign",
+      "path": "birch_hanging_sign.webp"
+    },
+    {
+      "name": "Birch Leaves",
+      "path": "birch_leaves.webp"
+    },
+    {
+      "name": "Birch Log",
+      "path": "birch_log.webp"
+    },
+    {
+      "name": "Birch Planks",
+      "path": "birch_planks.webp"
+    },
+    {
+      "name": "Birch Pressure Plate",
+      "path": "birch_pressure_plate.webp"
+    },
+    {
+      "name": "Birch Sapling",
+      "path": "birch_sapling.webp"
+    },
+    {
+      "name": "Birch Shelf",
+      "path": "birch_shelf.webp"
+    },
+    {
+      "name": "Birch Sign",
+      "path": "birch_sign.webp"
+    },
+    {
+      "name": "Birch Slab",
+      "path": "birch_slab.webp"
+    },
+    {
+      "name": "Birch Stairs",
+      "path": "birch_stairs.webp"
+    },
+    {
+      "name": "Birch Trapdoor",
+      "path": "birch_trapdoor.webp"
+    },
+    {
+      "name": "Birch Wood",
+      "path": "birch_wood.webp"
+    },
+    {
+      "name": "Blackstone",
+      "path": "blackstone.webp"
+    },
+    {
+      "name": "Blackstone Slab",
+      "path": "blackstone_slab.webp"
+    },
+    {
+      "name": "Blackstone Stairs",
+      "path": "blackstone_stairs.webp"
+    },
+    {
+      "name": "Blackstone Wall",
+      "path": "blackstone_wall.webp"
+    },
+    {
+      "name": "Black Banner",
+      "path": "black_banner.webp"
+    },
+    {
+      "name": "Black Bed",
+      "path": "black_bed.webp"
+    },
+    {
+      "name": "Black Bundle",
+      "path": "black_bundle.webp"
+    },
+    {
+      "name": "Black Candle",
+      "path": "black_candle.webp"
+    },
+    {
+      "name": "Black Carpet",
+      "path": "black_carpet.webp"
+    },
+    {
+      "name": "Black Concrete",
+      "path": "black_concrete.webp"
+    },
+    {
+      "name": "Black Concrete Powder",
+      "path": "black_concrete_powder.webp"
+    },
+    {
+      "name": "Black Dye",
+      "path": "black_dye.webp"
+    },
+    {
+      "name": "Black Glazed Terracotta",
+      "path": "black_glazed_terracotta.webp"
+    },
+    {
+      "name": "Black Harness",
+      "path": "black_harness.webp"
+    },
+    {
+      "name": "Black Shulker Box",
+      "path": "black_shulker_box.webp"
+    },
+    {
+      "name": "Black Stained Glass",
+      "path": "black_stained_glass.webp"
+    },
+    {
+      "name": "Black Stained Glass Pane",
+      "path": "black_stained_glass_pane.webp"
+    },
+    {
+      "name": "Black Terracotta",
+      "path": "black_terracotta.webp"
+    },
+    {
+      "name": "Black Wool",
+      "path": "black_wool.webp"
+    },
+    {
+      "name": "Blade Pottery Sherd",
+      "path": "blade_pottery_sherd.webp"
+    },
+    {
+      "name": "Blast Furnace",
+      "path": "blast_furnace.webp"
+    },
+    {
+      "name": "Blaze Powder",
+      "path": "blaze_powder.webp"
+    },
+    {
+      "name": "Blaze Rod",
+      "path": "blaze_rod.webp"
+    },
+    {
+      "name": "Blaze Spawn Egg",
+      "path": "blaze_spawn_egg.webp"
+    },
+    {
+      "name": "Blocksprite Cactus Flower",
+      "path": "cactus_flower.webp"
+    },
+    {
+      "name": "Blocksprite Short Dry Grass",
+      "path": "short_dry_grass.webp"
+    },
+    {
+      "name": "Blocksprite Tall Dry Grass",
+      "path": "tall_dry_grass.webp"
+    },
+    {
+      "name": "Block Of Resin",
+      "path": "block_of_resin.webp"
+    },
+    {
+      "name": "Blue Banner",
+      "path": "blue_banner.webp"
+    },
+    {
+      "name": "Blue Bed",
+      "path": "blue_bed.webp"
+    },
+    {
+      "name": "Blue Bundle",
+      "path": "blue_bundle.webp"
+    },
+    {
+      "name": "Blue Candle",
+      "path": "blue_candle.webp"
+    },
+    {
+      "name": "Blue Carpet",
+      "path": "blue_carpet.webp"
+    },
+    {
+      "name": "Blue Concrete",
+      "path": "blue_concrete.webp"
+    },
+    {
+      "name": "Blue Concrete Powder",
+      "path": "blue_concrete_powder.webp"
+    },
+    {
+      "name": "Blue Dye",
+      "path": "blue_dye.webp"
+    },
+    {
+      "name": "Blue Egg",
+      "path": "blue_egg.webp"
+    },
+    {
+      "name": "Blue Glazed Terracotta",
+      "path": "blue_glazed_terracotta.webp"
+    },
+    {
+      "name": "Blue Harness",
+      "path": "blue_harness.webp"
+    },
+    {
+      "name": "Blue Ice",
+      "path": "blue_ice.webp"
+    },
+    {
+      "name": "Blue Orchid",
+      "path": "blue_orchid.webp"
+    },
+    {
+      "name": "Blue Shulker Box",
+      "path": "blue_shulker_box.webp"
+    },
+    {
+      "name": "Blue Stained Glass",
+      "path": "blue_stained_glass.webp"
+    },
+    {
+      "name": "Blue Stained Glass Pane",
+      "path": "blue_stained_glass_pane.webp"
+    },
+    {
+      "name": "Blue Terracotta",
+      "path": "blue_terracotta.webp"
+    },
+    {
+      "name": "Blue Wool",
+      "path": "blue_wool.webp"
+    },
+    {
+      "name": "Bogged Spawn Egg",
+      "path": "bogged_spawn_egg.webp"
+    },
+    {
+      "name": "Bolt Armor Trim Smithing Template",
+      "path": "bolt_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Bone",
+      "path": "bone.webp"
+    },
+    {
+      "name": "Bone Block",
+      "path": "bone_block.webp"
+    },
+    {
+      "name": "Bone Meal",
+      "path": "bone_meal.webp"
+    },
+    {
+      "name": "Book",
+      "path": "book.webp"
+    },
+    {
+      "name": "Bookshelf",
+      "path": "bookshelf.webp"
+    },
+    {
+      "name": "Bow",
+      "path": "bow.webp"
+    },
+    {
+      "name": "Bowl",
+      "path": "bowl.webp"
+    },
+    {
+      "name": "Brain Coral",
+      "path": "brain_coral.webp"
+    },
+    {
+      "name": "Brain Coral Block",
+      "path": "brain_coral_block.webp"
+    },
+    {
+      "name": "Brain Coral Fan",
+      "path": "brain_coral_fan.webp"
+    },
+    {
+      "name": "Bread",
+      "path": "bread.webp"
+    },
+    {
+      "name": "Breeze Rod",
+      "path": "breeze_rod.webp"
+    },
+    {
+      "name": "Breeze Spawn Egg",
+      "path": "breeze_spawn_egg.webp"
+    },
+    {
+      "name": "Brewer Pottery Sherd",
+      "path": "brewer_pottery_sherd.webp"
+    },
+    {
+      "name": "Brewing Stand",
+      "path": "brewing_stand.webp"
+    },
+    {
+      "name": "Brick",
+      "path": "brick.webp"
+    },
+    {
+      "name": "Bricks",
+      "path": "bricks.webp"
+    },
+    {
+      "name": "Brick Slab",
+      "path": "brick_slab.webp"
+    },
+    {
+      "name": "Brick Stairs",
+      "path": "brick_stairs.webp"
+    },
+    {
+      "name": "Brick Wall",
+      "path": "brick_wall.webp"
+    },
+    {
+      "name": "Brown Banner",
+      "path": "brown_banner.webp"
+    },
+    {
+      "name": "Brown Bed",
+      "path": "brown_bed.webp"
+    },
+    {
+      "name": "Brown Bundle",
+      "path": "brown_bundle.webp"
+    },
+    {
+      "name": "Brown Candle",
+      "path": "brown_candle.webp"
+    },
+    {
+      "name": "Brown Carpet",
+      "path": "brown_carpet.webp"
+    },
+    {
+      "name": "Brown Concrete",
+      "path": "brown_concrete.webp"
+    },
+    {
+      "name": "Brown Concrete Powder",
+      "path": "brown_concrete_powder.webp"
+    },
+    {
+      "name": "Brown Dye",
+      "path": "brown_dye.webp"
+    },
+    {
+      "name": "Brown Egg",
+      "path": "brown_egg.webp"
+    },
+    {
+      "name": "Brown Glazed Terracotta",
+      "path": "brown_glazed_terracotta.webp"
+    },
+    {
+      "name": "Brown Harness",
+      "path": "brown_harness.webp"
+    },
+    {
+      "name": "Brown Mushroom",
+      "path": "brown_mushroom.webp"
+    },
+    {
+      "name": "Brown Mushroom Block",
+      "path": "brown_mushroom_block.webp"
+    },
+    {
+      "name": "Brown Shulker Box",
+      "path": "brown_shulker_box.webp"
+    },
+    {
+      "name": "Brown Stained Glass",
+      "path": "brown_stained_glass.webp"
+    },
+    {
+      "name": "Brown Stained Glass Pane",
+      "path": "brown_stained_glass_pane.webp"
+    },
+    {
+      "name": "Brown Terracotta",
+      "path": "brown_terracotta.webp"
+    },
+    {
+      "name": "Brown Wool",
+      "path": "brown_wool.webp"
+    },
+    {
+      "name": "Brush",
+      "path": "brush.webp"
+    },
+    {
+      "name": "Bubble Coral",
+      "path": "bubble_coral.webp"
+    },
+    {
+      "name": "Bubble Coral Block",
+      "path": "bubble_coral_block.webp"
+    },
+    {
+      "name": "Bubble Coral Fan",
+      "path": "bubble_coral_fan.webp"
+    },
+    {
+      "name": "Bucket",
+      "path": "bucket.webp"
+    },
+    {
+      "name": "Budding Amethyst",
+      "path": "budding_amethyst.webp"
+    },
+    {
+      "name": "Bundle",
+      "path": "bundle.webp"
+    },
+    {
+      "name": "Burn Pottery Sherd",
+      "path": "burn_pottery_sherd.webp"
+    },
+    {
+      "name": "Bush",
+      "path": "bush.webp"
+    },
+    {
+      "name": "Cactus",
+      "path": "cactus.webp"
+    },
+    {
+      "name": "Cake",
+      "path": "cake.webp"
+    },
+    {
+      "name": "Calcite",
+      "path": "calcite.webp"
+    },
+    {
+      "name": "Calibrated Sculk Sensor",
+      "path": "calibrated_sculk_sensor.webp"
+    },
+    {
+      "name": "Camel Spawn Egg",
+      "path": "camel_spawn_egg.webp"
+    },
+    {
+      "name": "Campfire",
+      "path": "campfire.webp"
+    },
+    {
+      "name": "Candle",
+      "path": "candle.webp"
+    },
+    {
+      "name": "Carrot",
+      "path": "carrot.webp"
+    },
+    {
+      "name": "Carrot On A Stick",
+      "path": "carrot_on_a_stick.webp"
+    },
+    {
+      "name": "Cartography Table",
+      "path": "cartography_table.webp"
+    },
+    {
+      "name": "Carved Pumpkin",
+      "path": "carved_pumpkin.webp"
+    },
+    {
+      "name": "Cat Spawn Egg",
+      "path": "cat_spawn_egg.webp"
+    },
+    {
+      "name": "Cauldron",
+      "path": "cauldron.webp"
+    },
+    {
+      "name": "Cave Spider Spawn Egg",
+      "path": "cave_spider_spawn_egg.webp"
+    },
+    {
+      "name": "Chain",
+      "path": "chain.webp"
+    },
+    {
+      "name": "Chainmail Boots",
+      "path": "chainmail_boots.webp"
+    },
+    {
+      "name": "Chainmail Chestplate",
+      "path": "chainmail_chestplate.webp"
+    },
+    {
+      "name": "Chainmail Helmet",
+      "path": "chainmail_helmet.webp"
+    },
+    {
+      "name": "Chainmail Leggings",
+      "path": "chainmail_leggings.webp"
+    },
+    {
+      "name": "Chain Command Block",
+      "path": "chain_command_block.webp"
+    },
+    {
+      "name": "Charcoal",
+      "path": "charcoal.webp"
+    },
+    {
+      "name": "Cherry Boat",
+      "path": "cherry_boat.webp"
+    },
+    {
+      "name": "Cherry Button",
+      "path": "cherry_button.webp"
+    },
+    {
+      "name": "Cherry Chest Boat",
+      "path": "cherry_chest_boat.webp"
+    },
+    {
+      "name": "Cherry Door",
+      "path": "cherry_door.webp"
+    },
+    {
+      "name": "Cherry Fence",
+      "path": "cherry_fence.webp"
+    },
+    {
+      "name": "Cherry Fence Gate",
+      "path": "cherry_fence_gate.webp"
+    },
+    {
+      "name": "Cherry Hanging Sign",
+      "path": "cherry_hanging_sign.webp"
+    },
+    {
+      "name": "Cherry Leaves",
+      "path": "cherry_leaves.webp"
+    },
+    {
+      "name": "Cherry Log",
+      "path": "cherry_log.webp"
+    },
+    {
+      "name": "Cherry Planks",
+      "path": "cherry_planks.webp"
+    },
+    {
+      "name": "Cherry Pressure Plate",
+      "path": "cherry_pressure_plate.webp"
+    },
+    {
+      "name": "Cherry Sapling",
+      "path": "cherry_sapling.webp"
+    },
+    {
+      "name": "Cherry Shelf",
+      "path": "cherry_shelf.webp"
+    },
+    {
+      "name": "Cherry Sign",
+      "path": "cherry_sign.webp"
+    },
+    {
+      "name": "Cherry Slab",
+      "path": "cherry_slab.webp"
+    },
+    {
+      "name": "Cherry Stairs",
+      "path": "cherry_stairs.webp"
+    },
+    {
+      "name": "Cherry Trapdoor",
+      "path": "cherry_trapdoor.webp"
+    },
+    {
+      "name": "Cherry Wood",
+      "path": "cherry_wood.webp"
+    },
+    {
+      "name": "Chest",
+      "path": "chest.webp"
+    },
+    {
+      "name": "Chest Minecart",
+      "path": "chest_minecart.webp"
+    },
+    {
+      "name": "Chicken",
+      "path": "chicken.webp"
+    },
+    {
+      "name": "Chicken Spawn Egg",
+      "path": "chicken_spawn_egg.webp"
+    },
+    {
+      "name": "Chipped Anvil",
+      "path": "chipped_anvil.webp"
+    },
+    {
+      "name": "Chiseled Bookshelf",
+      "path": "chiseled_bookshelf.webp"
+    },
+    {
+      "name": "Chiseled Copper",
+      "path": "chiseled_copper.webp"
+    },
+    {
+      "name": "Chiseled Deepslate",
+      "path": "chiseled_deepslate.webp"
+    },
+    {
+      "name": "Chiseled Nether Bricks",
+      "path": "chiseled_nether_bricks.webp"
+    },
+    {
+      "name": "Chiseled Polished Blackstone",
+      "path": "chiseled_polished_blackstone.webp"
+    },
+    {
+      "name": "Chiseled Quartz Block",
+      "path": "chiseled_quartz_block.webp"
+    },
+    {
+      "name": "Chiseled Red Sandstone",
+      "path": "chiseled_red_sandstone.webp"
+    },
+    {
+      "name": "Chiseled Resin Bricks",
+      "path": "chiseled_resin_bricks.webp"
+    },
+    {
+      "name": "Chiseled Sandstone",
+      "path": "chiseled_sandstone.webp"
+    },
+    {
+      "name": "Chiseled Stone Bricks",
+      "path": "chiseled_stone_bricks.webp"
+    },
+    {
+      "name": "Chiseled Tuff",
+      "path": "chiseled_tuff.webp"
+    },
+    {
+      "name": "Chiseled Tuff Bricks",
+      "path": "chiseled_tuff_bricks.webp"
+    },
+    {
+      "name": "Chorus Flower",
+      "path": "chorus_flower.webp"
+    },
+    {
+      "name": "Chorus Fruit",
+      "path": "chorus_fruit.webp"
+    },
+    {
+      "name": "Chorus Plant",
+      "path": "chorus_plant.webp"
+    },
+    {
+      "name": "Clay",
+      "path": "clay.webp"
+    },
+    {
+      "name": "Clay Ball",
+      "path": "clay_ball.webp"
+    },
+    {
+      "name": "Clock",
+      "path": "clock.webp"
+    },
+    {
+      "name": "Coal",
+      "path": "coal.webp"
+    },
+    {
+      "name": "Coal Block",
+      "path": "coal_block.webp"
+    },
+    {
+      "name": "Coal Ore",
+      "path": "coal_ore.webp"
+    },
+    {
+      "name": "Coarse Dirt",
+      "path": "coarse_dirt.webp"
+    },
+    {
+      "name": "Coast Armor Trim Smithing Template",
+      "path": "coast_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Cobbled Deepslate",
+      "path": "cobbled_deepslate.webp"
+    },
+    {
+      "name": "Cobbled Deepslate Slab",
+      "path": "cobbled_deepslate_slab.webp"
+    },
+    {
+      "name": "Cobbled Deepslate Stairs",
+      "path": "cobbled_deepslate_stairs.webp"
+    },
+    {
+      "name": "Cobbled Deepslate Wall",
+      "path": "cobbled_deepslate_wall.webp"
+    },
+    {
+      "name": "Cobblestone",
+      "path": "cobblestone.webp"
+    },
+    {
+      "name": "Cobblestone Slab",
+      "path": "cobblestone_slab.webp"
+    },
+    {
+      "name": "Cobblestone Stairs",
+      "path": "cobblestone_stairs.webp"
+    },
+    {
+      "name": "Cobblestone Wall",
+      "path": "cobblestone_wall.webp"
+    },
+    {
+      "name": "Cobweb",
+      "path": "cobweb.webp"
+    },
+    {
+      "name": "Cocoa Beans",
+      "path": "cocoa_beans.webp"
+    },
+    {
+      "name": "Cod",
+      "path": "cod.webp"
+    },
+    {
+      "name": "Cod Bucket",
+      "path": "cod_bucket.webp"
+    },
+    {
+      "name": "Cod Spawn Egg",
+      "path": "cod_spawn_egg.webp"
+    },
+    {
+      "name": "Command Block",
+      "path": "command_block.webp"
+    },
+    {
+      "name": "Command Block Minecart",
+      "path": "command_block_minecart.webp"
+    },
+    {
+      "name": "Comparator",
+      "path": "comparator.webp"
+    },
+    {
+      "name": "Compass",
+      "path": "compass.webp"
+    },
+    {
+      "name": "Composter",
+      "path": "composter.webp"
+    },
+    {
+      "name": "Conduit",
+      "path": "conduit.webp"
+    },
+    {
+      "name": "Cooked Beef",
+      "path": "cooked_beef.webp"
+    },
+    {
+      "name": "Cooked Chicken",
+      "path": "cooked_chicken.webp"
+    },
+    {
+      "name": "Cooked Cod",
+      "path": "cooked_cod.webp"
+    },
+    {
+      "name": "Cooked Mutton",
+      "path": "cooked_mutton.webp"
+    },
+    {
+      "name": "Cooked Porkchop",
+      "path": "cooked_porkchop.webp"
+    },
+    {
+      "name": "Cooked Rabbit",
+      "path": "cooked_rabbit.webp"
+    },
+    {
+      "name": "Cooked Salmon",
+      "path": "cooked_salmon.webp"
+    },
+    {
+      "name": "Cookie",
+      "path": "cookie.webp"
+    },
+    {
+      "name": "Copper Axe",
+      "path": "copper_axe.webp"
+    },
+    {
+      "name": "Copper Bars",
+      "path": "copper_bars.webp"
+    },
+    {
+      "name": "Copper Block",
+      "path": "copper_block.webp"
+    },
+    {
+      "name": "Copper Boots",
+      "path": "copper_boots.webp"
+    },
+    {
+      "name": "Copper Bulb",
+      "path": "copper_bulb.webp"
+    },
+    {
+      "name": "Copper Chain",
+      "path": "copper_chain.webp"
+    },
+    {
+      "name": "Copper Chest",
+      "path": "copper_chest.webp"
+    },
+    {
+      "name": "Copper Chestplate",
+      "path": "copper_chestplate.webp"
+    },
+    {
+      "name": "Copper Door",
+      "path": "copper_door.webp"
+    },
+    {
+      "name": "Copper Golem Spawn Egg",
+      "path": "copper_golem_spawn_egg.webp"
+    },
+    {
+      "name": "Copper Grate",
+      "path": "copper_grate.webp"
+    },
+    {
+      "name": "Copper Helmet",
+      "path": "copper_helmet.webp"
+    },
+    {
+      "name": "Copper Hoe",
+      "path": "copper_hoe.webp"
+    },
+    {
+      "name": "Copper Ingot",
+      "path": "copper_ingot.webp"
+    },
+    {
+      "name": "Copper Lantern",
+      "path": "copper_lantern.webp"
+    },
+    {
+      "name": "Copper Leggings",
+      "path": "copper_leggings.webp"
+    },
+    {
+      "name": "Copper Nugget",
+      "path": "copper_nugget.webp"
+    },
+    {
+      "name": "Copper Ore",
+      "path": "copper_ore.webp"
+    },
+    {
+      "name": "Copper Pickaxe",
+      "path": "copper_pickaxe.webp"
+    },
+    {
+      "name": "Copper Shovel",
+      "path": "copper_shovel.webp"
+    },
+    {
+      "name": "Copper Sword",
+      "path": "copper_sword.webp"
+    },
+    {
+      "name": "Copper Torch",
+      "path": "copper_torch.webp"
+    },
+    {
+      "name": "Copper Trapdoor",
+      "path": "copper_trapdoor.webp"
+    },
+    {
+      "name": "Cornflower",
+      "path": "cornflower.webp"
+    },
+    {
+      "name": "Cow Spawn Egg",
+      "path": "cow_spawn_egg.webp"
+    },
+    {
+      "name": "Cracked Deepslate Bricks",
+      "path": "cracked_deepslate_bricks.webp"
+    },
+    {
+      "name": "Cracked Deepslate Tiles",
+      "path": "cracked_deepslate_tiles.webp"
+    },
+    {
+      "name": "Cracked Nether Bricks",
+      "path": "cracked_nether_bricks.webp"
+    },
+    {
+      "name": "Cracked Polished Blackstone Bricks",
+      "path": "cracked_polished_blackstone_bricks.webp"
+    },
+    {
+      "name": "Cracked Stone Bricks",
+      "path": "cracked_stone_bricks.webp"
+    },
+    {
+      "name": "Crafter",
+      "path": "crafter.webp"
+    },
+    {
+      "name": "Crafting Table",
+      "path": "crafting_table.webp"
+    },
+    {
+      "name": "Creaking Heart",
+      "path": "creaking_heart.webp"
+    },
+    {
+      "name": "Creaking Spawn Egg",
+      "path": "creaking_spawn_egg.webp"
+    },
+    {
+      "name": "Creeper Banner Pattern",
+      "path": "creeper_banner_pattern.webp"
+    },
+    {
+      "name": "Creeper Head",
+      "path": "creeper_head.webp"
+    },
+    {
+      "name": "Creeper Spawn Egg",
+      "path": "creeper_spawn_egg.webp"
+    },
+    {
+      "name": "Crimson Button",
+      "path": "crimson_button.webp"
+    },
+    {
+      "name": "Crimson Door",
+      "path": "crimson_door.webp"
+    },
+    {
+      "name": "Crimson Fence",
+      "path": "crimson_fence.webp"
+    },
+    {
+      "name": "Crimson Fence Gate",
+      "path": "crimson_fence_gate.webp"
+    },
+    {
+      "name": "Crimson Fungus",
+      "path": "crimson_fungus.webp"
+    },
+    {
+      "name": "Crimson Hanging Sign",
+      "path": "crimson_hanging_sign.webp"
+    },
+    {
+      "name": "Crimson Hyphae",
+      "path": "crimson_hyphae.webp"
+    },
+    {
+      "name": "Crimson Nylium",
+      "path": "crimson_nylium.webp"
+    },
+    {
+      "name": "Crimson Planks",
+      "path": "crimson_planks.webp"
+    },
+    {
+      "name": "Crimson Pressure Plate",
+      "path": "crimson_pressure_plate.webp"
+    },
+    {
+      "name": "Crimson Roots",
+      "path": "crimson_roots.webp"
+    },
+    {
+      "name": "Crimson Shelf",
+      "path": "crimson_shelf.webp"
+    },
+    {
+      "name": "Crimson Sign",
+      "path": "crimson_sign.webp"
+    },
+    {
+      "name": "Crimson Slab",
+      "path": "crimson_slab.webp"
+    },
+    {
+      "name": "Crimson Stairs",
+      "path": "crimson_stairs.webp"
+    },
+    {
+      "name": "Crimson Stem",
+      "path": "crimson_stem.webp"
+    },
+    {
+      "name": "Crimson Trapdoor",
+      "path": "crimson_trapdoor.webp"
+    },
+    {
+      "name": "Crossbow",
+      "path": "crossbow.webp"
+    },
+    {
+      "name": "Crying Obsidian",
+      "path": "crying_obsidian.webp"
+    },
+    {
+      "name": "Cut Copper",
+      "path": "cut_copper.webp"
+    },
+    {
+      "name": "Cut Copper Slab",
+      "path": "cut_copper_slab.webp"
+    },
+    {
+      "name": "Cut Copper Stairs",
+      "path": "cut_copper_stairs.webp"
+    },
+    {
+      "name": "Cut Red Sandstone",
+      "path": "cut_red_sandstone.webp"
+    },
+    {
+      "name": "Cut Red Sandstone Slab",
+      "path": "cut_red_sandstone_slab.webp"
+    },
+    {
+      "name": "Cut Sandstone",
+      "path": "cut_sandstone.webp"
+    },
+    {
+      "name": "Cut Sandstone Slab",
+      "path": "cut_sandstone_slab.webp"
+    },
+    {
+      "name": "Cyan Banner",
+      "path": "cyan_banner.webp"
+    },
+    {
+      "name": "Cyan Bed",
+      "path": "cyan_bed.webp"
+    },
+    {
+      "name": "Cyan Bundle",
+      "path": "cyan_bundle.webp"
+    },
+    {
+      "name": "Cyan Candle",
+      "path": "cyan_candle.webp"
+    },
+    {
+      "name": "Cyan Carpet",
+      "path": "cyan_carpet.webp"
+    },
+    {
+      "name": "Cyan Concrete",
+      "path": "cyan_concrete.webp"
+    },
+    {
+      "name": "Cyan Concrete Powder",
+      "path": "cyan_concrete_powder.webp"
+    },
+    {
+      "name": "Cyan Dye",
+      "path": "cyan_dye.webp"
+    },
+    {
+      "name": "Cyan Glazed Terracotta",
+      "path": "cyan_glazed_terracotta.webp"
+    },
+    {
+      "name": "Cyan Harness",
+      "path": "cyan_harness.webp"
+    },
+    {
+      "name": "Cyan Shulker Box",
+      "path": "cyan_shulker_box.webp"
+    },
+    {
+      "name": "Cyan Stained Glass",
+      "path": "cyan_stained_glass.webp"
+    },
+    {
+      "name": "Cyan Stained Glass Pane",
+      "path": "cyan_stained_glass_pane.webp"
+    },
+    {
+      "name": "Cyan Terracotta",
+      "path": "cyan_terracotta.webp"
+    },
+    {
+      "name": "Cyan Wool",
+      "path": "cyan_wool.webp"
+    },
+    {
+      "name": "Damaged Anvil",
+      "path": "damaged_anvil.webp"
+    },
+    {
+      "name": "Dandelion",
+      "path": "dandelion.webp"
+    },
+    {
+      "name": "Danger Pottery Sherd",
+      "path": "danger_pottery_sherd.webp"
+    },
+    {
+      "name": "Dark Oak Boat",
+      "path": "dark_oak_boat.webp"
+    },
+    {
+      "name": "Dark Oak Button",
+      "path": "dark_oak_button.webp"
+    },
+    {
+      "name": "Dark Oak Chest Boat",
+      "path": "dark_oak_chest_boat.webp"
+    },
+    {
+      "name": "Dark Oak Door",
+      "path": "dark_oak_door.webp"
+    },
+    {
+      "name": "Dark Oak Fence",
+      "path": "dark_oak_fence.webp"
+    },
+    {
+      "name": "Dark Oak Fence Gate",
+      "path": "dark_oak_fence_gate.webp"
+    },
+    {
+      "name": "Dark Oak Hanging Sign",
+      "path": "dark_oak_hanging_sign.webp"
+    },
+    {
+      "name": "Dark Oak Leaves",
+      "path": "dark_oak_leaves.webp"
+    },
+    {
+      "name": "Dark Oak Log",
+      "path": "dark_oak_log.webp"
+    },
+    {
+      "name": "Dark Oak Planks",
+      "path": "dark_oak_planks.webp"
+    },
+    {
+      "name": "Dark Oak Pressure Plate",
+      "path": "dark_oak_pressure_plate.webp"
+    },
+    {
+      "name": "Dark Oak Sapling",
+      "path": "dark_oak_sapling.webp"
+    },
+    {
+      "name": "Dark Oak Shelf",
+      "path": "dark_oak_shelf.webp"
+    },
+    {
+      "name": "Dark Oak Sign",
+      "path": "dark_oak_sign.webp"
+    },
+    {
+      "name": "Dark Oak Slab",
+      "path": "dark_oak_slab.webp"
+    },
+    {
+      "name": "Dark Oak Stairs",
+      "path": "dark_oak_stairs.webp"
+    },
+    {
+      "name": "Dark Oak Trapdoor",
+      "path": "dark_oak_trapdoor.webp"
+    },
+    {
+      "name": "Dark Oak Wood",
+      "path": "dark_oak_wood.webp"
+    },
+    {
+      "name": "Dark Prismarine",
+      "path": "dark_prismarine.webp"
+    },
+    {
+      "name": "Dark Prismarine Slab",
+      "path": "dark_prismarine_slab.webp"
+    },
+    {
+      "name": "Dark Prismarine Stairs",
+      "path": "dark_prismarine_stairs.webp"
+    },
+    {
+      "name": "Daylight Detector",
+      "path": "daylight_detector.webp"
+    },
+    {
+      "name": "Dead Brain Coral",
+      "path": "dead_brain_coral.webp"
+    },
+    {
+      "name": "Dead Brain Coral Block",
+      "path": "dead_brain_coral_block.webp"
+    },
+    {
+      "name": "Dead Brain Coral Fan",
+      "path": "dead_brain_coral_fan.webp"
+    },
+    {
+      "name": "Dead Bubble Coral",
+      "path": "dead_bubble_coral.webp"
+    },
+    {
+      "name": "Dead Bubble Coral Block",
+      "path": "dead_bubble_coral_block.webp"
+    },
+    {
+      "name": "Dead Bubble Coral Fan",
+      "path": "dead_bubble_coral_fan.webp"
+    },
+    {
+      "name": "Dead Bush",
+      "path": "dead_bush.webp"
+    },
+    {
+      "name": "Dead Fire Coral",
+      "path": "dead_fire_coral.webp"
+    },
+    {
+      "name": "Dead Fire Coral Block",
+      "path": "dead_fire_coral_block.webp"
+    },
+    {
+      "name": "Dead Fire Coral Fan",
+      "path": "dead_fire_coral_fan.webp"
+    },
+    {
+      "name": "Dead Horn Coral",
+      "path": "dead_horn_coral.webp"
+    },
+    {
+      "name": "Dead Horn Coral Block",
+      "path": "dead_horn_coral_block.webp"
+    },
+    {
+      "name": "Dead Horn Coral Fan",
+      "path": "dead_horn_coral_fan.webp"
+    },
+    {
+      "name": "Dead Tube Coral",
+      "path": "dead_tube_coral.webp"
+    },
+    {
+      "name": "Dead Tube Coral Block",
+      "path": "dead_tube_coral_block.webp"
+    },
+    {
+      "name": "Dead Tube Coral Fan",
+      "path": "dead_tube_coral_fan.webp"
+    },
+    {
+      "name": "Debug Stick",
+      "path": "debug_stick.webp"
+    },
+    {
+      "name": "Decorated Pot",
+      "path": "decorated_pot.webp"
+    },
+    {
+      "name": "Deepslate",
+      "path": "deepslate.webp"
+    },
+    {
+      "name": "Deepslate Bricks",
+      "path": "deepslate_bricks.webp"
+    },
+    {
+      "name": "Deepslate Brick Slab",
+      "path": "deepslate_brick_slab.webp"
+    },
+    {
+      "name": "Deepslate Brick Stairs",
+      "path": "deepslate_brick_stairs.webp"
+    },
+    {
+      "name": "Deepslate Brick Wall",
+      "path": "deepslate_brick_wall.webp"
+    },
+    {
+      "name": "Deepslate Coal Ore",
+      "path": "deepslate_coal_ore.webp"
+    },
+    {
+      "name": "Deepslate Copper Ore",
+      "path": "deepslate_copper_ore.webp"
+    },
+    {
+      "name": "Deepslate Diamond Ore",
+      "path": "deepslate_diamond_ore.webp"
+    },
+    {
+      "name": "Deepslate Emerald Ore",
+      "path": "deepslate_emerald_ore.webp"
+    },
+    {
+      "name": "Deepslate Gold Ore",
+      "path": "deepslate_gold_ore.webp"
+    },
+    {
+      "name": "Deepslate Iron Ore",
+      "path": "deepslate_iron_ore.webp"
+    },
+    {
+      "name": "Deepslate Lapis Ore",
+      "path": "deepslate_lapis_ore.webp"
+    },
+    {
+      "name": "Deepslate Redstone Ore",
+      "path": "deepslate_redstone_ore.webp"
+    },
+    {
+      "name": "Deepslate Tiles",
+      "path": "deepslate_tiles.webp"
+    },
+    {
+      "name": "Deepslate Tile Slab",
+      "path": "deepslate_tile_slab.webp"
+    },
+    {
+      "name": "Deepslate Tile Stairs",
+      "path": "deepslate_tile_stairs.webp"
+    },
+    {
+      "name": "Deepslate Tile Wall",
+      "path": "deepslate_tile_wall.webp"
+    },
+    {
+      "name": "Detector Rail",
+      "path": "detector_rail.webp"
+    },
+    {
+      "name": "Diamond",
+      "path": "diamond.webp"
+    },
+    {
+      "name": "Diamond Axe",
+      "path": "diamond_axe.webp"
+    },
+    {
+      "name": "Diamond Block",
+      "path": "diamond_block.webp"
+    },
+    {
+      "name": "Diamond Boots",
+      "path": "diamond_boots.webp"
+    },
+    {
+      "name": "Diamond Chestplate",
+      "path": "diamond_chestplate.webp"
+    },
+    {
+      "name": "Diamond Helmet",
+      "path": "diamond_helmet.webp"
+    },
+    {
+      "name": "Diamond Hoe",
+      "path": "diamond_hoe.webp"
+    },
+    {
+      "name": "Diamond Horse Armor",
+      "path": "diamond_horse_armor.webp"
+    },
+    {
+      "name": "Diamond Leggings",
+      "path": "diamond_leggings.webp"
+    },
+    {
+      "name": "Diamond Ore",
+      "path": "diamond_ore.webp"
+    },
+    {
+      "name": "Diamond Pickaxe",
+      "path": "diamond_pickaxe.webp"
+    },
+    {
+      "name": "Diamond Shovel",
+      "path": "diamond_shovel.webp"
+    },
+    {
+      "name": "Diamond Sword",
+      "path": "diamond_sword.webp"
+    },
+    {
+      "name": "Diorite",
+      "path": "diorite.webp"
+    },
+    {
+      "name": "Diorite Slab",
+      "path": "diorite_slab.webp"
+    },
+    {
+      "name": "Diorite Stairs",
+      "path": "diorite_stairs.webp"
+    },
+    {
+      "name": "Diorite Wall",
+      "path": "diorite_wall.webp"
+    },
+    {
+      "name": "Dirt",
+      "path": "dirt.webp"
+    },
+    {
+      "name": "Dirt Path",
+      "path": "dirt_path.webp"
+    },
+    {
+      "name": "Disc Fragment 5",
+      "path": "disc_fragment_5.webp"
+    },
+    {
+      "name": "Dispenser",
+      "path": "dispenser.webp"
+    },
+    {
+      "name": "Dolphin Spawn Egg",
+      "path": "dolphin_spawn_egg.webp"
+    },
+    {
+      "name": "Donkey Spawn Egg",
+      "path": "donkey_spawn_egg.webp"
+    },
+    {
+      "name": "Dragon Breath",
+      "path": "dragon_breath.webp"
+    },
+    {
+      "name": "Dragon Egg",
+      "path": "dragon_egg.webp"
+    },
+    {
+      "name": "Dragon Head",
+      "path": "dragon_head.webp"
+    },
+    {
+      "name": "Dried Ghast",
+      "path": "dried_ghast.webp"
+    },
+    {
+      "name": "Dried Kelp",
+      "path": "dried_kelp.webp"
+    },
+    {
+      "name": "Dried Kelp Block",
+      "path": "dried_kelp_block.webp"
+    },
+    {
+      "name": "Dripstone Block",
+      "path": "dripstone_block.webp"
+    },
+    {
+      "name": "Dropper",
+      "path": "dropper.webp"
+    },
+    {
+      "name": "Drowned Spawn Egg",
+      "path": "drowned_spawn_egg.webp"
+    },
+    {
+      "name": "Dune Armor Trim Smithing Template",
+      "path": "dune_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Echo Shard",
+      "path": "echo_shard.webp"
+    },
+    {
+      "name": "Egg",
+      "path": "egg.webp"
+    },
+    {
+      "name": "Elder Guardian Spawn Egg",
+      "path": "elder_guardian_spawn_egg.webp"
+    },
+    {
+      "name": "Elytra",
+      "path": "elytra.webp"
+    },
+    {
+      "name": "Emerald",
+      "path": "emerald.webp"
+    },
+    {
+      "name": "Emerald Block",
+      "path": "emerald_block.webp"
+    },
+    {
+      "name": "Emerald Ore",
+      "path": "emerald_ore.webp"
+    },
+    {
+      "name": "Enchanted Book",
+      "path": "enchanted_book.webp"
+    },
+    {
+      "name": "Enchanted Golden Apple",
+      "path": "enchanted_golden_apple.webp"
+    },
+    {
+      "name": "Enchanting Table",
+      "path": "enchanting_table.webp"
+    },
+    {
+      "name": "Enderman Spawn Egg",
+      "path": "enderman_spawn_egg.webp"
+    },
+    {
+      "name": "Endermite Spawn Egg",
+      "path": "endermite_spawn_egg.webp"
+    },
+    {
+      "name": "Ender Chest",
+      "path": "ender_chest.webp"
+    },
+    {
+      "name": "Ender Dragon Spawn Egg",
+      "path": "ender_dragon_spawn_egg.webp"
+    },
+    {
+      "name": "Ender Eye",
+      "path": "ender_eye.webp"
+    },
+    {
+      "name": "Ender Pearl",
+      "path": "ender_pearl.webp"
+    },
+    {
+      "name": "End Crystal",
+      "path": "end_crystal.webp"
+    },
+    {
+      "name": "End Portal Frame",
+      "path": "end_portal_frame.webp"
+    },
+    {
+      "name": "End Rod",
+      "path": "end_rod.webp"
+    },
+    {
+      "name": "End Stone",
+      "path": "end_stone.webp"
+    },
+    {
+      "name": "End Stone Bricks",
+      "path": "end_stone_bricks.webp"
+    },
+    {
+      "name": "End Stone Brick Slab",
+      "path": "end_stone_brick_slab.webp"
+    },
+    {
+      "name": "End Stone Brick Stairs",
+      "path": "end_stone_brick_stairs.webp"
+    },
+    {
+      "name": "End Stone Brick Wall",
+      "path": "end_stone_brick_wall.webp"
+    },
+    {
+      "name": "Evoker Spawn Egg",
+      "path": "evoker_spawn_egg.webp"
+    },
+    {
+      "name": "Experience Bottle",
+      "path": "experience_bottle.webp"
+    },
+    {
+      "name": "Explorer Pottery Sherd",
+      "path": "explorer_pottery_sherd.webp"
+    },
+    {
+      "name": "Exposed Chiseled Copper",
+      "path": "exposed_chiseled_copper.webp"
+    },
+    {
+      "name": "Exposed Copper",
+      "path": "exposed_copper.webp"
+    },
+    {
+      "name": "Exposed Copper Bulb",
+      "path": "exposed_copper_bulb.webp"
+    },
+    {
+      "name": "Exposed Copper Door",
+      "path": "exposed_copper_door.webp"
+    },
+    {
+      "name": "Exposed Copper Grate",
+      "path": "exposed_copper_grate.webp"
+    },
+    {
+      "name": "Exposed Copper Trapdoor",
+      "path": "exposed_copper_trapdoor.webp"
+    },
+    {
+      "name": "Exposed Cut Copper",
+      "path": "exposed_cut_copper.webp"
+    },
+    {
+      "name": "Exposed Cut Copper Slab",
+      "path": "exposed_cut_copper_slab.webp"
+    },
+    {
+      "name": "Exposed Cut Copper Stairs",
+      "path": "exposed_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Eye Armor Trim Smithing Template",
+      "path": "eye_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Farmland",
+      "path": "farmland.webp"
+    },
+    {
+      "name": "Feather",
+      "path": "feather.webp"
+    },
+    {
+      "name": "Fermented Spider Eye",
+      "path": "fermented_spider_eye.webp"
+    },
+    {
+      "name": "Fern",
+      "path": "fern.webp"
+    },
+    {
+      "name": "Filled Map",
+      "path": "filled_map.webp"
+    },
+    {
+      "name": "Firefly Bush",
+      "path": "firefly_bush.webp"
+    },
+    {
+      "name": "Firework Rocket",
+      "path": "firework_rocket.webp"
+    },
+    {
+      "name": "Firework Star",
+      "path": "firework_star.webp"
+    },
+    {
+      "name": "Fire Charge",
+      "path": "fire_charge.webp"
+    },
+    {
+      "name": "Fire Coral",
+      "path": "fire_coral.webp"
+    },
+    {
+      "name": "Fire Coral Block",
+      "path": "fire_coral_block.webp"
+    },
+    {
+      "name": "Fire Coral Fan",
+      "path": "fire_coral_fan.webp"
+    },
+    {
+      "name": "Fishing Rod",
+      "path": "fishing_rod.webp"
+    },
+    {
+      "name": "Fletching Table",
+      "path": "fletching_table.webp"
+    },
+    {
+      "name": "Flint",
+      "path": "flint.webp"
+    },
+    {
+      "name": "Flint And Steel",
+      "path": "flint_and_steel.webp"
+    },
+    {
+      "name": "Flowering Azalea",
+      "path": "flowering_azalea.webp"
+    },
+    {
+      "name": "Flowering Azalea Leaves",
+      "path": "flowering_azalea_leaves.webp"
+    },
+    {
+      "name": "Flower Banner Pattern",
+      "path": "flower_banner_pattern.webp"
+    },
+    {
+      "name": "Flower Pot",
+      "path": "flower_pot.webp"
+    },
+    {
+      "name": "Flow Armor Trim Smithing Template",
+      "path": "flow_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Flow Banner Pattern",
+      "path": "flow_banner_pattern.webp"
+    },
+    {
+      "name": "Flow Pottery Sherd",
+      "path": "flow_pottery_sherd.webp"
+    },
+    {
+      "name": "Fox Spawn Egg",
+      "path": "fox_spawn_egg.webp"
+    },
+    {
+      "name": "Friend Pottery Sherd",
+      "path": "friend_pottery_sherd.webp"
+    },
+    {
+      "name": "Frogspawn",
+      "path": "frogspawn.webp"
+    },
+    {
+      "name": "Frog Spawn Egg",
+      "path": "frog_spawn_egg.webp"
+    },
+    {
+      "name": "Furnace",
+      "path": "furnace.webp"
+    },
+    {
+      "name": "Furnace Minecart",
+      "path": "furnace_minecart.webp"
+    },
+    {
+      "name": "Ghast Spawn Egg",
+      "path": "ghast_spawn_egg.webp"
+    },
+    {
+      "name": "Ghast Tear",
+      "path": "ghast_tear.webp"
+    },
+    {
+      "name": "Gilded Blackstone",
+      "path": "gilded_blackstone.webp"
+    },
+    {
+      "name": "Glass",
+      "path": "glass.webp"
+    },
+    {
+      "name": "Glass Bottle",
+      "path": "glass_bottle.webp"
+    },
+    {
+      "name": "Glass Pane",
+      "path": "glass_pane.webp"
+    },
+    {
+      "name": "Glistering Melon Slice",
+      "path": "glistering_melon_slice.webp"
+    },
+    {
+      "name": "Globe Banner Pattern",
+      "path": "globe_banner_pattern.webp"
+    },
+    {
+      "name": "Glowstone",
+      "path": "glowstone.webp"
+    },
+    {
+      "name": "Glowstone Dust",
+      "path": "glowstone_dust.webp"
+    },
+    {
+      "name": "Glow Berries",
+      "path": "glow_berries.webp"
+    },
+    {
+      "name": "Glow Ink Sac",
+      "path": "glow_ink_sac.webp"
+    },
+    {
+      "name": "Glow Item Frame",
+      "path": "glow_item_frame.webp"
+    },
+    {
+      "name": "Glow Lichen",
+      "path": "glow_lichen.webp"
+    },
+    {
+      "name": "Glow Squid Spawn Egg",
+      "path": "glow_squid_spawn_egg.webp"
+    },
+    {
+      "name": "Goat Horn",
+      "path": "goat_horn.webp"
+    },
+    {
+      "name": "Goat Spawn Egg",
+      "path": "goat_spawn_egg.webp"
+    },
+    {
+      "name": "Golden Apple",
+      "path": "golden_apple.webp"
+    },
+    {
+      "name": "Golden Axe",
+      "path": "golden_axe.webp"
+    },
+    {
+      "name": "Golden Boots",
+      "path": "golden_boots.webp"
+    },
+    {
+      "name": "Golden Carrot",
+      "path": "golden_carrot.webp"
+    },
+    {
+      "name": "Golden Chestplate",
+      "path": "golden_chestplate.webp"
+    },
+    {
+      "name": "Golden Helmet",
+      "path": "golden_helmet.webp"
+    },
+    {
+      "name": "Golden Hoe",
+      "path": "golden_hoe.webp"
+    },
+    {
+      "name": "Golden Horse Armor",
+      "path": "golden_horse_armor.webp"
+    },
+    {
+      "name": "Golden Leggings",
+      "path": "golden_leggings.webp"
+    },
+    {
+      "name": "Golden Pickaxe",
+      "path": "golden_pickaxe.webp"
+    },
+    {
+      "name": "Golden Shovel",
+      "path": "golden_shovel.webp"
+    },
+    {
+      "name": "Golden Sword",
+      "path": "golden_sword.webp"
+    },
+    {
+      "name": "Gold Block",
+      "path": "gold_block.webp"
+    },
+    {
+      "name": "Gold Ingot",
+      "path": "gold_ingot.webp"
+    },
+    {
+      "name": "Gold Nugget",
+      "path": "gold_nugget.webp"
+    },
+    {
+      "name": "Gold Ore",
+      "path": "gold_ore.webp"
+    },
+    {
+      "name": "Granite",
+      "path": "granite.webp"
+    },
+    {
+      "name": "Granite Slab",
+      "path": "granite_slab.webp"
+    },
+    {
+      "name": "Granite Stairs",
+      "path": "granite_stairs.webp"
+    },
+    {
+      "name": "Granite Wall",
+      "path": "granite_wall.webp"
+    },
+    {
+      "name": "Grass",
+      "path": "grass.webp"
+    },
+    {
+      "name": "Grass Block",
+      "path": "grass_block.webp"
+    },
+    {
+      "name": "Gravel",
+      "path": "gravel.webp"
+    },
+    {
+      "name": "Gray Banner",
+      "path": "gray_banner.webp"
+    },
+    {
+      "name": "Gray Bed",
+      "path": "gray_bed.webp"
+    },
+    {
+      "name": "Gray Bundle",
+      "path": "gray_bundle.webp"
+    },
+    {
+      "name": "Gray Candle",
+      "path": "gray_candle.webp"
+    },
+    {
+      "name": "Gray Carpet",
+      "path": "gray_carpet.webp"
+    },
+    {
+      "name": "Gray Concrete",
+      "path": "gray_concrete.webp"
+    },
+    {
+      "name": "Gray Concrete Powder",
+      "path": "gray_concrete_powder.webp"
+    },
+    {
+      "name": "Gray Dye",
+      "path": "gray_dye.webp"
+    },
+    {
+      "name": "Gray Glazed Terracotta",
+      "path": "gray_glazed_terracotta.webp"
+    },
+    {
+      "name": "Gray Harness",
+      "path": "gray_harness.webp"
+    },
+    {
+      "name": "Gray Shulker Box",
+      "path": "gray_shulker_box.webp"
+    },
+    {
+      "name": "Gray Stained Glass",
+      "path": "gray_stained_glass.webp"
+    },
+    {
+      "name": "Gray Stained Glass Pane",
+      "path": "gray_stained_glass_pane.webp"
+    },
+    {
+      "name": "Gray Terracotta",
+      "path": "gray_terracotta.webp"
+    },
+    {
+      "name": "Gray Wool",
+      "path": "gray_wool.webp"
+    },
+    {
+      "name": "Green Banner",
+      "path": "green_banner.webp"
+    },
+    {
+      "name": "Green Bed",
+      "path": "green_bed.webp"
+    },
+    {
+      "name": "Green Bundle",
+      "path": "green_bundle.webp"
+    },
+    {
+      "name": "Green Candle",
+      "path": "green_candle.webp"
+    },
+    {
+      "name": "Green Carpet",
+      "path": "green_carpet.webp"
+    },
+    {
+      "name": "Green Concrete",
+      "path": "green_concrete.webp"
+    },
+    {
+      "name": "Green Concrete Powder",
+      "path": "green_concrete_powder.webp"
+    },
+    {
+      "name": "Green Dye",
+      "path": "green_dye.webp"
+    },
+    {
+      "name": "Green Glazed Terracotta",
+      "path": "green_glazed_terracotta.webp"
+    },
+    {
+      "name": "Green Harness",
+      "path": "green_harness.webp"
+    },
+    {
+      "name": "Green Shulker Box",
+      "path": "green_shulker_box.webp"
+    },
+    {
+      "name": "Green Stained Glass",
+      "path": "green_stained_glass.webp"
+    },
+    {
+      "name": "Green Stained Glass Pane",
+      "path": "green_stained_glass_pane.webp"
+    },
+    {
+      "name": "Green Terracotta",
+      "path": "green_terracotta.webp"
+    },
+    {
+      "name": "Green Wool",
+      "path": "green_wool.webp"
+    },
+    {
+      "name": "Grindstone",
+      "path": "grindstone.webp"
+    },
+    {
+      "name": "Guardian Spawn Egg",
+      "path": "guardian_spawn_egg.webp"
+    },
+    {
+      "name": "Gunpowder",
+      "path": "gunpowder.webp"
+    },
+    {
+      "name": "Guster Banner Pattern",
+      "path": "guster_banner_pattern.webp"
+    },
+    {
+      "name": "Guster Pottery Sherd",
+      "path": "guster_pottery_sherd.webp"
+    },
+    {
+      "name": "Hanging Roots",
+      "path": "hanging_roots.webp"
+    },
+    {
+      "name": "Happy Ghast Spawn Egg",
+      "path": "happy_ghast_spawn_egg.webp"
+    },
+    {
+      "name": "Hay Block",
+      "path": "hay_block.webp"
+    },
+    {
+      "name": "Heartbreak Pottery Sherd",
+      "path": "heartbreak_pottery_sherd.webp"
+    },
+    {
+      "name": "Heart Of The Sea",
+      "path": "heart_of_the_sea.webp"
+    },
+    {
+      "name": "Heart Pottery Sherd",
+      "path": "heart_pottery_sherd.webp"
+    },
+    {
+      "name": "Heavy Core",
+      "path": "heavy_core.webp"
+    },
+    {
+      "name": "Heavy Weighted Pressure Plate",
+      "path": "heavy_weighted_pressure_plate.webp"
+    },
+    {
+      "name": "Hoglin Spawn Egg",
+      "path": "hoglin_spawn_egg.webp"
+    },
+    {
+      "name": "Honeycomb",
+      "path": "honeycomb.webp"
+    },
+    {
+      "name": "Honeycomb Block",
+      "path": "honeycomb_block.webp"
+    },
+    {
+      "name": "Honey Block",
+      "path": "honey_block.webp"
+    },
+    {
+      "name": "Honey Bottle",
+      "path": "honey_bottle.webp"
+    },
+    {
+      "name": "Hopper",
+      "path": "hopper.webp"
+    },
+    {
+      "name": "Hopper Minecart",
+      "path": "hopper_minecart.webp"
+    },
+    {
+      "name": "Horn Coral",
+      "path": "horn_coral.webp"
+    },
+    {
+      "name": "Horn Coral Block",
+      "path": "horn_coral_block.webp"
+    },
+    {
+      "name": "Horn Coral Fan",
+      "path": "horn_coral_fan.webp"
+    },
+    {
+      "name": "Horse Spawn Egg",
+      "path": "horse_spawn_egg.webp"
+    },
+    {
+      "name": "Host Armor Trim Smithing Template",
+      "path": "host_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Howl Pottery Sherd",
+      "path": "howl_pottery_sherd.webp"
+    },
+    {
+      "name": "Husk Spawn Egg",
+      "path": "husk_spawn_egg.webp"
+    },
+    {
+      "name": "Ice",
+      "path": "ice.webp"
+    },
+    {
+      "name": "Infested Chiseled Stone Bricks",
+      "path": "infested_chiseled_stone_bricks.webp"
+    },
+    {
+      "name": "Infested Cobblestone",
+      "path": "infested_cobblestone.webp"
+    },
+    {
+      "name": "Infested Cracked Stone Bricks",
+      "path": "infested_cracked_stone_bricks.webp"
+    },
+    {
+      "name": "Infested Deepslate",
+      "path": "infested_deepslate.webp"
+    },
+    {
+      "name": "Infested Mossy Stone Bricks",
+      "path": "infested_mossy_stone_bricks.webp"
+    },
+    {
+      "name": "Infested Stone",
+      "path": "infested_stone.webp"
+    },
+    {
+      "name": "Infested Stone Bricks",
+      "path": "infested_stone_bricks.webp"
+    },
+    {
+      "name": "Ink Sac",
+      "path": "ink_sac.webp"
+    },
+    {
+      "name": "Iron Axe",
+      "path": "iron_axe.webp"
+    },
+    {
+      "name": "Iron Bars",
+      "path": "iron_bars.webp"
+    },
+    {
+      "name": "Iron Block",
+      "path": "iron_block.webp"
+    },
+    {
+      "name": "Iron Boots",
+      "path": "iron_boots.webp"
+    },
+    {
+      "name": "Iron Chestplate",
+      "path": "iron_chestplate.webp"
+    },
+    {
+      "name": "Iron Door",
+      "path": "iron_door.webp"
+    },
+    {
+      "name": "Iron Golem Spawn Egg",
+      "path": "iron_golem_spawn_egg.webp"
+    },
+    {
+      "name": "Iron Helmet",
+      "path": "iron_helmet.webp"
+    },
+    {
+      "name": "Iron Hoe",
+      "path": "iron_hoe.webp"
+    },
+    {
+      "name": "Iron Horse Armor",
+      "path": "iron_horse_armor.webp"
+    },
+    {
+      "name": "Iron Ingot",
+      "path": "iron_ingot.webp"
+    },
+    {
+      "name": "Iron Leggings",
+      "path": "iron_leggings.webp"
+    },
+    {
+      "name": "Iron Nugget",
+      "path": "iron_nugget.webp"
+    },
+    {
+      "name": "Iron Ore",
+      "path": "iron_ore.webp"
+    },
+    {
+      "name": "Iron Pickaxe",
+      "path": "iron_pickaxe.webp"
+    },
+    {
+      "name": "Iron Shovel",
+      "path": "iron_shovel.webp"
+    },
+    {
+      "name": "Iron Sword",
+      "path": "iron_sword.webp"
+    },
+    {
+      "name": "Iron Trapdoor",
+      "path": "iron_trapdoor.webp"
+    },
+    {
+      "name": "Bordured Indented Banner Pattern",
+      "path": "bordured_indented_banner_pattern.webp"
+    },
+    {
+      "name": "Field Masoned Banner Pattern",
+      "path": "field_masoned_banner_pattern.webp"
+    },
+    {
+      "name": "Item Frame",
+      "path": "item_frame.webp"
+    },
+    {
+      "name": "Jack O Lantern",
+      "path": "jack_o_lantern.webp"
+    },
+    {
+      "name": "Jigsaw",
+      "path": "jigsaw.webp"
+    },
+    {
+      "name": "Jukebox",
+      "path": "jukebox.webp"
+    },
+    {
+      "name": "Jungle Boat",
+      "path": "jungle_boat.webp"
+    },
+    {
+      "name": "Jungle Button",
+      "path": "jungle_button.webp"
+    },
+    {
+      "name": "Jungle Chest Boat",
+      "path": "jungle_chest_boat.webp"
+    },
+    {
+      "name": "Jungle Door",
+      "path": "jungle_door.webp"
+    },
+    {
+      "name": "Jungle Fence",
+      "path": "jungle_fence.webp"
+    },
+    {
+      "name": "Jungle Fence Gate",
+      "path": "jungle_fence_gate.webp"
+    },
+    {
+      "name": "Jungle Hanging Sign",
+      "path": "jungle_hanging_sign.webp"
+    },
+    {
+      "name": "Jungle Leaves",
+      "path": "jungle_leaves.webp"
+    },
+    {
+      "name": "Jungle Log",
+      "path": "jungle_log.webp"
+    },
+    {
+      "name": "Jungle Planks",
+      "path": "jungle_planks.webp"
+    },
+    {
+      "name": "Jungle Pressure Plate",
+      "path": "jungle_pressure_plate.webp"
+    },
+    {
+      "name": "Jungle Sapling",
+      "path": "jungle_sapling.webp"
+    },
+    {
+      "name": "Jungle Shelf",
+      "path": "jungle_shelf.webp"
+    },
+    {
+      "name": "Jungle Sign",
+      "path": "jungle_sign.webp"
+    },
+    {
+      "name": "Jungle Slab",
+      "path": "jungle_slab.webp"
+    },
+    {
+      "name": "Jungle Stairs",
+      "path": "jungle_stairs.webp"
+    },
+    {
+      "name": "Jungle Trapdoor",
+      "path": "jungle_trapdoor.webp"
+    },
+    {
+      "name": "Jungle Wood",
+      "path": "jungle_wood.webp"
+    },
+    {
+      "name": "Kelp",
+      "path": "kelp.webp"
+    },
+    {
+      "name": "Knowledge Book",
+      "path": "knowledge_book.webp"
+    },
+    {
+      "name": "Ladder",
+      "path": "ladder.webp"
+    },
+    {
+      "name": "Lantern",
+      "path": "lantern.webp"
+    },
+    {
+      "name": "Lapis Block",
+      "path": "lapis_block.webp"
+    },
+    {
+      "name": "Lapis Lazuli",
+      "path": "lapis_lazuli.webp"
+    },
+    {
+      "name": "Lapis Ore",
+      "path": "lapis_ore.webp"
+    },
+    {
+      "name": "Large Amethyst Bud",
+      "path": "large_amethyst_bud.webp"
+    },
+    {
+      "name": "Large Fern",
+      "path": "large_fern.webp"
+    },
+    {
+      "name": "Lava Bucket",
+      "path": "lava_bucket.webp"
+    },
+    {
+      "name": "Lead",
+      "path": "lead.webp"
+    },
+    {
+      "name": "Leaf Litter",
+      "path": "leaf_litter.webp"
+    },
+    {
+      "name": "Leather",
+      "path": "leather.webp"
+    },
+    {
+      "name": "Leather Boots",
+      "path": "leather_boots.webp"
+    },
+    {
+      "name": "Leather Chestplate",
+      "path": "leather_chestplate.webp"
+    },
+    {
+      "name": "Leather Helmet",
+      "path": "leather_helmet.webp"
+    },
+    {
+      "name": "Leather Horse Armor",
+      "path": "leather_horse_armor.webp"
+    },
+    {
+      "name": "Leather Leggings",
+      "path": "leather_leggings.webp"
+    },
+    {
+      "name": "Lectern",
+      "path": "lectern.webp"
+    },
+    {
+      "name": "Lever",
+      "path": "lever.webp"
+    },
+    {
+      "name": "Lightning Rod",
+      "path": "lightning_rod.webp"
+    },
+    {
+      "name": "Light Blue Banner",
+      "path": "light_blue_banner.webp"
+    },
+    {
+      "name": "Light Blue Bed",
+      "path": "light_blue_bed.webp"
+    },
+    {
+      "name": "Light Blue Bundle",
+      "path": "light_blue_bundle.webp"
+    },
+    {
+      "name": "Light Blue Candle",
+      "path": "light_blue_candle.webp"
+    },
+    {
+      "name": "Light Blue Carpet",
+      "path": "light_blue_carpet.webp"
+    },
+    {
+      "name": "Light Blue Concrete",
+      "path": "light_blue_concrete.webp"
+    },
+    {
+      "name": "Light Blue Concrete Powder",
+      "path": "light_blue_concrete_powder.webp"
+    },
+    {
+      "name": "Light Blue Dye",
+      "path": "light_blue_dye.webp"
+    },
+    {
+      "name": "Light Blue Glazed Terracotta",
+      "path": "light_blue_glazed_terracotta.webp"
+    },
+    {
+      "name": "Light Blue Harness",
+      "path": "light_blue_harness.webp"
+    },
+    {
+      "name": "Light Blue Shulker Box",
+      "path": "light_blue_shulker_box.webp"
+    },
+    {
+      "name": "Light Blue Stained Glass",
+      "path": "light_blue_stained_glass.webp"
+    },
+    {
+      "name": "Light Blue Stained Glass Pane",
+      "path": "light_blue_stained_glass_pane.webp"
+    },
+    {
+      "name": "Light Blue Terracotta",
+      "path": "light_blue_terracotta.webp"
+    },
+    {
+      "name": "Light Blue Wool",
+      "path": "light_blue_wool.webp"
+    },
+    {
+      "name": "Light Gray Banner",
+      "path": "light_gray_banner.webp"
+    },
+    {
+      "name": "Light Gray Bed",
+      "path": "light_gray_bed.webp"
+    },
+    {
+      "name": "Light Gray Bundle",
+      "path": "light_gray_bundle.webp"
+    },
+    {
+      "name": "Light Gray Candle",
+      "path": "light_gray_candle.webp"
+    },
+    {
+      "name": "Light Gray Carpet",
+      "path": "light_gray_carpet.webp"
+    },
+    {
+      "name": "Light Gray Concrete",
+      "path": "light_gray_concrete.webp"
+    },
+    {
+      "name": "Light Gray Concrete Powder",
+      "path": "light_gray_concrete_powder.webp"
+    },
+    {
+      "name": "Light Gray Dye",
+      "path": "light_gray_dye.webp"
+    },
+    {
+      "name": "Light Gray Glazed Terracotta",
+      "path": "light_gray_glazed_terracotta.webp"
+    },
+    {
+      "name": "Light Gray Harness",
+      "path": "light_gray_harness.webp"
+    },
+    {
+      "name": "Light Gray Shulker Box",
+      "path": "light_gray_shulker_box.webp"
+    },
+    {
+      "name": "Light Gray Stained Glass",
+      "path": "light_gray_stained_glass.webp"
+    },
+    {
+      "name": "Light Gray Stained Glass Pane",
+      "path": "light_gray_stained_glass_pane.webp"
+    },
+    {
+      "name": "Light Gray Terracotta",
+      "path": "light_gray_terracotta.webp"
+    },
+    {
+      "name": "Light Gray Wool",
+      "path": "light_gray_wool.webp"
+    },
+    {
+      "name": "Light Weighted Pressure Plate",
+      "path": "light_weighted_pressure_plate.webp"
+    },
+    {
+      "name": "Lilac",
+      "path": "lilac.webp"
+    },
+    {
+      "name": "Lily Of The Valley",
+      "path": "lily_of_the_valley.webp"
+    },
+    {
+      "name": "Lily Pad",
+      "path": "lily_pad.webp"
+    },
+    {
+      "name": "Lime Banner",
+      "path": "lime_banner.webp"
+    },
+    {
+      "name": "Lime Bed",
+      "path": "lime_bed.webp"
+    },
+    {
+      "name": "Lime Bundle",
+      "path": "lime_bundle.webp"
+    },
+    {
+      "name": "Lime Candle",
+      "path": "lime_candle.webp"
+    },
+    {
+      "name": "Lime Carpet",
+      "path": "lime_carpet.webp"
+    },
+    {
+      "name": "Lime Concrete",
+      "path": "lime_concrete.webp"
+    },
+    {
+      "name": "Lime Concrete Powder",
+      "path": "lime_concrete_powder.webp"
+    },
+    {
+      "name": "Lime Dye",
+      "path": "lime_dye.webp"
+    },
+    {
+      "name": "Lime Glazed Terracotta",
+      "path": "lime_glazed_terracotta.webp"
+    },
+    {
+      "name": "Lime Harness",
+      "path": "lime_harness.webp"
+    },
+    {
+      "name": "Lime Shulker Box",
+      "path": "lime_shulker_box.webp"
+    },
+    {
+      "name": "Lime Stained Glass",
+      "path": "lime_stained_glass.webp"
+    },
+    {
+      "name": "Lime Stained Glass Pane",
+      "path": "lime_stained_glass_pane.webp"
+    },
+    {
+      "name": "Lime Terracotta",
+      "path": "lime_terracotta.webp"
+    },
+    {
+      "name": "Lime Wool",
+      "path": "lime_wool.webp"
+    },
+    {
+      "name": "Lingering Potion",
+      "path": "lingering_potion.webp"
+    },
+    {
+      "name": "Llama Spawn Egg",
+      "path": "llama_spawn_egg.webp"
+    },
+    {
+      "name": "Lodestone",
+      "path": "lodestone.webp"
+    },
+    {
+      "name": "Loom",
+      "path": "loom.webp"
+    },
+    {
+      "name": "Mace",
+      "path": "mace.webp"
+    },
+    {
+      "name": "Magenta Banner",
+      "path": "magenta_banner.webp"
+    },
+    {
+      "name": "Magenta Bed",
+      "path": "magenta_bed.webp"
+    },
+    {
+      "name": "Magenta Bundle",
+      "path": "magenta_bundle.webp"
+    },
+    {
+      "name": "Magenta Candle",
+      "path": "magenta_candle.webp"
+    },
+    {
+      "name": "Magenta Carpet",
+      "path": "magenta_carpet.webp"
+    },
+    {
+      "name": "Magenta Concrete",
+      "path": "magenta_concrete.webp"
+    },
+    {
+      "name": "Magenta Concrete Powder",
+      "path": "magenta_concrete_powder.webp"
+    },
+    {
+      "name": "Magenta Dye",
+      "path": "magenta_dye.webp"
+    },
+    {
+      "name": "Magenta Glazed Terracotta",
+      "path": "magenta_glazed_terracotta.webp"
+    },
+    {
+      "name": "Magenta Harness",
+      "path": "magenta_harness.webp"
+    },
+    {
+      "name": "Magenta Shulker Box",
+      "path": "magenta_shulker_box.webp"
+    },
+    {
+      "name": "Magenta Stained Glass",
+      "path": "magenta_stained_glass.webp"
+    },
+    {
+      "name": "Magenta Stained Glass Pane",
+      "path": "magenta_stained_glass_pane.webp"
+    },
+    {
+      "name": "Magenta Terracotta",
+      "path": "magenta_terracotta.webp"
+    },
+    {
+      "name": "Magenta Wool",
+      "path": "magenta_wool.webp"
+    },
+    {
+      "name": "Magma Block",
+      "path": "magma_block.webp"
+    },
+    {
+      "name": "Magma Cream",
+      "path": "magma_cream.webp"
+    },
+    {
+      "name": "Magma Cube Spawn Egg",
+      "path": "magma_cube_spawn_egg.webp"
+    },
+    {
+      "name": "Mangrove Boat",
+      "path": "mangrove_boat.webp"
+    },
+    {
+      "name": "Mangrove Button",
+      "path": "mangrove_button.webp"
+    },
+    {
+      "name": "Mangrove Chest Boat",
+      "path": "mangrove_chest_boat.webp"
+    },
+    {
+      "name": "Mangrove Door",
+      "path": "mangrove_door.webp"
+    },
+    {
+      "name": "Mangrove Fence",
+      "path": "mangrove_fence.webp"
+    },
+    {
+      "name": "Mangrove Fence Gate",
+      "path": "mangrove_fence_gate.webp"
+    },
+    {
+      "name": "Mangrove Hanging Sign",
+      "path": "mangrove_hanging_sign.webp"
+    },
+    {
+      "name": "Mangrove Leaves",
+      "path": "mangrove_leaves.webp"
+    },
+    {
+      "name": "Mangrove Log",
+      "path": "mangrove_log.webp"
+    },
+    {
+      "name": "Mangrove Planks",
+      "path": "mangrove_planks.webp"
+    },
+    {
+      "name": "Mangrove Pressure Plate",
+      "path": "mangrove_pressure_plate.webp"
+    },
+    {
+      "name": "Mangrove Propagule",
+      "path": "mangrove_propagule.webp"
+    },
+    {
+      "name": "Mangrove Roots",
+      "path": "mangrove_roots.webp"
+    },
+    {
+      "name": "Mangrove Shelf",
+      "path": "mangrove_shelf.webp"
+    },
+    {
+      "name": "Mangrove Sign",
+      "path": "mangrove_sign.webp"
+    },
+    {
+      "name": "Mangrove Slab",
+      "path": "mangrove_slab.webp"
+    },
+    {
+      "name": "Mangrove Stairs",
+      "path": "mangrove_stairs.webp"
+    },
+    {
+      "name": "Mangrove Trapdoor",
+      "path": "mangrove_trapdoor.webp"
+    },
+    {
+      "name": "Mangrove Wood",
+      "path": "mangrove_wood.webp"
+    },
+    {
+      "name": "Map",
+      "path": "map.webp"
+    },
+    {
+      "name": "Medium Amethyst Bud",
+      "path": "medium_amethyst_bud.webp"
+    },
+    {
+      "name": "Melon",
+      "path": "melon.webp"
+    },
+    {
+      "name": "Melon Seeds",
+      "path": "melon_seeds.webp"
+    },
+    {
+      "name": "Melon Slice",
+      "path": "melon_slice.webp"
+    },
+    {
+      "name": "Milk Bucket",
+      "path": "milk_bucket.webp"
+    },
+    {
+      "name": "Minecart",
+      "path": "minecart.webp"
+    },
+    {
+      "name": "Miner Pottery Sherd",
+      "path": "miner_pottery_sherd.webp"
+    },
+    {
+      "name": "Mojang Banner Pattern",
+      "path": "mojang_banner_pattern.webp"
+    },
+    {
+      "name": "Mooshroom Spawn Egg",
+      "path": "mooshroom_spawn_egg.webp"
+    },
+    {
+      "name": "Mossy Cobblestone",
+      "path": "mossy_cobblestone.webp"
+    },
+    {
+      "name": "Mossy Cobblestone Slab",
+      "path": "mossy_cobblestone_slab.webp"
+    },
+    {
+      "name": "Mossy Cobblestone Stairs",
+      "path": "mossy_cobblestone_stairs.webp"
+    },
+    {
+      "name": "Mossy Cobblestone Wall",
+      "path": "mossy_cobblestone_wall.webp"
+    },
+    {
+      "name": "Mossy Stone Bricks",
+      "path": "mossy_stone_bricks.webp"
+    },
+    {
+      "name": "Mossy Stone Brick Slab",
+      "path": "mossy_stone_brick_slab.webp"
+    },
+    {
+      "name": "Mossy Stone Brick Stairs",
+      "path": "mossy_stone_brick_stairs.webp"
+    },
+    {
+      "name": "Mossy Stone Brick Wall",
+      "path": "mossy_stone_brick_wall.webp"
+    },
+    {
+      "name": "Moss Block",
+      "path": "moss_block.webp"
+    },
+    {
+      "name": "Moss Carpet",
+      "path": "moss_carpet.webp"
+    },
+    {
+      "name": "Mourner Pottery Sherd",
+      "path": "mourner_pottery_sherd.webp"
+    },
+    {
+      "name": "Mud",
+      "path": "mud.webp"
+    },
+    {
+      "name": "Muddy Mangrove Roots",
+      "path": "muddy_mangrove_roots.webp"
+    },
+    {
+      "name": "Mud Bricks",
+      "path": "mud_bricks.webp"
+    },
+    {
+      "name": "Mud Brick Slab",
+      "path": "mud_brick_slab.webp"
+    },
+    {
+      "name": "Mud Brick Stairs",
+      "path": "mud_brick_stairs.webp"
+    },
+    {
+      "name": "Mud Brick Wall",
+      "path": "mud_brick_wall.webp"
+    },
+    {
+      "name": "Mule Spawn Egg",
+      "path": "mule_spawn_egg.webp"
+    },
+    {
+      "name": "Mushroom Stem",
+      "path": "mushroom_stem.webp"
+    },
+    {
+      "name": "Mushroom Stew",
+      "path": "mushroom_stew.webp"
+    },
+    {
+      "name": "Music Disc 11",
+      "path": "music_disc_11.webp"
+    },
+    {
+      "name": "Music Disc 13",
+      "path": "music_disc_13.webp"
+    },
+    {
+      "name": "Music Disc 5",
+      "path": "music_disc_5.webp"
+    },
+    {
+      "name": "Music Disc Blocks",
+      "path": "music_disc_blocks.webp"
+    },
+    {
+      "name": "Music Disc Cat",
+      "path": "music_disc_cat.webp"
+    },
+    {
+      "name": "Music Disc Chirp",
+      "path": "music_disc_chirp.webp"
+    },
+    {
+      "name": "Music Disc Creator",
+      "path": "music_disc_creator.webp"
+    },
+    {
+      "name": "Music Disc Creator Music Box",
+      "path": "music_disc_creator_music_box.webp"
+    },
+    {
+      "name": "Music Disc Far",
+      "path": "music_disc_far.webp"
+    },
+    {
+      "name": "Music Disc Lava Chicken",
+      "path": "music_disc_lava_chicken.webp"
+    },
+    {
+      "name": "Music Disc Mall",
+      "path": "music_disc_mall.webp"
+    },
+    {
+      "name": "Music Disc Mellohi",
+      "path": "music_disc_mellohi.webp"
+    },
+    {
+      "name": "Music Disc Otherside",
+      "path": "music_disc_otherside.webp"
+    },
+    {
+      "name": "Music Disc Pigstep",
+      "path": "music_disc_pigstep.webp"
+    },
+    {
+      "name": "Music Disc Precipice",
+      "path": "music_disc_precipice.webp"
+    },
+    {
+      "name": "Music Disc Relic",
+      "path": "music_disc_relic.webp"
+    },
+    {
+      "name": "Music Disc Stal",
+      "path": "music_disc_stal.webp"
+    },
+    {
+      "name": "Music Disc Strad",
+      "path": "music_disc_strad.webp"
+    },
+    {
+      "name": "Music Disc Tears",
+      "path": "music_disc_tears.webp"
+    },
+    {
+      "name": "Music Disc Wait",
+      "path": "music_disc_wait.webp"
+    },
+    {
+      "name": "Music Disc Ward",
+      "path": "music_disc_ward.webp"
+    },
+    {
+      "name": "Mutton",
+      "path": "mutton.webp"
+    },
+    {
+      "name": "Mycelium",
+      "path": "mycelium.webp"
+    },
+    {
+      "name": "Name Tag",
+      "path": "name_tag.webp"
+    },
+    {
+      "name": "Nautilus Shell",
+      "path": "nautilus_shell.webp"
+    },
+    {
+      "name": "Netherite Axe",
+      "path": "netherite_axe.webp"
+    },
+    {
+      "name": "Netherite Block",
+      "path": "netherite_block.webp"
+    },
+    {
+      "name": "Netherite Boots",
+      "path": "netherite_boots.webp"
+    },
+    {
+      "name": "Netherite Chestplate",
+      "path": "netherite_chestplate.webp"
+    },
+    {
+      "name": "Netherite Helmet",
+      "path": "netherite_helmet.webp"
+    },
+    {
+      "name": "Netherite Hoe",
+      "path": "netherite_hoe.webp"
+    },
+    {
+      "name": "Netherite Ingot",
+      "path": "netherite_ingot.webp"
+    },
+    {
+      "name": "Netherite Leggings",
+      "path": "netherite_leggings.webp"
+    },
+    {
+      "name": "Netherite Pickaxe",
+      "path": "netherite_pickaxe.webp"
+    },
+    {
+      "name": "Netherite Scrap",
+      "path": "netherite_scrap.webp"
+    },
+    {
+      "name": "Netherite Shovel",
+      "path": "netherite_shovel.webp"
+    },
+    {
+      "name": "Netherite Sword",
+      "path": "netherite_sword.webp"
+    },
+    {
+      "name": "Netherite Upgrade Smithing Template",
+      "path": "netherite_upgrade_smithing_template.webp"
+    },
+    {
+      "name": "Netherrack",
+      "path": "netherrack.webp"
+    },
+    {
+      "name": "Nether Brick",
+      "path": "nether_brick.webp"
+    },
+    {
+      "name": "Nether Bricks",
+      "path": "nether_bricks.webp"
+    },
+    {
+      "name": "Nether Brick Fence",
+      "path": "nether_brick_fence.webp"
+    },
+    {
+      "name": "Nether Brick Slab",
+      "path": "nether_brick_slab.webp"
+    },
+    {
+      "name": "Nether Brick Stairs",
+      "path": "nether_brick_stairs.webp"
+    },
+    {
+      "name": "Nether Brick Wall",
+      "path": "nether_brick_wall.webp"
+    },
+    {
+      "name": "Nether Gold Ore",
+      "path": "nether_gold_ore.webp"
+    },
+    {
+      "name": "Nether Quartz Ore",
+      "path": "nether_quartz_ore.webp"
+    },
+    {
+      "name": "Nether Sprouts",
+      "path": "nether_sprouts.webp"
+    },
+    {
+      "name": "Nether Star",
+      "path": "nether_star.webp"
+    },
+    {
+      "name": "Nether Wart",
+      "path": "nether_wart.webp"
+    },
+    {
+      "name": "Nether Wart Block",
+      "path": "nether_wart_block.webp"
+    },
+    {
+      "name": "Note Block",
+      "path": "note_block.webp"
+    },
+    {
+      "name": "Oak Boat",
+      "path": "oak_boat.webp"
+    },
+    {
+      "name": "Oak Button",
+      "path": "oak_button.webp"
+    },
+    {
+      "name": "Oak Chest Boat",
+      "path": "oak_chest_boat.webp"
+    },
+    {
+      "name": "Oak Door",
+      "path": "oak_door.webp"
+    },
+    {
+      "name": "Oak Fence",
+      "path": "oak_fence.webp"
+    },
+    {
+      "name": "Oak Fence Gate",
+      "path": "oak_fence_gate.webp"
+    },
+    {
+      "name": "Oak Hanging Sign",
+      "path": "oak_hanging_sign.webp"
+    },
+    {
+      "name": "Oak Leaves",
+      "path": "oak_leaves.webp"
+    },
+    {
+      "name": "Oak Log",
+      "path": "oak_log.webp"
+    },
+    {
+      "name": "Oak Planks",
+      "path": "oak_planks.webp"
+    },
+    {
+      "name": "Oak Pressure Plate",
+      "path": "oak_pressure_plate.webp"
+    },
+    {
+      "name": "Oak Sapling",
+      "path": "oak_sapling.webp"
+    },
+    {
+      "name": "Oak Shelf",
+      "path": "oak_shelf.webp"
+    },
+    {
+      "name": "Oak Sign",
+      "path": "oak_sign.webp"
+    },
+    {
+      "name": "Oak Slab",
+      "path": "oak_slab.webp"
+    },
+    {
+      "name": "Oak Stairs",
+      "path": "oak_stairs.webp"
+    },
+    {
+      "name": "Oak Trapdoor",
+      "path": "oak_trapdoor.webp"
+    },
+    {
+      "name": "Oak Wood",
+      "path": "oak_wood.webp"
+    },
+    {
+      "name": "Observer",
+      "path": "observer.webp"
+    },
+    {
+      "name": "Obsidian",
+      "path": "obsidian.webp"
+    },
+    {
+      "name": "Ocelot Spawn Egg",
+      "path": "ocelot_spawn_egg.webp"
+    },
+    {
+      "name": "Ochre Froglight",
+      "path": "ochre_froglight.webp"
+    },
+    {
+      "name": "Ominous Bottle",
+      "path": "ominous_bottle.webp"
+    },
+    {
+      "name": "Ominous Trial Key",
+      "path": "ominous_trial_key.webp"
+    },
+    {
+      "name": "Open Eyeblossom",
+      "path": "open_eyeblossom.webp"
+    },
+    {
+      "name": "Orange Banner",
+      "path": "orange_banner.webp"
+    },
+    {
+      "name": "Orange Bed",
+      "path": "orange_bed.webp"
+    },
+    {
+      "name": "Orange Bundle",
+      "path": "orange_bundle.webp"
+    },
+    {
+      "name": "Orange Candle",
+      "path": "orange_candle.webp"
+    },
+    {
+      "name": "Orange Carpet",
+      "path": "orange_carpet.webp"
+    },
+    {
+      "name": "Orange Concrete",
+      "path": "orange_concrete.webp"
+    },
+    {
+      "name": "Orange Concrete Powder",
+      "path": "orange_concrete_powder.webp"
+    },
+    {
+      "name": "Orange Dye",
+      "path": "orange_dye.webp"
+    },
+    {
+      "name": "Orange Glazed Terracotta",
+      "path": "orange_glazed_terracotta.webp"
+    },
+    {
+      "name": "Orange Harness",
+      "path": "orange_harness.webp"
+    },
+    {
+      "name": "Orange Shulker Box",
+      "path": "orange_shulker_box.webp"
+    },
+    {
+      "name": "Orange Stained Glass",
+      "path": "orange_stained_glass.webp"
+    },
+    {
+      "name": "Orange Stained Glass Pane",
+      "path": "orange_stained_glass_pane.webp"
+    },
+    {
+      "name": "Orange Terracotta",
+      "path": "orange_terracotta.webp"
+    },
+    {
+      "name": "Orange Tulip",
+      "path": "orange_tulip.webp"
+    },
+    {
+      "name": "Orange Wool",
+      "path": "orange_wool.webp"
+    },
+    {
+      "name": "Oxeye Daisy",
+      "path": "oxeye_daisy.webp"
+    },
+    {
+      "name": "Oxidized Chiseled Copper",
+      "path": "oxidized_chiseled_copper.webp"
+    },
+    {
+      "name": "Oxidized Copper",
+      "path": "oxidized_copper.webp"
+    },
+    {
+      "name": "Oxidized Copper Bulb",
+      "path": "oxidized_copper_bulb.webp"
+    },
+    {
+      "name": "Oxidized Copper Door",
+      "path": "oxidized_copper_door.webp"
+    },
+    {
+      "name": "Oxidized Copper Grate",
+      "path": "oxidized_copper_grate.webp"
+    },
+    {
+      "name": "Oxidized Copper Trapdoor",
+      "path": "oxidized_copper_trapdoor.webp"
+    },
+    {
+      "name": "Oxidized Cut Copper",
+      "path": "oxidized_cut_copper.webp"
+    },
+    {
+      "name": "Oxidized Cut Copper Slab",
+      "path": "oxidized_cut_copper_slab.webp"
+    },
+    {
+      "name": "Oxidized Cut Copper Stairs",
+      "path": "oxidized_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Packed Ice",
+      "path": "packed_ice.webp"
+    },
+    {
+      "name": "Packed Mud",
+      "path": "packed_mud.webp"
+    },
+    {
+      "name": "Painting",
+      "path": "painting.webp"
+    },
+    {
+      "name": "Pale Hanging Moss",
+      "path": "pale_hanging_moss.webp"
+    },
+    {
+      "name": "Pale Moss Block",
+      "path": "pale_moss_block.webp"
+    },
+    {
+      "name": "Pale Moss Carpet",
+      "path": "pale_moss_carpet.webp"
+    },
+    {
+      "name": "Pale Oak Boat",
+      "path": "pale_oak_boat.webp"
+    },
+    {
+      "name": "Pale Oak Boat With Chest",
+      "path": "pale_oak_boat_with_chest.webp"
+    },
+    {
+      "name": "Pale Oak Button",
+      "path": "pale_oak_button.webp"
+    },
+    {
+      "name": "Pale Oak Door",
+      "path": "pale_oak_door.webp"
+    },
+    {
+      "name": "Pale Oak Fence",
+      "path": "pale_oak_fence.webp"
+    },
+    {
+      "name": "Pale Oak Fence Gate",
+      "path": "pale_oak_fence_gate.webp"
+    },
+    {
+      "name": "Pale Oak Hanging Sign",
+      "path": "pale_oak_hanging_sign.webp"
+    },
+    {
+      "name": "Pale Oak Leaves",
+      "path": "pale_oak_leaves.webp"
+    },
+    {
+      "name": "Pale Oak Log",
+      "path": "pale_oak_log.webp"
+    },
+    {
+      "name": "Pale Oak Planks",
+      "path": "pale_oak_planks.webp"
+    },
+    {
+      "name": "Pale Oak Pressure Plate",
+      "path": "pale_oak_pressure_plate.webp"
+    },
+    {
+      "name": "Pale Oak Sapling",
+      "path": "pale_oak_sapling.webp"
+    },
+    {
+      "name": "Pale Oak Shelf",
+      "path": "pale_oak_shelf.webp"
+    },
+    {
+      "name": "Pale Oak Sign",
+      "path": "pale_oak_sign.webp"
+    },
+    {
+      "name": "Pale Oak Slab",
+      "path": "pale_oak_slab.webp"
+    },
+    {
+      "name": "Pale Oak Stairs",
+      "path": "pale_oak_stairs.webp"
+    },
+    {
+      "name": "Pale Oak Trapdoor",
+      "path": "pale_oak_trapdoor.webp"
+    },
+    {
+      "name": "Pale Oak Wood",
+      "path": "pale_oak_wood.webp"
+    },
+    {
+      "name": "Panda Spawn Egg",
+      "path": "panda_spawn_egg.webp"
+    },
+    {
+      "name": "Paper",
+      "path": "paper.webp"
+    },
+    {
+      "name": "Parrot Spawn Egg",
+      "path": "parrot_spawn_egg.webp"
+    },
+    {
+      "name": "Pearlescent Froglight",
+      "path": "pearlescent_froglight.webp"
+    },
+    {
+      "name": "Peony",
+      "path": "peony.webp"
+    },
+    {
+      "name": "Petrified Oak Slab",
+      "path": "petrified_oak_slab.webp"
+    },
+    {
+      "name": "Phantom Membrane",
+      "path": "phantom_membrane.webp"
+    },
+    {
+      "name": "Phantom Spawn Egg",
+      "path": "phantom_spawn_egg.webp"
+    },
+    {
+      "name": "Piglin Banner Pattern",
+      "path": "piglin_banner_pattern.webp"
+    },
+    {
+      "name": "Piglin Brute Spawn Egg",
+      "path": "piglin_brute_spawn_egg.webp"
+    },
+    {
+      "name": "Piglin Head",
+      "path": "piglin_head.webp"
+    },
+    {
+      "name": "Piglin Spawn Egg",
+      "path": "piglin_spawn_egg.webp"
+    },
+    {
+      "name": "Pig Spawn Egg",
+      "path": "pig_spawn_egg.webp"
+    },
+    {
+      "name": "Pillager Spawn Egg",
+      "path": "pillager_spawn_egg.webp"
+    },
+    {
+      "name": "Pink Banner",
+      "path": "pink_banner.webp"
+    },
+    {
+      "name": "Pink Bed",
+      "path": "pink_bed.webp"
+    },
+    {
+      "name": "Pink Bundle",
+      "path": "pink_bundle.webp"
+    },
+    {
+      "name": "Pink Candle",
+      "path": "pink_candle.webp"
+    },
+    {
+      "name": "Pink Carpet",
+      "path": "pink_carpet.webp"
+    },
+    {
+      "name": "Pink Concrete",
+      "path": "pink_concrete.webp"
+    },
+    {
+      "name": "Pink Concrete Powder",
+      "path": "pink_concrete_powder.webp"
+    },
+    {
+      "name": "Pink Dye",
+      "path": "pink_dye.webp"
+    },
+    {
+      "name": "Pink Glazed Terracotta",
+      "path": "pink_glazed_terracotta.webp"
+    },
+    {
+      "name": "Pink Harness",
+      "path": "pink_harness.webp"
+    },
+    {
+      "name": "Pink Petals",
+      "path": "pink_petals.webp"
+    },
+    {
+      "name": "Pink Shulker Box",
+      "path": "pink_shulker_box.webp"
+    },
+    {
+      "name": "Pink Stained Glass",
+      "path": "pink_stained_glass.webp"
+    },
+    {
+      "name": "Pink Stained Glass Pane",
+      "path": "pink_stained_glass_pane.webp"
+    },
+    {
+      "name": "Pink Terracotta",
+      "path": "pink_terracotta.webp"
+    },
+    {
+      "name": "Pink Tulip",
+      "path": "pink_tulip.webp"
+    },
+    {
+      "name": "Pink Wool",
+      "path": "pink_wool.webp"
+    },
+    {
+      "name": "Piston",
+      "path": "piston.webp"
+    },
+    {
+      "name": "Pitcher Plant",
+      "path": "pitcher_plant.webp"
+    },
+    {
+      "name": "Pitcher Pod",
+      "path": "pitcher_pod.webp"
+    },
+    {
+      "name": "Player Head",
+      "path": "player_head.webp"
+    },
+    {
+      "name": "Plenty Pottery Sherd",
+      "path": "plenty_pottery_sherd.webp"
+    },
+    {
+      "name": "Podzol",
+      "path": "podzol.webp"
+    },
+    {
+      "name": "Pointed Dripstone",
+      "path": "pointed_dripstone.webp"
+    },
+    {
+      "name": "Poisonous Potato",
+      "path": "poisonous_potato.webp"
+    },
+    {
+      "name": "Polar Bear Spawn Egg",
+      "path": "polar_bear_spawn_egg.webp"
+    },
+    {
+      "name": "Polished Andesite",
+      "path": "polished_andesite.webp"
+    },
+    {
+      "name": "Polished Andesite Slab",
+      "path": "polished_andesite_slab.webp"
+    },
+    {
+      "name": "Polished Andesite Stairs",
+      "path": "polished_andesite_stairs.webp"
+    },
+    {
+      "name": "Polished Basalt",
+      "path": "polished_basalt.webp"
+    },
+    {
+      "name": "Polished Blackstone",
+      "path": "polished_blackstone.webp"
+    },
+    {
+      "name": "Polished Blackstone Bricks",
+      "path": "polished_blackstone_bricks.webp"
+    },
+    {
+      "name": "Polished Blackstone Brick Slab",
+      "path": "polished_blackstone_brick_slab.webp"
+    },
+    {
+      "name": "Polished Blackstone Brick Stairs",
+      "path": "polished_blackstone_brick_stairs.webp"
+    },
+    {
+      "name": "Polished Blackstone Brick Wall",
+      "path": "polished_blackstone_brick_wall.webp"
+    },
+    {
+      "name": "Polished Blackstone Button",
+      "path": "polished_blackstone_button.webp"
+    },
+    {
+      "name": "Polished Blackstone Pressure Plate",
+      "path": "polished_blackstone_pressure_plate.webp"
+    },
+    {
+      "name": "Polished Blackstone Slab",
+      "path": "polished_blackstone_slab.webp"
+    },
+    {
+      "name": "Polished Blackstone Stairs",
+      "path": "polished_blackstone_stairs.webp"
+    },
+    {
+      "name": "Polished Blackstone Wall",
+      "path": "polished_blackstone_wall.webp"
+    },
+    {
+      "name": "Polished Deepslate",
+      "path": "polished_deepslate.webp"
+    },
+    {
+      "name": "Polished Deepslate Slab",
+      "path": "polished_deepslate_slab.webp"
+    },
+    {
+      "name": "Polished Deepslate Stairs",
+      "path": "polished_deepslate_stairs.webp"
+    },
+    {
+      "name": "Polished Deepslate Wall",
+      "path": "polished_deepslate_wall.webp"
+    },
+    {
+      "name": "Polished Diorite",
+      "path": "polished_diorite.webp"
+    },
+    {
+      "name": "Polished Diorite Slab",
+      "path": "polished_diorite_slab.webp"
+    },
+    {
+      "name": "Polished Diorite Stairs",
+      "path": "polished_diorite_stairs.webp"
+    },
+    {
+      "name": "Polished Granite",
+      "path": "polished_granite.webp"
+    },
+    {
+      "name": "Polished Granite Slab",
+      "path": "polished_granite_slab.webp"
+    },
+    {
+      "name": "Polished Granite Stairs",
+      "path": "polished_granite_stairs.webp"
+    },
+    {
+      "name": "Polished Tuff",
+      "path": "polished_tuff.webp"
+    },
+    {
+      "name": "Polished Tuff Slab",
+      "path": "polished_tuff_slab.webp"
+    },
+    {
+      "name": "Polished Tuff Stairs",
+      "path": "polished_tuff_stairs.webp"
+    },
+    {
+      "name": "Polished Tuff Wall",
+      "path": "polished_tuff_wall.webp"
+    },
+    {
+      "name": "Popped Chorus Fruit",
+      "path": "popped_chorus_fruit.webp"
+    },
+    {
+      "name": "Poppy",
+      "path": "poppy.webp"
+    },
+    {
+      "name": "Porkchop",
+      "path": "porkchop.webp"
+    },
+    {
+      "name": "Potato",
+      "path": "potato.webp"
+    },
+    {
+      "name": "Potion",
+      "path": "potion.webp"
+    },
+    {
+      "name": "Powder Snow Bucket",
+      "path": "powder_snow_bucket.webp"
+    },
+    {
+      "name": "Powered Rail",
+      "path": "powered_rail.webp"
+    },
+    {
+      "name": "Prismarine",
+      "path": "prismarine.webp"
+    },
+    {
+      "name": "Prismarine Bricks",
+      "path": "prismarine_bricks.webp"
+    },
+    {
+      "name": "Prismarine Brick Slab",
+      "path": "prismarine_brick_slab.webp"
+    },
+    {
+      "name": "Prismarine Brick Stairs",
+      "path": "prismarine_brick_stairs.webp"
+    },
+    {
+      "name": "Prismarine Crystals",
+      "path": "prismarine_crystals.webp"
+    },
+    {
+      "name": "Prismarine Shard",
+      "path": "prismarine_shard.webp"
+    },
+    {
+      "name": "Prismarine Slab",
+      "path": "prismarine_slab.webp"
+    },
+    {
+      "name": "Prismarine Stairs",
+      "path": "prismarine_stairs.webp"
+    },
+    {
+      "name": "Prismarine Wall",
+      "path": "prismarine_wall.webp"
+    },
+    {
+      "name": "Prize Pottery Sherd",
+      "path": "prize_pottery_sherd.webp"
+    },
+    {
+      "name": "Pufferfish",
+      "path": "pufferfish.webp"
+    },
+    {
+      "name": "Pufferfish Bucket",
+      "path": "pufferfish_bucket.webp"
+    },
+    {
+      "name": "Pufferfish Spawn Egg",
+      "path": "pufferfish_spawn_egg.webp"
+    },
+    {
+      "name": "Pumpkin",
+      "path": "pumpkin.webp"
+    },
+    {
+      "name": "Pumpkin Pie",
+      "path": "pumpkin_pie.webp"
+    },
+    {
+      "name": "Pumpkin Seeds",
+      "path": "pumpkin_seeds.webp"
+    },
+    {
+      "name": "Purple Banner",
+      "path": "purple_banner.webp"
+    },
+    {
+      "name": "Purple Bed",
+      "path": "purple_bed.webp"
+    },
+    {
+      "name": "Purple Bundle",
+      "path": "purple_bundle.webp"
+    },
+    {
+      "name": "Purple Candle",
+      "path": "purple_candle.webp"
+    },
+    {
+      "name": "Purple Carpet",
+      "path": "purple_carpet.webp"
+    },
+    {
+      "name": "Purple Concrete",
+      "path": "purple_concrete.webp"
+    },
+    {
+      "name": "Purple Concrete Powder",
+      "path": "purple_concrete_powder.webp"
+    },
+    {
+      "name": "Purple Dye",
+      "path": "purple_dye.webp"
+    },
+    {
+      "name": "Purple Glazed Terracotta",
+      "path": "purple_glazed_terracotta.webp"
+    },
+    {
+      "name": "Purple Harness",
+      "path": "purple_harness.webp"
+    },
+    {
+      "name": "Purple Shulker Box",
+      "path": "purple_shulker_box.webp"
+    },
+    {
+      "name": "Purple Stained Glass",
+      "path": "purple_stained_glass.webp"
+    },
+    {
+      "name": "Purple Stained Glass Pane",
+      "path": "purple_stained_glass_pane.webp"
+    },
+    {
+      "name": "Purple Terracotta",
+      "path": "purple_terracotta.webp"
+    },
+    {
+      "name": "Purple Wool",
+      "path": "purple_wool.webp"
+    },
+    {
+      "name": "Purpur Block",
+      "path": "purpur_block.webp"
+    },
+    {
+      "name": "Purpur Pillar",
+      "path": "purpur_pillar.webp"
+    },
+    {
+      "name": "Purpur Slab",
+      "path": "purpur_slab.webp"
+    },
+    {
+      "name": "Purpur Stairs",
+      "path": "purpur_stairs.webp"
+    },
+    {
+      "name": "Quartz",
+      "path": "quartz.webp"
+    },
+    {
+      "name": "Quartz Block",
+      "path": "quartz_block.webp"
+    },
+    {
+      "name": "Quartz Bricks",
+      "path": "quartz_bricks.webp"
+    },
+    {
+      "name": "Quartz Pillar",
+      "path": "quartz_pillar.webp"
+    },
+    {
+      "name": "Quartz Slab",
+      "path": "quartz_slab.webp"
+    },
+    {
+      "name": "Quartz Stairs",
+      "path": "quartz_stairs.webp"
+    },
+    {
+      "name": "Rabbit",
+      "path": "rabbit.webp"
+    },
+    {
+      "name": "Rabbit Foot",
+      "path": "rabbit_foot.webp"
+    },
+    {
+      "name": "Rabbit Hide",
+      "path": "rabbit_hide.webp"
+    },
+    {
+      "name": "Rabbit Spawn Egg",
+      "path": "rabbit_spawn_egg.webp"
+    },
+    {
+      "name": "Rabbit Stew",
+      "path": "rabbit_stew.webp"
+    },
+    {
+      "name": "Rail",
+      "path": "rail.webp"
+    },
+    {
+      "name": "Raiser Armor Trim Smithing Template",
+      "path": "raiser_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Ravager Spawn Egg",
+      "path": "ravager_spawn_egg.webp"
+    },
+    {
+      "name": "Raw Copper",
+      "path": "raw_copper.webp"
+    },
+    {
+      "name": "Raw Copper Block",
+      "path": "raw_copper_block.webp"
+    },
+    {
+      "name": "Raw Gold",
+      "path": "raw_gold.webp"
+    },
+    {
+      "name": "Raw Gold Block",
+      "path": "raw_gold_block.webp"
+    },
+    {
+      "name": "Raw Iron",
+      "path": "raw_iron.webp"
+    },
+    {
+      "name": "Raw Iron Block",
+      "path": "raw_iron_block.webp"
+    },
+    {
+      "name": "Recovery Compass",
+      "path": "recovery_compass.webp"
+    },
+    {
+      "name": "Redstone",
+      "path": "redstone.webp"
+    },
+    {
+      "name": "Redstone Block",
+      "path": "redstone_block.webp"
+    },
+    {
+      "name": "Redstone Lamp",
+      "path": "redstone_lamp.webp"
+    },
+    {
+      "name": "Redstone Ore",
+      "path": "redstone_ore.webp"
+    },
+    {
+      "name": "Redstone Torch",
+      "path": "redstone_torch.webp"
+    },
+    {
+      "name": "Red Banner",
+      "path": "red_banner.webp"
+    },
+    {
+      "name": "Red Bed",
+      "path": "red_bed.webp"
+    },
+    {
+      "name": "Red Bundle",
+      "path": "red_bundle.webp"
+    },
+    {
+      "name": "Red Candle",
+      "path": "red_candle.webp"
+    },
+    {
+      "name": "Red Carpet",
+      "path": "red_carpet.webp"
+    },
+    {
+      "name": "Red Concrete",
+      "path": "red_concrete.webp"
+    },
+    {
+      "name": "Red Concrete Powder",
+      "path": "red_concrete_powder.webp"
+    },
+    {
+      "name": "Red Dye",
+      "path": "red_dye.webp"
+    },
+    {
+      "name": "Red Glazed Terracotta",
+      "path": "red_glazed_terracotta.webp"
+    },
+    {
+      "name": "Red Harness",
+      "path": "red_harness.webp"
+    },
+    {
+      "name": "Red Mushroom",
+      "path": "red_mushroom.webp"
+    },
+    {
+      "name": "Red Mushroom Block",
+      "path": "red_mushroom_block.webp"
+    },
+    {
+      "name": "Red Nether Bricks",
+      "path": "red_nether_bricks.webp"
+    },
+    {
+      "name": "Red Nether Brick Slab",
+      "path": "red_nether_brick_slab.webp"
+    },
+    {
+      "name": "Red Nether Brick Stairs",
+      "path": "red_nether_brick_stairs.webp"
+    },
+    {
+      "name": "Red Nether Brick Wall",
+      "path": "red_nether_brick_wall.webp"
+    },
+    {
+      "name": "Red Sand",
+      "path": "red_sand.webp"
+    },
+    {
+      "name": "Red Sandstone",
+      "path": "red_sandstone.webp"
+    },
+    {
+      "name": "Red Sandstone Slab",
+      "path": "red_sandstone_slab.webp"
+    },
+    {
+      "name": "Red Sandstone Stairs",
+      "path": "red_sandstone_stairs.webp"
+    },
+    {
+      "name": "Red Sandstone Wall",
+      "path": "red_sandstone_wall.webp"
+    },
+    {
+      "name": "Red Shulker Box",
+      "path": "red_shulker_box.webp"
+    },
+    {
+      "name": "Red Stained Glass",
+      "path": "red_stained_glass.webp"
+    },
+    {
+      "name": "Red Stained Glass Pane",
+      "path": "red_stained_glass_pane.webp"
+    },
+    {
+      "name": "Red Terracotta",
+      "path": "red_terracotta.webp"
+    },
+    {
+      "name": "Red Tulip",
+      "path": "red_tulip.webp"
+    },
+    {
+      "name": "Red Wool",
+      "path": "red_wool.webp"
+    },
+    {
+      "name": "Reinforced Deepslate",
+      "path": "reinforced_deepslate.webp"
+    },
+    {
+      "name": "Repeater",
+      "path": "repeater.webp"
+    },
+    {
+      "name": "Repeating Command Block",
+      "path": "repeating_command_block.webp"
+    },
+    {
+      "name": "Resin Brick",
+      "path": "resin_brick.webp"
+    },
+    {
+      "name": "Resin Bricks",
+      "path": "resin_bricks.webp"
+    },
+    {
+      "name": "Resin Brick Slab",
+      "path": "resin_brick_slab.webp"
+    },
+    {
+      "name": "Resin Brick Stairs",
+      "path": "resin_brick_stairs.webp"
+    },
+    {
+      "name": "Resin Brick Wall",
+      "path": "resin_brick_wall.webp"
+    },
+    {
+      "name": "Resin Clump",
+      "path": "resin_clump.webp"
+    },
+    {
+      "name": "Respawn Anchor",
+      "path": "respawn_anchor.webp"
+    },
+    {
+      "name": "Rib Armor Trim Smithing Template",
+      "path": "rib_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Rooted Dirt",
+      "path": "rooted_dirt.webp"
+    },
+    {
+      "name": "Rose Bush",
+      "path": "rose_bush.webp"
+    },
+    {
+      "name": "Rotten Flesh",
+      "path": "rotten_flesh.webp"
+    },
+    {
+      "name": "Saddle",
+      "path": "saddle.webp"
+    },
+    {
+      "name": "Salmon",
+      "path": "salmon.webp"
+    },
+    {
+      "name": "Salmon Bucket",
+      "path": "salmon_bucket.webp"
+    },
+    {
+      "name": "Salmon Spawn Egg",
+      "path": "salmon_spawn_egg.webp"
+    },
+    {
+      "name": "Sand",
+      "path": "sand.webp"
+    },
+    {
+      "name": "Sandstone",
+      "path": "sandstone.webp"
+    },
+    {
+      "name": "Sandstone Slab",
+      "path": "sandstone_slab.webp"
+    },
+    {
+      "name": "Sandstone Stairs",
+      "path": "sandstone_stairs.webp"
+    },
+    {
+      "name": "Sandstone Wall",
+      "path": "sandstone_wall.webp"
+    },
+    {
+      "name": "Scaffolding",
+      "path": "scaffolding.webp"
+    },
+    {
+      "name": "Scrape Pottery Sherd",
+      "path": "scrape_pottery_sherd.webp"
+    },
+    {
+      "name": "Sculk",
+      "path": "sculk.webp"
+    },
+    {
+      "name": "Sculk Catalyst",
+      "path": "sculk_catalyst.webp"
+    },
+    {
+      "name": "Sculk Sensor",
+      "path": "sculk_sensor.webp"
+    },
+    {
+      "name": "Sculk Shrieker",
+      "path": "sculk_shrieker.webp"
+    },
+    {
+      "name": "Sculk Vein",
+      "path": "sculk_vein.webp"
+    },
+    {
+      "name": "Scute",
+      "path": "scute.webp"
+    },
+    {
+      "name": "Seagrass",
+      "path": "seagrass.webp"
+    },
+    {
+      "name": "Sea Lantern",
+      "path": "sea_lantern.webp"
+    },
+    {
+      "name": "Sea Pickle",
+      "path": "sea_pickle.webp"
+    },
+    {
+      "name": "Sentry Armor Trim Smithing Template",
+      "path": "sentry_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Shaper Armor Trim Smithing Template",
+      "path": "shaper_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Sheaf Pottery Sherd",
+      "path": "sheaf_pottery_sherd.webp"
+    },
+    {
+      "name": "Shears",
+      "path": "shears.webp"
+    },
+    {
+      "name": "Sheep Spawn Egg",
+      "path": "sheep_spawn_egg.webp"
+    },
+    {
+      "name": "Shelter Pottery Sherd",
+      "path": "shelter_pottery_sherd.webp"
+    },
+    {
+      "name": "Shield",
+      "path": "shield.webp"
+    },
+    {
+      "name": "Short Grass",
+      "path": "short_grass.webp"
+    },
+    {
+      "name": "Shroomlight",
+      "path": "shroomlight.webp"
+    },
+    {
+      "name": "Shulker Box",
+      "path": "shulker_box.webp"
+    },
+    {
+      "name": "Shulker Shell",
+      "path": "shulker_shell.webp"
+    },
+    {
+      "name": "Shulker Spawn Egg",
+      "path": "shulker_spawn_egg.webp"
+    },
+    {
+      "name": "Silence Armor Trim Smithing Template",
+      "path": "silence_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Silverfish Spawn Egg",
+      "path": "silverfish_spawn_egg.webp"
+    },
+    {
+      "name": "Skeleton Horse Spawn Egg",
+      "path": "skeleton_horse_spawn_egg.webp"
+    },
+    {
+      "name": "Skeleton Skull",
+      "path": "skeleton_skull.webp"
+    },
+    {
+      "name": "Skeleton Spawn Egg",
+      "path": "skeleton_spawn_egg.webp"
+    },
+    {
+      "name": "Skull Banner Pattern",
+      "path": "skull_banner_pattern.webp"
+    },
+    {
+      "name": "Skull Pottery Sherd",
+      "path": "skull_pottery_sherd.webp"
+    },
+    {
+      "name": "Slime Ball",
+      "path": "slime_ball.webp"
+    },
+    {
+      "name": "Slime Block",
+      "path": "slime_block.webp"
+    },
+    {
+      "name": "Slime Spawn Egg",
+      "path": "slime_spawn_egg.webp"
+    },
+    {
+      "name": "Small Amethyst Bud",
+      "path": "small_amethyst_bud.webp"
+    },
+    {
+      "name": "Small Dripleaf",
+      "path": "small_dripleaf.webp"
+    },
+    {
+      "name": "Smithing Table",
+      "path": "smithing_table.webp"
+    },
+    {
+      "name": "Smoker",
+      "path": "smoker.webp"
+    },
+    {
+      "name": "Smooth Basalt",
+      "path": "smooth_basalt.webp"
+    },
+    {
+      "name": "Smooth Quartz",
+      "path": "smooth_quartz.webp"
+    },
+    {
+      "name": "Smooth Quartz Slab",
+      "path": "smooth_quartz_slab.webp"
+    },
+    {
+      "name": "Smooth Quartz Stairs",
+      "path": "smooth_quartz_stairs.webp"
+    },
+    {
+      "name": "Smooth Red Sandstone",
+      "path": "smooth_red_sandstone.webp"
+    },
+    {
+      "name": "Smooth Red Sandstone Slab",
+      "path": "smooth_red_sandstone_slab.webp"
+    },
+    {
+      "name": "Smooth Red Sandstone Stairs",
+      "path": "smooth_red_sandstone_stairs.webp"
+    },
+    {
+      "name": "Smooth Sandstone",
+      "path": "smooth_sandstone.webp"
+    },
+    {
+      "name": "Smooth Sandstone Slab",
+      "path": "smooth_sandstone_slab.webp"
+    },
+    {
+      "name": "Smooth Sandstone Stairs",
+      "path": "smooth_sandstone_stairs.webp"
+    },
+    {
+      "name": "Smooth Stone",
+      "path": "smooth_stone.webp"
+    },
+    {
+      "name": "Smooth Stone Slab",
+      "path": "smooth_stone_slab.webp"
+    },
+    {
+      "name": "Sniffer Egg",
+      "path": "sniffer_egg.webp"
+    },
+    {
+      "name": "Sniffer Spawn Egg",
+      "path": "sniffer_spawn_egg.webp"
+    },
+    {
+      "name": "Snort Pottery Sherd",
+      "path": "snort_pottery_sherd.webp"
+    },
+    {
+      "name": "Snout Armor Trim Smithing Template",
+      "path": "snout_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Snow",
+      "path": "snow.webp"
+    },
+    {
+      "name": "Snowball",
+      "path": "snowball.webp"
+    },
+    {
+      "name": "Snow Block",
+      "path": "snow_block.webp"
+    },
+    {
+      "name": "Snow Golem Spawn Egg",
+      "path": "snow_golem_spawn_egg.webp"
+    },
+    {
+      "name": "Soul Campfire",
+      "path": "soul_campfire.webp"
+    },
+    {
+      "name": "Soul Lantern",
+      "path": "soul_lantern.webp"
+    },
+    {
+      "name": "Soul Sand",
+      "path": "soul_sand.webp"
+    },
+    {
+      "name": "Soul Soil",
+      "path": "soul_soil.webp"
+    },
+    {
+      "name": "Soul Torch",
+      "path": "soul_torch.webp"
+    },
+    {
+      "name": "Spawner",
+      "path": "spawner.webp"
+    },
+    {
+      "name": "Spectral Arrow",
+      "path": "spectral_arrow.webp"
+    },
+    {
+      "name": "Spider Eye",
+      "path": "spider_eye.webp"
+    },
+    {
+      "name": "Spider Spawn Egg",
+      "path": "spider_spawn_egg.webp"
+    },
+    {
+      "name": "Spire Armor Trim Smithing Template",
+      "path": "spire_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Splash Potion",
+      "path": "splash_potion.webp"
+    },
+    {
+      "name": "Sponge",
+      "path": "sponge.webp"
+    },
+    {
+      "name": "Spore Blossom",
+      "path": "spore_blossom.webp"
+    },
+    {
+      "name": "Spruce Boat",
+      "path": "spruce_boat.webp"
+    },
+    {
+      "name": "Spruce Button",
+      "path": "spruce_button.webp"
+    },
+    {
+      "name": "Spruce Chest Boat",
+      "path": "spruce_chest_boat.webp"
+    },
+    {
+      "name": "Spruce Door",
+      "path": "spruce_door.webp"
+    },
+    {
+      "name": "Spruce Fence",
+      "path": "spruce_fence.webp"
+    },
+    {
+      "name": "Spruce Fence Gate",
+      "path": "spruce_fence_gate.webp"
+    },
+    {
+      "name": "Spruce Hanging Sign",
+      "path": "spruce_hanging_sign.webp"
+    },
+    {
+      "name": "Spruce Leaves",
+      "path": "spruce_leaves.webp"
+    },
+    {
+      "name": "Spruce Log",
+      "path": "spruce_log.webp"
+    },
+    {
+      "name": "Spruce Planks",
+      "path": "spruce_planks.webp"
+    },
+    {
+      "name": "Spruce Pressure Plate",
+      "path": "spruce_pressure_plate.webp"
+    },
+    {
+      "name": "Spruce Sapling",
+      "path": "spruce_sapling.webp"
+    },
+    {
+      "name": "Spruce Shelf",
+      "path": "spruce_shelf.webp"
+    },
+    {
+      "name": "Spruce Sign",
+      "path": "spruce_sign.webp"
+    },
+    {
+      "name": "Spruce Slab",
+      "path": "spruce_slab.webp"
+    },
+    {
+      "name": "Spruce Stairs",
+      "path": "spruce_stairs.webp"
+    },
+    {
+      "name": "Spruce Trapdoor",
+      "path": "spruce_trapdoor.webp"
+    },
+    {
+      "name": "Spruce Wood",
+      "path": "spruce_wood.webp"
+    },
+    {
+      "name": "Spyglass",
+      "path": "spyglass.webp"
+    },
+    {
+      "name": "Squid Spawn Egg",
+      "path": "squid_spawn_egg.webp"
+    },
+    {
+      "name": "Stick",
+      "path": "stick.webp"
+    },
+    {
+      "name": "Sticky Piston",
+      "path": "sticky_piston.webp"
+    },
+    {
+      "name": "Stone",
+      "path": "stone.webp"
+    },
+    {
+      "name": "Stonecutter",
+      "path": "stonecutter.webp"
+    },
+    {
+      "name": "Stone Axe",
+      "path": "stone_axe.webp"
+    },
+    {
+      "name": "Stone Bricks",
+      "path": "stone_bricks.webp"
+    },
+    {
+      "name": "Stone Brick Slab",
+      "path": "stone_brick_slab.webp"
+    },
+    {
+      "name": "Stone Brick Stairs",
+      "path": "stone_brick_stairs.webp"
+    },
+    {
+      "name": "Stone Brick Wall",
+      "path": "stone_brick_wall.webp"
+    },
+    {
+      "name": "Stone Button",
+      "path": "stone_button.webp"
+    },
+    {
+      "name": "Stone Hoe",
+      "path": "stone_hoe.webp"
+    },
+    {
+      "name": "Stone Pickaxe",
+      "path": "stone_pickaxe.webp"
+    },
+    {
+      "name": "Stone Pressure Plate",
+      "path": "stone_pressure_plate.webp"
+    },
+    {
+      "name": "Stone Shovel",
+      "path": "stone_shovel.webp"
+    },
+    {
+      "name": "Stone Slab",
+      "path": "stone_slab.webp"
+    },
+    {
+      "name": "Stone Stairs",
+      "path": "stone_stairs.webp"
+    },
+    {
+      "name": "Stone Sword",
+      "path": "stone_sword.webp"
+    },
+    {
+      "name": "Stray Spawn Egg",
+      "path": "stray_spawn_egg.webp"
+    },
+    {
+      "name": "Strider Spawn Egg",
+      "path": "strider_spawn_egg.webp"
+    },
+    {
+      "name": "String",
+      "path": "string.webp"
+    },
+    {
+      "name": "Stripped Acacia Log",
+      "path": "stripped_acacia_log.webp"
+    },
+    {
+      "name": "Stripped Acacia Wood",
+      "path": "stripped_acacia_wood.webp"
+    },
+    {
+      "name": "Stripped Bamboo Block",
+      "path": "stripped_bamboo_block.webp"
+    },
+    {
+      "name": "Stripped Birch Log",
+      "path": "stripped_birch_log.webp"
+    },
+    {
+      "name": "Stripped Birch Wood",
+      "path": "stripped_birch_wood.webp"
+    },
+    {
+      "name": "Stripped Cherry Log",
+      "path": "stripped_cherry_log.webp"
+    },
+    {
+      "name": "Stripped Cherry Wood",
+      "path": "stripped_cherry_wood.webp"
+    },
+    {
+      "name": "Stripped Crimson Hyphae",
+      "path": "stripped_crimson_hyphae.webp"
+    },
+    {
+      "name": "Stripped Crimson Stem",
+      "path": "stripped_crimson_stem.webp"
+    },
+    {
+      "name": "Stripped Dark Oak Log",
+      "path": "stripped_dark_oak_log.webp"
+    },
+    {
+      "name": "Stripped Dark Oak Wood",
+      "path": "stripped_dark_oak_wood.webp"
+    },
+    {
+      "name": "Stripped Jungle Log",
+      "path": "stripped_jungle_log.webp"
+    },
+    {
+      "name": "Stripped Jungle Wood",
+      "path": "stripped_jungle_wood.webp"
+    },
+    {
+      "name": "Stripped Mangrove Log",
+      "path": "stripped_mangrove_log.webp"
+    },
+    {
+      "name": "Stripped Mangrove Wood",
+      "path": "stripped_mangrove_wood.webp"
+    },
+    {
+      "name": "Stripped Oak Log",
+      "path": "stripped_oak_log.webp"
+    },
+    {
+      "name": "Stripped Oak Wood",
+      "path": "stripped_oak_wood.webp"
+    },
+    {
+      "name": "Stripped Pale Oak Log",
+      "path": "stripped_pale_oak_log.webp"
+    },
+    {
+      "name": "Stripped Pale Oak Wood",
+      "path": "stripped_pale_oak_wood.webp"
+    },
+    {
+      "name": "Stripped Spruce Log",
+      "path": "stripped_spruce_log.webp"
+    },
+    {
+      "name": "Stripped Spruce Wood",
+      "path": "stripped_spruce_wood.webp"
+    },
+    {
+      "name": "Stripped Warped Hyphae",
+      "path": "stripped_warped_hyphae.webp"
+    },
+    {
+      "name": "Stripped Warped Stem",
+      "path": "stripped_warped_stem.webp"
+    },
+    {
+      "name": "Structure Block",
+      "path": "structure_block.webp"
+    },
+    {
+      "name": "Structure Void",
+      "path": "structure_void.webp"
+    },
+    {
+      "name": "Sugar",
+      "path": "sugar.webp"
+    },
+    {
+      "name": "Sugar Cane",
+      "path": "sugar_cane.webp"
+    },
+    {
+      "name": "Sunflower",
+      "path": "sunflower.webp"
+    },
+    {
+      "name": "Suspicious Gravel",
+      "path": "suspicious_gravel.webp"
+    },
+    {
+      "name": "Suspicious Sand",
+      "path": "suspicious_sand.webp"
+    },
+    {
+      "name": "Suspicious Stew",
+      "path": "suspicious_stew.webp"
+    },
+    {
+      "name": "Sweet Berries",
+      "path": "sweet_berries.webp"
+    },
+    {
+      "name": "Tadpole Bucket",
+      "path": "tadpole_bucket.webp"
+    },
+    {
+      "name": "Tadpole Spawn Egg",
+      "path": "tadpole_spawn_egg.webp"
+    },
+    {
+      "name": "Tall Grass",
+      "path": "tall_grass.webp"
+    },
+    {
+      "name": "Target",
+      "path": "target.webp"
+    },
+    {
+      "name": "Terracotta",
+      "path": "terracotta.webp"
+    },
+    {
+      "name": "Tide Armor Trim Smithing Template",
+      "path": "tide_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Tinted Glass",
+      "path": "tinted_glass.webp"
+    },
+    {
+      "name": "Tipped Arrow",
+      "path": "tipped_arrow.webp"
+    },
+    {
+      "name": "Tnt",
+      "path": "tnt.webp"
+    },
+    {
+      "name": "Tnt Minecart",
+      "path": "tnt_minecart.webp"
+    },
+    {
+      "name": "Torch",
+      "path": "torch.webp"
+    },
+    {
+      "name": "Torchflower",
+      "path": "torchflower.webp"
+    },
+    {
+      "name": "Torchflower Seeds",
+      "path": "torchflower_seeds.webp"
+    },
+    {
+      "name": "Totem Of Undying",
+      "path": "totem_of_undying.webp"
+    },
+    {
+      "name": "Trader Llama Spawn Egg",
+      "path": "trader_llama_spawn_egg.webp"
+    },
+    {
+      "name": "Trapped Chest",
+      "path": "trapped_chest.webp"
+    },
+    {
+      "name": "Trial Key",
+      "path": "trial_key.webp"
+    },
+    {
+      "name": "Trial Spawner",
+      "path": "trial_spawner.webp"
+    },
+    {
+      "name": "Trident",
+      "path": "trident.webp"
+    },
+    {
+      "name": "Tripwire Hook",
+      "path": "tripwire_hook.webp"
+    },
+    {
+      "name": "Tropical Fish",
+      "path": "tropical_fish.webp"
+    },
+    {
+      "name": "Tropical Fish Bucket",
+      "path": "tropical_fish_bucket.webp"
+    },
+    {
+      "name": "Tropical Fish Spawn Egg",
+      "path": "tropical_fish_spawn_egg.webp"
+    },
+    {
+      "name": "Tube Coral",
+      "path": "tube_coral.webp"
+    },
+    {
+      "name": "Tube Coral Block",
+      "path": "tube_coral_block.webp"
+    },
+    {
+      "name": "Tube Coral Fan",
+      "path": "tube_coral_fan.webp"
+    },
+    {
+      "name": "Tuff",
+      "path": "tuff.webp"
+    },
+    {
+      "name": "Tuff Bricks",
+      "path": "tuff_bricks.webp"
+    },
+    {
+      "name": "Tuff Brick Slab",
+      "path": "tuff_brick_slab.webp"
+    },
+    {
+      "name": "Tuff Brick Stairs",
+      "path": "tuff_brick_stairs.webp"
+    },
+    {
+      "name": "Tuff Brick Wall",
+      "path": "tuff_brick_wall.webp"
+    },
+    {
+      "name": "Tuff Slab",
+      "path": "tuff_slab.webp"
+    },
+    {
+      "name": "Tuff Stairs",
+      "path": "tuff_stairs.webp"
+    },
+    {
+      "name": "Tuff Wall",
+      "path": "tuff_wall.webp"
+    },
+    {
+      "name": "Turtle Egg",
+      "path": "turtle_egg.webp"
+    },
+    {
+      "name": "Turtle Helmet",
+      "path": "turtle_helmet.webp"
+    },
+    {
+      "name": "Turtle Scute",
+      "path": "turtle_scute.webp"
+    },
+    {
+      "name": "Turtle Spawn Egg",
+      "path": "turtle_spawn_egg.webp"
+    },
+    {
+      "name": "Twisting Vines",
+      "path": "twisting_vines.webp"
+    },
+    {
+      "name": "Vault",
+      "path": "vault.webp"
+    },
+    {
+      "name": "Verdant Froglight",
+      "path": "verdant_froglight.webp"
+    },
+    {
+      "name": "Vex Armor Trim Smithing Template",
+      "path": "vex_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Vex Spawn Egg",
+      "path": "vex_spawn_egg.webp"
+    },
+    {
+      "name": "Villager Spawn Egg",
+      "path": "villager_spawn_egg.webp"
+    },
+    {
+      "name": "Vindicator Spawn Egg",
+      "path": "vindicator_spawn_egg.webp"
+    },
+    {
+      "name": "Vine",
+      "path": "vine.webp"
+    },
+    {
+      "name": "Wandering Trader Spawn Egg",
+      "path": "wandering_trader_spawn_egg.webp"
+    },
+    {
+      "name": "Warden Spawn Egg",
+      "path": "warden_spawn_egg.webp"
+    },
+    {
+      "name": "Ward Armor Trim Smithing Template",
+      "path": "ward_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Warped Button",
+      "path": "warped_button.webp"
+    },
+    {
+      "name": "Warped Door",
+      "path": "warped_door.webp"
+    },
+    {
+      "name": "Warped Fence",
+      "path": "warped_fence.webp"
+    },
+    {
+      "name": "Warped Fence Gate",
+      "path": "warped_fence_gate.webp"
+    },
+    {
+      "name": "Warped Fungus",
+      "path": "warped_fungus.webp"
+    },
+    {
+      "name": "Warped Fungus On A Stick",
+      "path": "warped_fungus_on_a_stick.webp"
+    },
+    {
+      "name": "Warped Hanging Sign",
+      "path": "warped_hanging_sign.webp"
+    },
+    {
+      "name": "Warped Hyphae",
+      "path": "warped_hyphae.webp"
+    },
+    {
+      "name": "Warped Nylium",
+      "path": "warped_nylium.webp"
+    },
+    {
+      "name": "Warped Planks",
+      "path": "warped_planks.webp"
+    },
+    {
+      "name": "Warped Pressure Plate",
+      "path": "warped_pressure_plate.webp"
+    },
+    {
+      "name": "Warped Roots",
+      "path": "warped_roots.webp"
+    },
+    {
+      "name": "Warped Shelf",
+      "path": "warped_shelf.webp"
+    },
+    {
+      "name": "Warped Sign",
+      "path": "warped_sign.webp"
+    },
+    {
+      "name": "Warped Slab",
+      "path": "warped_slab.webp"
+    },
+    {
+      "name": "Warped Stairs",
+      "path": "warped_stairs.webp"
+    },
+    {
+      "name": "Warped Stem",
+      "path": "warped_stem.webp"
+    },
+    {
+      "name": "Warped Trapdoor",
+      "path": "warped_trapdoor.webp"
+    },
+    {
+      "name": "Warped Wart Block",
+      "path": "warped_wart_block.webp"
+    },
+    {
+      "name": "Water Bucket",
+      "path": "water_bucket.webp"
+    },
+    {
+      "name": "Waxed Chiseled Copper",
+      "path": "waxed_chiseled_copper.webp"
+    },
+    {
+      "name": "Waxed Copper Block",
+      "path": "waxed_copper_block.webp"
+    },
+    {
+      "name": "Waxed Copper Bulb",
+      "path": "waxed_copper_bulb.webp"
+    },
+    {
+      "name": "Waxed Copper Door",
+      "path": "waxed_copper_door.webp"
+    },
+    {
+      "name": "Waxed Copper Grate",
+      "path": "waxed_copper_grate.webp"
+    },
+    {
+      "name": "Waxed Copper Trapdoor",
+      "path": "waxed_copper_trapdoor.webp"
+    },
+    {
+      "name": "Waxed Cut Copper",
+      "path": "waxed_cut_copper.webp"
+    },
+    {
+      "name": "Waxed Cut Copper Slab",
+      "path": "waxed_cut_copper_slab.webp"
+    },
+    {
+      "name": "Waxed Cut Copper Stairs",
+      "path": "waxed_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Waxed Exposed Chiseled Copper",
+      "path": "waxed_exposed_chiseled_copper.webp"
+    },
+    {
+      "name": "Waxed Exposed Copper",
+      "path": "waxed_exposed_copper.webp"
+    },
+    {
+      "name": "Waxed Exposed Copper Bulb",
+      "path": "waxed_exposed_copper_bulb.webp"
+    },
+    {
+      "name": "Waxed Exposed Copper Door",
+      "path": "waxed_exposed_copper_door.webp"
+    },
+    {
+      "name": "Waxed Exposed Copper Grate",
+      "path": "waxed_exposed_copper_grate.webp"
+    },
+    {
+      "name": "Waxed Exposed Copper Trapdoor",
+      "path": "waxed_exposed_copper_trapdoor.webp"
+    },
+    {
+      "name": "Waxed Exposed Cut Copper",
+      "path": "waxed_exposed_cut_copper.webp"
+    },
+    {
+      "name": "Waxed Exposed Cut Copper Slab",
+      "path": "waxed_exposed_cut_copper_slab.webp"
+    },
+    {
+      "name": "Waxed Exposed Cut Copper Stairs",
+      "path": "waxed_exposed_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Waxed Oxidized Chiseled Copper",
+      "path": "waxed_oxidized_chiseled_copper.webp"
+    },
+    {
+      "name": "Waxed Oxidized Copper",
+      "path": "waxed_oxidized_copper.webp"
+    },
+    {
+      "name": "Waxed Oxidized Copper Bulb",
+      "path": "waxed_oxidized_copper_bulb.webp"
+    },
+    {
+      "name": "Waxed Oxidized Copper Door",
+      "path": "waxed_oxidized_copper_door.webp"
+    },
+    {
+      "name": "Waxed Oxidized Copper Grate",
+      "path": "waxed_oxidized_copper_grate.webp"
+    },
+    {
+      "name": "Waxed Oxidized Copper Trapdoor",
+      "path": "waxed_oxidized_copper_trapdoor.webp"
+    },
+    {
+      "name": "Waxed Oxidized Cut Copper",
+      "path": "waxed_oxidized_cut_copper.webp"
+    },
+    {
+      "name": "Waxed Oxidized Cut Copper Slab",
+      "path": "waxed_oxidized_cut_copper_slab.webp"
+    },
+    {
+      "name": "Waxed Oxidized Cut Copper Stairs",
+      "path": "waxed_oxidized_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Waxed Weathered Chiseled Copper",
+      "path": "waxed_weathered_chiseled_copper.webp"
+    },
+    {
+      "name": "Waxed Weathered Copper",
+      "path": "waxed_weathered_copper.webp"
+    },
+    {
+      "name": "Waxed Weathered Copper Bulb",
+      "path": "waxed_weathered_copper_bulb.webp"
+    },
+    {
+      "name": "Waxed Weathered Copper Door",
+      "path": "waxed_weathered_copper_door.webp"
+    },
+    {
+      "name": "Waxed Weathered Copper Grate",
+      "path": "waxed_weathered_copper_grate.webp"
+    },
+    {
+      "name": "Waxed Weathered Copper Trapdoor",
+      "path": "waxed_weathered_copper_trapdoor.webp"
+    },
+    {
+      "name": "Waxed Weathered Cut Copper",
+      "path": "waxed_weathered_cut_copper.webp"
+    },
+    {
+      "name": "Waxed Weathered Cut Copper Slab",
+      "path": "waxed_weathered_cut_copper_slab.webp"
+    },
+    {
+      "name": "Waxed Weathered Cut Copper Stairs",
+      "path": "waxed_weathered_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Wayfinder Armor Trim Smithing Template",
+      "path": "wayfinder_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Weathered Chiseled Copper",
+      "path": "weathered_chiseled_copper.webp"
+    },
+    {
+      "name": "Weathered Copper",
+      "path": "weathered_copper.webp"
+    },
+    {
+      "name": "Weathered Copper Bulb",
+      "path": "weathered_copper_bulb.webp"
+    },
+    {
+      "name": "Weathered Copper Door",
+      "path": "weathered_copper_door.webp"
+    },
+    {
+      "name": "Weathered Copper Grate",
+      "path": "weathered_copper_grate.webp"
+    },
+    {
+      "name": "Weathered Copper Trapdoor",
+      "path": "weathered_copper_trapdoor.webp"
+    },
+    {
+      "name": "Weathered Cut Copper",
+      "path": "weathered_cut_copper.webp"
+    },
+    {
+      "name": "Weathered Cut Copper Slab",
+      "path": "weathered_cut_copper_slab.webp"
+    },
+    {
+      "name": "Weathered Cut Copper Stairs",
+      "path": "weathered_cut_copper_stairs.webp"
+    },
+    {
+      "name": "Weeping Vines",
+      "path": "weeping_vines.webp"
+    },
+    {
+      "name": "Wet Sponge",
+      "path": "wet_sponge.webp"
+    },
+    {
+      "name": "Wheat",
+      "path": "wheat.webp"
+    },
+    {
+      "name": "Wheat Seeds",
+      "path": "wheat_seeds.webp"
+    },
+    {
+      "name": "White Banner",
+      "path": "white_banner.webp"
+    },
+    {
+      "name": "White Bed",
+      "path": "white_bed.webp"
+    },
+    {
+      "name": "White Bundle",
+      "path": "white_bundle.webp"
+    },
+    {
+      "name": "White Candle",
+      "path": "white_candle.webp"
+    },
+    {
+      "name": "White Carpet",
+      "path": "white_carpet.webp"
+    },
+    {
+      "name": "White Concrete",
+      "path": "white_concrete.webp"
+    },
+    {
+      "name": "White Concrete Powder",
+      "path": "white_concrete_powder.webp"
+    },
+    {
+      "name": "White Dye",
+      "path": "white_dye.webp"
+    },
+    {
+      "name": "White Glazed Terracotta",
+      "path": "white_glazed_terracotta.webp"
+    },
+    {
+      "name": "White Harness",
+      "path": "white_harness.webp"
+    },
+    {
+      "name": "White Shulker Box",
+      "path": "white_shulker_box.webp"
+    },
+    {
+      "name": "White Stained Glass",
+      "path": "white_stained_glass.webp"
+    },
+    {
+      "name": "White Stained Glass Pane",
+      "path": "white_stained_glass_pane.webp"
+    },
+    {
+      "name": "White Terracotta",
+      "path": "white_terracotta.webp"
+    },
+    {
+      "name": "White Tulip",
+      "path": "white_tulip.webp"
+    },
+    {
+      "name": "White Wool",
+      "path": "white_wool.webp"
+    },
+    {
+      "name": "Wild Armor Trim Smithing Template",
+      "path": "wild_armor_trim_smithing_template.webp"
+    },
+    {
+      "name": "Wind Charge",
+      "path": "wind_charge.webp"
+    },
+    {
+      "name": "Witch Spawn Egg",
+      "path": "witch_spawn_egg.webp"
+    },
+    {
+      "name": "Wither Rose",
+      "path": "wither_rose.webp"
+    },
+    {
+      "name": "Wither Skeleton Skull",
+      "path": "wither_skeleton_skull.webp"
+    },
+    {
+      "name": "Wither Skeleton Spawn Egg",
+      "path": "wither_skeleton_spawn_egg.webp"
+    },
+    {
+      "name": "Wither Spawn Egg",
+      "path": "wither_spawn_egg.webp"
+    },
+    {
+      "name": "Wolf Armor",
+      "path": "wolf_armor.webp"
+    },
+    {
+      "name": "Wolf Spawn Egg",
+      "path": "wolf_spawn_egg.webp"
+    },
+    {
+      "name": "Wooden Axe",
+      "path": "wooden_axe.webp"
+    },
+    {
+      "name": "Wooden Hoe",
+      "path": "wooden_hoe.webp"
+    },
+    {
+      "name": "Wooden Pickaxe",
+      "path": "wooden_pickaxe.webp"
+    },
+    {
+      "name": "Wooden Shovel",
+      "path": "wooden_shovel.webp"
+    },
+    {
+      "name": "Wooden Sword",
+      "path": "wooden_sword.webp"
+    },
+    {
+      "name": "Writable Book",
+      "path": "writable_book.webp"
+    },
+    {
+      "name": "Written Book",
+      "path": "written_book.webp"
+    },
+    {
+      "name": "Yellow Banner",
+      "path": "yellow_banner.webp"
+    },
+    {
+      "name": "Yellow Bed",
+      "path": "yellow_bed.webp"
+    },
+    {
+      "name": "Yellow Candle",
+      "path": "yellow_candle.webp"
+    },
+    {
+      "name": "Yellow Carpet",
+      "path": "yellow_carpet.webp"
+    },
+    {
+      "name": "Yellow Concrete",
+      "path": "yellow_concrete.webp"
+    },
+    {
+      "name": "Yellow Concrete Powder",
+      "path": "yellow_concrete_powder.webp"
+    },
+    {
+      "name": "Yellow Dye",
+      "path": "yellow_dye.webp"
+    },
+    {
+      "name": "Yellow Glazed Terracotta",
+      "path": "yellow_glazed_terracotta.webp"
+    },
+    {
+      "name": "Yellow Harness",
+      "path": "yellow_harness.webp"
+    },
+    {
+      "name": "Yellow Shulker Box",
+      "path": "yellow_shulker_box.webp"
+    },
+    {
+      "name": "Yellow Stained Glass",
+      "path": "yellow_stained_glass.webp"
+    },
+    {
+      "name": "Yellow Stained Glass Pane",
+      "path": "yellow_stained_glass_pane.webp"
+    },
+    {
+      "name": "Yellow Terracotta",
+      "path": "yellow_terracotta.webp"
+    },
+    {
+      "name": "Yellow Wool",
+      "path": "yellow_wool.webp"
+    },
+    {
+      "name": "Zoglin Spawn Egg",
+      "path": "zoglin_spawn_egg.webp"
+    },
+    {
+      "name": "Zombie Head",
+      "path": "zombie_head.webp"
+    },
+    {
+      "name": "Zombie Horse Spawn Egg",
+      "path": "zombie_horse_spawn_egg.webp"
+    },
+    {
+      "name": "Zombie Spawn Egg",
+      "path": "zombie_spawn_egg.webp"
+    },
+    {
+      "name": "Zombie Villager Spawn Egg",
+      "path": "zombie_villager_spawn_egg.webp"
+    },
+    {
+      "name": "Zombified Piglin Spawn Egg",
+      "path": "zombified_piglin_spawn_egg.webp"
+    }
+  ]
+}
