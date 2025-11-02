@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://minecraft-tools.cc
+Host: minecraft-tools.cc
 
 # Sitemaps
-Sitemap: https://minecraft-tools.cc/sitemap.xml
+Sitemap: minecraft-tools.cc/sitemap.xml
