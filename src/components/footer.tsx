@@ -1,21 +1,21 @@
-import { Geist } from "next/font/google";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ExternalLinkIcon } from "./ui/icons";
 
-const geist = Geist({ subsets: ["latin"] });
 const year = new Date().getFullYear();
 
 export default function Footer() {
 	return (
-		<footer
-			className={`${geist.className} mx-auto my-10 w-fit font-semibold text-neutral-500 text-sm`}
-		>
+		<footer className={"mx-auto my-10 w-fit font-geist font-semibold text-neutral-500 text-sm"}>
 			<p>
 				&copy; {year}. Made with love by{" "}
-				<Link href="/" target="_blank" className="text-primary hover:underline">
+				<a
+					href="/"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-primary hover:underline"
+				>
 					Vinicius Hilton.
-				</Link>
+				</a>
 			</p>
 			<div
 				className={cn(
@@ -23,7 +23,7 @@ export default function Footer() {
 					"divide-x divide-gray-300",
 				)}
 			>
-				<Link
+				<a
 					className="my-3 flex items-center gap-1 pr-3 hover:underline"
 					href={"https://github.com/vnxcius/vnciusdev"}
 					target="_blank"
@@ -31,10 +31,10 @@ export default function Footer() {
 				>
 					Github Repo
 					<ExternalLinkIcon className="size-4" />
-				</Link>
-				<Link className="pl-2 hover:underline" href={"/"}>
+				</a>
+				<a className="pl-2 hover:underline" href="/">
 					Changelog
-				</Link>
+				</a>
 			</div>
 		</footer>
 	);

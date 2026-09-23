@@ -1,9 +1,5 @@
-"use client";
-
 import { InfoIcon, XIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { Geist } from "next/font/google";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { Grid } from "react-window";
 import { useDebounce } from "use-debounce";
@@ -21,8 +17,8 @@ import { useHeaderHeight } from "@/hooks/use-header-height";
 import CellComponent from "./cell-component";
 
 export interface Item {
+	id: string;
 	name: string;
-	path: string;
 }
 
 interface Props {
@@ -32,8 +28,6 @@ interface Props {
 interface SelectedItems {
 	items: Item[];
 }
-
-const geist = Geist({ subsets: ["latin"] });
 
 export default function ItemChecklist({ items }: Props) {
 	const { headerHeight } = useHeaderHeight();
@@ -64,8 +58,8 @@ export default function ItemChecklist({ items }: Props) {
 	const handleSelectItem = (item: Item) => {
 		// append selected item or remove it if already in the array and prevent duplicates
 		setSelectedItems((prev) => ({
-			items: prev.items.includes(item)
-				? prev.items.filter((i) => i !== item)
+			items: prev.items.some((i) => i.id === item.id)
+				? prev.items.filter((i) => i.id !== item.id)
 				: [...prev.items, item],
 		}));
 	};
@@ -84,14 +78,9 @@ export default function ItemChecklist({ items }: Props) {
 		});
 	}, []);
 	return (
-		<section
-			className="px-12"
-			style={{ height: `calc(100svh - ${headerHeight}px)` }}
-		>
+		<section className="px-12" style={{ height: `calc(100svh - ${headerHeight}px)` }}>
 			<div className="relative h-full border-x py-12">
-				<h1 className="mb-2.5 text-center text-4xl text-primary">
-					Items Checklist
-				</h1>
+				<h1 className="mb-2.5 text-center text-4xl text-primary">Items Checklist</h1>
 				<p className="text-center text-gray-500 text-lg">
 					Make yourself a item list for building something cool!
 				</p>
@@ -104,18 +93,12 @@ export default function ItemChecklist({ items }: Props) {
 						<DialogContent className="flex max-h-[70svh] flex-col">
 							<DialogHeader>
 								<DialogTitle className="flex items-center gap-2 text-2xl antialiased">
-									<Image
-										src={"/minecraft/diamond_pickaxe.gif"}
-										alt="Diamond Pickaxe"
-										width={26}
-										height={26}
-										unoptimized
-									/>
+									<img src={"/diamond_pickaxe.gif"} alt="Diamond Pickaxe" width={26} height={26} />
 									Select items
 								</DialogTitle>
-								<DialogDescription className={geist.className}>
-									Here you can select items you need to build something, then
-									mark them as completed once you have them.
+								<DialogDescription className="font-geist">
+									Here you can select items you need to build something, then mark them as completed
+									once you have them.
 								</DialogDescription>
 								<Separator />
 								<AnimatePresence>
@@ -132,9 +115,7 @@ export default function ItemChecklist({ items }: Props) {
 											className="space-y-2"
 										>
 											<div className="flex items-center justify-between">
-												<h2 className="text-neutral-600 dark:text-neutral-500">
-													Selected items
-												</h2>
+												<h2 className="text-neutral-600 dark:text-neutral-500">Selected items</h2>
 												{tipVisible && (
 													<motion.button
 														initial={{ opacity: 0, scale: 0.1 }}
@@ -151,16 +132,14 @@ export default function ItemChecklist({ items }: Props) {
 														onClick={() => handleDismissTip()}
 													>
 														<InfoIcon className="h-4 w-auto" />
-														<p className={geist.className}>
-															Click on the item to remove it
-														</p>
+														<p className="font-geist">Click on the item to remove it</p>
 													</motion.button>
 												)}
 											</div>
 											<ul className="flex max-h-14 flex-wrap items-center gap-0.5 overflow-y-scroll rounded-md border border-input bg-input/30 p-1">
 												<AnimatePresence>
 													{selectedItems.items.map((item) => (
-														<li key={item.path} className="min-w-fit">
+														<li key={item.id} className="min-w-fit">
 															<motion.button
 																initial={{ opacity: 0, scale: 0.1 }}
 																exit={{ opacity: 0, scale: 0.1 }}
@@ -178,8 +157,8 @@ export default function ItemChecklist({ items }: Props) {
 																onClick={() => handleSelectItem(item)}
 															>
 																<XIcon className="-top-1 -right-1 absolute hidden size-3 text-red-500 group-hover:block" />
-																<Image
-																	src={`/minecraft/1.21.10/${item.path}`}
+																<img
+																	src={`/items/${item.id}.webp`}
 																	alt={item.name}
 																	width={26}
 																	height={26}
@@ -194,7 +173,7 @@ export default function ItemChecklist({ items }: Props) {
 									)}
 								</AnimatePresence>
 								<Input
-									className={geist.className}
+									className="font-geist"
 									placeholder="Search items (ENGLISH ONLY)"
 									value={search}
 									onChange={(e) => setSearch(e.target.value)}

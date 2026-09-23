@@ -1,12 +1,7 @@
-import Image from "next/image";
 import { useState } from "react";
 import type { CellComponentProps } from "react-window";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { Item } from "./item-checklist";
 
@@ -26,25 +21,22 @@ export default function CellComponent({
 }: CellComponentProps<Props>) {
 	const item = items[rowIndex * 11 + columnIndex];
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
-	if (!item)
-		return (
-			// biome-ignore lint/a11y/useSemanticElements: grid should return a semantic element
-			<div style={style} role="gridcell" tabIndex={-1} />
-		);
+	if (!item) return <div style={style} role="gridcell" tabIndex={-1} />;
 	return (
-		<Tooltip delayDuration={500}>
+		<Tooltip>
 			<TooltipTrigger
+				delay={500}
 				className={cn(
 					"mx-0.5 block min-w-fit rounded-sm p-1 hover:bg-foreground/5",
-					selectedItems.includes(item) && "bg-primary/80 hover:bg-primary/90",
+					selectedItems.some((i) => i.id === item.id) && "bg-primary/80 hover:bg-primary/90",
 				)}
 				style={style}
 				onClick={() => onClick(item)}
 			>
 				<div>
 					{!isLoaded && <Skeleton className="size-8 bg-neutral-200" />}
-					<Image
-						src={`/minecraft/1.21.10/${item.path}`}
+					<img
+						src={`/items/${item.id}.webp`}
 						width={32}
 						height={32}
 						alt={item.name}

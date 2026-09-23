@@ -1,7 +1,4 @@
-"use client";
-
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { EyeClosedIcon, EyeIcon } from "@/components/ui/icons";
 import { useHeaderHeight } from "@/hooks/use-header-height";
@@ -37,14 +34,9 @@ export default function StackCalculator() {
 		});
 	}, [items, stackSize]);
 	return (
-		<section
-			className="px-12"
-			style={{ height: `calc(100svh - ${headerHeight}px)` }}
-		>
+		<section className="px-12" style={{ height: `calc(100svh - ${headerHeight}px)` }}>
 			<div className="relative h-full border-x py-12">
-				<h1 className="mb-2.5 text-center text-4xl text-primary">
-					Stack Calculator
-				</h1>
+				<h1 className="mb-2.5 text-center text-4xl text-primary">Stack Calculator</h1>
 				<p className="text-center text-gray-500 text-lg">
 					Calculate how many stacks are a given number of items.
 				</p>
@@ -77,8 +69,8 @@ export default function StackCalculator() {
 							className="mt-2 mb-5 flex flex-wrap items-center justify-center gap-10"
 						>
 							<div className="flex items-center gap-3 text-lg">
-								<Image
-									src="/minecraft/shulker_box.webp"
+								<img
+									src="/shulker_box.webp"
 									alt="Shulker Box Icon"
 									className="select-none"
 									draggable={false}
@@ -87,14 +79,12 @@ export default function StackCalculator() {
 								/>
 								<p className="lowercase">
 									{shulkers || "0"} shulker boxes
-									<span className="block text-gray-500 text-xs">
-										27 stacks per shulker box
-									</span>
+									<span className="block text-gray-500 text-xs">27 stacks per shulker box</span>
 								</p>
 							</div>
 							<div className="flex items-center gap-3 text-lg">
-								<Image
-									src="/minecraft/chest.webp"
+								<img
+									src="/chest.webp"
 									alt="Chest Icon"
 									className="select-none"
 									draggable={false}
@@ -103,9 +93,7 @@ export default function StackCalculator() {
 								/>
 								<p className="lowercase">
 									{chests || "0"} double chests
-									<span className="block text-gray-500 text-xs">
-										54 stacks per double chest
-									</span>
+									<span className="block text-gray-500 text-xs">54 stacks per double chest</span>
 								</p>
 							</div>
 						</motion.div>
@@ -115,8 +103,8 @@ export default function StackCalculator() {
 				<div className="mx-auto max-w-2xl rounded-lg border bg-card p-4">
 					<div className="mx-auto flex w-fit items-center gap-3.5 py-2.5">
 						<div className="flex items-center gap-2">
-							<Image
-								src="/minecraft/spruce_planks_stack.webp"
+							<img
+								src="/spruce_planks_stack.webp"
 								alt="Stack Spruce Planks Icon"
 								className="select-none"
 								draggable={false}
@@ -126,17 +114,15 @@ export default function StackCalculator() {
 							<span className="text-lg lowercase">{result.stacks} stacks</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<Image
-								src="/minecraft/spruce_planks.webp"
+							<img
+								src="/spruce_planks.webp"
 								alt="Spruce Planks Icon"
 								className="select-none"
 								draggable={false}
 								width={37}
 								height={37}
 							/>
-							<span className="text-lg lowercase">
-								{result.remainingItems} items
-							</span>
+							<span className="text-lg lowercase">{result.remainingItems} items</span>
 						</div>
 					</div>
 					<div className="flex flex-col gap-1">

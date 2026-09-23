@@ -1,13 +1,12 @@
+import { createFileRoute, Link, type LinkProps } from "@tanstack/react-router";
 import { BoxIcon } from "lucide-react";
-import type { Metadata, Route } from "next";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Link from "next/link";
 import type { JSX } from "react";
 import Footer from "@/components/footer";
 import SectionSeparator from "@/components/section-separator";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
+	ArrowDownBoxIcon,
 	CalculatorIcon,
 	ExternalLinkIcon,
 	ListDetailsIcon,
@@ -18,39 +17,38 @@ interface ToolCard {
 	icon: JSX.Element;
 	title: string;
 	description: string;
-	href: Route;
+	to: LinkProps["to"];
 }
 
-export const metadata: Metadata = {
-	title: "Home | Useful Minecraft Tools",
-};
+const tools: ToolCard[] = [
+	{
+		icon: <CalculatorIcon />,
+		title: "Stack Calculator",
+		description:
+			"Discover how a given amount of blocks are in item stacks or even chests and shulkers boxes. How many stacks are 456 blocks? Click to know!",
+		to: "/tool/stack-calculator",
+	},
+	{
+		icon: <BoxIcon />,
+		title: "3D Armor Trim Viewer",
+		description:
+			"Visualize the armor trims before actually going before them. Go ahead and make some fashion!",
+		to: "/tool/3d-armor-trim-viewer",
+	},
+	{
+		icon: <ListDetailsIcon />,
+		title: "Items Checklist",
+		description: "You can make a blocks checklist for your next amazing building!",
+		to: "/tool/item-checklist",
+	},
+];
 
-const ExploreButton = dynamic(() => import("./_components/explore-button"));
+export const Route = createFileRoute("/")({
+	head: () => ({ meta: [{ title: "Home | Useful Minecraft Tools" }] }),
+	component: Home,
+});
 
-export default function Home() {
-	const tools: ToolCard[] = [
-		{
-			icon: <CalculatorIcon />,
-			title: "Stack Calculator",
-			description:
-				"Discover how a given amount of blocks are in item stacks or even chests and shulkers boxes. How many stacks are 456 blocks? Click to know!",
-			href: "/tool/stack-calculator",
-		},
-		{
-			icon: <BoxIcon />,
-			title: "3D Armor Trim Viewer",
-			description:
-				"Visualize the armor trims before actually going before them. Go ahead and make some fashion!",
-			href: "/tool/3d-armor-trim-viewer",
-		},
-		{
-			icon: <ListDetailsIcon />,
-			title: "Items Checklist",
-			description:
-				"You can make a blocks checklist for your next amazing building!",
-			href: "/tool/item-checklist",
-		},
-	];
+function Home() {
 	return (
 		<>
 			<section className="px-12">
@@ -63,8 +61,8 @@ export default function Home() {
 						)}
 					/>
 
-					<Image
-						src={"/minecraft_tools.webp"}
+					<img
+						src="/minecraft_tools.webp"
 						width={794}
 						height={216}
 						alt="Minecraft Tools Logo"
@@ -72,15 +70,20 @@ export default function Home() {
 					/>
 
 					<div className="mx-auto my-6 w-fit max-w-2xl space-y-3 text-center">
-						<p className="text-5xl text-green-600">
-							Useful tools for Minecraft
-						</p>
+						<p className="text-5xl text-green-600">Useful tools for Minecraft</p>
 						<p className="text-gray-500 text-xl">
-							This is a collection of Minecraft tools you can use for many in
-							game purposes in Minecraft
+							This is a collection of Minecraft tools you can use for many in game purposes in
+							Minecraft
 						</p>
 
-						<ExploreButton />
+						<Button
+							className="mt-4 px-6 text-md"
+							nativeButton={false}
+							render={<Link to="/" hash="tools" />}
+						>
+							<ArrowDownBoxIcon />
+							Explore
+						</Button>
 					</div>
 				</div>
 			</section>
@@ -96,7 +99,7 @@ export default function Home() {
 
 					<div className="mx-auto flex max-w-7xl flex-wrap items-stretch gap-6 px-6 *:flex-1">
 						{tools.map((tool) => (
-							<Link key={tool.title} href={tool.href} className="group block">
+							<Link key={tool.title} to={tool.to} className="group block">
 								<Card className="h-full">
 									<CardHeader className="flex flex-nowrap items-center [&_svg]:min-h-5 [&_svg]:min-w-5 [&_svg]:text-primary">
 										{tool.icon}

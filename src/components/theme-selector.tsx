@@ -1,5 +1,3 @@
-"use client";
-
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import {
@@ -31,9 +29,7 @@ export default function ThemeSelector() {
 		dark: <MoonIcon size={16} />,
 	};
 
-	const icon = icons[resolvedTheme as "light" | "dark"] ?? (
-		<DeviceLaptopIcon size={16} />
-	);
+	const icon = icons[resolvedTheme as "light" | "dark"] ?? <DeviceLaptopIcon size={16} />;
 
 	return (
 		<DropdownMenu>
