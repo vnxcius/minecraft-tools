@@ -12,28 +12,28 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useHeaderHeight } from "@/hooks/use-header-height";
+import { type Item, versions } from "@/lib/items";
 import CellComponent from "./cell-component";
-
-export interface Item {
-	id: string;
-	name: string;
-}
 
 interface Props {
 	items: Item[];
+	version: string;
+	onVersionChange: (version: string) => void;
 }
 
-interface SelectedItems {
-	items: Item[];
-}
-
-export default function ItemChecklist({ items }: Props) {
+export default function ItemChecklist({ items, version, onVersionChange }: Props) {
 	const { headerHeight } = useHeaderHeight();
-	const [selectedItems, setSelectedItems] = useState<SelectedItems>({
-		items: [],
-	});
+	// ids are kept across version changes so items come back if you switch back
+	const [selectedIds, setSelectedIds] = useState<string[]>([]);
 	const [search, setSearch] = useState<string>("");
 	const [tipVisible, setTipVisible] = useState<boolean>(true);
 	const [debouncedSearch] = useDebounce(search, 500);
@@ -49,6 +49,11 @@ export default function ItemChecklist({ items }: Props) {
 		return normalizedItems.filter((item) => item._name.includes(q));
 	}, [normalizedItems, debouncedSearch]);
 
+	const selectedItems = useMemo(() => {
+		const byId = new Map(items.map((i) => [i.id, i]));
+		return selectedIds.flatMap((id) => byId.get(id) ?? []);
+	}, [items, selectedIds]);
+
 	const collapse = {
 		opacity: 0,
 		translateY: -40,
@@ -56,12 +61,10 @@ export default function ItemChecklist({ items }: Props) {
 	};
 
 	const handleSelectItem = (item: Item) => {
-		// append selected item or remove it if already in the array and prevent duplicates
-		setSelectedItems((prev) => ({
-			items: prev.items.some((i) => i.id === item.id)
-				? prev.items.filter((i) => i.id !== item.id)
-				: [...prev.items, item],
-		}));
+		// add the item or remove it if already selected
+		setSelectedIds((prev) =>
+			prev.includes(item.id) ? prev.filter((id) => id !== item.id) : [...prev, item.id],
+		);
 	};
 
 	const handleDismissTip = () => {
@@ -102,7 +105,7 @@ export default function ItemChecklist({ items }: Props) {
 								</DialogDescription>
 								<Separator />
 								<AnimatePresence>
-									{selectedItems.items.length > 0 && (
+									{selectedItems.length > 0 && (
 										<motion.div
 											initial={collapse}
 											exit={collapse}
@@ -138,7 +141,7 @@ export default function ItemChecklist({ items }: Props) {
 											</div>
 											<ul className="flex max-h-14 flex-wrap items-center gap-0.5 overflow-y-scroll rounded-md border border-input bg-input/30 p-1">
 												<AnimatePresence>
-													{selectedItems.items.map((item) => (
+													{selectedItems.map((item) => (
 														<li key={item.id} className="min-w-fit">
 															<motion.button
 																initial={{ opacity: 0, scale: 0.1 }}
@@ -158,11 +161,11 @@ export default function ItemChecklist({ items }: Props) {
 															>
 																<XIcon className="-top-1 -right-1 absolute hidden size-3 text-red-500 group-hover:block" />
 																<img
-																	src={`/items/${item.id}.webp`}
+																	src={item.src}
 																	alt={item.name}
 																	width={26}
 																	height={26}
-																	className="min-w-fit"
+																	className="size-6.5"
 																/>
 															</motion.button>
 														</li>
@@ -172,12 +175,25 @@ export default function ItemChecklist({ items }: Props) {
 										</motion.div>
 									)}
 								</AnimatePresence>
-								<Input
-									className="font-geist"
-									placeholder="Search items (ENGLISH ONLY)"
-									value={search}
-									onChange={(e) => setSearch(e.target.value)}
-								/>
+								<div className="flex gap-2 font-geist">
+									<Input
+										placeholder="Search items (ENGLISH ONLY)"
+										value={search}
+										onChange={(e) => setSearch(e.target.value)}
+									/>
+									<Select value={version} onValueChange={(v) => v && onVersionChange(v)}>
+										<SelectTrigger aria-label="Minecraft version">
+											<SelectValue />
+										</SelectTrigger>
+										<SelectContent align="end">
+											{versions.map((v) => (
+												<SelectItem key={v.id} value={v.id}>
+													{v.id}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+								</div>
 							</DialogHeader>
 
 							<div className="mx-auto h-full w-full overflow-y-scroll">
@@ -189,7 +205,7 @@ export default function ItemChecklist({ items }: Props) {
 									rowHeight={41}
 									cellProps={{
 										items: filteredItems,
-										selectedItems: selectedItems.items,
+										selectedItems: selectedItems,
 										onClick: handleSelectItem,
 									}}
 									className="mx-auto"

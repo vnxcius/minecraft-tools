@@ -3,7 +3,7 @@ import type { CellComponentProps } from "react-window";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import type { Item } from "./item-checklist";
+import type { Item } from "@/lib/items";
 
 interface Props {
 	items: Item[];
@@ -36,7 +36,8 @@ export default function CellComponent({
 				<div>
 					{!isLoaded && <Skeleton className="size-8 bg-neutral-200" />}
 					<img
-						src={`/items/${item.id}.webp`}
+						src={item.src}
+						loading="lazy"
 						width={32}
 						height={32}
 						alt={item.name}
