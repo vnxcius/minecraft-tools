@@ -1,0 +1,430 @@
+{
+	"version": "26.3",
+	"baseKey": [
+		"#e0e0e0",
+		"#c0c0c0",
+		"#a0a0a0",
+		"#808080",
+		"#606060",
+		"#404040",
+		"#202020",
+		"#000000"
+	],
+	"armor": [
+		{
+			"id": "chainmail",
+			"name": "Chainmail",
+			"itemPrefix": "chainmail",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"trimOverrides": {}
+		},
+		{
+			"id": "copper",
+			"name": "Copper",
+			"itemPrefix": "copper",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"trimOverrides": {
+				"copper": "copper_darker"
+			}
+		},
+		{
+			"id": "diamond",
+			"name": "Diamond",
+			"itemPrefix": "diamond",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"trimOverrides": {
+				"diamond": "diamond_darker"
+			}
+		},
+		{
+			"id": "gold",
+			"name": "Gold",
+			"itemPrefix": "golden",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"trimOverrides": {
+				"gold": "gold_darker"
+			}
+		},
+		{
+			"id": "iron",
+			"name": "Iron",
+			"itemPrefix": "iron",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"trimOverrides": {
+				"iron": "iron_darker"
+			}
+		},
+		{
+			"id": "leather",
+			"name": "Leather",
+			"itemPrefix": "leather",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"dye": "#a06540",
+			"trimOverrides": {}
+		},
+		{
+			"id": "netherite",
+			"name": "Netherite",
+			"itemPrefix": "netherite",
+			"slots": [
+				"helmet",
+				"chestplate",
+				"leggings",
+				"boots"
+			],
+			"trimOverrides": {
+				"netherite": "netherite_darker"
+			}
+		},
+		{
+			"id": "turtle_scute",
+			"name": "Turtle",
+			"itemPrefix": "turtle",
+			"slots": [
+				"helmet"
+			],
+			"trimOverrides": {}
+		}
+	],
+	"patterns": [
+		{
+			"id": "bolt",
+			"name": "Bolt",
+			"item": "bolt_armor_trim_smithing_template"
+		},
+		{
+			"id": "coast",
+			"name": "Coast",
+			"item": "coast_armor_trim_smithing_template"
+		},
+		{
+			"id": "dune",
+			"name": "Dune",
+			"item": "dune_armor_trim_smithing_template"
+		},
+		{
+			"id": "eye",
+			"name": "Eye",
+			"item": "eye_armor_trim_smithing_template"
+		},
+		{
+			"id": "flow",
+			"name": "Flow",
+			"item": "flow_armor_trim_smithing_template"
+		},
+		{
+			"id": "host",
+			"name": "Host",
+			"item": "host_armor_trim_smithing_template"
+		},
+		{
+			"id": "raiser",
+			"name": "Raiser",
+			"item": "raiser_armor_trim_smithing_template"
+		},
+		{
+			"id": "rib",
+			"name": "Rib",
+			"item": "rib_armor_trim_smithing_template"
+		},
+		{
+			"id": "sentry",
+			"name": "Sentry",
+			"item": "sentry_armor_trim_smithing_template"
+		},
+		{
+			"id": "shaper",
+			"name": "Shaper",
+			"item": "shaper_armor_trim_smithing_template"
+		},
+		{
+			"id": "silence",
+			"name": "Silence",
+			"item": "silence_armor_trim_smithing_template"
+		},
+		{
+			"id": "snout",
+			"name": "Snout",
+			"item": "snout_armor_trim_smithing_template"
+		},
+		{
+			"id": "spire",
+			"name": "Spire",
+			"item": "spire_armor_trim_smithing_template"
+		},
+		{
+			"id": "tide",
+			"name": "Tide",
+			"item": "tide_armor_trim_smithing_template"
+		},
+		{
+			"id": "vex",
+			"name": "Vex",
+			"item": "vex_armor_trim_smithing_template"
+		},
+		{
+			"id": "ward",
+			"name": "Ward",
+			"item": "ward_armor_trim_smithing_template"
+		},
+		{
+			"id": "wayfinder",
+			"name": "Wayfinder",
+			"item": "wayfinder_armor_trim_smithing_template"
+		},
+		{
+			"id": "wild",
+			"name": "Wild",
+			"item": "wild_armor_trim_smithing_template"
+		}
+	],
+	"materials": [
+		{
+			"id": "amethyst",
+			"name": "Amethyst",
+			"item": "amethyst_shard"
+		},
+		{
+			"id": "copper",
+			"name": "Copper",
+			"item": "copper_ingot"
+		},
+		{
+			"id": "diamond",
+			"name": "Diamond",
+			"item": "diamond"
+		},
+		{
+			"id": "emerald",
+			"name": "Emerald",
+			"item": "emerald"
+		},
+		{
+			"id": "gold",
+			"name": "Gold",
+			"item": "gold_ingot"
+		},
+		{
+			"id": "iron",
+			"name": "Iron",
+			"item": "iron_ingot"
+		},
+		{
+			"id": "lapis",
+			"name": "Lapis",
+			"item": "lapis_lazuli"
+		},
+		{
+			"id": "netherite",
+			"name": "Netherite",
+			"item": "netherite_ingot"
+		},
+		{
+			"id": "quartz",
+			"name": "Quartz",
+			"item": "quartz"
+		},
+		{
+			"id": "redstone",
+			"name": "Redstone",
+			"item": "redstone"
+		},
+		{
+			"id": "resin",
+			"name": "Resin",
+			"item": "resin_brick"
+		}
+	],
+	"palettes": {
+		"amethyst": [
+			"#c98ff3",
+			"#9a5cc6",
+			"#6c49aa",
+			"#523687",
+			"#422776",
+			"#361c6a",
+			"#240c53",
+			"#17063b"
+		],
+		"copper": [
+			"#e3826c",
+			"#b4684d",
+			"#9a472c",
+			"#793c28",
+			"#6d3420",
+			"#5f2b18",
+			"#4c2010",
+			"#3d180b"
+		],
+		"copper_darker": [
+			"#7b4135",
+			"#6b3628",
+			"#592a19",
+			"#4c2416",
+			"#401e11",
+			"#36190f",
+			"#29140c",
+			"#1b0e08"
+		],
+		"diamond": [
+			"#cbfff5",
+			"#6eecd2",
+			"#2cbaa8",
+			"#1d969a",
+			"#0c788d",
+			"#076578",
+			"#04515f",
+			"#013c47"
+		],
+		"diamond_darker": [
+			"#15b3a1",
+			"#0a9ca1",
+			"#048185",
+			"#027472",
+			"#065d5b",
+			"#095148",
+			"#034642",
+			"#04403e"
+		],
+		"emerald": [
+			"#82f6ad",
+			"#0ec754",
+			"#11a036",
+			"#107b24",
+			"#0e7222",
+			"#09631b",
+			"#035013",
+			"#023d0e"
+		],
+		"gold": [
+			"#fffd90",
+			"#ecd93f",
+			"#deb12d",
+			"#b16712",
+			"#a0450a",
+			"#803503",
+			"#712d00",
+			"#572300"
+		],
+		"gold_darker": [
+			"#c29c2a",
+			"#ba8327",
+			"#a35f14",
+			"#89470c",
+			"#803503",
+			"#712d00",
+			"#572300",
+			"#3e1b03"
+		],
+		"iron": [
+			"#c5d2d4",
+			"#bfc9c8",
+			"#9daaaa",
+			"#7b8989",
+			"#717d7d",
+			"#657070",
+			"#576363",
+			"#465151"
+		],
+		"iron_darker": [
+			"#a2b0b3",
+			"#8a9291",
+			"#6f7676",
+			"#576363",
+			"#3d4949",
+			"#313b3b",
+			"#2b3434",
+			"#1d2828"
+		],
+		"lapis": [
+			"#416e97",
+			"#1c4d9c",
+			"#21497b",
+			"#123365",
+			"#112e63",
+			"#0c285a",
+			"#091e45",
+			"#051636"
+		],
+		"netherite": [
+			"#5a575a",
+			"#443a3b",
+			"#312e31",
+			"#2f2727",
+			"#231e1e",
+			"#1a1616",
+			"#100c0c",
+			"#090707"
+		],
+		"netherite_darker": [
+			"#2e2829",
+			"#282425",
+			"#281d1d",
+			"#241a1a",
+			"#1f1717",
+			"#1d1313",
+			"#140f0f",
+			"#0b0909"
+		],
+		"quartz": [
+			"#f2efed",
+			"#f6eadf",
+			"#e3dbc4",
+			"#b6ad96",
+			"#908e80",
+			"#656156",
+			"#45433c",
+			"#2a2822"
+		],
+		"redstone": [
+			"#e62008",
+			"#bd2008",
+			"#971607",
+			"#781101",
+			"#650b01",
+			"#520d06",
+			"#360803",
+			"#1d0502"
+		],
+		"resin": [
+			"#ffc354",
+			"#f69f3b",
+			"#f0852a",
+			"#ec7214",
+			"#db5f10",
+			"#c7490a",
+			"#a53b11",
+			"#802a1a"
+		]
+	}
+}

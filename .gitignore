@@ -9,6 +9,9 @@ dist
 # src/routeTree.gen.ts
 
 
+# downloaded Mojang client jars (armor:sync)
+.cache
+
 # env / misc
 .env*
 !.env.example
