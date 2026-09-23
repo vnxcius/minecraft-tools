@@ -1,0 +1,14 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["typescript", "react", "jsx-a11y", "oxc", "import"],
+	"categories": { "correctness": "error", "suspicious": "warn" },
+	"ignorePatterns": ["dist", "src/routeTree.gen.ts"],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"import/no-unassigned-import": "off",
+		"no-underscore-dangle": "off",
+		// svg icons use role="img"; the virtualized grid cells are intentionally role="gridcell"
+		"jsx-a11y/prefer-tag-over-role": "off",
+		"jsx-a11y/control-has-associated-label": "off"
+	}
+}
