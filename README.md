@@ -37,3 +37,17 @@ bun run items:sync
 
 The script reads the CDN manifests, resolves which folder holds the icon of every item per version
 and rewrites `src/data/`. Commit the result.
+
+## 3D armor trim viewer
+
+The armor stand, armor layers, trim patterns and trim palettes come from the official client jar,
+so they always match the game. Extracted files live in `public/armor/` and `src/data/armor.json`.
+
+```bash
+bun run armor:sync            # latest release
+bun run armor:sync 26.3       # a specific version
+```
+
+The jar is downloaded once and cached in `.cache/` (git-ignored). Run it when a Minecraft release adds
+armor materials or trim patterns, then commit the result. Armor and trim icons in the UI reuse the
+item catalog above.
