@@ -1,34 +1,42 @@
 /**
- * Keeps the item checklist in sync with a Minecraft release.
+ * Syncs the item catalog with the mcitemgallery.com public CDN.
  *
- *   bun run items:sync            # latest release
- *   bun run items:sync 1.21.11    # specific version
+ *   bun run items:sync
  *
- * 1. Downloads the official client jar for the version (cached in .cache/).
- * 2. Reads the item ids from `assets/minecraft/items/*.json` and the display
- *    names from `assets/minecraft/lang/en_us.json`.
- * 3. Compares them with the icons in `public/items/<id>.webp`.
- * 4. Writes `src/data/items.json` with every item that has an icon and prints
- *    which icons are still missing (new items) or orphaned (removed items).
+ * The CDN publishes item icons per Minecraft version. The "images" source is
+ * incremental (a version folder only holds the icons that changed since the
+ * previous version) while "images-v2" ships full sets. For every version the
+ * script works out which folder holds the current icon of every item and writes:
  *
- * Adding the missing icons to `public/items/` and running the script again is
- * all that's needed to ship a new version.
+ *   src/data/versions.json          versions, newest first, with their CDN source
+ *   src/data/item-names.json        item id -> display name
+ *   src/data/items/<version>.json   item id -> CDN folder version of its icon
+ *
+ * When a new version shows up on the CDN, running this is all that's needed.
  */
-import { existsSync } from "node:fs";
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { unzipSync } from "fflate";
 
-const ICONS_DIR = "public/items";
-const OUTPUT = "src/data/items.json";
-const CACHE_DIR = ".cache";
-// has an item model but is not a real, obtainable item
-const EXCLUDED = new Set(["air"]);
-const MANIFEST_URL = "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json";
+const CDN = "https://mcitemgallery.com";
+const SOURCES = ["images", "images-v2"] as const;
+type Source = (typeof SOURCES)[number];
 
+const DATA_DIR = "src/data";
+const ITEMS_DIR = join(DATA_DIR, "items");
+
+interface VersionList {
+	versions: string[];
+	base: string;
+}
 interface Manifest {
-	latest: { release: string; snapshot: string };
-	versions: { id: string; url: string }[];
+	images: string[];
+}
+interface Changes {
+	added?: string[];
+	modified?: string[];
+}
+interface IndexEntry {
+	displayName: string;
 }
 
 async function getJson<T>(url: string): Promise<T> {
@@ -37,80 +45,101 @@ async function getJson<T>(url: string): Promise<T> {
 	return (await res.json()) as T;
 }
 
-async function getClientJar(version: string): Promise<Uint8Array> {
-	const cached = join(CACHE_DIR, `client-${version}.jar`);
-	if (existsSync(cached)) return new Uint8Array(await readFile(cached));
-
-	const manifest = await getJson<Manifest>(MANIFEST_URL);
-	const entry = manifest.versions.find((v) => v.id === version);
-	if (!entry) throw new Error(`Unknown Minecraft version "${version}"`);
-
-	const meta = await getJson<{ downloads: { client: { url: string } } }>(entry.url);
-	console.log(`Downloading client ${version}...`);
-	const res = await fetch(meta.downloads.client.url);
-	if (!res.ok) throw new Error(`Client jar download failed: ${res.status}`);
-	const jar = new Uint8Array(await res.arrayBuffer());
-
-	await mkdir(CACHE_DIR, { recursive: true });
-	await writeFile(cached, jar);
-	return jar;
+/** "1.21.10" > "1.21.9" > "1.9"; "26.2" > "1.21.10" */
+function compareVersions(a: string, b: string): number {
+	const pa = a.split(".").map(Number);
+	const pb = b.split(".").map(Number);
+	for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+		const diff = (pa[i] ?? 0) - (pb[i] ?? 0);
+		if (diff) return diff;
+	}
+	return 0;
 }
 
+const stripExt = (file: string) => file.replace(/\.png$/, "");
 const titleCase = (id: string) => id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
+/** one entry per line so git diffs stay readable */
+const toLines = (obj: Record<string, string>) => {
+	const entries = Object.entries(obj).map(
+		([k, v]) => `\t${JSON.stringify(k)}: ${JSON.stringify(v)}`,
+	);
+	return `{\n${entries.join(",\n")}\n}\n`;
+};
+
+async function syncSource(source: Source) {
+	const { versions, base } = await getJson<VersionList>(`${CDN}/${source}/versions.json`);
+	const ordered = [...versions].sort(compareVersions);
+
+	// item id -> folder version holding its latest icon, updated as we walk forward
+	const folderOf = new Map<string, string>();
+	const result: { version: string; items: Record<string, string> }[] = [];
+
+	for (const version of ordered) {
+		const manifest = await getJson<Manifest>(`${CDN}/${source}/${version}/manifest.json`);
+		if (version === base) {
+			for (const file of manifest.images) folderOf.set(stripExt(file), version);
+		} else {
+			const changes = await getJson<Changes>(`${CDN}/${source}/${version}/changes.json`);
+			for (const file of [...(changes.added ?? []), ...(changes.modified ?? [])]) {
+				folderOf.set(stripExt(file), version);
+			}
+		}
+
+		const items: Record<string, string> = {};
+		for (const file of [...manifest.images].sort()) {
+			const id = stripExt(file);
+			const folder = folderOf.get(id);
+			if (!folder) throw new Error(`${source}/${version}: no icon for ${id}`);
+			items[id] = folder;
+		}
+		result.push({ version, items });
+	}
+	return result;
+}
+
 async function main() {
-	const manifest = await getJson<Manifest>(MANIFEST_URL);
-	const version = process.argv[2] ?? manifest.latest.release;
-	console.log(`Minecraft version: ${version}`);
-
-	const jar = unzipSync(await getClientJar(version), {
-		filter: (f) =>
-			f.name.startsWith("assets/minecraft/items/") || f.name === "assets/minecraft/lang/en_us.json",
-	});
-
-	const decoder = new TextDecoder();
-	const lang: Record<string, string> = JSON.parse(
-		decoder.decode(jar["assets/minecraft/lang/en_us.json"]),
-	);
-
-	const gameItems = Object.keys(jar)
-		.filter((f) => f.endsWith(".json") && f.includes("/items/"))
-		.map((f) => f.slice(f.lastIndexOf("/") + 1, -".json".length))
-		.filter((id) => !EXCLUDED.has(id))
-		.sort();
-
-	const icons = new Set(
-		(await readdir(ICONS_DIR))
-			.filter((f) => f.endsWith(".webp"))
-			.map((f) => f.slice(0, -".webp".length)),
-	);
-
-	const items = gameItems
-		.filter((id) => icons.has(id))
-		.map((id) => ({
-			id,
-			name: lang[`item.minecraft.${id}`] ?? lang[`block.minecraft.${id}`] ?? titleCase(id),
-		}));
-
-	const missing = gameItems.filter((id) => !icons.has(id));
-	const gameSet = new Set(gameItems);
-	const orphaned = [...icons].filter((id) => !gameSet.has(id)).sort();
-
-	await writeFile(OUTPUT, `${JSON.stringify({ version, items }, null, "\t")}\n`);
-
-	console.log(`\nWrote ${OUTPUT}: ${items.length} items with icons.`);
-	console.log(`Items in game: ${gameItems.length}`);
-	if (missing.length) {
-		console.log(`\n${missing.length} items WITHOUT an icon (add ${ICONS_DIR}/<id>.webp):`);
-		for (const id of missing) console.log(`  ${id}`);
+	const all = new Map<string, { source: Source; items: Record<string, string> }>();
+	for (const source of SOURCES) {
+		for (const { version, items } of await syncSource(source)) {
+			// same version on both sources: prefer the newer "images-v2"
+			all.set(version, { source, items });
+		}
 	}
-	if (orphaned.length) {
+
+	const versions = [...all.keys()].sort((a, b) => compareVersions(b, a));
+
+	const index = await getJson<Record<string, IndexEntry>>(`${CDN}/metadata/items-index.json`);
+	const names: Record<string, string> = {};
+	const ids = new Set([...all.values()].flatMap((v) => Object.keys(v.items)));
+	for (const id of [...ids].sort()) {
+		names[id] = index[`${id}.png`]?.displayName ?? titleCase(id);
+	}
+
+	await mkdir(ITEMS_DIR, { recursive: true });
+	for (const file of await readdir(ITEMS_DIR)) {
+		await rm(join(ITEMS_DIR, file));
+	}
+	for (const [version, { items }] of all) {
+		await writeFile(join(ITEMS_DIR, `${version}.json`), toLines(items));
+	}
+	await writeFile(
+		join(DATA_DIR, "versions.json"),
+		`${JSON.stringify(
+			versions.map((id) => ({ id, source: all.get(id)?.source })),
+			null,
+			"\t",
+		)}\n`,
+	);
+	await writeFile(join(DATA_DIR, "item-names.json"), toLines(names));
+
+	console.log(`Synced ${versions.length} versions, ${ids.size} distinct items:`);
+	for (const v of versions) {
+		const entry = all.get(v);
 		console.log(
-			`\n${orphaned.length} icons that are no longer items in ${version} (safe to delete):`,
+			`  ${v.padEnd(8)} ${Object.keys(entry?.items ?? {}).length} items (${entry?.source})`,
 		);
-		for (const id of orphaned) console.log(`  ${id}.webp`);
 	}
-	if (!missing.length && !orphaned.length) console.log("Everything is in sync.");
 }
 
 await main();

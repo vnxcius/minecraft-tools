@@ -1,5 +1,5 @@
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
 	"useTabs": true,
-	"ignorePatterns": ["bun.lock", "public", "src/routeTree.gen.ts", "src/data/items.json"]
+	"ignorePatterns": ["bun.lock", "public", "src/routeTree.gen.ts", "src/data"]
 }
