@@ -18,7 +18,7 @@ interface Props {
 	onRemove: (id: string) => void;
 }
 
-// slightly darker than the page background, opaque so the sticky header can use it too
+// slightly darker than the page background, applied to the rows only
 const ROW_BG = "bg-[color-mix(in_oklab,var(--background),black_5%)]";
 
 /** number input that lets you clear the field while typing and snaps back on blur */
@@ -54,7 +54,7 @@ export default function ChecklistTable({ rows, onChange, onRemove }: Props) {
 	return (
 		<div className="min-h-0 overflow-y-auto rounded-md border">
 			<table className="w-full text-left text-sm">
-				<thead className={cn("sticky top-0 text-gray-500 text-xs", ROW_BG)}>
+				<thead className={"sticky top-0 bg-background text-gray-500 text-xs"}>
 					<tr className="border-b">
 						<th className="w-10 px-3 py-2 font-normal">Done</th>
 						<th className="px-3 py-2 font-normal">Item</th>
