@@ -7,13 +7,13 @@ import type { Item } from "@/lib/items";
 interface Props {
 	items: Item[];
 	onClick: (item: Item) => void;
-	selectedItems: Item[];
+	selectedIds: Set<string>;
 }
 
 export default function CellComponent({
 	items,
 	onClick,
-	selectedItems,
+	selectedIds,
 	rowIndex,
 	columnIndex,
 	style,
@@ -27,7 +27,7 @@ export default function CellComponent({
 			type="button"
 			className={cn(
 				"mx-0.5 block min-w-fit rounded-sm p-1 hover:bg-foreground/5",
-				selectedItems.some((i) => i.id === item.id) && "bg-primary/80 hover:bg-primary/90",
+				selectedIds.has(item.id) && "bg-primary/80 hover:bg-primary/90",
 			)}
 			style={style}
 			data-item-name={item.name}

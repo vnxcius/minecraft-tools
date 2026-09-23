@@ -1,6 +1,4 @@
-import { InfoIcon, XIcon } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Grid } from "react-window";
 import { useDebounce } from "use-debounce";
 import { Input } from "@/components/ui/input";
@@ -15,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import { useHeaderHeight } from "@/hooks/use-header-height";
 import { type Item, versions } from "@/lib/items";
 import CellComponent from "./cell-component";
+import ChecklistTable, { type ChecklistEntry } from "./checklist-table";
 import GridTooltip from "./grid-tooltip";
 
 interface Props {
@@ -25,11 +24,10 @@ interface Props {
 
 export default function ItemChecklist({ items, version, onVersionChange }: Props) {
 	const { headerHeight } = useHeaderHeight();
-	// ids are kept across version changes so items come back if you switch back
-	const [selectedIds, setSelectedIds] = useState<string[]>([]);
+	// entries are kept across version changes so items come back if you switch back
+	const [entries, setEntries] = useState<ChecklistEntry[]>([]);
 	const [search, setSearch] = useState<string>("");
-	const [tipVisible, setTipVisible] = useState<boolean>(true);
-	const [debouncedSearch] = useDebounce(search, 500);
+	const [debouncedSearch] = useDebounce(search, 250);
 
 	const normalizedItems = useMemo(
 		() => items.map((i) => ({ ...i, _name: i.name.toLowerCase() })),
@@ -42,39 +40,38 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 		return normalizedItems.filter((item) => item._name.includes(q));
 	}, [normalizedItems, debouncedSearch]);
 
-	const selectedItems = useMemo(() => {
+	const selectedIds = useMemo(() => new Set(entries.map((e) => e.id)), [entries]);
+
+	// only the entries that exist in the selected version
+	const rows = useMemo(() => {
 		const byId = new Map(items.map((i) => [i.id, i]));
-		return selectedIds.flatMap((id) => byId.get(id) ?? []);
-	}, [items, selectedIds]);
+		return entries.flatMap((entry) => {
+			const item = byId.get(entry.id);
+			return item ? [{ entry, item }] : [];
+		});
+	}, [items, entries]);
 
-	const collapse = {
-		opacity: 0,
-		translateY: -40,
-		height: 0,
-	};
+	const doneCount = rows.filter((r) => r.entry.done).length;
+	const hiddenCount = entries.length - rows.length;
 
-	const handleSelectItem = (item: Item) => {
-		// add the item or remove it if already selected
-		setSelectedIds((prev) =>
-			prev.includes(item.id) ? prev.filter((id) => id !== item.id) : [...prev, item.id],
+	const handleToggleItem = (item: Item) => {
+		setEntries((prev) =>
+			prev.some((e) => e.id === item.id)
+				? prev.filter((e) => e.id !== item.id)
+				: [...prev, { id: item.id, goal: 1, done: false }],
 		);
 	};
 
-	const handleDismissTip = () => {
-		setTipVisible(false);
-		localStorage.setItem("show-tip", "false");
-	};
+	const handleChange = (id: string, patch: Partial<Omit<ChecklistEntry, "id">>) =>
+		setEntries((prev) => prev.map((e) => (e.id === id ? { ...e, ...patch } : e)));
 
-	useEffect(() => {
-		const showTip = localStorage.getItem("show-tip");
-		queueMicrotask(() => {
-			if (showTip === "false") {
-				setTipVisible(false);
-			}
-		});
-	}, []);
+	const handleRemove = (id: string) => setEntries((prev) => prev.filter((e) => e.id !== id));
+
 	return (
-		<section className="px-12" style={{ height: `calc(100svh - ${headerHeight}px)` }}>
+		<section
+			className="px-12 lg:h-(--section-height)"
+			style={{ "--section-height": `calc(100svh - ${headerHeight}px)` } as React.CSSProperties}
+		>
 			<div className="relative flex h-full flex-col border-x py-12">
 				<h1 className="mb-2.5 text-center text-4xl text-primary">Items Checklist</h1>
 				<p className="text-center text-gray-500 text-lg">
@@ -83,114 +80,71 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 
 				<Separator className="mx-auto my-4 max-w-lg" />
 
-				<div className="mx-auto flex min-h-0 w-full max-w-lg flex-1 flex-col gap-3 px-4">
-					<AnimatePresence>
-						{selectedItems.length > 0 && (
-							<motion.div
-								initial={collapse}
-								exit={collapse}
-								animate={{
-									opacity: 1,
-									translateY: 0,
-									height: "auto",
+				<div className="mx-auto grid min-h-0 w-full max-w-5xl flex-1 gap-6 px-6 lg:grid-cols-[30rem_minmax(0,1fr)]">
+					<div className="flex min-h-0 flex-col gap-3">
+						<div className="flex gap-2 font-geist">
+							<img
+								src="/diamond_pickaxe.gif"
+								alt=""
+								width={26}
+								height={26}
+								className="my-auto size-6.5 shrink-0"
+							/>
+							<Input
+								placeholder="Search items (ENGLISH ONLY)"
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
+							<Select value={version} onValueChange={(v) => v && onVersionChange(v)}>
+								<SelectTrigger aria-label="Minecraft version">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent align="end">
+									{versions.map((v) => (
+										<SelectItem key={v.id} value={v.id}>
+											{v.id}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						</div>
+
+						{/* bounded height so react-window only renders the visible rows */}
+						<GridTooltip className="mx-auto h-[60svh] min-h-48 w-full lg:h-auto lg:flex-1">
+							<Grid
+								cellComponent={CellComponent}
+								columnCount={11}
+								rowCount={Math.ceil(filteredItems.length / 11)}
+								columnWidth={40}
+								rowHeight={41}
+								cellProps={{
+									items: filteredItems,
+									selectedIds,
+									onClick: handleToggleItem,
 								}}
-								transition={{ duration: 0.15, type: "tween" }}
-								className="space-y-2"
-							>
-								<div className="flex items-center justify-between">
-									<h2 className="text-neutral-600 dark:text-neutral-500">Selected items</h2>
-									{tipVisible && (
-										<motion.button
-											initial={{ opacity: 0, scale: 0.1 }}
-											animate={{
-												opacity: 1,
-												scale: 1,
-												transition: {
-													duration: 0.65,
-													type: "spring",
-													delay: 0.25,
-												},
-											}}
-											className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-green-700 text-xs hover:bg-primary/20"
-											onClick={() => handleDismissTip()}
-										>
-											<InfoIcon className="h-4 w-auto" />
-											<p className="font-geist">Click on the item to remove it</p>
-										</motion.button>
-									)}
-								</div>
-								<ul className="flex max-h-14 flex-wrap items-center gap-0.5 overflow-y-scroll rounded-md border border-input bg-input/30 p-1">
-									<AnimatePresence>
-										{selectedItems.map((item) => (
-											<li key={item.id} className="min-w-fit">
-												<motion.button
-													initial={{ opacity: 0, scale: 0.1 }}
-													exit={{ opacity: 0, scale: 0.1 }}
-													animate={{
-														opacity: 1,
-														scale: 1,
-														transition: {
-															duration: 0.65,
-															type: "spring",
-															delay: 0.15,
-														},
-													}}
-													type="button"
-													className="group relative block rounded-sm p-1 hover:bg-red-500/20"
-													onClick={() => handleSelectItem(item)}
-												>
-													<XIcon className="-top-1 -right-1 absolute hidden size-3 text-red-500 group-hover:block" />
-													<img
-														src={item.src}
-														alt={item.name}
-														width={26}
-														height={26}
-														className="size-6.5"
-													/>
-												</motion.button>
-											</li>
-										))}
-									</AnimatePresence>
-								</ul>
-							</motion.div>
-						)}
-					</AnimatePresence>
-					<div className="flex gap-2 font-geist">
-						<Input
-							placeholder="Search items (ENGLISH ONLY)"
-							value={search}
-							onChange={(e) => setSearch(e.target.value)}
-						/>
-						<Select value={version} onValueChange={(v) => v && onVersionChange(v)}>
-							<SelectTrigger aria-label="Minecraft version">
-								<SelectValue />
-							</SelectTrigger>
-							<SelectContent align="end">
-								{versions.map((v) => (
-									<SelectItem key={v.id} value={v.id}>
-										{v.id}
-									</SelectItem>
-								))}
-							</SelectContent>
-						</Select>
+								className="mx-auto"
+								style={{ height: "100%", overflowX: "hidden" }}
+							/>
+						</GridTooltip>
 					</div>
-					{/* bounded height so react-window only renders the visible rows */}
-					<GridTooltip className="mx-auto min-h-48 w-full flex-1">
-						<Grid
-							cellComponent={CellComponent}
-							columnCount={11}
-							rowCount={Math.ceil(filteredItems.length / 11)}
-							columnWidth={40}
-							rowHeight={41}
-							cellProps={{
-								items: filteredItems,
-								selectedItems: selectedItems,
-								onClick: handleSelectItem,
-							}}
-							className="mx-auto"
-							style={{ height: "100%", overflowX: "hidden" }}
-						/>
-					</GridTooltip>
+
+					<div className="flex min-h-0 flex-col gap-3">
+						<div className="flex h-9 items-center justify-between">
+							<h2 className="text-neutral-600 dark:text-neutral-500">Selected items</h2>
+							{rows.length > 0 && (
+								<span className="font-geist text-gray-500 text-sm">
+									{doneCount}/{rows.length} completed
+								</span>
+							)}
+						</div>
+						<ChecklistTable rows={rows} onChange={handleChange} onRemove={handleRemove} />
+						{hiddenCount > 0 && (
+							<p className="font-geist text-gray-500 text-xs">
+								{hiddenCount} selected {hiddenCount === 1 ? "item does not" : "items do not"} exist
+								in {version} and {hiddenCount === 1 ? "is" : "are"} hidden.
+							</p>
+						)}
+					</div>
 				</div>
 			</div>
 		</section>
