@@ -82,14 +82,10 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 
 				<div className="mx-auto grid min-h-0 w-full max-w-5xl flex-1 gap-6 px-6 lg:grid-cols-[30rem_minmax(0,1fr)]">
 					<div className="flex min-h-0 flex-col gap-3">
+						<div className="flex h-9 items-center">
+							<h2 className="text-neutral-600 dark:text-neutral-500">Items</h2>
+						</div>
 						<div className="flex gap-2 font-geist">
-							<img
-								src="/diamond_pickaxe.gif"
-								alt=""
-								width={26}
-								height={26}
-								className="my-auto size-6.5 shrink-0"
-							/>
 							<Input
 								placeholder="Search items (ENGLISH ONLY)"
 								value={search}
@@ -130,7 +126,16 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 
 					<div className="flex min-h-0 flex-col gap-3">
 						<div className="flex h-9 items-center justify-between">
-							<h2 className="text-neutral-600 dark:text-neutral-500">Selected items</h2>
+							<h2 className="flex items-center gap-2 text-neutral-600 dark:text-neutral-500">
+								<img
+									src="/diamond_pickaxe.gif"
+									alt=""
+									width={26}
+									height={26}
+									className="size-6.5"
+								/>
+								Selected items
+							</h2>
 							{rows.length > 0 && (
 								<span className="font-geist text-gray-500 text-sm">
 									{doneCount}/{rows.length} completed
