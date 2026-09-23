@@ -30,8 +30,10 @@ export default function ArmorViewer({ armor, trim, className }: Props) {
 
 	useEffect(() => {
 		const el = host.current as HTMLDivElement;
-		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		// no MSAA: it extrapolates the UVs at triangle edges and, with nearest filtering, that draws
+		// dotted lines from neighbouring texture regions. Supersample instead (at least 2x).
+		const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+		renderer.setPixelRatio(Math.min(Math.max(window.devicePixelRatio, 2), 3));
 		el.prepend(renderer.domElement);
 		renderer.domElement.className = "block size-full touch-none";
 

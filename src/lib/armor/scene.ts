@@ -77,8 +77,23 @@ const STAND_PARTS: (BoxSpec & { pose?: PartName })[] = [
 	{ pivot: [0, 0, 0], origin: [-3, 3, -1], size: [2, 7, 2], uv: [16, 0], tex: STAND_TEX },
 	{ pivot: [0, 0, 0], origin: [1, 3, -1], size: [2, 7, 2], uv: [48, 16], tex: STAND_TEX },
 	{ pivot: [0, 0, 0], origin: [-4, 10, -1], size: [8, 2, 2], uv: [0, 48], tex: STAND_TEX },
-	{ pivot: [0, 12, 0], origin: [-6, 11, -6], size: [12, 1, 12], uv: [0, 32], tex: STAND_TEX },
+	// the armor legs reach 2px lower than the stand legs: extend the legs and sink the base plate
+	// so boots rest on top of it instead of poking through
+	{ pivot: [-1.9, 12, 0], origin: [-1, 11, -1], size: [2, 2, 2], uv: [8, 0], tex: STAND_TEX },
+	{ pivot: [1.9, 12, 0], origin: [-1, 11, -1], size: [2, 2, 2], uv: [8, 0], tex: STAND_TEX },
+	{ pivot: [0, 14.1, 0], origin: [-6, 11, -6], size: [12, 1, 12], uv: [0, 32], tex: STAND_TEX },
 ];
+
+// Neighbouring parts (both boots, arms and body, ...) share coplanar faces once inflated, which
+// z-fights into streaks. A tiny per-part growth makes one of them win consistently.
+const LAYER_BIAS: Record<PartName, number> = {
+	head: 0,
+	body: 0,
+	rightArm: 0.002,
+	leftArm: 0.004,
+	rightLeg: 0.002,
+	leftLeg: 0.004,
+};
 
 // the default armor stand pose, in degrees (x = pitch, z = roll)
 const ARM_POSE: Partial<Record<PartName, { x: number; z: number }>> = {
@@ -102,8 +117,16 @@ const standTexture = plainTexture("/armor/armor-stand.png").then((texture) => {
 	return texture;
 });
 
-const armorLayer = (map: THREE.Texture) =>
-	new THREE.MeshLambertMaterial({ map, transparent: true, alphaTest: 0.1 });
+// The helmet is drawn without culling like the game does, so its inside (the back of the head)
+// is visible through the face opening. Other pieces overlap each other (both boots share space
+// in the middle), and drawing their inside faces would z-fight.
+const armorLayer = (map: THREE.Texture, slot: Slot) =>
+	new THREE.MeshLambertMaterial({
+		map,
+		transparent: true,
+		alphaTest: 0.1,
+		side: slot === "helmet" ? THREE.DoubleSide : THREE.FrontSide,
+	});
 
 /** builds the armor stand wearing the selected armor and trims */
 export async function buildAvatar(armor: ArmorSelection, trim: TrimSelection | null) {
@@ -126,13 +149,13 @@ export async function buildAvatar(armor: ArmorSelection, trim: TrimSelection | n
 		const { parts, inflate, leggings } = SLOT_PARTS[slot];
 
 		const base = await armorTexture(entry.id, leggings, "dye" in entry ? entry.dye : undefined);
-		const layers = [armorLayer(base)];
+		const layers = [armorLayer(base, slot)];
 		if (trim?.slots.includes(slot)) {
 			const paletteId =
 				(entry.trimOverrides as Record<string, string>)[trim.material] ?? trim.material;
 			const palette = (armorData.palettes as Record<string, string[]>)[paletteId];
 			const texture = await trimTexture(trim.pattern, leggings, palette, armorData.baseKey);
-			const material = armorLayer(texture);
+			const material = armorLayer(texture, slot);
 			// the trim sits on the same surface as the armor, pull it slightly towards the camera
 			material.polygonOffset = true;
 			material.polygonOffsetFactor = -1;
@@ -143,7 +166,11 @@ export async function buildAvatar(armor: ArmorSelection, trim: TrimSelection | n
 		for (const name of parts) {
 			for (const material of layers) {
 				root.add(
-					partGroup({ ...HUMANOID[name], tex: ARMOR_TEX, inflate }, material, ARM_POSE[name]),
+					partGroup(
+						{ ...HUMANOID[name], tex: ARMOR_TEX, inflate: inflate + LAYER_BIAS[name] },
+						material,
+						ARM_POSE[name],
+					),
 				);
 			}
 		}

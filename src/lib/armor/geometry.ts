@@ -22,6 +22,9 @@ export interface BoxSpec {
 	mirror?: boolean;
 }
 
+// in texels
+const UV_INSET = 0.02;
+
 type FaceName = "front" | "back" | "right" | "left" | "top" | "bottom";
 
 // corners as (sx, sy, sz) in 0..1 along the box axes, sz = 0 is the front
@@ -146,7 +149,13 @@ export function buildBox(spec: BoxSpec): THREE.BufferGeometry {
 			pts.push(new THREE.Vector3(x, -y, -z)); // model space -> three.js space
 
 			const [u, v] = faceUv(name, mirror ? 1 - sx : sx, sy, sz, w, h, d);
-			uvs.push((uv[0] + u) / tex[0], 1 - (uv[1] + v) / tex[1]);
+			// nearest filtering at the exact edge of a face can pick a texel of the neighbouring
+			// face and draw dotted lines; nudge every corner slightly towards the face center
+			const [cu, cv] = faceUv(name, 0.5, 0.5, 0.5, w, h, d);
+			uvs.push(
+				(uv[0] + u + Math.sign(cu - u) * UV_INSET) / tex[0],
+				1 - (uv[1] + v + Math.sign(cv - v) * UV_INSET) / tex[1],
+			);
 			normals.push(n3.x, n3.y, n3.z);
 		}
 		for (const p of pts) positions.push(p.x, p.y, p.z);
