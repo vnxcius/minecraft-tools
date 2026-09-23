@@ -196,12 +196,13 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 								</div>
 							</DialogHeader>
 
-							<div className="mx-auto h-full w-full overflow-y-scroll">
+							{/* fixed height so react-window only renders the visible rows */}
+							<div className="mx-auto h-[40svh] min-h-48 w-full">
 								<Grid
 									cellComponent={CellComponent}
 									columnCount={11}
 									rowCount={Math.ceil(filteredItems.length / 11)}
-									columnWidth={41}
+									columnWidth={40}
 									rowHeight={41}
 									cellProps={{
 										items: filteredItems,
@@ -209,6 +210,7 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 										onClick: handleSelectItem,
 									}}
 									className="mx-auto"
+									style={{ height: "100%", overflowX: "hidden" }}
 								/>
 							</div>
 							<Separator />
