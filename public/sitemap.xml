@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>minecraft-tools.cc/sitemap-0.xml</loc></sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://minecraft-tools.cc/</loc></url>
+  <url><loc>https://minecraft-tools.cc/tool/stack-calculator</loc></url>
+  <url><loc>https://minecraft-tools.cc/tool/item-checklist</loc></url>
+  <url><loc>https://minecraft-tools.cc/tool/3d-armor-trim-viewer</loc></url>
+</urlset>
