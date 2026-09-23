@@ -23,6 +23,7 @@ import { Separator } from "@/components/ui/separator";
 import { useHeaderHeight } from "@/hooks/use-header-height";
 import { type Item, versions } from "@/lib/items";
 import CellComponent from "./cell-component";
+import GridTooltip from "./grid-tooltip";
 
 interface Props {
 	items: Item[];
@@ -197,7 +198,7 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 							</DialogHeader>
 
 							{/* fixed height so react-window only renders the visible rows */}
-							<div className="mx-auto h-[40svh] min-h-48 w-full">
+							<GridTooltip className="mx-auto h-[40svh] min-h-48 w-full">
 								<Grid
 									cellComponent={CellComponent}
 									columnCount={11}
@@ -212,7 +213,7 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 									className="mx-auto"
 									style={{ height: "100%", overflowX: "hidden" }}
 								/>
-							</div>
+							</GridTooltip>
 							<Separator />
 						</DialogContent>
 					</Dialog>
