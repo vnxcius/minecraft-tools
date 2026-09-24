@@ -11,9 +11,17 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Heading } from "@/components/tool-parts";
+import { Heading, ItemIcon } from "@/components/tool-parts";
 import { SeedEngine } from "@/lib/seedmap/engine";
-import { biomeDim, DEFAULT_FEATURES, DIMENSIONS, FEATURES, VERSIONS } from "@/lib/seedmap/features";
+import {
+	biomeDim,
+	DEFAULT_FEATURES,
+	DIMENSIONS,
+	FEATURES,
+	SPAWN_ICON,
+	STRONGHOLD_ICON,
+	VERSIONS,
+} from "@/lib/seedmap/features";
 import type { Dim, EngineInfo } from "@/lib/seedmap/protocol";
 import { displaySeed, parseSeed, randomSeed } from "@/lib/seedmap/seed";
 import { cn } from "@/lib/utils";
@@ -55,7 +63,12 @@ function CoordsRow({
 	);
 }
 
-export default function SeedTool() {
+interface Props {
+	/** item id -> icon url */
+	icons: Record<string, string>;
+}
+
+export default function SeedTool({ icons }: Props) {
 	const map = useRef<SeedMapHandle>(null);
 	const engineRef = useRef<SeedEngine | null>(null);
 	const [world, setWorld] = useState<World | null>(null);
@@ -221,6 +234,7 @@ export default function SeedTool() {
 								spawn={showSpawn ? world.spawn : null}
 								strongholds={showStrongholds ? world.strongholds : null}
 								pin={pin}
+								icons={icons}
 								onHover={setHover}
 								onSelect={setSelection}
 							/>
@@ -388,10 +402,7 @@ export default function SeedTool() {
 									checked={features.has(feature.id)}
 									onCheckedChange={() => toggleFeature(feature.id)}
 								/>
-								<span
-									className="inline-block size-3 rounded-sm"
-									style={{ backgroundColor: feature.color }}
-								/>
+								<ItemIcon icons={icons} item={feature.icon} className="size-5" />
 								{feature.name}
 							</label>
 						))}
@@ -406,7 +417,7 @@ export default function SeedTool() {
 										checked={showStrongholds}
 										onCheckedChange={setShowStrongholds}
 									/>
-									<span className="inline-block size-3 rounded-sm bg-[#7d3ad1]" />
+									<ItemIcon icons={icons} item={STRONGHOLD_ICON} className="size-5" />
 									Strongholds
 								</label>
 								<label
@@ -414,7 +425,7 @@ export default function SeedTool() {
 									className="flex cursor-pointer items-center gap-2 text-sm"
 								>
 									<Checkbox id="opt-spawn" checked={showSpawn} onCheckedChange={setShowSpawn} />
-									<span className="inline-block size-3 rounded-sm bg-[#2f9e44]" />
+									<ItemIcon icons={icons} item={SPAWN_ICON} className="size-5" />
 									World spawn
 								</label>
 								<label

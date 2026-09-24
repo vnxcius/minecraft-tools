@@ -1,5 +1,5 @@
 import type { SeedEngine } from "./engine";
-import { FEATURES } from "./features";
+import { FEATURES, SPAWN_ICON, STRONGHOLD_ICON } from "./features";
 import type { Dim, EngineInfo } from "./protocol";
 
 export interface MapPoint {
@@ -33,6 +33,8 @@ export interface MapState {
 	strongholds: Int32Array | null;
 	/** highlighted spot, e.g. the result of the biome finder */
 	pin: MapPoint | null;
+	/** item id -> icon url, the art of the markers */
+	icons: Record<string, string>;
 }
 
 export interface MapCallbacks {
@@ -89,6 +91,7 @@ export class MapRenderer {
 	private slime: { cx: number; cz: number; w: number; h: number; data: Uint8Array } | null = null;
 	private slimeFetching = false;
 	private hits: Hit[] = [];
+	private iconImages = new Map<string, HTMLImageElement>();
 	private frame = 0;
 	private overlayTimer = 0;
 	private observer: ResizeObserver;
@@ -209,6 +212,18 @@ export class MapRenderer {
 			.catch(() => this.tiles.delete(key));
 	}
 
+	/** the marker art, loaded on first use; null until it has arrived */
+	private icon(item: string) {
+		let image = this.iconImages.get(item);
+		if (!image) {
+			image = new Image();
+			image.onload = () => this.requestDraw();
+			image.src = this.state.icons[item] ?? "";
+			this.iconImages.set(item, image);
+		}
+		return image.complete && image.naturalWidth > 0 ? image : null;
+	}
+
 	private draw() {
 		const { dim, features, showSlime, showGrid, spawn, strongholds, pin, epoch, info } = this.state;
 		const { w, h, ratio } = this.size;
@@ -288,6 +303,7 @@ export class MapRenderer {
 			z: number,
 			color: string,
 			text: string,
+			icon: string,
 			label: string,
 			kind: Selection["kind"],
 			big = bpp <= 8,
@@ -295,18 +311,30 @@ export class MapRenderer {
 			const sx = toScreenX(x);
 			const sy = toScreenY(z);
 			if (sx < -20 || sy < -20 || sx > w + 20 || sy > h + 20) return;
-			const s = big ? 20 : 9;
-			ctx.fillStyle = color;
-			ctx.strokeStyle = "rgb(0 0 0 / 0.8)";
-			ctx.lineWidth = 2;
-			ctx.strokeRect(sx - s / 2, sy - s / 2, s, s);
-			ctx.fillRect(sx - s / 2, sy - s / 2, s, s);
-			if (big) {
-				ctx.fillStyle = "#fff";
-				ctx.font = "600 10px 'IBM Plex Mono', monospace";
-				ctx.textAlign = "center";
-				ctx.textBaseline = "middle";
-				ctx.fillText(text, sx, sy + 0.5);
+			const art = this.icon(icon);
+			if (art) {
+				// the item art on a dark disc so it reads on every biome color
+				const s = big ? 30 : 18;
+				ctx.fillStyle = "rgb(0 0 0 / 0.45)";
+				ctx.beginPath();
+				ctx.arc(sx, sy, s / 2 + 1, 0, Math.PI * 2);
+				ctx.fill();
+				ctx.drawImage(art, sx - s / 2, sy - s / 2, s, s);
+			} else {
+				// until the art has loaded: a colored tag with the initials
+				const s = big ? 20 : 9;
+				ctx.fillStyle = color;
+				ctx.strokeStyle = "rgb(0 0 0 / 0.8)";
+				ctx.lineWidth = 2;
+				ctx.strokeRect(sx - s / 2, sy - s / 2, s, s);
+				ctx.fillRect(sx - s / 2, sy - s / 2, s, s);
+				if (big) {
+					ctx.fillStyle = "#fff";
+					ctx.font = "600 10px 'IBM Plex Mono', monospace";
+					ctx.textAlign = "center";
+					ctx.textBaseline = "middle";
+					ctx.fillText(text, sx, sy + 0.5);
+				}
 			}
 			hits.push({ sx, sy, x, z, label, kind });
 		};
@@ -317,7 +345,15 @@ export class MapRenderer {
 			const points = this.features.get(feature.id)?.points;
 			if (!points) continue;
 			for (let i = 0; i < points.length; i += 2) {
-				marker(points[i], points[i + 1], feature.color, feature.short, feature.name, "feature");
+				marker(
+					points[i],
+					points[i + 1],
+					feature.color,
+					feature.short,
+					feature.icon,
+					feature.name,
+					"feature",
+				);
 			}
 		}
 		if (strongholds && dim === 0) {
@@ -327,13 +363,15 @@ export class MapRenderer {
 					strongholds[i + 1],
 					"#7d3ad1",
 					"S",
+					STRONGHOLD_ICON,
 					"Stronghold",
 					"stronghold",
 					true,
 				);
 			}
 		}
-		if (spawn && dim === 0) marker(spawn.x, spawn.z, "#2f9e44", "W", "World spawn", "spawn", true);
+		if (spawn && dim === 0)
+			marker(spawn.x, spawn.z, "#2f9e44", "W", SPAWN_ICON, "World spawn", "spawn", true);
 		this.hits = hits;
 
 		if (pin) {

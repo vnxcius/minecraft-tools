@@ -37,6 +37,7 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 		spawn,
 		strongholds,
 		pin,
+		icons,
 		onHover,
 		onSelect,
 		className,
@@ -55,6 +56,7 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 			spawn,
 			strongholds,
 			pin,
+			icons,
 		};
 		if (renderer.current) renderer.current.update(state, { onHover, onSelect });
 		else
@@ -73,6 +75,7 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 		spawn,
 		strongholds,
 		pin,
+		icons,
 		onHover,
 		onSelect,
 	]);
