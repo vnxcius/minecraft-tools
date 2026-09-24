@@ -1,0 +1,211 @@
+{
+	"version": "26.3",
+	"patterns": [
+		{
+			"id": "border",
+			"name": "Bordure"
+		},
+		{
+			"id": "bricks",
+			"name": "Field Masoned",
+			"item": "field_masoned_banner_pattern",
+			"recipe": [
+				"paper",
+				"bricks"
+			]
+		},
+		{
+			"id": "circle",
+			"name": "Roundel"
+		},
+		{
+			"id": "creeper",
+			"name": "Creeper Charge",
+			"item": "creeper_banner_pattern",
+			"recipe": [
+				"paper",
+				"creeper_head"
+			]
+		},
+		{
+			"id": "cross",
+			"name": "Saltire"
+		},
+		{
+			"id": "curly_border",
+			"name": "Bordure Indented",
+			"item": "bordure_indented_banner_pattern",
+			"recipe": [
+				"paper",
+				"vine"
+			]
+		},
+		{
+			"id": "diagonal_left",
+			"name": "Per Bend Sinister"
+		},
+		{
+			"id": "diagonal_right",
+			"name": "Per Bend"
+		},
+		{
+			"id": "diagonal_up_left",
+			"name": "Per Bend Inverted"
+		},
+		{
+			"id": "diagonal_up_right",
+			"name": "Per Bend Sinister Inverted"
+		},
+		{
+			"id": "flow",
+			"name": "Flow",
+			"item": "flow_banner_pattern",
+			"obtain": "Loot from trial chambers"
+		},
+		{
+			"id": "flower",
+			"name": "Flower Charge",
+			"item": "flower_banner_pattern",
+			"recipe": [
+				"paper",
+				"oxeye_daisy"
+			]
+		},
+		{
+			"id": "globe",
+			"name": "Globe",
+			"item": "globe_banner_pattern",
+			"obtain": "Sold by master-level cartographers"
+		},
+		{
+			"id": "gradient",
+			"name": "Gradient"
+		},
+		{
+			"id": "gradient_up",
+			"name": "Base Gradient"
+		},
+		{
+			"id": "guster",
+			"name": "Guster",
+			"item": "guster_banner_pattern",
+			"obtain": "Loot from trial chambers"
+		},
+		{
+			"id": "half_horizontal",
+			"name": "Per Fess"
+		},
+		{
+			"id": "half_horizontal_bottom",
+			"name": "Per Fess Inverted"
+		},
+		{
+			"id": "half_vertical",
+			"name": "Per Pale"
+		},
+		{
+			"id": "half_vertical_right",
+			"name": "Per Pale Inverted"
+		},
+		{
+			"id": "mojang",
+			"name": "Thing",
+			"item": "mojang_banner_pattern",
+			"recipe": [
+				"paper",
+				"enchanted_golden_apple"
+			]
+		},
+		{
+			"id": "piglin",
+			"name": "Snout",
+			"item": "piglin_banner_pattern",
+			"obtain": "Found in bastion remnant chests"
+		},
+		{
+			"id": "rhombus",
+			"name": "Lozenge"
+		},
+		{
+			"id": "skull",
+			"name": "Skull Charge",
+			"item": "skull_banner_pattern",
+			"recipe": [
+				"paper",
+				"wither_skeleton_skull"
+			]
+		},
+		{
+			"id": "small_stripes",
+			"name": "Paly"
+		},
+		{
+			"id": "square_bottom_left",
+			"name": "Base Dexter Canton"
+		},
+		{
+			"id": "square_bottom_right",
+			"name": "Base Sinister Canton"
+		},
+		{
+			"id": "square_top_left",
+			"name": "Chief Dexter Canton"
+		},
+		{
+			"id": "square_top_right",
+			"name": "Chief Sinister Canton"
+		},
+		{
+			"id": "straight_cross",
+			"name": "Cross"
+		},
+		{
+			"id": "stripe_bottom",
+			"name": "Base"
+		},
+		{
+			"id": "stripe_center",
+			"name": "Pale"
+		},
+		{
+			"id": "stripe_downleft",
+			"name": "Bend Sinister"
+		},
+		{
+			"id": "stripe_downright",
+			"name": "Bend"
+		},
+		{
+			"id": "stripe_left",
+			"name": "Pale Dexter"
+		},
+		{
+			"id": "stripe_middle",
+			"name": "Fess"
+		},
+		{
+			"id": "stripe_right",
+			"name": "Pale Sinister"
+		},
+		{
+			"id": "stripe_top",
+			"name": "Chief"
+		},
+		{
+			"id": "triangle_bottom",
+			"name": "Chevron"
+		},
+		{
+			"id": "triangle_top",
+			"name": "Inverted Chevron"
+		},
+		{
+			"id": "triangles_bottom",
+			"name": "Base Indented"
+		},
+		{
+			"id": "triangles_top",
+			"name": "Chief Indented"
+		}
+	]
+}

@@ -12,16 +12,12 @@
  *
  * The client jar is downloaded once and cached in .cache/.
  */
-import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { unzipSync } from "fflate";
 import { PNG } from "pngjs";
+import { openClientJar, resolveVersion, titleCase } from "./lib/jar";
 
-const MANIFEST_URL = "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json";
-const CACHE_DIR = ".cache";
 const OUT_DIR = "public/armor";
-const ASSETS = "assets/minecraft/";
 
 // trim material -> item shown as its icon
 const MATERIAL_ITEMS: Record<string, string> = {
@@ -38,35 +34,6 @@ const MATERIAL_ITEMS: Record<string, string> = {
 	resin: "resin_brick",
 };
 
-interface Manifest {
-	latest: { release: string };
-	versions: { id: string; url: string }[];
-}
-
-async function getJson<T>(url: string): Promise<T> {
-	const res = await fetch(url);
-	if (!res.ok) throw new Error(`GET ${url} -> ${res.status}`);
-	return (await res.json()) as T;
-}
-
-async function getClientJar(version: string): Promise<Uint8Array> {
-	const cached = join(CACHE_DIR, `client-${version}.jar`);
-	if (existsSync(cached)) return new Uint8Array(await readFile(cached));
-
-	const manifest = await getJson<Manifest>(MANIFEST_URL);
-	const entry = manifest.versions.find((v) => v.id === version);
-	if (!entry) throw new Error(`Unknown Minecraft version "${version}"`);
-	const meta = await getJson<{ downloads: { client: { url: string } } }>(entry.url);
-
-	console.log(`Downloading client ${version}...`);
-	const res = await fetch(meta.downloads.client.url);
-	if (!res.ok) throw new Error(`Client jar download failed: ${res.status}`);
-	const jar = new Uint8Array(await res.arrayBuffer());
-	await mkdir(CACHE_DIR, { recursive: true });
-	await writeFile(cached, jar);
-	return jar;
-}
-
 const hex = (r: number, g: number, b: number) =>
 	`#${[r, g, b].map((c) => c.toString(16).padStart(2, "0")).join("")}`;
 
@@ -79,34 +46,23 @@ function readPalette(data: Uint8Array): string[] {
 	});
 }
 
-const titleCase = (id: string) => id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-
 async function main() {
-	const manifest = await getJson<Manifest>(MANIFEST_URL);
-	const version = process.argv[2] ?? manifest.latest.release;
+	const version = await resolveVersion();
 	console.log(`Minecraft version: ${version}`);
 
-	const jar = unzipSync(await getClientJar(version), {
-		filter: (f) =>
-			f.name.startsWith(`${ASSETS}textures/entity/equipment/humanoid`) ||
-			f.name.startsWith(`${ASSETS}textures/trims/entity/`) ||
-			f.name.startsWith(`${ASSETS}textures/palettes/`) ||
-			f.name.startsWith(`${ASSETS}equipment/`) ||
-			f.name === `${ASSETS}textures/entity/armorstand/armorstand.png` ||
-			f.name === `${ASSETS}lang/en_us.json`,
-	});
-	const file = (path: string) => {
-		const data = jar[ASSETS + path];
-		if (!data) throw new Error(`Missing ${path} in the client jar`);
-		return data;
-	};
-	const list = (dir: string) =>
-		Object.keys(jar)
-			.filter((f) => f.startsWith(ASSETS + dir) && f.endsWith(".png"))
-			.map((f) => f.slice((ASSETS + dir).length, -".png".length))
-			.sort();
-	const decoder = new TextDecoder();
-	const readJson = <T>(path: string): T => JSON.parse(decoder.decode(file(path)));
+	const jar = await openClientJar(
+		version,
+		(f) =>
+			f.startsWith("textures/entity/equipment/humanoid") ||
+			f.startsWith("textures/trims/entity/") ||
+			f.startsWith("textures/palettes/") ||
+			f.startsWith("equipment/") ||
+			f === "textures/entity/armorstand/armorstand.png" ||
+			f === "lang/en_us.json",
+	);
+	const file = (path: string) => jar.file(path);
+	const list = (dir: string) => jar.list(dir);
+	const readJson = <T>(path: string): T => jar.json<T>(path);
 
 	const lang = readJson<Record<string, string>>("lang/en_us.json");
 	await mkdir(join(OUT_DIR, "trim"), { recursive: true });
@@ -123,7 +79,7 @@ async function main() {
 		}>(`equipment/${id}.json`);
 		const dye = equipment.layers.humanoid.find((l) => l.dyeable)?.dyeable;
 		const leggings = `textures/entity/equipment/humanoid_leggings/${id}.png`;
-		const hasLeggingsLayer = ASSETS + leggings in jar;
+		const hasLeggingsLayer = jar.has(leggings);
 
 		await writeFile(
 			join(OUT_DIR, `${id}.png`),
