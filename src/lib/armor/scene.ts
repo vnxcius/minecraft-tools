@@ -117,16 +117,11 @@ const standTexture = plainTexture("/armor/armor-stand.png").then((texture) => {
 	return texture;
 });
 
-// The helmet is drawn without culling like the game does, so its inside (the back of the head)
-// is visible through the face opening. Other pieces overlap each other (both boots share space
-// in the middle), and drawing their inside faces would z-fight.
-const armorLayer = (map: THREE.Texture, slot: Slot) =>
-	new THREE.MeshLambertMaterial({
-		map,
-		transparent: true,
-		alphaTest: 0.1,
-		side: slot === "helmet" ? THREE.DoubleSide : THREE.FrontSide,
-	});
+// Armor is drawn without culling like the game does, so the inside of every piece (back of the
+// helmet, inside of the shoulders and boots) is visible through openings and transparent texels.
+// LAYER_BIAS keeps the overlapping inside faces from z-fighting.
+const armorLayer = (map: THREE.Texture) =>
+	new THREE.MeshLambertMaterial({ map, transparent: true, alphaTest: 0.1, side: THREE.DoubleSide });
 
 /** builds the armor stand wearing the selected armor and trims */
 export async function buildAvatar(armor: ArmorSelection, trim: TrimSelection | null) {
@@ -149,13 +144,13 @@ export async function buildAvatar(armor: ArmorSelection, trim: TrimSelection | n
 		const { parts, inflate, leggings } = SLOT_PARTS[slot];
 
 		const base = await armorTexture(entry.id, leggings, "dye" in entry ? entry.dye : undefined);
-		const layers = [armorLayer(base, slot)];
+		const layers = [armorLayer(base)];
 		if (trim?.slots.includes(slot)) {
 			const paletteId =
 				(entry.trimOverrides as Record<string, string>)[trim.material] ?? trim.material;
 			const palette = (armorData.palettes as Record<string, string[]>)[paletteId];
 			const texture = await trimTexture(trim.pattern, leggings, palette, armorData.baseKey);
-			const material = armorLayer(texture, slot);
+			const material = armorLayer(texture);
 			// the trim sits on the same surface as the armor, pull it slightly towards the camera
 			material.polygonOffset = true;
 			material.polygonOffsetFactor = -1;
