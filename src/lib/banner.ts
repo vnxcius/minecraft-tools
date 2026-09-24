@@ -1,4 +1,5 @@
 import data from "@/data/banner.json";
+import { loadImage } from "./image";
 
 export const MAX_LAYERS = 6;
 
@@ -60,21 +61,6 @@ export interface BannerDesign {
 export const FLAG = { x: 1, y: 1, w: 20, h: 40 };
 const BAR = { x: 2, y: 44, w: 20, h: 2 };
 export const BANNER_SIZE = { w: 20, h: 42 };
-
-const images = new Map<string, Promise<HTMLImageElement>>();
-export function loadImage(url: string) {
-	let image = images.get(url);
-	if (!image) {
-		image = new Promise((resolve, reject) => {
-			const img = new Image();
-			img.onload = () => resolve(img);
-			img.onerror = () => reject(new Error(`Failed to load ${url}`));
-			img.src = url;
-		});
-		images.set(url, image);
-	}
-	return image;
-}
 
 function tinted(img: HTMLImageElement, region: typeof FLAG, hex: string) {
 	const canvas = document.createElement("canvas");
