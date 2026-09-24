@@ -1,40 +1,25 @@
-import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 import { ExternalLinkIcon } from "./ui/icons";
 
 const year = new Date().getFullYear();
 
 export default function Footer() {
 	return (
-		<footer className={"mx-auto my-10 w-fit font-geist font-semibold text-neutral-500 text-sm"}>
-			<p>
-				&copy; {year}. Made with love by{" "}
+		<footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-x px-6 py-8 text-muted-foreground text-sm">
+			<p>&copy; {year} Vinicius Hilton. Not affiliated with Mojang or Microsoft.</p>
+			<div className="flex items-center gap-5">
 				<a
-					href="/"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="text-primary hover:underline"
-				>
-					Vinicius Hilton.
-				</a>
-			</p>
-			<div
-				className={cn(
-					"mx-auto flex w-fit items-center gap-2 leading-3",
-					"divide-x divide-gray-300",
-				)}
-			>
-				<a
-					className="my-3 flex items-center gap-1 pr-3 hover:underline"
-					href={"https://github.com/vnxcius/vnciusdev"}
+					className="flex items-center gap-1 hover:text-foreground"
+					href="https://github.com/vnxcius/vnciusdev"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					Github Repo
+					GitHub
 					<ExternalLinkIcon className="size-4" />
 				</a>
-				<a className="pl-2 hover:underline" href="/">
-					Changelog
-				</a>
+				<Link className="hover:text-foreground" to="/">
+					Home
+				</Link>
 			</div>
 		</footer>
 	);

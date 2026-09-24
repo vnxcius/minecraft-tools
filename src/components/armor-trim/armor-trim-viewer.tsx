@@ -39,8 +39,8 @@ function IconButton({
 				aria-pressed={selected}
 				onClick={onClick}
 				className={cn(
-					"flex size-10 items-center justify-center rounded-sm p-1 hover:bg-foreground/5",
-					selected && "bg-primary/80 hover:bg-primary/90",
+					"flex size-10 items-center justify-center rounded-sm p-1 hover:bg-accent",
+					selected && "bg-primary/30 ring-1 ring-primary hover:bg-primary/40",
 				)}
 			>
 				{children}
@@ -50,7 +50,7 @@ function IconButton({
 	);
 }
 
-const NoneIcon = () => <BanIcon className="size-5 text-gray-500" />;
+const NoneIcon = () => <BanIcon className="size-5 text-muted-foreground" />;
 
 export default function ArmorTrimViewer({ icons }: Props) {
 	const [armor, setArmor] = useState<ArmorSelection>({
@@ -74,10 +74,10 @@ export default function ArmorTrimViewer({ icons }: Props) {
 		);
 
 	return (
-		<section className="px-12">
-			<div className="relative border-x py-12">
-				<h1 className="mb-2.5 text-center text-4xl text-primary">3D Armor Trim Viewer</h1>
-				<p className="text-center text-gray-500 text-lg">
+		<section>
+			<div className="relative py-12">
+				<h1 className="display mb-2 text-center text-4xl">3D Armor Trim Viewer</h1>
+				<p className="text-center text-muted-foreground">
 					Preview every armor and trim combination on an armor stand.
 				</p>
 
@@ -86,7 +86,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 				<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_26rem]">
 					<div className="flex min-w-0 flex-col gap-3">
 						<div className="flex h-9 items-center">
-							<h2 className="text-neutral-600 dark:text-neutral-500">Armor</h2>
+							<h2 className="text-muted-foreground">Armor</h2>
 						</div>
 
 						<ArmorViewer armor={armor} trim={trim} className="h-[55svh] min-h-80" />
@@ -94,7 +94,9 @@ export default function ArmorTrimViewer({ icons }: Props) {
 						<div className="space-y-2 rounded-md border p-3">
 							{SLOTS.map((slot) => (
 								<div key={slot} className="flex items-center gap-3">
-									<span className="w-24 shrink-0 text-sm text-gray-500">{SLOT_LABELS[slot]}</span>
+									<span className="w-24 shrink-0 text-sm text-muted-foreground">
+										{SLOT_LABELS[slot]}
+									</span>
 									<div className="flex flex-wrap gap-0.5">
 										<IconButton
 											label="None"
@@ -129,8 +131,8 @@ export default function ArmorTrimViewer({ icons }: Props) {
 
 					<div className="flex min-w-0 flex-col gap-3">
 						<div className="flex h-9 items-center justify-between">
-							<h2 className="text-neutral-600 dark:text-neutral-500">Trim</h2>
-							<span className="font-geist text-gray-500 text-sm">
+							<h2 className="text-muted-foreground">Trim</h2>
+							<span className="text-muted-foreground text-sm">
 								{pattern
 									? `${armorData.patterns.find((p) => p.id === pattern)?.name} · ${
 											armorData.materials.find((m) => m.id === material)?.name
@@ -141,7 +143,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 
 						<div className="space-y-4 rounded-md border p-3">
 							<div className="space-y-1.5">
-								<h3 className="text-gray-500 text-sm">Pattern</h3>
+								<h3 className="text-muted-foreground text-sm">Pattern</h3>
 								<div className="flex flex-wrap gap-0.5">
 									<IconButton
 										label="None"
@@ -164,7 +166,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							</div>
 
 							<div className="space-y-1.5">
-								<h3 className="text-gray-500 text-sm">Material</h3>
+								<h3 className="text-muted-foreground text-sm">Material</h3>
 								<div className="flex flex-wrap gap-0.5">
 									{armorData.materials.map((m) => (
 										<IconButton
@@ -180,7 +182,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							</div>
 
 							<div className="space-y-1.5">
-								<h3 className="text-gray-500 text-sm">Apply to</h3>
+								<h3 className="text-muted-foreground text-sm">Apply to</h3>
 								<div className="grid grid-cols-2 gap-2">
 									{SLOTS.map((slot) => (
 										<label key={slot} className="flex cursor-pointer items-center gap-2 text-sm">

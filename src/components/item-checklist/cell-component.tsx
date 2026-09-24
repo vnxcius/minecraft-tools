@@ -26,15 +26,15 @@ export default function CellComponent({
 		<button
 			type="button"
 			className={cn(
-				"mx-0.5 block min-w-fit rounded-sm p-1 hover:bg-foreground/5",
-				selectedIds.has(item.id) && "bg-primary/80 hover:bg-primary/90",
+				"mx-0.5 block min-w-fit rounded-sm p-1 hover:bg-accent",
+				selectedIds.has(item.id) && "bg-primary/30 ring-1 ring-primary hover:bg-primary/40",
 			)}
 			style={style}
 			data-item-name={item.name}
 			onClick={() => onClick(item)}
 		>
 			<div>
-				{!isLoaded && <Skeleton className="size-8 bg-neutral-200" />}
+				{!isLoaded && <Skeleton className="size-8" />}
 				<img
 					src={item.src}
 					loading="lazy"

@@ -69,12 +69,12 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 
 	return (
 		<section
-			className="px-12 lg:h-(--section-height)"
+			className="lg:h-(--section-height)"
 			style={{ "--section-height": `calc(100svh - ${headerHeight}px)` } as React.CSSProperties}
 		>
-			<div className="relative flex h-full flex-col border-x py-12">
-				<h1 className="mb-2.5 text-center text-4xl text-primary">Items Checklist</h1>
-				<p className="text-center text-gray-500 text-lg">
+			<div className="relative flex h-full flex-col py-12">
+				<h1 className="display mb-2 text-center text-4xl">Items Checklist</h1>
+				<p className="text-center text-muted-foreground">
 					Make yourself a item list for building something cool!
 				</p>
 
@@ -83,9 +83,9 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 				<div className="mx-auto grid min-h-0 w-full max-w-5xl flex-1 gap-6 px-6 lg:grid-cols-[30rem_minmax(0,1fr)]">
 					<div className="flex min-h-0 flex-col gap-3">
 						<div className="flex h-9 items-center">
-							<h2 className="text-neutral-600 dark:text-neutral-500">Items</h2>
+							<h2 className="text-muted-foreground">Items</h2>
 						</div>
-						<div className="flex gap-2 font-geist">
+						<div className="flex gap-2">
 							<Input
 								placeholder="Search items (ENGLISH ONLY)"
 								value={search}
@@ -126,7 +126,7 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 
 					<div className="flex min-h-0 flex-col gap-3">
 						<div className="flex h-9 items-center justify-between">
-							<h2 className="flex items-center gap-2 text-neutral-600 dark:text-neutral-500">
+							<h2 className="flex items-center gap-2 text-muted-foreground">
 								<img
 									src="/diamond_pickaxe.gif"
 									alt=""
@@ -137,14 +137,14 @@ export default function ItemChecklist({ items, version, onVersionChange }: Props
 								Selected items
 							</h2>
 							{rows.length > 0 && (
-								<span className="font-geist text-gray-500 text-sm">
+								<span className="text-muted-foreground text-sm">
 									{doneCount}/{rows.length} completed
 								</span>
 							)}
 						</div>
 						<ChecklistTable rows={rows} onChange={handleChange} onRemove={handleRemove} />
 						{hiddenCount > 0 && (
-							<p className="font-geist text-gray-500 text-xs">
+							<p className="text-muted-foreground text-xs">
 								{hiddenCount} selected {hiddenCount === 1 ? "item does not" : "items do not"} exist
 								in {version} and {hiddenCount === 1 ? "is" : "are"} hidden.
 							</p>

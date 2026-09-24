@@ -1,47 +1,8 @@
-import { createFileRoute, Link, type LinkProps } from "@tanstack/react-router";
-import { BoxIcon } from "lucide-react";
-import type { JSX } from "react";
-import Footer from "@/components/footer";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRightIcon } from "lucide-react";
 import SectionSeparator from "@/components/section-separator";
+import { TOOLS } from "@/components/tools";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {
-	ArrowDownBoxIcon,
-	CalculatorIcon,
-	ExternalLinkIcon,
-	ListDetailsIcon,
-} from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-
-interface ToolCard {
-	icon: JSX.Element;
-	title: string;
-	description: string;
-	to: LinkProps["to"];
-}
-
-const tools: ToolCard[] = [
-	{
-		icon: <CalculatorIcon />,
-		title: "Stack Calculator",
-		description:
-			"Discover how a given amount of blocks are in item stacks or even chests and shulkers boxes. How many stacks are 456 blocks? Click to know!",
-		to: "/tool/stack-calculator",
-	},
-	{
-		icon: <BoxIcon />,
-		title: "3D Armor Trim Viewer",
-		description:
-			"Visualize the armor trims before actually going before them. Go ahead and make some fashion!",
-		to: "/tool/3d-armor-trim-viewer",
-	},
-	{
-		icon: <ListDetailsIcon />,
-		title: "Items Checklist",
-		description: "You can make a blocks checklist for your next amazing building!",
-		to: "/tool/item-checklist",
-	},
-];
 
 export const Route = createFileRoute("/")({
 	head: () => ({ meta: [{ title: "Home | Useful Minecraft Tools" }] }),
@@ -51,73 +12,57 @@ export const Route = createFileRoute("/")({
 function Home() {
 	return (
 		<>
-			<section className="px-12">
-				<div className="relative border-x py-12">
-					<div
-						className={cn(
-							"mask-[linear-gradient(to_bottom,transparent,black_50%,black)]",
-							"-z-10 absolute inset-0 h-full w-full bg-position-[10px_0,0_14px] bg-size-[14px_14px]",
-							"bg-[linear-gradient(to_right,#73737320_1px,transparent_1px),linear-gradient(to_bottom,#73737320_1px,transparent_1px)]",
-						)}
-					/>
+			<section className="px-6 py-24 text-center">
+				<h1 className="display mx-auto max-w-3xl text-5xl leading-tight sm:text-6xl">
+					Useful tools for Minecraft
+				</h1>
+				<p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+					A small collection of calculators, designers and viewers for the things you do in game
+					every day.
+				</p>
+				<div className="mt-8 flex flex-wrap justify-center gap-3">
+					<Button nativeButton={false} render={<Link to="/" hash="tools" />}>
+						Explore tools
+						<ArrowRightIcon />
+					</Button>
+					<Button
+						variant="outline"
+						nativeButton={false}
+						render={
+							<a
+								href="https://github.com/vnxcius/vnciusdev"
+								target="_blank"
+								rel="noopener noreferrer"
+							/>
+						}
+					>
+						View source
+					</Button>
+				</div>
+			</section>
 
-					<img
-						src="/minecraft_tools.webp"
-						width={794}
-						height={216}
-						alt="Minecraft Tools Logo"
-						className="mx-auto block w-96"
-					/>
+			<SectionSeparator />
 
-					<div className="mx-auto my-6 w-fit max-w-2xl space-y-3 text-center">
-						<p className="text-5xl text-green-600">Useful tools for Minecraft</p>
-						<p className="text-gray-500 text-xl">
-							This is a collection of Minecraft tools you can use for many in game purposes in
-							Minecraft
-						</p>
-
-						<Button
-							className="mt-4 px-6 text-md"
-							nativeButton={false}
-							render={<Link to="/" hash="tools" />}
-						>
-							<ArrowDownBoxIcon />
-							Explore
-						</Button>
+			<section id="tools" className="scroll-mt-16">
+				<div className="grid sm:grid-cols-2 lg:grid-cols-3 [&>*]:border-b [&>*]:border-border sm:[&>*:nth-child(odd)]:border-r lg:[&>*:nth-child(odd)]:border-r-0 lg:[&>*:not(:nth-child(3n))]:border-r">
+					{TOOLS.map(({ to, title, description, icon: Icon }) => (
+						<Link key={to} to={to} className="group flex flex-col gap-3 p-6 hover:bg-card">
+							<div className="flex items-center gap-2">
+								<Icon size={18} className="text-brand" />
+								<h2 className="font-semibold">{title}</h2>
+								<ArrowRightIcon className="ml-auto size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+							</div>
+							<p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+						</Link>
+					))}
+					<div className="flex flex-col gap-3 p-6 text-muted-foreground text-sm">
+						<h2 className="font-semibold">More on the way</h2>
+						<p className="leading-relaxed">Got an idea for a tool? Open an issue on GitHub.</p>
 					</div>
 				</div>
 			</section>
-			<SectionSeparator />
-			<section className="px-12">
-				<div className="border-x pb-56">
-					<div className="mx-auto w-fit py-12 text-center">
-						<h2 id="tools" className="text-3xl text-green-600">
-							Tools
-						</h2>
-						<p className="text-gray-500">Just pick one</p>
-					</div>
 
-					<div className="mx-auto flex max-w-7xl flex-wrap items-stretch gap-6 px-6 *:flex-1">
-						{tools.map((tool) => (
-							<Link key={tool.title} to={tool.to} className="group block">
-								<Card className="h-full">
-									<CardHeader className="flex flex-nowrap items-center [&_svg]:min-h-5 [&_svg]:min-w-5 [&_svg]:text-primary">
-										{tool.icon}
-										<p className="truncate text-xl">{tool.title}</p>
-										<ExternalLinkIcon className="size-5 min-w-5" />
-									</CardHeader>
-									<hr className="group-hover:border-primary/50" />
-									<CardContent>
-										<p className="min-w-48 text-justify">{tool.description}</p>
-									</CardContent>
-								</Card>
-							</Link>
-						))}
-					</div>
-				</div>
-			</section>
 			<SectionSeparator />
-			<Footer />
 		</>
 	);
 }

@@ -34,10 +34,10 @@ export default function StackCalculator() {
 		});
 	}, [items, stackSize]);
 	return (
-		<section className="px-12" style={{ height: `calc(100svh - ${headerHeight}px)` }}>
-			<div className="relative h-full border-x py-12">
-				<h1 className="mb-2.5 text-center text-4xl text-primary">Stack Calculator</h1>
-				<p className="text-center text-gray-500 text-lg">
+		<section style={{ height: `calc(100svh - ${headerHeight}px)` }}>
+			<div className="relative h-full py-12">
+				<h1 className="display mb-2 text-center text-4xl">Stack Calculator</h1>
+				<p className="text-center text-muted-foreground">
 					Calculate how many stacks are a given number of items.
 				</p>
 
@@ -79,7 +79,9 @@ export default function StackCalculator() {
 								/>
 								<p className="lowercase">
 									{shulkers || "0"} shulker boxes
-									<span className="block text-gray-500 text-xs">27 stacks per shulker box</span>
+									<span className="block text-muted-foreground text-xs">
+										27 stacks per shulker box
+									</span>
 								</p>
 							</div>
 							<div className="flex items-center gap-3 text-lg">
@@ -93,7 +95,9 @@ export default function StackCalculator() {
 								/>
 								<p className="lowercase">
 									{chests || "0"} double chests
-									<span className="block text-gray-500 text-xs">54 stacks per double chest</span>
+									<span className="block text-muted-foreground text-xs">
+										54 stacks per double chest
+									</span>
 								</p>
 							</div>
 						</motion.div>

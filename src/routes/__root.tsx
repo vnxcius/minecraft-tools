@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Outlet } from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -18,11 +19,14 @@ export const Route = createRootRoute({
 
 function RootLayout() {
 	return (
-		<ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+		<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
 			<TooltipProvider>
 				<HeadContent />
 				<Header />
-				<Outlet />
+				<main className="mx-auto w-full max-w-6xl border-x">
+					<Outlet />
+				</main>
+				<Footer />
 			</TooltipProvider>
 		</ThemeProvider>
 	);

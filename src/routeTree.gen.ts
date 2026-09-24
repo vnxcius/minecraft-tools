@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Tool3dArmorTrimViewerRouteImport } from './routes/tool/3d-armor-trim-viewer'
+import { Route as ToolBannerCraftingRouteImport } from './routes/tool/banner-crafting'
 import { Route as ToolItemChecklistRouteImport } from './routes/tool/item-checklist'
+import { Route as ToolPotionMakerRouteImport } from './routes/tool/potion-maker'
 import { Route as ToolStackCalculatorRouteImport } from './routes/tool/stack-calculator'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +26,19 @@ const Tool3dArmorTrimViewerRoute = Tool3dArmorTrimViewerRouteImport.update({
   path: '/tool/3d-armor-trim-viewer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolBannerCraftingRoute = ToolBannerCraftingRouteImport.update({
+  id: '/tool/banner-crafting',
+  path: '/tool/banner-crafting',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolItemChecklistRoute = ToolItemChecklistRouteImport.update({
   id: '/tool/item-checklist',
   path: '/tool/item-checklist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolPotionMakerRoute = ToolPotionMakerRouteImport.update({
+  id: '/tool/potion-maker',
+  path: '/tool/potion-maker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolStackCalculatorRoute = ToolStackCalculatorRouteImport.update({
@@ -38,20 +50,26 @@ const ToolStackCalculatorRoute = ToolStackCalculatorRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
+  '/tool/banner-crafting': typeof ToolBannerCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
+  '/tool/potion-maker': typeof ToolPotionMakerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
+  '/tool/banner-crafting': typeof ToolBannerCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
+  '/tool/potion-maker': typeof ToolPotionMakerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
+  '/tool/banner-crafting': typeof ToolBannerCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
+  '/tool/potion-maker': typeof ToolPotionMakerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
 export interface FileRouteTypes {
@@ -59,26 +77,34 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/tool/3d-armor-trim-viewer'
+    | '/tool/banner-crafting'
     | '/tool/item-checklist'
+    | '/tool/potion-maker'
     | '/tool/stack-calculator'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/tool/3d-armor-trim-viewer'
+    | '/tool/banner-crafting'
     | '/tool/item-checklist'
+    | '/tool/potion-maker'
     | '/tool/stack-calculator'
   id:
     | '__root__'
     | '/'
     | '/tool/3d-armor-trim-viewer'
+    | '/tool/banner-crafting'
     | '/tool/item-checklist'
+    | '/tool/potion-maker'
     | '/tool/stack-calculator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Tool3dArmorTrimViewerRoute: typeof Tool3dArmorTrimViewerRoute
+  ToolBannerCraftingRoute: typeof ToolBannerCraftingRoute
   ToolItemChecklistRoute: typeof ToolItemChecklistRoute
+  ToolPotionMakerRoute: typeof ToolPotionMakerRoute
   ToolStackCalculatorRoute: typeof ToolStackCalculatorRoute
 }
 
@@ -98,11 +124,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Tool3dArmorTrimViewerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tool/banner-crafting': {
+      id: '/tool/banner-crafting'
+      path: '/tool/banner-crafting'
+      fullPath: '/tool/banner-crafting'
+      preLoaderRoute: typeof ToolBannerCraftingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tool/item-checklist': {
       id: '/tool/item-checklist'
       path: '/tool/item-checklist'
       fullPath: '/tool/item-checklist'
       preLoaderRoute: typeof ToolItemChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/potion-maker': {
+      id: '/tool/potion-maker'
+      path: '/tool/potion-maker'
+      fullPath: '/tool/potion-maker'
+      preLoaderRoute: typeof ToolPotionMakerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/stack-calculator': {
@@ -118,7 +158,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Tool3dArmorTrimViewerRoute: Tool3dArmorTrimViewerRoute,
+  ToolBannerCraftingRoute: ToolBannerCraftingRoute,
   ToolItemChecklistRoute: ToolItemChecklistRoute,
+  ToolPotionMakerRoute: ToolPotionMakerRoute,
   ToolStackCalculatorRoute: ToolStackCalculatorRoute,
 }
 export const routeTree = rootRouteImport

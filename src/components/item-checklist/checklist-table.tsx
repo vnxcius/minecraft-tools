@@ -19,7 +19,7 @@ interface Props {
 }
 
 // slightly darker than the page background, applied to the rows only
-const ROW_BG = "bg-[color-mix(in_oklab,var(--background),black_5%)]";
+const ROW_BG = "bg-row";
 
 /** number input that lets you clear the field while typing and snaps back on blur */
 function GoalInput({ goal, onChange }: { goal: number; onChange: (goal: number) => void }) {
@@ -45,7 +45,7 @@ function GoalInput({ goal, onChange }: { goal: number; onChange: (goal: number) 
 export default function ChecklistTable({ rows, onChange, onRemove }: Props) {
 	if (rows.length === 0) {
 		return (
-			<p className="rounded-md border border-dashed p-6 text-center text-gray-500">
+			<p className="rounded-md border border-dashed p-6 text-center text-muted-foreground">
 				Nothing here yet. Click an item on the list to add it to your checklist.
 			</p>
 		);
@@ -54,7 +54,7 @@ export default function ChecklistTable({ rows, onChange, onRemove }: Props) {
 	return (
 		<div className="min-h-0 overflow-y-auto rounded-md border">
 			<table className="w-full text-left text-sm">
-				<thead className={"sticky top-0 bg-background text-gray-500 text-xs"}>
+				<thead className={"sticky top-0 bg-background text-muted-foreground text-xs"}>
 					<tr className="border-b">
 						<th className="w-10 px-3 py-2 font-normal">Done</th>
 						<th className="px-3 py-2 font-normal">Item</th>
@@ -74,7 +74,7 @@ export default function ChecklistTable({ rows, onChange, onRemove }: Props) {
 									onCheckedChange={(done) => onChange(entry.id, { done })}
 								/>
 							</td>
-							<td className={cn("px-3 py-1.5", entry.done && "text-gray-500 line-through")}>
+							<td className={cn("px-3 py-1.5", entry.done && "text-muted-foreground line-through")}>
 								<button
 									type="button"
 									className="flex cursor-pointer select-none items-center gap-2 text-left"

@@ -123,7 +123,7 @@ export default function ArmorViewer({ armor, trim, className }: Props) {
 			>
 				<RotateCcwIcon />
 			</Button>
-			<p className="pointer-events-none absolute inset-x-0 bottom-2 text-center font-geist text-gray-500 text-xs">
+			<p className="pointer-events-none absolute inset-x-0 bottom-2 text-center text-muted-foreground text-xs">
 				Drag to rotate · Scroll to zoom
 			</p>
 		</div>
