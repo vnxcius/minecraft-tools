@@ -76,3 +76,20 @@ footer (`bun run decor:sync` extracts the block textures). Tokens live in `src/s
 
 Fireworks have no textures to extract: the preview is a small canvas particle simulation and the
 recipe rules (slots in the crafting grid, dye colors) live in `src/lib/firework.ts`.
+
+## Seed map
+
+World generation runs in the browser: [cubiomes](https://github.com/Cubitect/cubiomes) (MIT, license in
+`public/engine/`) compiled to WebAssembly and driven from a Web Worker (`src/lib/seedmap/`), so the
+UI never blocks. The map is a canvas with pan/zoom, biome tiles, structure markers, strongholds, world
+spawn, slime chunks, a chunk grid, all three dimensions and a nearest-biome finder.
+
+The engine binary is committed (`public/engine/engine.wasm`). To rebuild it, for example after bumping
+the pinned cubiomes commit in `scripts/build-engine.ts`:
+
+```bash
+pip install ziglang     # only used as a C compiler
+bun run engine:build
+```
+
+Limits: Java Edition only, and cubiomes covers up to 1.21.4, so newer versions use the closest match.

@@ -15,6 +15,7 @@ import { Route as ToolBannerCraftingRouteImport } from './routes/tool/banner-cra
 import { Route as ToolFireworkCraftingRouteImport } from './routes/tool/firework-crafting'
 import { Route as ToolItemChecklistRouteImport } from './routes/tool/item-checklist'
 import { Route as ToolPotionMakerRouteImport } from './routes/tool/potion-maker'
+import { Route as ToolSeedMapRouteImport } from './routes/tool/seed-map'
 import { Route as ToolShieldDesignerRouteImport } from './routes/tool/shield-designer'
 import { Route as ToolStackCalculatorRouteImport } from './routes/tool/stack-calculator'
 
@@ -48,6 +49,11 @@ const ToolPotionMakerRoute = ToolPotionMakerRouteImport.update({
   path: '/tool/potion-maker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolSeedMapRoute = ToolSeedMapRouteImport.update({
+  id: '/tool/seed-map',
+  path: '/tool/seed-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolShieldDesignerRoute = ToolShieldDesignerRouteImport.update({
   id: '/tool/shield-designer',
   path: '/tool/shield-designer',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
+  '/tool/seed-map': typeof ToolSeedMapRoute
   '/tool/shield-designer': typeof ToolShieldDesignerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
+  '/tool/seed-map': typeof ToolSeedMapRoute
   '/tool/shield-designer': typeof ToolShieldDesignerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
+  '/tool/seed-map': typeof ToolSeedMapRoute
   '/tool/shield-designer': typeof ToolShieldDesignerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
+    | '/tool/seed-map'
     | '/tool/shield-designer'
     | '/tool/stack-calculator'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
+    | '/tool/seed-map'
     | '/tool/shield-designer'
     | '/tool/stack-calculator'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
+    | '/tool/seed-map'
     | '/tool/shield-designer'
     | '/tool/stack-calculator'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   ToolFireworkCraftingRoute: typeof ToolFireworkCraftingRoute
   ToolItemChecklistRoute: typeof ToolItemChecklistRoute
   ToolPotionMakerRoute: typeof ToolPotionMakerRoute
+  ToolSeedMapRoute: typeof ToolSeedMapRoute
   ToolShieldDesignerRoute: typeof ToolShieldDesignerRoute
   ToolStackCalculatorRoute: typeof ToolStackCalculatorRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolPotionMakerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tool/seed-map': {
+      id: '/tool/seed-map'
+      path: '/tool/seed-map'
+      fullPath: '/tool/seed-map'
+      preLoaderRoute: typeof ToolSeedMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tool/shield-designer': {
       id: '/tool/shield-designer'
       path: '/tool/shield-designer'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolFireworkCraftingRoute: ToolFireworkCraftingRoute,
   ToolItemChecklistRoute: ToolItemChecklistRoute,
   ToolPotionMakerRoute: ToolPotionMakerRoute,
+  ToolSeedMapRoute: ToolSeedMapRoute,
   ToolShieldDesignerRoute: ToolShieldDesignerRoute,
   ToolStackCalculatorRoute: ToolStackCalculatorRoute,
 }
