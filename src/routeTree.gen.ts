@@ -12,8 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Tool3dArmorTrimViewerRouteImport } from './routes/tool/3d-armor-trim-viewer'
 import { Route as ToolBannerCraftingRouteImport } from './routes/tool/banner-crafting'
+import { Route as ToolFireworkCraftingRouteImport } from './routes/tool/firework-crafting'
 import { Route as ToolItemChecklistRouteImport } from './routes/tool/item-checklist'
 import { Route as ToolPotionMakerRouteImport } from './routes/tool/potion-maker'
+import { Route as ToolShieldDesignerRouteImport } from './routes/tool/shield-designer'
 import { Route as ToolStackCalculatorRouteImport } from './routes/tool/stack-calculator'
 
 const IndexRoute = IndexRouteImport.update({
@@ -31,6 +33,11 @@ const ToolBannerCraftingRoute = ToolBannerCraftingRouteImport.update({
   path: '/tool/banner-crafting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolFireworkCraftingRoute = ToolFireworkCraftingRouteImport.update({
+  id: '/tool/firework-crafting',
+  path: '/tool/firework-crafting',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolItemChecklistRoute = ToolItemChecklistRouteImport.update({
   id: '/tool/item-checklist',
   path: '/tool/item-checklist',
@@ -39,6 +46,11 @@ const ToolItemChecklistRoute = ToolItemChecklistRouteImport.update({
 const ToolPotionMakerRoute = ToolPotionMakerRouteImport.update({
   id: '/tool/potion-maker',
   path: '/tool/potion-maker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolShieldDesignerRoute = ToolShieldDesignerRouteImport.update({
+  id: '/tool/shield-designer',
+  path: '/tool/shield-designer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolStackCalculatorRoute = ToolStackCalculatorRouteImport.update({
@@ -51,16 +63,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
   '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
+  '/tool/shield-designer': typeof ToolShieldDesignerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
   '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
+  '/tool/shield-designer': typeof ToolShieldDesignerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
 export interface FileRoutesById {
@@ -68,8 +84,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
   '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
+  '/tool/shield-designer': typeof ToolShieldDesignerRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
 }
 export interface FileRouteTypes {
@@ -78,24 +96,30 @@ export interface FileRouteTypes {
     | '/'
     | '/tool/3d-armor-trim-viewer'
     | '/tool/banner-crafting'
+    | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
+    | '/tool/shield-designer'
     | '/tool/stack-calculator'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/tool/3d-armor-trim-viewer'
     | '/tool/banner-crafting'
+    | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
+    | '/tool/shield-designer'
     | '/tool/stack-calculator'
   id:
     | '__root__'
     | '/'
     | '/tool/3d-armor-trim-viewer'
     | '/tool/banner-crafting'
+    | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
+    | '/tool/shield-designer'
     | '/tool/stack-calculator'
   fileRoutesById: FileRoutesById
 }
@@ -103,8 +127,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Tool3dArmorTrimViewerRoute: typeof Tool3dArmorTrimViewerRoute
   ToolBannerCraftingRoute: typeof ToolBannerCraftingRoute
+  ToolFireworkCraftingRoute: typeof ToolFireworkCraftingRoute
   ToolItemChecklistRoute: typeof ToolItemChecklistRoute
   ToolPotionMakerRoute: typeof ToolPotionMakerRoute
+  ToolShieldDesignerRoute: typeof ToolShieldDesignerRoute
   ToolStackCalculatorRoute: typeof ToolStackCalculatorRoute
 }
 
@@ -131,6 +157,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolBannerCraftingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tool/firework-crafting': {
+      id: '/tool/firework-crafting'
+      path: '/tool/firework-crafting'
+      fullPath: '/tool/firework-crafting'
+      preLoaderRoute: typeof ToolFireworkCraftingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tool/item-checklist': {
       id: '/tool/item-checklist'
       path: '/tool/item-checklist'
@@ -143,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/tool/potion-maker'
       fullPath: '/tool/potion-maker'
       preLoaderRoute: typeof ToolPotionMakerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/shield-designer': {
+      id: '/tool/shield-designer'
+      path: '/tool/shield-designer'
+      fullPath: '/tool/shield-designer'
+      preLoaderRoute: typeof ToolShieldDesignerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/stack-calculator': {
@@ -159,8 +199,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Tool3dArmorTrimViewerRoute: Tool3dArmorTrimViewerRoute,
   ToolBannerCraftingRoute: ToolBannerCraftingRoute,
+  ToolFireworkCraftingRoute: ToolFireworkCraftingRoute,
   ToolItemChecklistRoute: ToolItemChecklistRoute,
   ToolPotionMakerRoute: ToolPotionMakerRoute,
+  ToolShieldDesignerRoute: ToolShieldDesignerRoute,
   ToolStackCalculatorRoute: ToolStackCalculatorRoute,
 }
 export const routeTree = rootRouteImport

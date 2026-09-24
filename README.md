@@ -57,7 +57,7 @@ item catalog above.
 Textures for both come from the client jar, like the armor viewer (same cached jar in `.cache/`):
 
 ```bash
-bun run banner:sync     # public/banner + src/data/banner.json (patterns, pattern items, recipes)
+bun run banner:sync     # public/banner + public/shield + src/data/banner.json (patterns, pattern items, recipes)
 bun run potions:sync    # public/potion (bottles, tipped arrows, effect icons)
 ```
 
@@ -66,6 +66,13 @@ and need a manual update when a release adds or changes a potion.
 
 ## Design
 
-The look follows zed.dev: near-black blue background, IBM Plex Mono for text, light italic IBM Plex
-Serif headings in the brand blue, hairline borders with `+` marks where they cross, and 4px radii.
-Tokens live in `src/styles.css` (light and dark, dark is the default).
+The layout follows zed.dev (hairline borders with `+` marks where they cross, IBM Plex Mono, 4px radii)
+and the details come from minecraft.net: charcoal background, Minecraft green accents, the pixel
+font for headings, bevelled buttons, a header with a hard shadow and a strip of grass and dirt as
+footer (`bun run decor:sync` extracts the block textures). Tokens live in `src/styles.css`
+(light and dark, dark is the default).
+
+## Firework crafting
+
+Fireworks have no textures to extract: the preview is a small canvas particle simulation and the
+recipe rules (slots in the crafting grid, dye colors) live in `src/lib/firework.ts`.
