@@ -57,7 +57,8 @@
 	--secondary-foreground: #2b2a28;
 	--muted: #eae7e1;
 	--muted-foreground: #66625b;
-	--accent: #e8e4dc;
+	/* accent surfaces (hover, selected, active) are a see-through green */
+	--accent: rgb(60 133 39 / 0.16);
 	--accent-foreground: #2b2a28;
 	--destructive: #c23b32;
 	--border: rgb(43 42 40 / 0.14);
@@ -81,7 +82,7 @@
 	--secondary-foreground: #ececea;
 	--muted: #302f2d;
 	--muted-foreground: #aeaaa2;
-	--accent: #34332f;
+	--accent: rgb(82 165 53 / 0.2);
 	--accent-foreground: #ececea;
 	--destructive: #ef6b6b;
 	--border: rgb(255 255 255 / 0.11);
