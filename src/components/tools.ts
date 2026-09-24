@@ -12,6 +12,7 @@ import { CalculatorIcon, ListDetailsIcon } from "./ui/icons";
 export const TOOLS = [
 	{
 		to: "/tool/stack-calculator",
+		category: "Planning",
 		title: "Stack Calculator",
 		short: "Stacks",
 		icon: CalculatorIcon,
@@ -20,6 +21,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/item-checklist",
+		category: "Planning",
 		title: "Item Checklist",
 		short: "Checklist",
 		icon: ListDetailsIcon,
@@ -28,6 +30,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/3d-armor-trim-viewer",
+		category: "Designers",
 		title: "Armor Trim Viewer",
 		short: "Armor Trims",
 		icon: BoxIcon,
@@ -35,6 +38,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/banner-crafting",
+		category: "Designers",
 		title: "Banner Designer",
 		short: "Banners",
 		icon: FlagIcon,
@@ -43,6 +47,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/shield-designer",
+		category: "Designers",
 		title: "Shield Designer",
 		short: "Shields",
 		icon: ShieldIcon,
@@ -51,6 +56,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/potion-maker",
+		category: "Guides",
 		title: "Potion Maker",
 		short: "Potions",
 		icon: FlaskConicalIcon,
@@ -59,6 +65,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/firework-crafting",
+		category: "Designers",
 		title: "Firework Crafting",
 		short: "Fireworks",
 		icon: RocketIcon,
@@ -67,6 +74,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/seed-map",
+		category: "World",
 		title: "Seed Map",
 		short: "Seed Map",
 		icon: MapIcon,
@@ -75,6 +83,7 @@ export const TOOLS = [
 	},
 	{
 		to: "/tool/best-enchantments",
+		category: "Guides",
 		title: "Best Enchantments",
 		short: "Enchants",
 		icon: SparklesIcon,
@@ -82,3 +91,8 @@ export const TOOLS = [
 			"The enchantments worth having on every armor piece, tool and weapon, with the command to get them.",
 	},
 ] as const;
+
+export type Tool = (typeof TOOLS)[number];
+
+/** how the tools are grouped in the header menu, in order */
+export const CATEGORIES = ["Planning", "Designers", "Guides", "World"] as const;
