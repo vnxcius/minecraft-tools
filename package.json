@@ -13,7 +13,8 @@
 		"format:check": "oxfmt --check",
 		"items:sync": "bun scripts/sync-items.ts",
 		"armor:sync": "bun scripts/sync-armor.ts",
-		"banner:sync": "bun scripts/sync-banner.ts"
+		"banner:sync": "bun scripts/sync-banner.ts",
+		"potions:sync": "bun scripts/sync-potions.ts"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.8.0",
