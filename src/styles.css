@@ -3,14 +3,19 @@
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
 @import "@fontsource/ibm-plex-mono/600.css";
-@import "@fontsource/ibm-plex-serif/300-italic.css";
-@import "@fontsource/ibm-plex-serif/400-italic.css";
+
+@font-face {
+	font-family: "Mojangles";
+	src: url("./assets/fonts/Minecraft-Seven_v2.woff2") format("woff2");
+	font-weight: 400;
+	font-display: swap;
+}
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
 	--font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-	--font-serif: "IBM Plex Serif", ui-serif, Georgia, serif;
+	--font-pixel: "Mojangles", "IBM Plex Mono", monospace;
 	--color-brand: var(--brand);
 	--color-row: var(--row);
 	--color-ring: var(--ring);
@@ -37,52 +42,52 @@
 	--radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Light palette, modelled on zed.dev: cool neutrals with a single electric blue */
+/* Light palette: warm paper with Minecraft greens */
 :root {
 	--radius: 0.25rem;
-	--background: #fbfbfc;
-	--foreground: #1a1d26;
+	--background: #f4f2ee;
+	--foreground: #2b2a28;
 	--card: #ffffff;
-	--card-foreground: #1a1d26;
+	--card-foreground: #2b2a28;
 	--popover: #ffffff;
-	--popover-foreground: #1a1d26;
-	--primary: #1348dc;
+	--popover-foreground: #2b2a28;
+	--primary: #3c8527;
 	--primary-foreground: #ffffff;
-	--secondary: #eef0f4;
-	--secondary-foreground: #1a1d26;
-	--muted: #eef0f4;
-	--muted-foreground: #5d6475;
-	--accent: #eceff5;
-	--accent-foreground: #1a1d26;
-	--destructive: #d13b3b;
-	--border: rgb(20 24 40 / 0.11);
-	--input: rgb(20 24 40 / 0.16);
-	--ring: #1348dc;
-	--brand: #2450d6;
+	--secondary: #eae7e1;
+	--secondary-foreground: #2b2a28;
+	--muted: #eae7e1;
+	--muted-foreground: #66625b;
+	--accent: #e8e4dc;
+	--accent-foreground: #2b2a28;
+	--destructive: #c23b32;
+	--border: rgb(43 42 40 / 0.14);
+	--input: rgb(43 42 40 / 0.2);
+	--ring: #3c8527;
+	--brand: #2f7a1c;
 	--row: color-mix(in oklab, var(--background), black 5%);
 }
 
-/* Dark palette (default): near black with a blue tint */
+/* Dark palette (default): the charcoal of minecraft.net */
 .dark {
-	--background: #111216;
-	--foreground: #e1e3e7;
-	--card: #15171c;
-	--card-foreground: #e1e3e7;
-	--popover: #181a20;
-	--popover-foreground: #e1e3e7;
-	--primary: #1348dc;
+	--background: #1e1e1c;
+	--foreground: #ececea;
+	--card: #262423;
+	--card-foreground: #ececea;
+	--popover: #2b2a28;
+	--popover-foreground: #ececea;
+	--primary: #3c8527;
 	--primary-foreground: #ffffff;
-	--secondary: #1c1f26;
-	--secondary-foreground: #e1e3e7;
-	--muted: #1c1f26;
-	--muted-foreground: #a8adb7;
-	--accent: #1e222b;
-	--accent-foreground: #e1e3e7;
+	--secondary: #302f2d;
+	--secondary-foreground: #ececea;
+	--muted: #302f2d;
+	--muted-foreground: #aeaaa2;
+	--accent: #34332f;
+	--accent-foreground: #ececea;
 	--destructive: #ef6b6b;
-	--border: rgb(255 255 255 / 0.1);
-	--input: rgb(255 255 255 / 0.14);
-	--ring: #4b78f0;
-	--brand: #86b0f0;
+	--border: rgb(255 255 255 / 0.11);
+	--input: rgb(255 255 255 / 0.16);
+	--ring: #52a535;
+	--brand: #6cc349;
 	--row: color-mix(in oklab, var(--background), black 30%);
 }
 
@@ -105,11 +110,23 @@ html {
 	}
 }
 
-/* Headings: light italic serif in the brand blue */
+/* Headings: the Minecraft pixel font in grass green */
 @utility display {
-	font-family: var(--font-serif);
-	font-style: italic;
-	font-weight: 300;
-	letter-spacing: -0.02em;
+	font-family: var(--font-pixel);
+	font-weight: 400;
+	letter-spacing: 0.02em;
 	color: var(--brand);
+}
+
+@utility pixelated {
+	image-rendering: pixelated;
+}
+
+/* the raised, bevelled buttons of minecraft.net */
+@utility bevel {
+	box-shadow:
+		inset 0 -4px 0 rgb(0 0 0 / 0.35),
+		inset 0 2px 0 rgb(255 255 255 / 0.25),
+		inset 2px 0 0 rgb(255 255 255 / 0.08),
+		inset -2px 0 0 rgb(0 0 0 / 0.12);
 }

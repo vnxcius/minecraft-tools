@@ -12,7 +12,11 @@ export const Route = createFileRoute("/")({
 function Home() {
 	return (
 		<>
-			<section className="px-6 py-24 text-center">
+			<section className="relative overflow-hidden px-6 py-24 text-center">
+				<div
+					aria-hidden
+					className="pixelated absolute inset-0 -z-10 bg-[url(/decor/stone.png)] bg-[length:64px] opacity-[0.07] [mask-image:linear-gradient(to_bottom,black,transparent)]"
+				/>
 				<h1 className="display mx-auto max-w-3xl text-5xl leading-tight sm:text-6xl">
 					Useful tools for Minecraft
 				</h1>
@@ -49,14 +53,14 @@ function Home() {
 						<Link key={to} to={to} className="group flex flex-col gap-3 p-6 hover:bg-card">
 							<div className="flex items-center gap-2">
 								<Icon size={18} className="text-brand" />
-								<h2 className="font-semibold">{title}</h2>
+								<h2 className="font-pixel text-lg">{title}</h2>
 								<ArrowRightIcon className="ml-auto size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
 							</div>
 							<p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
 						</Link>
 					))}
 					<div className="flex flex-col gap-3 p-6 text-muted-foreground text-sm">
-						<h2 className="font-semibold">More on the way</h2>
+						<h2 className="font-pixel text-lg">More on the way</h2>
 						<p className="leading-relaxed">Got an idea for a tool? Open an issue on GitHub.</p>
 					</div>
 				</div>

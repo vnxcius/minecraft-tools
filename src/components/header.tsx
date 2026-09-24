@@ -4,11 +4,11 @@ import { TOOLS } from "./tools";
 
 export default function Header() {
 	return (
-		<header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
+		<header className="sticky top-0 z-40 border-b bg-card shadow-[0_4px_0_rgb(0_0_0/0.25)]">
 			<div className="mx-auto flex max-w-6xl items-center gap-6 border-x px-4 py-2.5">
 				<Link to="/" className="flex shrink-0 items-center gap-2">
 					<img src="/logo.svg" width={52} height={44} alt="" className="w-6 dark:invert" />
-					<span className="hidden font-medium text-lg sm:inline">Minecraft Tools</span>
+					<span className="hidden font-pixel text-xl sm:inline">Minecraft Tools</span>
 				</Link>
 
 				<nav
