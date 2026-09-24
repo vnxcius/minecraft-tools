@@ -15,7 +15,8 @@
 		"armor:sync": "bun scripts/sync-armor.ts",
 		"banner:sync": "bun scripts/sync-banner.ts",
 		"potions:sync": "bun scripts/sync-potions.ts",
-		"decor:sync": "bun scripts/sync-decor.ts"
+		"decor:sync": "bun scripts/sync-decor.ts",
+		"engine:build": "bun scripts/build-engine.ts"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.8.0",
