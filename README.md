@@ -51,3 +51,21 @@ bun run armor:sync 26.3       # a specific version
 The jar is downloaded once and cached in `.cache/` (git-ignored). Run it when a Minecraft release adds
 armor materials or trim patterns, then commit the result. Armor and trim icons in the UI reuse the
 item catalog above.
+
+## Banner designer and potion maker
+
+Textures for both come from the client jar, like the armor viewer (same cached jar in `.cache/`):
+
+```bash
+bun run banner:sync     # public/banner + src/data/banner.json (patterns, pattern items, recipes)
+bun run potions:sync    # public/potion (bottles, tipped arrows, effect icons)
+```
+
+Brewing recipes are hard-coded in the game, not in the assets, so they live in `src/lib/potions.ts`
+and need a manual update when a release adds or changes a potion.
+
+## Design
+
+The look follows zed.dev: near-black blue background, IBM Plex Mono for text, light italic IBM Plex
+Serif headings in the brand blue, hairline borders with `+` marks where they cross, and 4px radii.
+Tokens live in `src/styles.css` (light and dark, dark is the default).
