@@ -3,6 +3,9 @@ import { loadImage } from "./image";
 
 export const MAX_LAYERS = 6;
 
+/** shields take the same patterns as banners */
+export type Kind = "banner" | "shield";
+
 export interface DyeColor {
 	id: string;
 	name: string;
@@ -107,11 +110,39 @@ export async function drawBanner(
 	if (options.bar) ctx.drawImage(sheet, BAR.x, BAR.y, BAR.w, BAR.h, 0, 0, BAR.w, BAR.h);
 }
 
+// the shield front (plate and rim) is 14x24 texels inside the 64x64 shield textures
+const SHIELD = { x: 0, y: 0, w: 14, h: 24 };
+export const SHIELD_SIZE = { w: SHIELD.w, h: SHIELD.h };
+
+/** same idea as `drawBanner`, with the shield textures: tinted base plate, then the tinted masks */
+export async function drawShield(
+	canvas: HTMLCanvasElement,
+	design: { base: string; layers: { pattern: string; color: string }[] },
+) {
+	const [base, ...masks] = await Promise.all([
+		loadImage("/shield/shield_base.png"),
+		...design.layers.map((l) => loadImage(`/shield/${l.pattern}.png`)),
+	]);
+	canvas.width = SHIELD.w;
+	canvas.height = SHIELD.h;
+	const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.drawImage(tinted(base, SHIELD, colorById(design.base).hex), 0, 0);
+	design.layers.forEach((layer, i) => {
+		ctx.drawImage(tinted(masks[i], SHIELD, colorById(layer.color).hex), 0, 0);
+	});
+}
+
 /** `/give` command for the design (1.20.5+ item component syntax) */
-export function giveCommand(design: BannerDesign) {
+export function giveCommand(design: BannerDesign, kind: Kind = "banner") {
 	const patterns = design.layers
 		.map((l) => `{pattern:"minecraft:${l.pattern}",color:"${l.color}"}`)
 		.join(",");
+	if (kind === "shield") {
+		const components = [`base_color="${design.base}"`];
+		if (design.layers.length) components.push(`banner_patterns=[${patterns}]`);
+		return `/give @p minecraft:shield[${components.join(",")}]`;
+	}
 	const components = design.layers.length ? `[banner_patterns=[${patterns}]]` : "";
 	return `/give @p minecraft:${design.base}_banner${components}`;
 }
@@ -146,6 +177,15 @@ export function materials(design: BannerDesign): Material[] {
 		}
 	}
 	return list;
+}
+
+/** a shield is 6 planks and an iron ingot, the design itself comes from a banner */
+export function shieldMaterials(design: BannerDesign): Material[] {
+	return [
+		{ item: "oak_planks", count: 6, note: "Any planks" },
+		{ item: "iron_ingot", count: 1 },
+		...materials(design),
+	];
 }
 
 export const itemName = (id: string) =>

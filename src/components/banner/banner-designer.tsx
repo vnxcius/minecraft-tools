@@ -21,6 +21,8 @@ import {
 	materials,
 	PATTERNS,
 	patternById,
+	type Kind,
+	shieldMaterials,
 } from "@/lib/banner";
 import { cn } from "@/lib/utils";
 import BannerCanvas from "./banner-canvas";
@@ -28,6 +30,8 @@ import BannerCanvas from "./banner-canvas";
 interface Props {
 	/** item id -> icon url */
 	icons: Record<string, string>;
+	/** designs are the same for banners and shields, only the preview and materials differ */
+	kind?: Kind;
 }
 
 function ColorDot({ color, className }: { color: string; className?: string }) {
@@ -100,7 +104,8 @@ function Heading({ children, aside }: { children: React.ReactNode; aside?: React
 	);
 }
 
-export default function BannerDesigner({ icons }: Props) {
+export default function BannerDesigner({ icons, kind = "banner" }: Props) {
+	const shield = kind === "shield";
 	const newLayer = (pattern: string, color: string): Layer => ({
 		key: crypto.randomUUID(),
 		pattern,
@@ -113,8 +118,11 @@ export default function BannerDesigner({ icons }: Props) {
 	const [copied, setCopied] = useState(false);
 
 	const design = useMemo<BannerDesign>(() => ({ base, layers }), [base, layers]);
-	const needed = useMemo(() => materials(design), [design]);
-	const command = giveCommand(design);
+	const needed = useMemo(
+		() => (shield ? shieldMaterials(design) : materials(design)),
+		[design, shield],
+	);
+	const command = giveCommand(design, kind);
 	const full = layers.length >= MAX_LAYERS;
 
 	const move = (index: number, by: -1 | 1) =>
@@ -134,7 +142,9 @@ export default function BannerDesigner({ icons }: Props) {
 
 	return (
 		<section className="py-12">
-			<h1 className="display mb-2 text-center text-4xl">Banner Designer</h1>
+			<h1 className="display mb-2 text-center text-4xl">
+				{shield ? "Shield Designer" : "Banner Designer"}
+			</h1>
 			<p className="text-center text-muted-foreground">
 				Layer up to {MAX_LAYERS} patterns and dyes, then get the materials and the command.
 			</p>
@@ -143,10 +153,14 @@ export default function BannerDesigner({ icons }: Props) {
 
 			<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_28rem]">
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Banner</Heading>
+					<Heading>{shield ? "Shield" : "Banner"}</Heading>
 
 					<div className="flex items-center justify-center rounded border bg-card py-8">
-						<BannerCanvas design={design} className="h-[420px] w-[200px]" />
+						<BannerCanvas
+							design={design}
+							kind={kind}
+							className={shield ? "h-[384px] w-[224px]" : "h-[420px] w-[200px]"}
+						/>
 					</div>
 
 					<Heading
@@ -171,7 +185,9 @@ export default function BannerDesigner({ icons }: Props) {
 						))}
 						<li className="flex items-center gap-3 px-3 py-1.5 text-muted-foreground text-xs">
 							<ItemIcon icons={icons} item="loom" className="size-6" />
-							Apply the patterns in a loom (2 planks + 2 string)
+							{shield
+								? "Apply the patterns to the banner in a loom (2 planks + 2 string), then craft the shield with the banner"
+								: "Apply the patterns in a loom (2 planks + 2 string)"}
 						</li>
 					</ul>
 
