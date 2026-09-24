@@ -99,3 +99,17 @@ Limits: Java Edition only, and cubiomes covers up to 1.21.4, so newer versions u
 The picks per armor piece, tool and weapon are written by hand in `src/lib/enchantments.ts`
 (enchantment ids and max levels follow the game). Update it when a release adds or reworks an
 enchantment.
+
+## SEO
+
+Titles, descriptions, canonical urls, Open Graph / Twitter tags and JSON-LD (WebSite, WebApplication,
+BreadcrumbList) live in one place: `src/lib/seo.ts`. Routes read them with `head: () => pageHead(path)`.
+
+`bun run build` also runs `scripts/prerender.ts`, which writes one html file per page (`dist/tool/<name>/index.html`)
+with those tags and readable content already in it, plus `dist/404.html` (noindex) and `dist/sitemap.xml`,
+so crawlers and link previews do not depend on JavaScript. The host only needs to serve `dist/` and fall
+back to `404.html` (or `index.html`) for unknown paths.
+
+- New tool: add it to `PAGES` in `src/lib/seo.ts` (title under 60 characters, description under 155).
+- Social image: `public/og.png` is rendered from `scripts/og-image.html`.
+- The site url is `SITE_URL` in `src/lib/seo.ts`.
