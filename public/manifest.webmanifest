@@ -1,0 +1,11 @@
+{
+  "name": "Minecraft Tools",
+  "short_name": "MC Tools",
+  "description": "Useful Minecraft tools: calculators, designers and guides.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1e1e1c",
+  "theme_color": "#3c8527",
+  "icons": [{ "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
