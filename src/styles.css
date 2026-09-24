@@ -1,32 +1,18 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource-variable/geist";
-
-@font-face {
-	font-family: "Mojangles";
-	src: url("./assets/fonts/Minecraft-Seven_v2.woff2") format("woff2");
-	font-weight: 400;
-	font-display: swap;
-}
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+@import "@fontsource/ibm-plex-serif/300-italic.css";
+@import "@fontsource/ibm-plex-serif/400-italic.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-	--font-sans: "Mojangles", ui-sans-serif, system-ui, sans-serif;
-	--font-geist: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-	--color-sidebar-ring: var(--sidebar-ring);
-	--color-sidebar-border: var(--sidebar-border);
-	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-	--color-sidebar-accent: var(--sidebar-accent);
-	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-	--color-sidebar-primary: var(--sidebar-primary);
-	--color-sidebar-foreground: var(--sidebar-foreground);
-	--color-sidebar: var(--sidebar);
-	--color-chart-5: var(--chart-5);
-	--color-chart-4: var(--chart-4);
-	--color-chart-3: var(--chart-3);
-	--color-chart-2: var(--chart-2);
-	--color-chart-1: var(--chart-1);
+	--font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+	--font-serif: "IBM Plex Serif", ui-serif, Georgia, serif;
+	--color-brand: var(--brand);
+	--color-row: var(--row);
 	--color-ring: var(--ring);
 	--color-input: var(--input);
 	--color-border: var(--border);
@@ -45,79 +31,59 @@
 	--color-card: var(--card);
 	--color-foreground: var(--foreground);
 	--color-background: var(--background);
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
+	--radius-sm: calc(var(--radius) - 2px);
+	--radius-md: var(--radius);
+	--radius-lg: calc(var(--radius) + 2px);
 	--radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Light palette, modelled on zed.dev: cool neutrals with a single electric blue */
 :root {
-	--radius: 0.625rem;
-	--background: #f7f7f2;
-	--foreground: oklch(0.145 0 0);
-	--card: #fafafa;
-	--card-foreground: oklch(37.3% 0.034 259.733);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.145 0 0);
-	--primary: #2dac5b;
-	--primary-foreground: oklch(20.5% 0 0);
-	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
-	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.877 0 0);
-	--input: oklch(85% 0 0);
-	--ring: var(--primary);
-	--chart-1: oklch(0.646 0.222 41.116);
-	--chart-2: oklch(0.6 0.118 184.704);
-	--chart-3: oklch(0.398 0.07 227.392);
-	--chart-4: oklch(0.828 0.189 84.429);
-	--chart-5: oklch(0.769 0.188 70.08);
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.145 0 0);
-	--sidebar-primary: oklch(0.205 0 0);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.97 0 0);
-	--sidebar-accent-foreground: oklch(0.205 0 0);
-	--sidebar-border: oklch(0.922 0 0);
-	--sidebar-ring: oklch(0.708 0 0);
+	--radius: 0.25rem;
+	--background: #fbfbfc;
+	--foreground: #1a1d26;
+	--card: #ffffff;
+	--card-foreground: #1a1d26;
+	--popover: #ffffff;
+	--popover-foreground: #1a1d26;
+	--primary: #1348dc;
+	--primary-foreground: #ffffff;
+	--secondary: #eef0f4;
+	--secondary-foreground: #1a1d26;
+	--muted: #eef0f4;
+	--muted-foreground: #5d6475;
+	--accent: #eceff5;
+	--accent-foreground: #1a1d26;
+	--destructive: #d13b3b;
+	--border: rgb(20 24 40 / 0.11);
+	--input: rgb(20 24 40 / 0.16);
+	--ring: #1348dc;
+	--brand: #2450d6;
+	--row: color-mix(in oklab, var(--background), black 5%);
 }
 
+/* Dark palette (default): near black with a blue tint */
 .dark {
-	--background: oklch(0.145 0 0);
-	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.205 0 0);
-	--card-foreground: oklch(70.5% 0.015 286.067);
-	--popover: oklch(0.205 0 0);
-	--popover-foreground: oklch(0.985 0 0);
-	--primary: #2dac5b;
-	--primary-foreground: oklch(0.205 0 0);
-	--secondary: oklch(0.269 0 0);
-	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.269 0 0);
-	--muted-foreground: oklch(0.708 0 0);
-	--accent: oklch(0.269 0 0);
-	--accent-foreground: oklch(0.985 0 0);
-	--destructive: oklch(0.704 0.191 22.216);
-	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
-	--ring: var(--primary);
-	--chart-1: oklch(0.488 0.243 264.376);
-	--chart-2: oklch(0.696 0.17 162.48);
-	--chart-3: oklch(0.769 0.188 70.08);
-	--chart-4: oklch(0.627 0.265 303.9);
-	--chart-5: oklch(0.645 0.246 16.439);
-	--sidebar: oklch(0.205 0 0);
-	--sidebar-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.488 0.243 264.376);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.269 0 0);
-	--sidebar-accent-foreground: oklch(0.985 0 0);
-	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.556 0 0);
+	--background: #111216;
+	--foreground: #e1e3e7;
+	--card: #15171c;
+	--card-foreground: #e1e3e7;
+	--popover: #181a20;
+	--popover-foreground: #e1e3e7;
+	--primary: #1348dc;
+	--primary-foreground: #ffffff;
+	--secondary: #1c1f26;
+	--secondary-foreground: #e1e3e7;
+	--muted: #1c1f26;
+	--muted-foreground: #a8adb7;
+	--accent: #1e222b;
+	--accent-foreground: #e1e3e7;
+	--destructive: #ef6b6b;
+	--border: rgb(255 255 255 / 0.1);
+	--input: rgb(255 255 255 / 0.14);
+	--ring: #4b78f0;
+	--brand: #86b0f0;
+	--row: color-mix(in oklab, var(--background), black 30%);
 }
 
 html {
@@ -129,11 +95,21 @@ html {
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background font-sans text-foreground antialiased dark:text-gray-300;
+		@apply bg-background font-sans text-foreground antialiased;
+		letter-spacing: -0.02em;
 	}
 
 	button:not(:disabled),
 	[role="button"]:not(:disabled) {
 		cursor: pointer;
 	}
+}
+
+/* Headings: light italic serif in the brand blue */
+@utility display {
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-weight: 300;
+	letter-spacing: -0.02em;
+	color: var(--brand);
 }
