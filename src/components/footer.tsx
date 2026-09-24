@@ -26,7 +26,7 @@ export default function Footer() {
 			{/* a strip of grass and dirt, like the bottom of the world */}
 			<div
 				aria-hidden
-				className="pixelated h-20 border-t-[6px] border-t-[#5fa03a] bg-[#5b4a3d] bg-[url(/decor/dirt.png)] bg-[length:64px] bg-blend-multiply"
+				className="pixelated h-20 border-t-[6px] border-t-[#5fa03a] bg-[#5b4a3d] bg-[url(/decor/dirt.png)] bg-size-[64px] bg-blend-multiply"
 			/>
 		</footer>
 	);
