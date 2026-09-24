@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+@font-face {
+	font-family: "Mojangles";
+	src: url("./assets/fonts/Minecraft-Seven_v2.woff2") format("woff2");
+	font-weight: 400;
+	font-display: swap;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+	--font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+	--font-pixel: "Mojangles", "IBM Plex Mono", monospace;
+	--color-brand: var(--brand);
+	--color-row: var(--row);
+	--color-ring: var(--ring);
+	--color-input: var(--input);
+	--color-border: var(--border);
+	--color-destructive: var(--destructive);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-popover: var(--popover);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--color-foreground: var(--foreground);
+	--color-background: var(--background);
+	--radius-sm: calc(var(--radius) - 2px);
+	--radius-md: var(--radius);
+	--radius-lg: calc(var(--radius) + 2px);
+	--radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Light palette: warm paper with Minecraft greens */
+:root {
+	--radius: 0.25rem;
+	--background: #f4f2ee;
+	--foreground: #2b2a28;
+	--card: #ffffff;
+	--card-foreground: #2b2a28;
+	--popover: #ffffff;
+	--popover-foreground: #2b2a28;
+	--primary: #3c8527;
+	--primary-foreground: #ffffff;
+	--secondary: #eae7e1;
+	--secondary-foreground: #2b2a28;
+	--muted: #eae7e1;
+	--muted-foreground: #66625b;
+	/* accent surfaces (hover, selected, active) are a see-through green */
+	--accent: rgb(60 133 39 / 0.16);
+	--accent-foreground: #2b2a28;
+	--destructive: #c23b32;
+	--border: rgb(43 42 40 / 0.14);
+	--input: rgb(43 42 40 / 0.2);
+	--ring: #3c8527;
+	--brand: #2f7a1c;
+	--row: color-mix(in oklab, var(--background), black 5%);
+}
+
+/* Dark palette (default): the charcoal of minecraft.net */
+.dark {
+	--background: #1e1e1c;
+	--foreground: #ececea;
+	--card: #262423;
+	--card-foreground: #ececea;
+	--popover: #2b2a28;
+	--popover-foreground: #ececea;
+	--primary: #3c8527;
+	--primary-foreground: #ffffff;
+	--secondary: #302f2d;
+	--secondary-foreground: #ececea;
+	--muted: #302f2d;
+	--muted-foreground: #aeaaa2;
+	--accent: rgb(82 165 53 / 0.2);
+	--accent-foreground: #ececea;
+	--destructive: #ef6b6b;
+	--border: rgb(255 255 255 / 0.11);
+	--input: rgb(255 255 255 / 0.16);
+	--ring: #52a535;
+	--brand: #6cc349;
+	--row: color-mix(in oklab, var(--background), black 30%);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background font-sans text-foreground antialiased;
+		letter-spacing: -0.02em;
+	}
+
+	button:not(:disabled),
+	[role="button"]:not(:disabled) {
+		cursor: pointer;
+	}
+}
+
+/* Headings: the Minecraft pixel font in grass green */
+@utility display {
+	font-family: var(--font-pixel);
+	font-weight: 400;
+	letter-spacing: 0.02em;
+	color: var(--brand);
+}
+
+@utility pixelated {
+	image-rendering: pixelated;
+}
+
+/* the raised, bevelled buttons of minecraft.net */
+@utility bevel {
+	box-shadow:
+		inset 0 -4px 0 rgb(0 0 0 / 0.35),
+		inset 0 2px 0 rgb(255 255 255 / 0.25),
+		inset 2px 0 0 rgb(255 255 255 / 0.08),
+		inset -2px 0 0 rgb(0 0 0 / 0.12);
+}

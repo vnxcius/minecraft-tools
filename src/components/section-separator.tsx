@@ -1,51 +1,28 @@
-import type { HTMLProps } from "react";
 import { cn } from "@/lib/utils";
 
-interface Props extends HTMLProps<"div"> {
-	noBorderTop?: boolean;
-	noBorderBottom?: boolean;
+/** small "+" drawn where the hairlines of the layout cross, like on zed.dev */
+function Cross({ className }: { className: string }) {
+	return (
+		<svg
+			aria-hidden
+			width="9"
+			height="9"
+			viewBox="0 0 9 9"
+			className={cn("absolute text-muted-foreground/70", className)}
+		>
+			<path d="M4.5 0v9M0 4.5h9" stroke="currentColor" strokeWidth="1" />
+		</svg>
+	);
 }
 
-export default function SectionSeparator({
-	noBorderTop,
-	noBorderBottom,
-	className,
-}: Props) {
+/** full width hairline row with crosses on the vertical borders of the page */
+export default function SectionSeparator({ className }: { className?: string }) {
 	return (
-		<div
-			className={cn(
-				className,
-				"section-separator border-y px-12",
-				noBorderTop && "border-t-0",
-				noBorderBottom && "border-b-0",
-			)}
-		>
-			<div className="relative h-4">
-				<svg
-					role="presentation"
-					className="pointer-events-none absolute inset-0 z-[-1] size-full select-none border-x text-border"
-				>
-					<defs>
-						<pattern
-							id=":S2:"
-							width="4"
-							height="4"
-							patternUnits="userSpaceOnUse"
-							patternTransform="rotate(45)"
-						>
-							<line
-								x1="0"
-								y1="0"
-								x2="0"
-								y2="4"
-								stroke="currentColor"
-								strokeWidth="1.5"
-							></line>
-						</pattern>
-					</defs>
-					<rect width="100%" height="100%" fill="url(#:S2:)"></rect>
-				</svg>
-			</div>
+		<div role="presentation" className={cn("relative h-8 border-y", className)}>
+			<Cross className="-top-[5px] -left-[5px]" />
+			<Cross className="-top-[5px] -right-[5px]" />
+			<Cross className="-bottom-[5px] -left-[5px]" />
+			<Cross className="-right-[5px] -bottom-[5px]" />
 		</div>
 	);
 }
