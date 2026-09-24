@@ -1,3 +1,4 @@
+import { pageHead } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRightIcon } from "lucide-react";
 import SectionSeparator from "@/components/section-separator";
@@ -5,7 +6,7 @@ import { TOOLS } from "@/components/tools";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
-	head: () => ({ meta: [{ title: "Home | Useful Minecraft Tools" }] }),
+	head: () => pageHead("/"),
 	component: Home,
 });
 

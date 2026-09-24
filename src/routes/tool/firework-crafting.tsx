@@ -1,3 +1,4 @@
+import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import FireworkDesigner from "@/components/firework/firework-designer";
 import { latestVersion, loadItems } from "@/lib/items";
@@ -8,16 +9,7 @@ export const Route = createFileRoute("/tool/firework-crafting")({
 		const items = await loadItems(latestVersion);
 		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
 	},
-	head: () => ({
-		meta: [
-			{ title: "Firework Crafting | Useful Minecraft Tools" },
-			{
-				name: "description",
-				content:
-					"Design firework stars with shapes, colors, trails and twinkles, and get the recipe and command.",
-			},
-		],
-	}),
+	head: () => pageHead("/tool/firework-crafting"),
 	component: FireworkPage,
 });
 

@@ -12,6 +12,11 @@ declare module "@tanstack/react-router" {
 	}
 }
 
+// the static html carries the tags of the page for crawlers, the router renders the same ones
+document.head.querySelectorAll("[data-prerender]").forEach((tag) => {
+	tag.remove();
+});
+
 createRoot(document.getElementById("root") as HTMLElement).render(
 	<StrictMode>
 		<RouterProvider router={router} />
