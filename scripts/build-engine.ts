@@ -9,6 +9,7 @@
  * toolchain). Bump COMMIT to update the engine.
  */
 import { existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { unzipSync } from "fflate";
@@ -55,9 +56,10 @@ async function main() {
 		...SOURCES.map((s) => join(CACHE, `${s}.c`)),
 		"-Wl,--export-dynamic",
 	];
-	const proc = Bun.spawn(["python", ...args], { stdout: "inherit", stderr: "inherit" });
-	if ((await proc.exited) !== 0)
+	const result = spawnSync("python", args, { stdio: "inherit" });
+	if (result.status !== 0) {
 		throw new Error("Compiling failed. Is ziglang installed (pip install ziglang)?");
+	}
 
 	await copyFile(join(CACHE, "LICENSE"), join(OUT_DIR, "LICENSE-cubiomes.txt"));
 	console.log(`Engine built: ${OUT_DIR}/engine.wasm (cubiomes ${COMMIT.slice(0, 7)})`);
