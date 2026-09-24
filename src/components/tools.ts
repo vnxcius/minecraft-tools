@@ -1,4 +1,4 @@
-import { BoxIcon, FlagIcon, FlaskConicalIcon } from "lucide-react";
+import { BoxIcon, FlagIcon, FlaskConicalIcon, RocketIcon, ShieldIcon } from "lucide-react";
 import { CalculatorIcon, ListDetailsIcon } from "./ui/icons";
 
 export const TOOLS = [
@@ -34,11 +34,27 @@ export const TOOLS = [
 			"Layer patterns and dyes to design a banner, then get the materials list and the command.",
 	},
 	{
+		to: "/tool/shield-designer",
+		title: "Shield Designer",
+		short: "Shields",
+		icon: ShieldIcon,
+		description:
+			"Put banner patterns on a shield and see it before you craft it, with materials and command.",
+	},
+	{
 		to: "/tool/potion-maker",
 		title: "Potion Maker",
 		short: "Potions",
 		icon: FlaskConicalIcon,
 		description:
 			"Pick a potion and get the full brewing recipe: ingredients, steps, duration and upgrades.",
+	},
+	{
+		to: "/tool/firework-crafting",
+		title: "Firework Crafting",
+		short: "Fireworks",
+		icon: RocketIcon,
+		description:
+			"Combine shapes, colors, trails and twinkles into firework stars, watch them explode and get the recipe.",
 	},
 ] as const;

@@ -24,6 +24,7 @@ import {
 	type Kind,
 	shieldMaterials,
 } from "@/lib/banner";
+import { Heading, ItemIcon } from "@/components/tool-parts";
 import { cn } from "@/lib/utils";
 import BannerCanvas from "./banner-canvas";
 
@@ -74,32 +75,6 @@ function Swatches({
 					<TooltipContent>{color.name}</TooltipContent>
 				</Tooltip>
 			))}
-		</div>
-	);
-}
-
-function ItemIcon({
-	icons,
-	item,
-	className,
-}: {
-	icons: Record<string, string>;
-	item: string;
-	className?: string;
-}) {
-	const src = icons[item];
-	return src ? (
-		<img src={src} alt="" width={32} height={32} className={cn("size-8 shrink-0", className)} />
-	) : (
-		<span className={cn("size-8 shrink-0", className)} />
-	);
-}
-
-function Heading({ children, aside }: { children: React.ReactNode; aside?: React.ReactNode }) {
-	return (
-		<div className="flex h-9 items-center justify-between">
-			<h2 className="text-muted-foreground">{children}</h2>
-			{aside}
 		</div>
 	);
 }
