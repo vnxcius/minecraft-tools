@@ -1,4 +1,4 @@
-import { BoxIcon, FlagIcon, FlaskConicalIcon, RocketIcon, ShieldIcon } from "lucide-react";
+import { BoxIcon, FlagIcon, FlaskConicalIcon, MapIcon, RocketIcon, ShieldIcon } from "lucide-react";
 import { CalculatorIcon, ListDetailsIcon } from "./ui/icons";
 
 export const TOOLS = [
@@ -56,5 +56,13 @@ export const TOOLS = [
 		icon: RocketIcon,
 		description:
 			"Combine shapes, colors, trails and twinkles into firework stars, watch them explode and get the recipe.",
+	},
+	{
+		to: "/tool/seed-map",
+		title: "Seed Map",
+		short: "Seed Map",
+		icon: MapIcon,
+		description:
+			"Explore the world of any seed: biomes, villages, strongholds, slime chunks and more, all generated in your browser.",
 	},
 ] as const;
