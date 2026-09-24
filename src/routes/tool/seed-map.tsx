@@ -1,3 +1,4 @@
+import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import SeedTool from "@/components/seedmap/seed-tool";
 import { latestVersion, loadItems } from "@/lib/items";
@@ -8,16 +9,7 @@ export const Route = createFileRoute("/tool/seed-map")({
 		const items = await loadItems(latestVersion);
 		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
 	},
-	head: () => ({
-		meta: [
-			{ title: "Seed Map | Useful Minecraft Tools" },
-			{
-				name: "description",
-				content:
-					"Explore the world of any seed: biomes, structures, strongholds and slime chunks, generated in your browser.",
-			},
-		],
-	}),
+	head: () => pageHead("/tool/seed-map"),
 	component: SeedPage,
 });
 

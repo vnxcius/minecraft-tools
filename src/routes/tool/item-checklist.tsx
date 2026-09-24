@@ -1,3 +1,4 @@
+import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import ItemChecklist from "@/components/item-checklist/item-checklist";
 import { loadItems, resolveVersion } from "@/lib/items";
@@ -12,15 +13,7 @@ export const Route = createFileRoute("/tool/item-checklist")({
 		const version = resolveVersion(deps.v);
 		return { version, items: await loadItems(version) };
 	},
-	head: () => ({
-		meta: [
-			{ title: "Items Checklist | Useful Minecraft Tools" },
-			{
-				name: "description",
-				content: "Make yourself a item list for building something cool!",
-			},
-		],
-	}),
+	head: () => pageHead("/tool/item-checklist"),
 	component: ItemChecklistPage,
 });
 

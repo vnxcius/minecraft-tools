@@ -1,3 +1,4 @@
+import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import PotionMaker from "@/components/potion/potion-maker";
 import { latestVersion, loadItems } from "@/lib/items";
@@ -8,15 +9,7 @@ export const Route = createFileRoute("/tool/potion-maker")({
 		const items = await loadItems(latestVersion);
 		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
 	},
-	head: () => ({
-		meta: [
-			{ title: "Potion Maker | Useful Minecraft Tools" },
-			{
-				name: "description",
-				content: "Brewing recipes for every potion: ingredients, steps, durations and upgrades.",
-			},
-		],
-	}),
+	head: () => pageHead("/tool/potion-maker"),
 	component: PotionPage,
 });
 

@@ -1,3 +1,4 @@
+import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import BannerDesigner from "@/components/banner/banner-designer";
 import { latestVersion, loadItems } from "@/lib/items";
@@ -8,16 +9,7 @@ export const Route = createFileRoute("/tool/banner-crafting")({
 		const items = await loadItems(latestVersion);
 		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
 	},
-	head: () => ({
-		meta: [
-			{ title: "Banner Designer | Useful Minecraft Tools" },
-			{
-				name: "description",
-				content:
-					"Design banners with every pattern and dye, and get the materials list and command.",
-			},
-		],
-	}),
+	head: () => pageHead("/tool/banner-crafting"),
 	component: BannerPage,
 });
 
