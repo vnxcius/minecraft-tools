@@ -13,7 +13,7 @@ export default function Header() {
 
 				<nav
 					aria-label="Tools"
-					className="-mx-1 flex min-w-0 flex-1 items-center gap-1 overflow-x-auto"
+					className="-mx-1 flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 				>
 					{TOOLS.map(({ to, short, icon: Icon }) => (
 						<Link

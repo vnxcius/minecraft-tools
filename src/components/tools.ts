@@ -1,4 +1,12 @@
-import { BoxIcon, FlagIcon, FlaskConicalIcon, MapIcon, RocketIcon, ShieldIcon } from "lucide-react";
+import {
+	BoxIcon,
+	FlagIcon,
+	FlaskConicalIcon,
+	MapIcon,
+	RocketIcon,
+	ShieldIcon,
+	SparklesIcon,
+} from "lucide-react";
 import { CalculatorIcon, ListDetailsIcon } from "./ui/icons";
 
 export const TOOLS = [
@@ -64,5 +72,13 @@ export const TOOLS = [
 		icon: MapIcon,
 		description:
 			"Explore the world of any seed: biomes, villages, strongholds, slime chunks and more, all generated in your browser.",
+	},
+	{
+		to: "/tool/best-enchantments",
+		title: "Best Enchantments",
+		short: "Enchants",
+		icon: SparklesIcon,
+		description:
+			"The enchantments worth having on every armor piece, tool and weapon, with the command to get them.",
 	},
 ] as const;

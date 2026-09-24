@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Tool3dArmorTrimViewerRouteImport } from './routes/tool/3d-armor-trim-viewer'
 import { Route as ToolBannerCraftingRouteImport } from './routes/tool/banner-crafting'
+import { Route as ToolBestEnchantmentsRouteImport } from './routes/tool/best-enchantments'
 import { Route as ToolFireworkCraftingRouteImport } from './routes/tool/firework-crafting'
 import { Route as ToolItemChecklistRouteImport } from './routes/tool/item-checklist'
 import { Route as ToolPotionMakerRouteImport } from './routes/tool/potion-maker'
@@ -32,6 +33,11 @@ const Tool3dArmorTrimViewerRoute = Tool3dArmorTrimViewerRouteImport.update({
 const ToolBannerCraftingRoute = ToolBannerCraftingRouteImport.update({
   id: '/tool/banner-crafting',
   path: '/tool/banner-crafting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolBestEnchantmentsRoute = ToolBestEnchantmentsRouteImport.update({
+  id: '/tool/best-enchantments',
+  path: '/tool/best-enchantments',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolFireworkCraftingRoute = ToolFireworkCraftingRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
   '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
   '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
   '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
   '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
   '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
   '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/tool/3d-armor-trim-viewer'
     | '/tool/banner-crafting'
+    | '/tool/best-enchantments'
     | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/tool/3d-armor-trim-viewer'
     | '/tool/banner-crafting'
+    | '/tool/best-enchantments'
     | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/tool/3d-armor-trim-viewer'
     | '/tool/banner-crafting'
+    | '/tool/best-enchantments'
     | '/tool/firework-crafting'
     | '/tool/item-checklist'
     | '/tool/potion-maker'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Tool3dArmorTrimViewerRoute: typeof Tool3dArmorTrimViewerRoute
   ToolBannerCraftingRoute: typeof ToolBannerCraftingRoute
+  ToolBestEnchantmentsRoute: typeof ToolBestEnchantmentsRoute
   ToolFireworkCraftingRoute: typeof ToolFireworkCraftingRoute
   ToolItemChecklistRoute: typeof ToolItemChecklistRoute
   ToolPotionMakerRoute: typeof ToolPotionMakerRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/tool/banner-crafting'
       fullPath: '/tool/banner-crafting'
       preLoaderRoute: typeof ToolBannerCraftingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/best-enchantments': {
+      id: '/tool/best-enchantments'
+      path: '/tool/best-enchantments'
+      fullPath: '/tool/best-enchantments'
+      preLoaderRoute: typeof ToolBestEnchantmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/firework-crafting': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Tool3dArmorTrimViewerRoute: Tool3dArmorTrimViewerRoute,
   ToolBannerCraftingRoute: ToolBannerCraftingRoute,
+  ToolBestEnchantmentsRoute: ToolBestEnchantmentsRoute,
   ToolFireworkCraftingRoute: ToolFireworkCraftingRoute,
   ToolItemChecklistRoute: ToolItemChecklistRoute,
   ToolPotionMakerRoute: ToolPotionMakerRoute,

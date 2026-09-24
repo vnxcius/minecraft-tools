@@ -93,3 +93,9 @@ bun run engine:build
 ```
 
 Limits: Java Edition only, and cubiomes covers up to 1.21.4, so newer versions use the closest match.
+
+## Best enchantments
+
+The picks per armor piece, tool and weapon are written by hand in `src/lib/enchantments.ts`
+(enchantment ids and max levels follow the game). Update it when a release adds or reworks an
+enchantment.
