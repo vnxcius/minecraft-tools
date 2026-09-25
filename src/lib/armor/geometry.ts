@@ -10,7 +10,6 @@ export interface BoxSpec {
 	pivot: [number, number, number];
 	/** box origin relative to the pivot */
 	origin: [number, number, number];
-	/** width, height, depth */
 	size: [number, number, number];
 	/** texture offset in pixels */
 	uv: [number, number];

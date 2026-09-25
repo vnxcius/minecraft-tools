@@ -77,7 +77,6 @@ export async function openClientJar(
 		},
 		dataJson: <T>(path: string): T => JSON.parse(decoder.decode(read(DATA + path))),
 		hasData: (path: string) => DATA + path in jar,
-		/** json file names (without extension) inside a data directory */
 		dataList(dir: string) {
 			return Object.keys(jar)
 				.filter((f) => f.startsWith(DATA + dir) && f.endsWith(".json"))

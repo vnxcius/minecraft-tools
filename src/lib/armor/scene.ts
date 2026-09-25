@@ -123,7 +123,6 @@ const standTexture = plainTexture("/armor/armor-stand.png").then((texture) => {
 const armorLayer = (map: THREE.Texture) =>
 	new THREE.MeshLambertMaterial({ map, transparent: true, alphaTest: 0.1, side: THREE.DoubleSide });
 
-/** builds the armor stand wearing the selected armor and trims */
 export async function buildAvatar(armor: ArmorSelection, trim: TrimSelection | null) {
 	const root = new THREE.Group();
 
