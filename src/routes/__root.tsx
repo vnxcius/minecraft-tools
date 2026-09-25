@@ -8,6 +8,7 @@ import {
 	useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
+import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import RelatedTools from "@/components/related-tools";
@@ -89,6 +90,7 @@ function RootLayout() {
 			<TooltipProvider>
 				<HeadContent />
 				<ThemeHotkey />
+				<BackToTop />
 				<div className="relative min-h-svh overflow-x-clip">
 					{/* the scenery: deepslate all around, sky over a strip of grass and dirt at the top */}
 					<div

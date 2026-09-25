@@ -11,6 +11,7 @@ export const en = {
 	"site.randomTool": "Random tool",
 	"site.sourceCode": "Source code",
 	"site.suggestTool": "Suggest a tool",
+	"site.backToTop": "Back to top",
 	"site.menu": "Tools",
 	"site.navLabel": "Site",
 	"site.pageTabs": "Page",

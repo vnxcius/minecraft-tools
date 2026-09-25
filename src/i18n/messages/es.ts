@@ -10,6 +10,7 @@ export const es: Messages = {
 	"site.randomTool": "Herramienta al azar",
 	"site.sourceCode": "Código fuente",
 	"site.suggestTool": "Sugerir una herramienta",
+	"site.backToTop": "Volver arriba",
 	"site.menu": "Herramientas",
 	"site.navLabel": "Sitio",
 	"site.pageTabs": "Página",

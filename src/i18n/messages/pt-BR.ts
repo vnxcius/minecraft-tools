@@ -10,6 +10,7 @@ export const ptBR: Messages = {
 	"site.randomTool": "Ferramenta aleatória",
 	"site.sourceCode": "Código-fonte",
 	"site.suggestTool": "Sugerir uma ferramenta",
+	"site.backToTop": "Voltar ao topo",
 	"site.menu": "Ferramentas",
 	"site.navLabel": "Site",
 	"site.pageTabs": "Página",
