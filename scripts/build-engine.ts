@@ -47,6 +47,7 @@ async function main() {
 		"cc",
 		"-target",
 		"wasm32-wasi",
+		// -Os is 2 % smaller but up to 20 % slower at generating biomes
 		"-O2",
 		"-mexec-model=reactor",
 		`-I${CACHE}`,
@@ -55,6 +56,8 @@ async function main() {
 		"native/engine.c",
 		...SOURCES.map((s) => join(CACHE, `${s}.c`)),
 		"-Wl,--export-dynamic",
+		// the debug info was three quarters of the file, and every visitor of the map downloaded it
+		"-Wl,--strip-debug",
 	];
 	const result = spawnSync("python", args, { stdio: "inherit" });
 	if (result.status !== 0) {
