@@ -64,6 +64,12 @@ const LEGACY: Record<string, string> = {
 	zombie_pigman_spawn_egg: "zombified_piglin_spawn_egg",
 };
 
+/**
+ * The last release before 1.18 renamed and removed biomes (desert_hills, mountains...). The seed map
+ * still shows them for old versions, so their names come from this version's language files.
+ */
+const LEGACY_BIOMES_VERSION = "1.17.1";
+
 const POTION_ITEMS = ["potion", "splash_potion", "lingering_potion"];
 
 type Lang = Record<string, string>;
@@ -195,6 +201,7 @@ const toLines = (obj: Record<string, string>) =>
 const version = await resolveVersion();
 console.log(`Minecraft version: ${version}`);
 const languages = await downloadLanguages(version);
+const legacy = await downloadLanguages(LEGACY_BIOMES_VERSION);
 const ids = await catalogIds();
 const fallback: Record<string, string> = JSON.parse(
 	await readFile("src/data/item-names.json", "utf8"),
@@ -209,9 +216,17 @@ for (const [site, lang] of Object.entries(languages)) {
 		// a missing translation falls back to English, like the game does
 		terms[key] = lang[key] ?? languages.en[key];
 	}
+	const old = legacy[site as keyof typeof LANGUAGES];
+	for (const key of Object.keys(legacy.en).sort()) {
+		if (key.startsWith("biome.minecraft.") && !(key in terms))
+			terms[key] = old[key] ?? legacy.en[key];
+	}
+	const sortedTerms = Object.fromEntries(
+		Object.entries(terms).sort(([a], [b]) => (a < b ? -1 : 1)),
+	);
 	await writeFile(
 		join(OUT_DIR, `${site}.json`),
-		`{\n\t"version": ${JSON.stringify(version)},\n\t"items": ${toLines(names)},\n\t"terms": ${toLines(terms)}\n}\n`,
+		`{\n\t"version": ${JSON.stringify(version)},\n\t"items": ${toLines(names)},\n\t"terms": ${toLines(sortedTerms)}\n}\n`,
 	);
 	console.log(
 		`  ${site.padEnd(6)} ${Object.keys(names).length} items, ${Object.keys(terms).length} terms` +
