@@ -11,14 +11,19 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Tool3dArmorTrimViewerRouteImport } from './routes/tool/3d-armor-trim-viewer'
-import { Route as ToolBannerCraftingRouteImport } from './routes/tool/banner-crafting'
+import { Route as ToolBannerGeneratorRouteImport } from './routes/tool/banner-generator'
 import { Route as ToolBestEnchantmentsRouteImport } from './routes/tool/best-enchantments'
-import { Route as ToolFireworkCraftingRouteImport } from './routes/tool/firework-crafting'
+import { Route as ToolCircleGeneratorRouteImport } from './routes/tool/circle-generator'
+import { Route as ToolEnchantOrderRouteImport } from './routes/tool/enchant-order'
+import { Route as ToolFireworkGeneratorRouteImport } from './routes/tool/firework-generator'
 import { Route as ToolItemChecklistRouteImport } from './routes/tool/item-checklist'
+import { Route as ToolNetherPortalRouteImport } from './routes/tool/nether-portal'
 import { Route as ToolPotionMakerRouteImport } from './routes/tool/potion-maker'
 import { Route as ToolSeedMapRouteImport } from './routes/tool/seed-map'
-import { Route as ToolShieldDesignerRouteImport } from './routes/tool/shield-designer'
+import { Route as ToolShieldGeneratorRouteImport } from './routes/tool/shield-generator'
+import { Route as ToolSlimeChunkFinderRouteImport } from './routes/tool/slime-chunk-finder'
 import { Route as ToolStackCalculatorRouteImport } from './routes/tool/stack-calculator'
+import { Route as ToolVillagerTradingRouteImport } from './routes/tool/villager-trading'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,9 +35,9 @@ const Tool3dArmorTrimViewerRoute = Tool3dArmorTrimViewerRouteImport.update({
   path: '/tool/3d-armor-trim-viewer',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolBannerCraftingRoute = ToolBannerCraftingRouteImport.update({
-  id: '/tool/banner-crafting',
-  path: '/tool/banner-crafting',
+const ToolBannerGeneratorRoute = ToolBannerGeneratorRouteImport.update({
+  id: '/tool/banner-generator',
+  path: '/tool/banner-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolBestEnchantmentsRoute = ToolBestEnchantmentsRouteImport.update({
@@ -40,14 +45,29 @@ const ToolBestEnchantmentsRoute = ToolBestEnchantmentsRouteImport.update({
   path: '/tool/best-enchantments',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolFireworkCraftingRoute = ToolFireworkCraftingRouteImport.update({
-  id: '/tool/firework-crafting',
-  path: '/tool/firework-crafting',
+const ToolCircleGeneratorRoute = ToolCircleGeneratorRouteImport.update({
+  id: '/tool/circle-generator',
+  path: '/tool/circle-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolEnchantOrderRoute = ToolEnchantOrderRouteImport.update({
+  id: '/tool/enchant-order',
+  path: '/tool/enchant-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolFireworkGeneratorRoute = ToolFireworkGeneratorRouteImport.update({
+  id: '/tool/firework-generator',
+  path: '/tool/firework-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolItemChecklistRoute = ToolItemChecklistRouteImport.update({
   id: '/tool/item-checklist',
   path: '/tool/item-checklist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolNetherPortalRoute = ToolNetherPortalRouteImport.update({
+  id: '/tool/nether-portal',
+  path: '/tool/nether-portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolPotionMakerRoute = ToolPotionMakerRouteImport.update({
@@ -60,9 +80,14 @@ const ToolSeedMapRoute = ToolSeedMapRouteImport.update({
   path: '/tool/seed-map',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolShieldDesignerRoute = ToolShieldDesignerRouteImport.update({
-  id: '/tool/shield-designer',
-  path: '/tool/shield-designer',
+const ToolShieldGeneratorRoute = ToolShieldGeneratorRouteImport.update({
+  id: '/tool/shield-generator',
+  path: '/tool/shield-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolSlimeChunkFinderRoute = ToolSlimeChunkFinderRouteImport.update({
+  id: '/tool/slime-chunk-finder',
+  path: '/tool/slime-chunk-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolStackCalculatorRoute = ToolStackCalculatorRouteImport.update({
@@ -70,94 +95,134 @@ const ToolStackCalculatorRoute = ToolStackCalculatorRouteImport.update({
   path: '/tool/stack-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolVillagerTradingRoute = ToolVillagerTradingRouteImport.update({
+  id: '/tool/villager-trading',
+  path: '/tool/villager-trading',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
-  '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/banner-generator': typeof ToolBannerGeneratorRoute
   '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
-  '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
+  '/tool/circle-generator': typeof ToolCircleGeneratorRoute
+  '/tool/enchant-order': typeof ToolEnchantOrderRoute
+  '/tool/firework-generator': typeof ToolFireworkGeneratorRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
+  '/tool/nether-portal': typeof ToolNetherPortalRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
   '/tool/seed-map': typeof ToolSeedMapRoute
-  '/tool/shield-designer': typeof ToolShieldDesignerRoute
+  '/tool/shield-generator': typeof ToolShieldGeneratorRoute
+  '/tool/slime-chunk-finder': typeof ToolSlimeChunkFinderRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
+  '/tool/villager-trading': typeof ToolVillagerTradingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
-  '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/banner-generator': typeof ToolBannerGeneratorRoute
   '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
-  '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
+  '/tool/circle-generator': typeof ToolCircleGeneratorRoute
+  '/tool/enchant-order': typeof ToolEnchantOrderRoute
+  '/tool/firework-generator': typeof ToolFireworkGeneratorRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
+  '/tool/nether-portal': typeof ToolNetherPortalRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
   '/tool/seed-map': typeof ToolSeedMapRoute
-  '/tool/shield-designer': typeof ToolShieldDesignerRoute
+  '/tool/shield-generator': typeof ToolShieldGeneratorRoute
+  '/tool/slime-chunk-finder': typeof ToolSlimeChunkFinderRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
+  '/tool/villager-trading': typeof ToolVillagerTradingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/tool/3d-armor-trim-viewer': typeof Tool3dArmorTrimViewerRoute
-  '/tool/banner-crafting': typeof ToolBannerCraftingRoute
+  '/tool/banner-generator': typeof ToolBannerGeneratorRoute
   '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
-  '/tool/firework-crafting': typeof ToolFireworkCraftingRoute
+  '/tool/circle-generator': typeof ToolCircleGeneratorRoute
+  '/tool/enchant-order': typeof ToolEnchantOrderRoute
+  '/tool/firework-generator': typeof ToolFireworkGeneratorRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
+  '/tool/nether-portal': typeof ToolNetherPortalRoute
   '/tool/potion-maker': typeof ToolPotionMakerRoute
   '/tool/seed-map': typeof ToolSeedMapRoute
-  '/tool/shield-designer': typeof ToolShieldDesignerRoute
+  '/tool/shield-generator': typeof ToolShieldGeneratorRoute
+  '/tool/slime-chunk-finder': typeof ToolSlimeChunkFinderRoute
   '/tool/stack-calculator': typeof ToolStackCalculatorRoute
+  '/tool/villager-trading': typeof ToolVillagerTradingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/tool/3d-armor-trim-viewer'
-    | '/tool/banner-crafting'
+    | '/tool/banner-generator'
     | '/tool/best-enchantments'
-    | '/tool/firework-crafting'
+    | '/tool/circle-generator'
+    | '/tool/enchant-order'
+    | '/tool/firework-generator'
     | '/tool/item-checklist'
+    | '/tool/nether-portal'
     | '/tool/potion-maker'
     | '/tool/seed-map'
-    | '/tool/shield-designer'
+    | '/tool/shield-generator'
+    | '/tool/slime-chunk-finder'
     | '/tool/stack-calculator'
+    | '/tool/villager-trading'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/tool/3d-armor-trim-viewer'
-    | '/tool/banner-crafting'
+    | '/tool/banner-generator'
     | '/tool/best-enchantments'
-    | '/tool/firework-crafting'
+    | '/tool/circle-generator'
+    | '/tool/enchant-order'
+    | '/tool/firework-generator'
     | '/tool/item-checklist'
+    | '/tool/nether-portal'
     | '/tool/potion-maker'
     | '/tool/seed-map'
-    | '/tool/shield-designer'
+    | '/tool/shield-generator'
+    | '/tool/slime-chunk-finder'
     | '/tool/stack-calculator'
+    | '/tool/villager-trading'
   id:
     | '__root__'
     | '/'
     | '/tool/3d-armor-trim-viewer'
-    | '/tool/banner-crafting'
+    | '/tool/banner-generator'
     | '/tool/best-enchantments'
-    | '/tool/firework-crafting'
+    | '/tool/circle-generator'
+    | '/tool/enchant-order'
+    | '/tool/firework-generator'
     | '/tool/item-checklist'
+    | '/tool/nether-portal'
     | '/tool/potion-maker'
     | '/tool/seed-map'
-    | '/tool/shield-designer'
+    | '/tool/shield-generator'
+    | '/tool/slime-chunk-finder'
     | '/tool/stack-calculator'
+    | '/tool/villager-trading'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Tool3dArmorTrimViewerRoute: typeof Tool3dArmorTrimViewerRoute
-  ToolBannerCraftingRoute: typeof ToolBannerCraftingRoute
+  ToolBannerGeneratorRoute: typeof ToolBannerGeneratorRoute
   ToolBestEnchantmentsRoute: typeof ToolBestEnchantmentsRoute
-  ToolFireworkCraftingRoute: typeof ToolFireworkCraftingRoute
+  ToolCircleGeneratorRoute: typeof ToolCircleGeneratorRoute
+  ToolEnchantOrderRoute: typeof ToolEnchantOrderRoute
+  ToolFireworkGeneratorRoute: typeof ToolFireworkGeneratorRoute
   ToolItemChecklistRoute: typeof ToolItemChecklistRoute
+  ToolNetherPortalRoute: typeof ToolNetherPortalRoute
   ToolPotionMakerRoute: typeof ToolPotionMakerRoute
   ToolSeedMapRoute: typeof ToolSeedMapRoute
-  ToolShieldDesignerRoute: typeof ToolShieldDesignerRoute
+  ToolShieldGeneratorRoute: typeof ToolShieldGeneratorRoute
+  ToolSlimeChunkFinderRoute: typeof ToolSlimeChunkFinderRoute
   ToolStackCalculatorRoute: typeof ToolStackCalculatorRoute
+  ToolVillagerTradingRoute: typeof ToolVillagerTradingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -176,11 +241,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Tool3dArmorTrimViewerRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tool/banner-crafting': {
-      id: '/tool/banner-crafting'
-      path: '/tool/banner-crafting'
-      fullPath: '/tool/banner-crafting'
-      preLoaderRoute: typeof ToolBannerCraftingRouteImport
+    '/tool/banner-generator': {
+      id: '/tool/banner-generator'
+      path: '/tool/banner-generator'
+      fullPath: '/tool/banner-generator'
+      preLoaderRoute: typeof ToolBannerGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/best-enchantments': {
@@ -190,11 +255,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolBestEnchantmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tool/firework-crafting': {
-      id: '/tool/firework-crafting'
-      path: '/tool/firework-crafting'
-      fullPath: '/tool/firework-crafting'
-      preLoaderRoute: typeof ToolFireworkCraftingRouteImport
+    '/tool/circle-generator': {
+      id: '/tool/circle-generator'
+      path: '/tool/circle-generator'
+      fullPath: '/tool/circle-generator'
+      preLoaderRoute: typeof ToolCircleGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/enchant-order': {
+      id: '/tool/enchant-order'
+      path: '/tool/enchant-order'
+      fullPath: '/tool/enchant-order'
+      preLoaderRoute: typeof ToolEnchantOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/firework-generator': {
+      id: '/tool/firework-generator'
+      path: '/tool/firework-generator'
+      fullPath: '/tool/firework-generator'
+      preLoaderRoute: typeof ToolFireworkGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/item-checklist': {
@@ -202,6 +281,13 @@ declare module '@tanstack/react-router' {
       path: '/tool/item-checklist'
       fullPath: '/tool/item-checklist'
       preLoaderRoute: typeof ToolItemChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/nether-portal': {
+      id: '/tool/nether-portal'
+      path: '/tool/nether-portal'
+      fullPath: '/tool/nether-portal'
+      preLoaderRoute: typeof ToolNetherPortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/potion-maker': {
@@ -218,11 +304,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolSeedMapRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tool/shield-designer': {
-      id: '/tool/shield-designer'
-      path: '/tool/shield-designer'
-      fullPath: '/tool/shield-designer'
-      preLoaderRoute: typeof ToolShieldDesignerRouteImport
+    '/tool/shield-generator': {
+      id: '/tool/shield-generator'
+      path: '/tool/shield-generator'
+      fullPath: '/tool/shield-generator'
+      preLoaderRoute: typeof ToolShieldGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/slime-chunk-finder': {
+      id: '/tool/slime-chunk-finder'
+      path: '/tool/slime-chunk-finder'
+      fullPath: '/tool/slime-chunk-finder'
+      preLoaderRoute: typeof ToolSlimeChunkFinderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/stack-calculator': {
@@ -232,20 +325,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolStackCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tool/villager-trading': {
+      id: '/tool/villager-trading'
+      path: '/tool/villager-trading'
+      fullPath: '/tool/villager-trading'
+      preLoaderRoute: typeof ToolVillagerTradingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Tool3dArmorTrimViewerRoute: Tool3dArmorTrimViewerRoute,
-  ToolBannerCraftingRoute: ToolBannerCraftingRoute,
+  ToolBannerGeneratorRoute: ToolBannerGeneratorRoute,
   ToolBestEnchantmentsRoute: ToolBestEnchantmentsRoute,
-  ToolFireworkCraftingRoute: ToolFireworkCraftingRoute,
+  ToolCircleGeneratorRoute: ToolCircleGeneratorRoute,
+  ToolEnchantOrderRoute: ToolEnchantOrderRoute,
+  ToolFireworkGeneratorRoute: ToolFireworkGeneratorRoute,
   ToolItemChecklistRoute: ToolItemChecklistRoute,
+  ToolNetherPortalRoute: ToolNetherPortalRoute,
   ToolPotionMakerRoute: ToolPotionMakerRoute,
   ToolSeedMapRoute: ToolSeedMapRoute,
-  ToolShieldDesignerRoute: ToolShieldDesignerRoute,
+  ToolShieldGeneratorRoute: ToolShieldGeneratorRoute,
+  ToolSlimeChunkFinderRoute: ToolSlimeChunkFinderRoute,
   ToolStackCalculatorRoute: ToolStackCalculatorRoute,
+  ToolVillagerTradingRoute: ToolVillagerTradingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
