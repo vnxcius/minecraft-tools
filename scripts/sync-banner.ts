@@ -12,6 +12,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { openClientJar, resolveVersion, titleCase } from "./lib/jar";
+import { writePng } from "./lib/png";
 
 const OUT_DIR = "public/banner";
 const SHIELD_DIR = "public/shield";
@@ -44,12 +45,12 @@ async function main() {
 	await mkdir(OUT_DIR, { recursive: true });
 	const ids = jar.list(TEXTURES).filter((id) => id !== "banner_base" && id !== "base");
 	for (const id of [...ids, "base", "banner_base"]) {
-		await writeFile(join(OUT_DIR, `${id}.png`), jar.file(`${TEXTURES}${id}.png`));
+		await writePng(join(OUT_DIR, `${id}.png`), jar.file(`${TEXTURES}${id}.png`));
 	}
 
 	await mkdir(SHIELD_DIR, { recursive: true });
 	for (const id of [...ids, "base", "shield_base"]) {
-		await writeFile(join(SHIELD_DIR, `${id}.png`), jar.file(`${SHIELD_TEXTURES}${id}.png`));
+		await writePng(join(SHIELD_DIR, `${id}.png`), jar.file(`${SHIELD_TEXTURES}${id}.png`));
 	}
 
 	// pattern id -> the pattern item it needs in the loom (+ crafting recipe when there is one)

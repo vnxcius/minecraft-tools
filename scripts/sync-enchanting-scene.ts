@@ -10,10 +10,11 @@
  * does it: items/<id>.json picks the model shown on the ground, its layers are drawn on top of each
  * other and a dye tint (leather) colors its layer.
  */
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { PNG } from "pngjs";
 import { openClientJar, resolveVersion } from "./lib/jar";
+import { writePng } from "./lib/png";
 
 const OUT_DIR = "public/enchanting";
 const BLOCKS = [
@@ -107,21 +108,21 @@ function sprite(id: string) {
 
 await mkdir(join(OUT_DIR, "items"), { recursive: true });
 for (const block of BLOCKS)
-	await writeFile(join(OUT_DIR, `${block}.png`), jar.file(`textures/block/${block}.png`));
-await writeFile(join(OUT_DIR, "book.png"), jar.file(`textures/${BOOK}.png`));
+	await writePng(join(OUT_DIR, `${block}.png`), jar.file(`textures/block/${block}.png`));
+await writePng(join(OUT_DIR, "book.png"), jar.file(`textures/${BOOK}.png`));
 
 const atlas = new PNG({ width: 8 * GLYPHS.length, height: 8 });
 GLYPHS.forEach((letter, i) => {
 	const glyph = png(`textures/particle/sga_${letter}.png`);
 	PNG.bitblt(glyph, atlas, 0, 0, 8, 8, i * 8, 0);
 });
-await writeFile(join(OUT_DIR, "glyphs.png"), PNG.sync.write(atlas));
+await writePng(join(OUT_DIR, "glyphs.png"), PNG.sync.write(atlas));
 
 const data: { eras: { items: Record<string, unknown> }[] } = JSON.parse(
 	await readFile("src/data/enchanting.json", "utf8"),
 );
 const items = [...new Set(data.eras.flatMap((era) => Object.keys(era.items)))].map(strip).sort();
-for (const id of items) await writeFile(join(OUT_DIR, "items", `${id}.png`), sprite(id));
+for (const id of items) await writePng(join(OUT_DIR, "items", `${id}.png`), sprite(id));
 console.log(
 	`Enchanting scene: ${BLOCKS.length} blocks, the book, ${GLYPHS.length} glyphs, ${items.length} items.`,
 );

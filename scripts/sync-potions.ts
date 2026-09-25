@@ -7,9 +7,10 @@
  * Writes public/potion/*.png (item textures) and public/potion/effect/<effect>.png.
  * The brewing recipes themselves live in src/lib/potions.ts, they are not part of the client assets.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { openClientJar, resolveVersion } from "./lib/jar";
+import { writePng } from "./lib/png";
 
 const OUT_DIR = "public/potion";
 const ITEMS = [
@@ -33,11 +34,11 @@ async function main() {
 
 	await mkdir(join(OUT_DIR, "effect"), { recursive: true });
 	for (const item of ITEMS) {
-		await writeFile(join(OUT_DIR, `${item}.png`), jar.file(`textures/item/${item}.png`));
+		await writePng(join(OUT_DIR, `${item}.png`), jar.file(`textures/item/${item}.png`));
 	}
 	const effects = jar.list("textures/mob_effect/");
 	for (const effect of effects) {
-		await writeFile(
+		await writePng(
 			join(OUT_DIR, "effect", `${effect}.png`),
 			jar.file(`textures/mob_effect/${effect}.png`),
 		);

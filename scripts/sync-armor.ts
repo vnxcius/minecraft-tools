@@ -16,6 +16,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { PNG } from "pngjs";
 import { openClientJar, resolveVersion, titleCase } from "./lib/jar";
+import { writePng } from "./lib/png";
 
 const OUT_DIR = "public/armor";
 
@@ -80,17 +81,17 @@ async function main() {
 		const leggings = `textures/entity/equipment/humanoid_leggings/${id}.png`;
 		const hasLeggingsLayer = jar.has(leggings);
 
-		await writeFile(
+		await writePng(
 			join(OUT_DIR, `${id}.png`),
 			file(`textures/entity/equipment/humanoid/${id}.png`),
 		);
-		if (hasLeggingsLayer) await writeFile(join(OUT_DIR, `${id}_leggings.png`), file(leggings));
+		if (hasLeggingsLayer) await writePng(join(OUT_DIR, `${id}_leggings.png`), file(leggings));
 		if (dye) {
-			await writeFile(
+			await writePng(
 				join(OUT_DIR, "leather_overlay.png"),
 				file("textures/entity/equipment/humanoid/leather_overlay.png"),
 			);
-			await writeFile(
+			await writePng(
 				join(OUT_DIR, "leather_overlay_leggings.png"),
 				file("textures/entity/equipment/humanoid_leggings/leather_overlay.png"),
 			);
@@ -116,11 +117,11 @@ async function main() {
 
 	const patternIds = list("textures/trims/entity/humanoid/");
 	for (const id of patternIds) {
-		await writeFile(
+		await writePng(
 			join(OUT_DIR, "trim", `${id}.png`),
 			file(`textures/trims/entity/humanoid/${id}.png`),
 		);
-		await writeFile(
+		await writePng(
 			join(OUT_DIR, "trim", `${id}_leggings.png`),
 			file(`textures/trims/entity/humanoid_leggings/${id}.png`),
 		);
@@ -144,7 +145,7 @@ async function main() {
 			item: MATERIAL_ITEMS[id] ?? id,
 		}));
 
-	await writeFile(
+	await writePng(
 		join(OUT_DIR, "armor-stand.png"),
 		file("textures/entity/armorstand/armorstand.png"),
 	);

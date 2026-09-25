@@ -5,9 +5,10 @@
  *
  * Writes public/decor/<block>.png.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { openClientJar, resolveVersion } from "./lib/jar";
+import { writePng } from "./lib/png";
 
 const OUT_DIR = "public/decor";
 const BLOCKS = ["dirt", "deepslate"];
@@ -20,6 +21,6 @@ const jar = await openClientJar(version, (f) =>
 
 await mkdir(OUT_DIR, { recursive: true });
 for (const block of BLOCKS) {
-	await writeFile(join(OUT_DIR, `${block}.png`), jar.file(`textures/block/${block}.png`));
+	await writePng(join(OUT_DIR, `${block}.png`), jar.file(`textures/block/${block}.png`));
 }
 console.log(`Decor: ${BLOCKS.length} block textures.`);
