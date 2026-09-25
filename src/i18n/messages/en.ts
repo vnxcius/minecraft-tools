@@ -498,7 +498,11 @@ export const en = {
 	"villager.tipCycling":
 		"Trade cycling: until you trade with a villager, breaking and placing its job site block again rerolls its first trades. Keep doing it until a librarian offers the book you want.",
 	"villager.tipCuring":
-		"Curing a zombie villager (a Splash Potion of Weakness, then a Golden Apple) gives you a big, lasting discount on its trades.",
+		"Curing a zombie villager (a Splash Potion of Weakness, then a Golden Apple) cuts its prices for you: 6 emeralds off most trades and 25 off tools, armor, maps and enchanted books, never below 1. Every level I book then costs 1 emerald. Curing it again adds nothing, and part of the discount fades over time, settling at 5 and 20 off.",
+	"villager.tipZombie":
+		"No zombie villager at hand? On Hard difficulty a villager killed by a zombie always turns into one (half the time on Normal, never on Easy), and if you traded with it once, it keeps its job and trades. Trap it first so it cannot wander off.",
+	"villager.tipHero":
+		"Hero of the Village, for winning a raid, takes 30% off every price for 40 minutes, up to 55% when the raid was started with Bad Omen V (from an Ominous Bottle V). It adds to the curing discount, so together they bring most prices in emeralds down to 1.",
 	"villager.tipRestock":
 		"Villagers restock up to twice a day, when they can reach their job site block.",
 };

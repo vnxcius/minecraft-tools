@@ -267,6 +267,8 @@ export default function VillagerGuide({ icons }: Props) {
 						<ul className="list-disc space-y-1.5 pl-5 text-xs leading-relaxed">
 							<li>{t("villager.tipCycling")}</li>
 							<li>{t("villager.tipCuring")}</li>
+							<li>{t("villager.tipZombie")}</li>
+							<li>{t("villager.tipHero")}</li>
 							<li>{t("villager.tipRestock")}</li>
 						</ul>
 					</div>

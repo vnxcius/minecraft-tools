@@ -504,7 +504,11 @@ export const es: Messages = {
 	"villager.tipCycling":
 		"Cambio de ofertas: mientras no comercies con el aldeano, romper y volver a colocar su bloque de trabajo sortea de nuevo sus primeros comercios. Repítelo hasta que un bibliotecario ofrezca el libro que quieres.",
 	"villager.tipCuring":
-		"Curar a un aldeano zombi (una poción de debilidad arrojadiza y después una manzana dorada) te da un gran descuento duradero en sus comercios.",
+		"Curar a un aldeano zombi (una poción de debilidad arrojadiza y después una manzana dorada) baja sus precios para ti: 6 esmeraldas menos en la mayoría de los comercios y 25 menos en herramientas, armaduras, mapas y libros encantados, nunca por debajo de 1. Así cada libro de nivel I cuesta 1 esmeralda. Curarlo otra vez no suma nada, y parte del descuento se pierde con el tiempo, hasta quedar en 5 y 20 menos.",
+	"villager.tipZombie":
+		"¿No tienes un aldeano zombi? En dificultad Difícil, un aldeano al que mata un zombi siempre se convierte en uno (la mitad de las veces en Normal, nunca en Fácil), y si ya comerciaste con él una vez, conserva su profesión y sus comercios. Atrápalo antes para que no se escape.",
+	"villager.tipHero":
+		"Héroe de la aldea, que se gana al vencer una invasión, quita un 30 % a todos los precios durante 40 minutos, hasta un 55 % si la invasión empezó con Mal presagio V (de un Frasco ominoso V). Se suma al descuento por curación, y juntos dejan la mayoría de los precios en esmeraldas en 1.",
 	"villager.tipRestock":
 		"Los aldeanos se reabastecen hasta dos veces al día, cuando pueden llegar a su bloque de trabajo.",
 };

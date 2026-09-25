@@ -498,7 +498,11 @@ export const ptBR: Messages = {
 	"villager.tipCycling":
 		"Troca de ofertas: enquanto você não negociar com o aldeão, quebrar e recolocar o bloco de trabalho sorteia de novo as primeiras trocas. Repita até um bibliotecário oferecer o livro que você quer.",
 	"villager.tipCuring":
-		"Curar um aldeão zumbi (uma Poção Arremessável de Fraqueza e depois uma Maçã Dourada) dá um grande desconto permanente nas trocas dele.",
+		"Curar um aldeão zumbi (uma Poção Arremessável de Fraqueza e depois uma Maçã Dourada) baixa os preços dele para você: 6 esmeraldas a menos na maioria das trocas e 25 a menos em ferramentas, armaduras, mapas e livros encantados, nunca abaixo de 1. Assim todo livro de nível I custa 1 esmeralda. Curar de novo não soma nada, e parte do desconto some com o tempo, ficando em 5 e 20 a menos.",
+	"villager.tipZombie":
+		"Sem um aldeão zumbi por perto? No modo Difícil, um aldeão morto por um zumbi sempre vira um (metade das vezes no Normal, nunca no Fácil), e se você já negociou com ele uma vez, mantém a profissão e as trocas. Prenda-o antes para ele não fugir.",
+	"villager.tipHero":
+		"Herói da Vila, ganho ao vencer uma invasão, tira 30% de todos os preços por 40 minutos, até 55% quando a invasão começou com Mau Presságio V (de um Frasco Sombrio V). Ele soma com o desconto da cura, e juntos deixam a maioria dos preços em esmeraldas em 1.",
 	"villager.tipRestock":
 		"Os aldeões reabastecem até duas vezes por dia, quando conseguem chegar ao bloco de trabalho.",
 };
