@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { RotateCcwIcon } from "lucide-react";
+import { Reload as ReloadIcon } from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/i18n";
 import {
 	type ArmorSelection,
 	buildAvatar,
@@ -23,10 +24,10 @@ interface Stage {
 
 const TARGET = new THREE.Vector3(0, 15, 0);
 
-/** three.js canvas with an armor stand you can rotate (drag) and zoom (scroll) */
 export default function ArmorViewer({ armor, trim, className }: Props) {
 	const host = useRef<HTMLDivElement>(null);
 	const stage = useRef<Stage | null>(null);
+	const { t } = useI18n();
 
 	useEffect(() => {
 		const el = host.current as HTMLDivElement;
@@ -118,13 +119,13 @@ export default function ArmorViewer({ armor, trim, className }: Props) {
 				variant="outline"
 				size="icon-sm"
 				className="absolute top-2 right-2"
-				aria-label="Reset view"
+				aria-label={t("armor.resetView")}
 				onClick={() => stage.current?.resetView()}
 			>
-				<RotateCcwIcon />
+				<ReloadIcon />
 			</Button>
-			<p className="pointer-events-none absolute inset-x-0 bottom-2 text-center text-muted-foreground text-xs">
-				Drag to rotate · Scroll to zoom
+			<p className="pointer-events-none absolute inset-x-0 bottom-2 text-center text-xs text-muted-foreground">
+				{t("armor.dragHint")}
 			</p>
 		</div>
 	);

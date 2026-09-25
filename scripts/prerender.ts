@@ -6,11 +6,12 @@
  *   bun run build   (runs `vite build` and then this)
  *
  * The tags come from src/lib/seo.ts, the same source the router uses at runtime. Everything written
- * here carries `data-prerender`, src/main.tsx removes it before the router renders its own copy.
+ * here carries `data-prerender`; src/main.tsx removes it (except the structured data) before the
+ * router renders its own copy.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { metaTags, PAGES, type Page, SITE_URL, structuredData, urlOf } from "../src/lib/seo";
+import { metaTags, MOVED, PAGES, type Page, SITE_URL, structuredData, urlOf } from "../src/lib/seo";
 
 const DIST = "dist";
 
@@ -61,6 +62,16 @@ async function main() {
 		await write(page.path === "/" ? "" : page.path, html);
 	}
 
+	// moved pages: an instant redirect for browsers and old links, the canonical tells crawlers where
+	// the page lives now (the app redirects too, for navigation inside it)
+	for (const [from, to] of Object.entries(MOVED)) {
+		const url = urlOf(to);
+		await write(
+			from,
+			`<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8" />\n<title>Moved</title>\n<link rel="canonical" href="${url}" />\n<meta name="robots" content="noindex, follow" />\n<meta http-equiv="refresh" content="0; url=${to}" />\n</head>\n<body><a href="${to}">${url}</a></body>\n</html>\n`,
+		);
+	}
+
 	// unknown urls: the app shows its not found page, search engines must not index it
 	await writeFile(
 		join(DIST, "404.html"),
@@ -80,7 +91,9 @@ async function main() {
 		`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
 	);
 
-	console.log(`Prerendered ${PAGES.length} pages for ${SITE_URL}, 404.html and sitemap.xml`);
+	console.log(
+		`Prerendered ${PAGES.length} pages for ${SITE_URL}, ${Object.keys(MOVED).length} redirects, 404.html and sitemap.xml`,
+	);
 }
 
 await main();

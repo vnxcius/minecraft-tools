@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 
 interface Props {
 	design: Pick<BannerDesign, "base"> & { layers: { pattern: string; color: string }[] };
-	/** what to draw the design on */
 	kind?: Kind;
 	/** draw the crossbar the banner hangs from */
 	bar?: boolean;
@@ -44,7 +43,7 @@ export default function BannerCanvas({ design, kind = "banner", bar = true, clas
 			aria-label={kind === "shield" ? "Shield preview" : "Banner preview"}
 			width={kind === "shield" ? SHIELD_SIZE.w : BANNER_SIZE.w}
 			height={kind === "shield" ? SHIELD_SIZE.h : FLAG.h + (bar ? 2 : 0)}
-			className={cn("[image-rendering:pixelated]", className)}
+			className={cn("pixelated", className)}
 		/>
 	);
 }

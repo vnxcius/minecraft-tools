@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
-@import "@fontsource/ibm-plex-mono/600.css";
+@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/500.css";
+@import "@fontsource/geist-sans/600.css";
+@import "@fontsource/geist-sans/700.css";
 
 @font-face {
 	font-family: "Mojangles";
@@ -14,8 +15,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-	--font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-	--font-pixel: "Mojangles", "IBM Plex Mono", monospace;
+	--font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+	--font-serif: "Linux Libertine", Georgia, Times, "Source Serif 4", serif;
+	--font-pixel: "Mojangles", "Geist Sans", sans-serif;
+	--color-page: var(--page);
+	--color-link: var(--link);
 	--color-brand: var(--brand);
 	--color-row: var(--row);
 	--color-ring: var(--ring);
@@ -36,60 +40,97 @@
 	--color-card: var(--card);
 	--color-foreground: var(--foreground);
 	--color-background: var(--background);
-	--radius-sm: calc(var(--radius) - 2px);
-	--radius-md: var(--radius);
-	--radius-lg: calc(var(--radius) + 2px);
-	--radius-xl: calc(var(--radius) + 4px);
+	/* square corners everywhere, like minecraft.wiki */
+	--radius-sm: 0;
+	--radius-md: 0;
+	--radius-lg: 0;
+	--radius-xl: 0;
+	--radius: 0;
 }
 
-/* Light palette: warm paper with Minecraft greens */
+/* Light palette: the "day" theme of minecraft.wiki */
 :root {
-	--radius: 0.25rem;
-	--background: #f4f2ee;
-	--foreground: #2b2a28;
-	--card: #ffffff;
-	--card-foreground: #2b2a28;
-	--popover: #ffffff;
-	--popover-foreground: #2b2a28;
+	--page: #303030;
+	--background: #e6eff4;
+	--foreground: #202122;
+	--card: #f8f9fa;
+	--card-foreground: #202122;
+	--popover: #f8f9fa;
+	--popover-foreground: #202122;
 	--primary: #3c8527;
 	--primary-foreground: #ffffff;
-	--secondary: #eae7e1;
-	--secondary-foreground: #2b2a28;
-	--muted: #eae7e1;
-	--muted-foreground: #66625b;
-	/* accent surfaces (hover, selected, active) are a see-through green */
-	--accent: rgb(60 133 39 / 0.16);
-	--accent-foreground: #2b2a28;
-	--destructive: #c23b32;
-	--border: rgb(43 42 40 / 0.14);
-	--input: rgb(43 42 40 / 0.2);
-	--ring: #3c8527;
+	--secondary: #ebebeb;
+	--secondary-foreground: #202122;
+	--muted: #eaecf0;
+	--muted-foreground: #54595d;
+	--accent: #d7e4ec;
+	--accent-foreground: #202122;
+	--destructive: #d33;
+	--border: #a2a9b1;
+	--input: #a2a9b1;
+	--ring: #36c;
+	--link: #0645ad;
 	--brand: #2f7a1c;
-	--row: color-mix(in oklab, var(--background), black 5%);
+	--row: #eaecf0;
+	/* the boxes of the main page */
+	--section: rgb(252 252 252 / 0.72);
+	--section-border: #bbb;
+	--sky-top: #5ea8ef;
+	--sky-bottom: #a9d4f7;
+	/* the depth edges of buttons, darker than the face like the page panel's */
+	--depth-tint: black;
+	--depth-top: 22%;
+	--depth-left: 55%;
+	/* the game's inventory screens */
+	--gui: #c6c6c6;
+	--gui-light: #ffffff;
+	--gui-dark: #555555;
+	--gui-text: #3f3f3f;
+	--slot: #8b8b8b;
+	--slot-light: #ffffff;
+	--slot-dark: #373737;
 }
 
-/* Dark palette (default): the charcoal of minecraft.net */
+/* Dark palette: a night version of the same, slate panels on deepslate */
 .dark {
-	--background: #1e1e1c;
-	--foreground: #ececea;
-	--card: #262423;
-	--card-foreground: #ececea;
-	--popover: #2b2a28;
-	--popover-foreground: #ececea;
+	--page: #141414;
+	--background: #1f2326;
+	--foreground: #dadde1;
+	--card: #282c30;
+	--card-foreground: #dadde1;
+	--popover: #2b3034;
+	--popover-foreground: #dadde1;
 	--primary: #3c8527;
 	--primary-foreground: #ffffff;
-	--secondary: #302f2d;
-	--secondary-foreground: #ececea;
-	--muted: #302f2d;
-	--muted-foreground: #aeaaa2;
-	--accent: rgb(82 165 53 / 0.2);
-	--accent-foreground: #ececea;
-	--destructive: #ef6b6b;
-	--border: rgb(255 255 255 / 0.11);
-	--input: rgb(255 255 255 / 0.16);
-	--ring: #52a535;
+	--secondary: #3a3f44;
+	--secondary-foreground: #eaecf0;
+	--muted: #2d3236;
+	--muted-foreground: #a2a9b1;
+	--accent: #34414b;
+	--accent-foreground: #eaecf0;
+	--destructive: #ff6b6b;
+	--border: #4b5157;
+	--input: #5d646b;
+	--ring: #6d8cf0;
+	--link: #7fa9f5;
 	--brand: #6cc349;
-	--row: color-mix(in oklab, var(--background), black 30%);
+	--row: #262a2e;
+	--section: rgb(40 44 48 / 0.8);
+	--section-border: #464c52;
+	--sky-top: #0b1628;
+	--sky-bottom: #24395a;
+	/* the dark panel's edges are lighter than its face, so the buttons' are too */
+	--depth-tint: white;
+	--depth-top: 12%;
+	--depth-left: 24%;
+	--gui: #2e3135;
+	--gui-light: #4a4e53;
+	--gui-dark: #16181a;
+	--gui-text: #dadde1;
+	/* slots lighter than the panel, so dark items (anvil, obsidian) still stand out */
+	--slot: #555a60;
+	--slot-light: #767b82;
+	--slot-dark: #2a2c30;
 }
 
 html {
@@ -101,8 +142,8 @@ html {
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background font-sans text-foreground antialiased;
-		letter-spacing: -0.02em;
+		@apply bg-page font-sans text-foreground antialiased;
+		letter-spacing: -0.01em;
 	}
 
 	button:not(:disabled),
@@ -111,23 +152,83 @@ html {
 	}
 }
 
-/* Headings: the Minecraft pixel font in grass green */
-@utility display {
-	font-family: var(--font-pixel);
-	font-weight: 400;
-	letter-spacing: 0.02em;
-	color: var(--brand);
-}
-
 @utility pixelated {
 	image-rendering: pixelated;
 }
 
-/* the raised, bevelled buttons of minecraft.net */
-@utility bevel {
+/* a box of the main page: light panel, thick grey frame and a faint inner bevel */
+@utility section-box {
+	background-color: var(--section);
+	border: 2px solid var(--section-border);
 	box-shadow:
-		inset 0 -4px 0 rgb(0 0 0 / 0.35),
-		inset 0 2px 0 rgb(255 255 255 / 0.25),
-		inset 2px 0 0 rgb(255 255 255 / 0.08),
-		inset -2px 0 0 rgb(0 0 0 / 0.12);
+		inset -2px -2px 0 rgb(0 0 0 / 0.06),
+		inset 2px 2px 0 rgb(255 255 255 / 0.05);
+}
+
+/*
+ * The raised look of the page panel, for buttons: a top face and a stronger left face meeting at an
+ * angle, and the top-right end cut parallel to it. The edges follow the button's own color
+ * (--depth-face) and shade like the panel in each theme; held down, the two faces swap.
+ */
+@utility depth {
+	--depth: 3px;
+	--depth-base: var(--depth-face, var(--secondary));
+	border-style: solid;
+	border-width: var(--depth) 0 0 var(--depth);
+	border-top-color: color-mix(in oklab, var(--depth-base), var(--depth-tint) var(--depth-top));
+	border-left-color: color-mix(in oklab, var(--depth-base), var(--depth-tint) var(--depth-left));
+	clip-path: polygon(0 0, calc(100% - var(--depth)) 0, 100% var(--depth), 100% 100%, 0 100%);
+	&:active:not(:disabled) {
+		border-top-color: color-mix(in oklab, var(--depth-base), var(--depth-tint) var(--depth-left));
+		border-left-color: color-mix(in oklab, var(--depth-base), var(--depth-tint) var(--depth-top));
+	}
+	/* the clip hides an outer focus ring, so it is drawn inside */
+	&:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: -2px;
+	}
+}
+
+/* the related-tools cards, for buttons: dark translucent frame and a shaded bottom edge */
+@utility tile {
+	border: 2px solid rgb(0 0 0 / 0.4);
+	box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.16);
+	&:hover:not(:disabled) {
+		border-color: rgb(0 0 0 / 0.6);
+	}
+	&:active:not(:disabled) {
+		box-shadow: inset 0 2px 0 rgb(0 0 0 / 0.16);
+	}
+}
+
+/* page titles: serif with a hairline under it */
+@utility page-title {
+	font-family: var(--font-serif);
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.3;
+	border-bottom: 1px solid var(--border);
+}
+
+/* the sky behind the top of the page */
+@utility sky {
+	background-image: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
+}
+
+/* an inventory screen: grey panel, black outline, light top-left and dark bottom-right bevel */
+@utility gui-panel {
+	background-color: var(--gui);
+	color: var(--gui-text);
+	border: 2px solid #000;
+	box-shadow:
+		inset 2px 2px 0 var(--gui-light),
+		inset -2px -2px 0 var(--gui-dark);
+}
+
+/* an inventory slot: sunken, the bevel the other way round */
+@utility gui-slot {
+	background-color: var(--slot);
+	box-shadow:
+		inset 2px 2px 0 var(--slot-dark),
+		inset -2px -2px 0 var(--slot-light);
 }

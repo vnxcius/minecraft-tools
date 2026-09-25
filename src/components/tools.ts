@@ -1,98 +1,117 @@
-import {
-	BoxIcon,
-	FlagIcon,
-	FlaskConicalIcon,
-	MapIcon,
-	RocketIcon,
-	ShieldIcon,
-	SparklesIcon,
-} from "lucide-react";
-import { CalculatorIcon, ListDetailsIcon } from "./ui/icons";
+import { t } from "@/i18n";
 
 export const TOOLS = [
 	{
+		id: "stack-calculator",
 		to: "/tool/stack-calculator",
 		category: "Planning",
-		title: "Stack Calculator",
-		short: "Stacks",
-		icon: CalculatorIcon,
-		description:
-			"How many stacks, shulker boxes and chests are 456 blocks? Punch in a number and find out.",
+		image: "/tools/stack-calculator.png",
+		related: ["/tool/item-checklist", "/tool/banner-generator", "/tool/nether-portal"],
 	},
 	{
+		id: "item-checklist",
 		to: "/tool/item-checklist",
 		category: "Planning",
-		title: "Item Checklist",
-		short: "Checklist",
-		icon: ListDetailsIcon,
-		description:
-			"Build a materials list for your next build, set quantity goals and tick items off as you gather them.",
+		image: "/tools/item-checklist.png",
+		related: ["/tool/stack-calculator", "/tool/seed-map", "/tool/banner-generator"],
 	},
 	{
+		id: "3d-armor-trim-viewer",
 		to: "/tool/3d-armor-trim-viewer",
-		category: "Designers",
-		title: "Armor Trim Viewer",
-		short: "Armor Trims",
-		icon: BoxIcon,
-		description: "Try every armor and trim combination on a 3D armor stand before you smith it.",
+		category: "Generators",
+		image: "/tools/3d-armor-trim-viewer.png",
+		related: ["/tool/best-enchantments", "/tool/shield-generator", "/tool/banner-generator"],
 	},
 	{
-		to: "/tool/banner-crafting",
-		category: "Designers",
-		title: "Banner Designer",
-		short: "Banners",
-		icon: FlagIcon,
-		description:
-			"Layer patterns and dyes to design a banner, then get the materials list and the command.",
+		id: "banner-generator",
+		to: "/tool/banner-generator",
+		category: "Generators",
+		image: "/tools/banner-generator.png",
+		related: ["/tool/shield-generator", "/tool/firework-generator", "/tool/3d-armor-trim-viewer"],
 	},
 	{
-		to: "/tool/shield-designer",
-		category: "Designers",
-		title: "Shield Designer",
-		short: "Shields",
-		icon: ShieldIcon,
-		description:
-			"Put banner patterns on a shield and see it before you craft it, with materials and command.",
+		id: "shield-generator",
+		to: "/tool/shield-generator",
+		category: "Generators",
+		image: "/tools/shield-generator.png",
+		related: ["/tool/banner-generator", "/tool/3d-armor-trim-viewer", "/tool/best-enchantments"],
 	},
 	{
+		id: "potion-maker",
 		to: "/tool/potion-maker",
 		category: "Guides",
-		title: "Potion Maker",
-		short: "Potions",
-		icon: FlaskConicalIcon,
-		description:
-			"Pick a potion and get the full brewing recipe: ingredients, steps, duration and upgrades.",
+		image: "/tools/potion-maker.png",
+		related: ["/tool/best-enchantments", "/tool/item-checklist", "/tool/firework-generator"],
 	},
 	{
-		to: "/tool/firework-crafting",
-		category: "Designers",
-		title: "Firework Crafting",
-		short: "Fireworks",
-		icon: RocketIcon,
-		description:
-			"Combine shapes, colors, trails and twinkles into firework stars, watch them explode and get the recipe.",
+		id: "firework-generator",
+		to: "/tool/firework-generator",
+		category: "Generators",
+		image: "/tools/firework-generator.png",
+		related: ["/tool/banner-generator", "/tool/potion-maker", "/tool/shield-generator"],
 	},
 	{
+		id: "seed-map",
 		to: "/tool/seed-map",
 		category: "World",
-		title: "Seed Map",
-		short: "Seed Map",
-		icon: MapIcon,
-		description:
-			"Explore the world of any seed: biomes, villages, strongholds, slime chunks and more, all generated in your browser.",
+		image: "/tools/seed-map.png",
+		related: ["/tool/nether-portal", "/tool/item-checklist", "/tool/stack-calculator"],
 	},
 	{
+		id: "best-enchantments",
 		to: "/tool/best-enchantments",
 		category: "Guides",
-		title: "Best Enchantments",
-		short: "Enchants",
-		icon: SparklesIcon,
-		description:
-			"The enchantments worth having on every armor piece, tool and weapon, with the command to get them.",
+		image: "/tools/best-enchantments.png",
+		related: ["/tool/enchant-order", "/tool/3d-armor-trim-viewer", "/tool/potion-maker"],
+	},
+	{
+		id: "enchant-order",
+		to: "/tool/enchant-order",
+		category: "Guides",
+		image: "/tools/enchant-order.png",
+		related: ["/tool/best-enchantments", "/tool/3d-armor-trim-viewer", "/tool/potion-maker"],
+	},
+	{
+		id: "villager-trading",
+		to: "/tool/villager-trading",
+		category: "Guides",
+		image: "/tools/villager-trading.png",
+		related: ["/tool/enchant-order", "/tool/best-enchantments", "/tool/item-checklist"],
+	},
+	{
+		id: "nether-portal",
+		to: "/tool/nether-portal",
+		category: "World",
+		image: "/tools/nether-portal.png",
+		related: ["/tool/seed-map", "/tool/stack-calculator", "/tool/item-checklist"],
+	},
+	{
+		id: "slime-chunk-finder",
+		to: "/tool/slime-chunk-finder",
+		category: "World",
+		image: "/tools/slime-chunk-finder.png",
+		related: ["/tool/seed-map", "/tool/nether-portal", "/tool/item-checklist"],
+	},
+	{
+		id: "circle-generator",
+		to: "/tool/circle-generator",
+		category: "Planning",
+		image: "/tools/circle-generator.png",
+		related: ["/tool/stack-calculator", "/tool/item-checklist", "/tool/banner-generator"],
 	},
 ] as const;
 
 export type Tool = (typeof TOOLS)[number];
 
-/** how the tools are grouped in the header menu, in order */
-export const CATEGORIES = ["Planning", "Designers", "Guides", "World"] as const;
+export const CATEGORIES = ["Planning", "Generators", "Guides", "World"] as const;
+
+export const relatedTools = (tool: Tool): Tool[] =>
+	tool.related.flatMap((path) => TOOLS.filter((other) => other.to === path));
+
+/** components call useI18n() to re-render on a language change */
+export const toolTitle = (tool: Tool) => t(`tool.${tool.id}.title`);
+export const toolDescription = (tool: Tool) => t(`tool.${tool.id}.description`);
+export const categoryName = (category: Tool["category"]) => t(`category.${category}`);
+
+export const toolByPath = (pathname: string): Tool | undefined =>
+	TOOLS.find((tool) => pathname === tool.to || pathname.startsWith(`${tool.to}/`));

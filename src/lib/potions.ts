@@ -1,31 +1,30 @@
 /**
  * Brewing data (Java Edition). Brewing recipes are hard-coded in the game and are not part of the
  * client assets, so they are described here. Textures come from `bun run potions:sync`.
+ * Every name is the game's own, looked up by id in its language files (see src/i18n).
  */
+import { itemName, type MessageKey, t, term } from "@/i18n";
 
 export type Form = "potion" | "splash" | "lingering" | "arrow";
 export type Upgrade = "none" | "extended" | "enhanced";
 
-export const FORMS: { id: Form; name: string }[] = [
-	{ id: "potion", name: "Potion" },
-	{ id: "splash", name: "Splash" },
-	{ id: "lingering", name: "Lingering" },
-	{ id: "arrow", name: "Tipped Arrow" },
+export const FORMS: { id: Form; item: string }[] = [
+	{ id: "potion", item: "potion" },
+	{ id: "splash", item: "splash_potion" },
+	{ id: "lingering", item: "lingering_potion" },
+	{ id: "arrow", item: "tipped_arrow" },
 ];
 
+const FORM_ITEM = Object.fromEntries(FORMS.map((f) => [f.id, f.item])) as Record<Form, string>;
+
 export interface PotionEffect {
-	/** texture id in public/potion/effect */
+	/** effect id, also the texture in public/potion/effect */
 	icon: string;
-	name: string;
 }
 
 export interface Potion {
+	/** potion id of the game, e.g. "swiftness" */
 	id: string;
-	/** short name used in the picker */
-	name: string;
-	/** the "X" in "Potion of X" */
-	label: string;
-	/** liquid color */
 	color: string;
 	/** the potion this one is brewed from and the ingredients that do it (first one is the classic) */
 	from?: { potion: string; ingredients: string[] };
@@ -35,29 +34,25 @@ export interface Potion {
 	instant?: boolean;
 	/** duration with redstone */
 	extended?: number;
-	/** what glowstone dust changes */
-	enhanced?: { level: string; duration?: number };
+	/** what glowstone dust changes: the effect level (2 for "II") and the new duration */
+	enhanced?: { level: number; duration?: number };
 	/** other way to brew it, shown as a tip */
-	note?: string;
+	note?: MessageKey;
 	/** extra detail shown with the effect, e.g. the levels of a two effect potion */
-	detail?: string;
+	detail?: MessageKey;
 }
 
 const WATER_COLOR = "#385dc6";
 
-export const POTIONS: Potion[] = [
-	{ id: "water", name: "Water Bottle", label: "Water", color: WATER_COLOR },
+const POTIONS: Potion[] = [
+	{ id: "water", color: WATER_COLOR },
 	{
 		id: "awkward",
-		name: "Awkward",
-		label: "Awkward",
 		color: WATER_COLOR,
 		from: { potion: "water", ingredients: ["nether_wart"] },
 	},
 	{
 		id: "mundane",
-		name: "Mundane",
-		label: "Mundane",
 		color: WATER_COLOR,
 		from: {
 			potion: "water",
@@ -72,214 +67,171 @@ export const POTIONS: Potion[] = [
 				"rabbit_foot",
 			],
 		},
-		note: "Any of the ingredients works.",
+		note: "potion.note.mundane",
 	},
 	{
 		id: "thick",
-		name: "Thick",
-		label: "Thick",
 		color: WATER_COLOR,
 		from: { potion: "water", ingredients: ["glowstone_dust"] },
 	},
 	{
 		id: "night_vision",
-		name: "Night Vision",
-		label: "Night Vision",
 		color: "#1f1fa1",
 		from: { potion: "awkward", ingredients: ["golden_carrot"] },
-		effects: [{ icon: "night_vision", name: "Night Vision" }],
+		effects: [{ icon: "night_vision" }],
 		duration: 180,
 		extended: 480,
 	},
 	{
 		id: "invisibility",
-		name: "Invisibility",
-		label: "Invisibility",
 		color: "#7f8392",
 		from: { potion: "night_vision", ingredients: ["fermented_spider_eye"] },
-		effects: [{ icon: "invisibility", name: "Invisibility" }],
+		effects: [{ icon: "invisibility" }],
 		duration: 180,
 		extended: 480,
 	},
 	{
 		id: "leaping",
-		name: "Leaping",
-		label: "Leaping",
 		color: "#22ff4c",
 		from: { potion: "awkward", ingredients: ["rabbit_foot"] },
-		effects: [{ icon: "jump_boost", name: "Jump Boost" }],
+		effects: [{ icon: "jump_boost" }],
 		duration: 180,
 		extended: 480,
-		enhanced: { level: "II", duration: 90 },
+		enhanced: { level: 2, duration: 90 },
 	},
 	{
 		id: "fire_resistance",
-		name: "Fire Resistance",
-		label: "Fire Resistance",
 		color: "#e49a3a",
 		from: { potion: "awkward", ingredients: ["magma_cream"] },
-		effects: [{ icon: "fire_resistance", name: "Fire Resistance" }],
+		effects: [{ icon: "fire_resistance" }],
 		duration: 180,
 		extended: 480,
 	},
 	{
 		id: "swiftness",
-		name: "Swiftness",
-		label: "Swiftness",
 		color: "#33ebff",
 		from: { potion: "awkward", ingredients: ["sugar"] },
-		effects: [{ icon: "speed", name: "Speed" }],
+		effects: [{ icon: "speed" }],
 		duration: 180,
 		extended: 480,
-		enhanced: { level: "II", duration: 90 },
+		enhanced: { level: 2, duration: 90 },
 	},
 	{
 		id: "slowness",
-		name: "Slowness",
-		label: "Slowness",
 		color: "#8bafe0",
 		// swiftness or leaping, both work
 		from: { potion: "swiftness", ingredients: ["fermented_spider_eye"] },
-		note: "A Potion of Leaping works instead of Swiftness.",
-		effects: [{ icon: "slowness", name: "Slowness" }],
+		note: "potion.note.slowness",
+		effects: [{ icon: "slowness" }],
 		duration: 90,
 		extended: 240,
-		enhanced: { level: "IV", duration: 20 },
+		enhanced: { level: 4, duration: 20 },
 	},
 	{
 		id: "water_breathing",
-		name: "Water Breathing",
-		label: "Water Breathing",
 		color: "#2e5299",
 		from: { potion: "awkward", ingredients: ["pufferfish"] },
-		effects: [{ icon: "water_breathing", name: "Water Breathing" }],
+		effects: [{ icon: "water_breathing" }],
 		duration: 180,
 		extended: 480,
 	},
 	{
 		id: "healing",
-		name: "Healing",
-		label: "Healing",
 		color: "#f82423",
 		from: { potion: "awkward", ingredients: ["glistering_melon_slice"] },
-		effects: [{ icon: "instant_health", name: "Instant Health" }],
+		effects: [{ icon: "instant_health" }],
 		instant: true,
-		enhanced: { level: "II" },
+		enhanced: { level: 2 },
 	},
 	{
 		id: "harming",
-		name: "Harming",
-		label: "Harming",
 		color: "#a9656a",
 		// healing or poison, both work
 		from: { potion: "healing", ingredients: ["fermented_spider_eye"] },
-		note: "A Potion of Poison works instead of Healing.",
-		effects: [{ icon: "instant_damage", name: "Instant Damage" }],
+		note: "potion.note.harming",
+		effects: [{ icon: "instant_damage" }],
 		instant: true,
-		enhanced: { level: "II" },
+		enhanced: { level: 2 },
 	},
 	{
 		id: "poison",
-		name: "Poison",
-		label: "Poison",
 		color: "#87a363",
 		from: { potion: "awkward", ingredients: ["spider_eye"] },
-		effects: [{ icon: "poison", name: "Poison" }],
+		effects: [{ icon: "poison" }],
 		duration: 45,
 		extended: 90,
-		enhanced: { level: "II", duration: 21 },
+		enhanced: { level: 2, duration: 21 },
 	},
 	{
 		id: "regeneration",
-		name: "Regeneration",
-		label: "Regeneration",
 		color: "#cd5cab",
 		from: { potion: "awkward", ingredients: ["ghast_tear"] },
-		effects: [{ icon: "regeneration", name: "Regeneration" }],
+		effects: [{ icon: "regeneration" }],
 		duration: 45,
 		extended: 90,
-		enhanced: { level: "II", duration: 22 },
+		enhanced: { level: 2, duration: 22 },
 	},
 	{
 		id: "strength",
-		name: "Strength",
-		label: "Strength",
 		color: "#932423",
 		from: { potion: "awkward", ingredients: ["blaze_powder"] },
-		effects: [{ icon: "strength", name: "Strength" }],
+		effects: [{ icon: "strength" }],
 		duration: 180,
 		extended: 480,
-		enhanced: { level: "II", duration: 90 },
+		enhanced: { level: 2, duration: 90 },
 	},
 	{
 		id: "weakness",
-		name: "Weakness",
-		label: "Weakness",
 		color: "#484d48",
 		from: { potion: "water", ingredients: ["fermented_spider_eye"] },
-		effects: [{ icon: "weakness", name: "Weakness" }],
+		effects: [{ icon: "weakness" }],
 		duration: 90,
 		extended: 240,
 	},
 	{
 		id: "turtle_master",
-		name: "Turtle Master",
-		label: "the Turtle Master",
 		color: "#8bafe0",
 		from: { potion: "awkward", ingredients: ["turtle_helmet"] },
-		effects: [
-			{ icon: "slowness", name: "Slowness" },
-			{ icon: "resistance", name: "Resistance" },
-		],
+		effects: [{ icon: "slowness" }, { icon: "resistance" }],
 		duration: 20,
 		extended: 40,
-		enhanced: { level: "II", duration: 20 },
-		detail: "Slowness IV and Resistance III (Slowness VI and Resistance IV when enhanced)",
+		enhanced: { level: 2, duration: 20 },
+		detail: "potion.detail.turtleMaster",
 	},
 	{
 		id: "slow_falling",
-		name: "Slow Falling",
-		label: "Slow Falling",
 		color: "#f3cfb9",
 		from: { potion: "awkward", ingredients: ["phantom_membrane"] },
-		effects: [{ icon: "slow_falling", name: "Slow Falling" }],
+		effects: [{ icon: "slow_falling" }],
 		duration: 90,
 		extended: 240,
 	},
 	{
 		id: "wind_charged",
-		name: "Wind Charged",
-		label: "Wind Charging",
 		color: "#bdc9ff",
 		from: { potion: "awkward", ingredients: ["breeze_rod"] },
-		effects: [{ icon: "wind_charged", name: "Wind Charged" }],
+		effects: [{ icon: "wind_charged" }],
 		duration: 180,
 	},
 	{
 		id: "weaving",
-		name: "Weaving",
-		label: "Weaving",
 		color: "#78695a",
 		from: { potion: "awkward", ingredients: ["cobweb"] },
-		effects: [{ icon: "weaving", name: "Weaving" }],
+		effects: [{ icon: "weaving" }],
 		duration: 180,
 	},
 	{
 		id: "oozing",
-		name: "Oozing",
-		label: "Oozing",
 		color: "#99ffa3",
 		from: { potion: "awkward", ingredients: ["slime_block"] },
-		effects: [{ icon: "oozing", name: "Oozing" }],
+		effects: [{ icon: "oozing" }],
 		duration: 180,
 	},
 	{
 		id: "infested",
-		name: "Infested",
-		label: "Infestation",
 		color: "#8c9b8c",
 		from: { potion: "awkward", ingredients: ["stone"] },
-		effects: [{ icon: "infested", name: "Infested" }],
+		effects: [{ icon: "infested" }],
 		duration: 180,
 	},
 ];
@@ -304,16 +256,39 @@ export function canEnhance(potion: Potion) {
 	return potion.enhanced !== undefined;
 }
 
-export function formatDuration(seconds: number) {
+function formatDuration(seconds: number) {
 	const total = Math.round(seconds);
 	return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
 }
 
+/** official name of the plain potion, "Potion of Swiftness" / "Awkward Potion" */
+export const potionName = (potion: Potion) => term(`item.minecraft.potion.effect.${potion.id}`);
+
+export const effectName = (effect: PotionEffect) => term(`effect.minecraft.${effect.icon}`);
+
+/** the game's numeral for an effect level: 2 -> "II" */
+export const potency = (level: number) => term(`potion.potency.${level - 1}`);
+
+/** a message whose {id} placeholders are filled by `name(id)` */
+function fill(key: MessageKey, name: (id: string) => string) {
+	const ids = [...t(key).matchAll(/\{(\w+)\}/g)].map((match) => match[1]);
+	return t(key, Object.fromEntries(ids.map((id) => [id, name(id)])));
+}
+
+/** the tip of a potion, its {potion} placeholders filled with official potion names */
+export const potionNote = (potion: Potion) =>
+	potion.note && fill(potion.note, (id) => potionName(potionById(id)));
+
+/** the detail of a potion, its {effect} placeholders filled with official effect names */
+export const potionDetail = (potion: Potion) =>
+	potion.detail && fill(potion.detail, (id) => term(`effect.minecraft.${id}`));
+
 /** final effect summary for the selected potion, e.g. { level: "II", time: "1:30" } */
 export function effectSummary(potion: Potion, upgrade: Upgrade, form: Form) {
 	if (!potion.effects) return null;
-	const level = upgrade === "enhanced" ? potion.enhanced?.level : undefined;
-	if (potion.instant) return { level, time: "Instant" };
+	const amplifier = upgrade === "enhanced" ? potion.enhanced?.level : undefined;
+	const level = amplifier ? potency(amplifier) : undefined;
+	if (potion.instant) return { level, time: t("potion.instant") };
 	const base =
 		upgrade === "extended"
 			? potion.extended
@@ -323,26 +298,15 @@ export function effectSummary(potion: Potion, upgrade: Upgrade, form: Form) {
 	return { level, time: formatDuration((base ?? 0) * DURATION_FACTOR[form]) };
 }
 
+/** the name the game gives the item, "Splash Potion of Swiftness II" in every language */
 export function fullName(potion: Potion, upgrade: Upgrade, form: Form) {
-	const suffix = upgrade === "enhanced" && potion.enhanced ? ` ${potion.enhanced.level}` : "";
-	if (!potion.effects) {
-		const prefix = form === "splash" ? "Splash " : form === "lingering" ? "Lingering " : "";
-		const name = potion.id === "water" ? "Water Bottle" : `${potion.name} Potion`;
-		return form === "arrow" ? "Tipped Arrow" : `${prefix}${name}`;
-	}
-	switch (form) {
-		case "splash":
-			return `Splash Potion of ${potion.label}${suffix}`;
-		case "lingering":
-			return `Lingering Potion of ${potion.label}${suffix}`;
-		case "arrow":
-			return `Arrow of ${potion.label}${suffix}`;
-		default:
-			return `Potion of ${potion.label}${suffix}`;
-	}
+	const name = term(`item.minecraft.${FORM_ITEM[form]}.effect.${potion.id}`);
+	return upgrade === "enhanced" && potion.enhanced
+		? `${name} ${potency(potion.enhanced.level)}`
+		: name;
 }
 
-export interface StageIcon {
+interface StageIcon {
 	color: string;
 	form: Form;
 }
@@ -385,7 +349,9 @@ export function recipe(potion: Potion, upgrade: Upgrade, form: Form): RecipeStep
 	let current = fullName(potion, "none", "potion");
 	if (upgrade !== "none") {
 		const upgraded =
-			fullName(potion, upgrade, "potion") + (upgrade === "extended" ? " (Extended)" : "");
+			upgrade === "extended"
+				? t("potion.extendedName", { name: fullName(potion, upgrade, "potion") })
+				: fullName(potion, upgrade, "potion");
 		steps.push({
 			kind: "brew",
 			input: stage(potion, "potion", current),
@@ -451,12 +417,4 @@ export function totals(steps: RecipeStep[], bottles: number) {
 	};
 }
 
-const ITEM_NAMES: Record<string, string> = {
-	rabbit_foot: "Rabbit's Foot",
-	turtle_helmet: "Turtle Shell",
-	redstone: "Redstone Dust",
-	glistering_melon_slice: "Glistering Melon Slice",
-};
-
-export const ingredientName = (id: string) =>
-	ITEM_NAMES[id] ?? id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+export const ingredientName = (id: string) => itemName(id);

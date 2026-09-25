@@ -1,7 +1,7 @@
 import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import ItemChecklist from "@/components/item-checklist/item-checklist";
-import { loadItems, resolveVersion } from "@/lib/items";
+import { isObtainable, loadItems, resolveVersion } from "@/lib/items";
 
 export const Route = createFileRoute("/tool/item-checklist")({
 	// `?v=1.21.10`; anything unknown falls back to the latest version
@@ -11,7 +11,9 @@ export const Route = createFileRoute("/tool/item-checklist")({
 	loaderDeps: ({ search }) => ({ v: search.v }),
 	loader: async ({ deps }) => {
 		const version = resolveVersion(deps.v);
-		return { version, items: await loadItems(version) };
+		// only what a survival player can actually gather
+		const items = (await loadItems(version)).filter((item) => isObtainable(item.id));
+		return { version, items };
 	},
 	head: () => pageHead("/tool/item-checklist"),
 	component: ItemChecklistPage,

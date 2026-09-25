@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useI18n } from "@/i18n";
 import { colorById, type Firework, type Shape } from "@/lib/firework";
 import { cn } from "@/lib/utils";
 
@@ -132,7 +133,6 @@ const mix = (a: Rgb, b: Rgb, t: number): Rgb => [
 	a[2] + (b[2] - a[2]) * t,
 ];
 
-// fixed background stars
 const SKY_STARS = Array.from({ length: 50 }, (_, i) => ({
 	x: ((i * 97) % 360) + ((i * 13) % 7),
 	y: ((i * 53) % (GROUND - 40)) + ((i * 7) % 5),
@@ -153,8 +153,8 @@ function drawBackground(ctx: CanvasRenderingContext2D) {
 	ctx.fillRect(0, GROUND + 6, W, H - GROUND - 6);
 }
 
-/** night sky with a launch pad: the rocket rises, then every star of the design explodes */
 export default function FireworkCanvas({ firework, replayKey, className }: Props) {
+	const i18n = useI18n();
 	const ref = useRef<HTMLCanvasElement>(null);
 
 	useEffect(() => {
@@ -245,8 +245,8 @@ export default function FireworkCanvas({ firework, replayKey, className }: Props
 		<canvas
 			ref={ref}
 			role="img"
-			aria-label="Firework preview"
-			className={cn("aspect-[360/440] w-full max-w-[360px] rounded", className)}
+			aria-label={i18n.t("firework.previewLabel")}
+			className={cn("aspect-360/440 w-full max-w-90 rounded", className)}
 		/>
 	);
 }

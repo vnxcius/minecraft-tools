@@ -1,4 +1,11 @@
-import { CheckIcon, CopyIcon, DicesIcon, MinusIcon, PlusIcon, SearchIcon } from "lucide-react";
+import {
+	Check as CheckIcon,
+	Close as CloseIcon,
+	Copy as CopyIcon,
+	Minus as MinusIcon,
+	Plus as PlusIcon,
+	Shuffle as ShuffleIcon,
+} from "pixelarticons/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,21 +17,25 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { Heading, ItemIcon } from "@/components/tool-parts";
 import { SeedEngine } from "@/lib/seedmap/engine";
 import {
 	biomeDim,
+	biomeName,
 	DEFAULT_FEATURES,
 	DIMENSIONS,
 	FEATURES,
+	featureName,
 	SPAWN_ICON,
 	STRONGHOLD_ICON,
 	VERSIONS,
+	versionName,
 } from "@/lib/seedmap/features";
+import { useI18n } from "@/i18n";
 import type { Dim, EngineInfo } from "@/lib/seedmap/protocol";
 import { displaySeed, parseSeed, randomSeed } from "@/lib/seedmap/seed";
 import { cn } from "@/lib/utils";
+import ChunkDetails from "./chunk-details";
 import SeedMap, { type Hover, type MapPoint, type Selection, type SeedMapHandle } from "./seed-map";
 
 interface World {
@@ -36,7 +47,12 @@ interface World {
 	strongholds: Int32Array;
 }
 
-const DEFAULT_SEED = "12345";
+const DEFAULT_SEED = "";
+
+type FindResult =
+	| { found: { x: number; z: number; distance: number } }
+	| { notFound: true }
+	| { error: string };
 
 function CoordsRow({
 	label,
@@ -66,9 +82,17 @@ function CoordsRow({
 interface Props {
 	/** item id -> icon url */
 	icons: Record<string, string>;
+	/** start with the slime chunks shown */
+	slime?: boolean;
 }
 
-export default function SeedTool({ icons }: Props) {
+/** both fields hold a whole number (a lone "-" while typing does not count yet) */
+function toPoint(x: string, z: string): MapPoint | null {
+	if (!/^\s*-?\d+\s*$/.test(x) || !/^\s*-?\d+\s*$/.test(z)) return null;
+	return { x: Number(x), z: Number(z) };
+}
+
+export default function SeedTool({ icons, slime = false }: Props) {
 	const map = useRef<SeedMapHandle>(null);
 	const engineRef = useRef<SeedEngine | null>(null);
 	const [world, setWorld] = useState<World | null>(null);
@@ -79,21 +103,28 @@ export default function SeedTool({ icons }: Props) {
 	const [dim, setDim] = useState<Dim>(0);
 
 	const [features, setFeatures] = useState<Set<string>>(new Set(DEFAULT_FEATURES));
-	const [showSlime, setShowSlime] = useState(false);
+	const [showSlime, setShowSlime] = useState(slime);
 	const [showGrid, setShowGrid] = useState(true);
 	const [showStrongholds, setShowStrongholds] = useState(true);
 	const [showSpawn, setShowSpawn] = useState(true);
 
 	const [hover, setHover] = useState<Hover | null>(null);
 	const [selection, setSelection] = useState<Selection | null>(null);
-	const [pin, setPin] = useState<MapPoint | null>(null);
 	const [copied, setCopied] = useState(false);
 
-	const [goX, setGoX] = useState("0");
-	const [goZ, setGoZ] = useState("0");
-	const [biome, setBiome] = useState<number | null>(null);
-	const [finding, setFinding] = useState(false);
-	const [findResult, setFindResult] = useState<string | null>(null);
+	// the "Go to" fields are the pin: clicking the map fills them, typing in them moves the pin
+	const [goX, setGoX] = useState("");
+	const [goZ, setGoZ] = useState("");
+	const pin = useMemo(() => toPoint(goX, goZ), [goX, goZ]);
+	const setPin = (point: MapPoint | null) => {
+		setGoX(point ? String(point.x) : "");
+		setGoZ(point ? String(point.z) : "");
+	};
+	// the biomes picked in the finder, lit up on the map
+	const [pickedBiomes, setPickedBiomes] = useState<number[]>([]);
+	const [finding, setFinding] = useState<number | null>(null);
+	const [findResults, setFindResults] = useState<Record<number, FindResult>>({});
+	const { t, term, language } = useI18n();
 
 	// the worker lives as long as the page
 	useEffect(
@@ -104,26 +135,34 @@ export default function SeedTool({ icons }: Props) {
 		[],
 	);
 
-	// (re)generate the world whenever the seed or version is applied
 	useEffect(() => {
 		let stale = false;
 		const engine = (engineRef.current ??= new SeedEngine());
 		(async () => {
 			const info = await engine.init({ version: applied.version, seed: parseSeed(applied.seed) });
-			const [spawn, strongholds] = await Promise.all([engine.spawn(), engine.strongholds(128)]);
+			// all 128 strongholds take seconds; the first ring and a half (the 8 nearest are among the
+			// first 9) come right away, the rest follow without holding up the map
+			const [spawn, nearest] = await Promise.all([engine.spawn(), engine.strongholds(9)]);
 			if (stale) return;
 			setError(null);
-			setWorld((previous) => ({
-				engine,
-				info,
-				epoch: (previous?.epoch ?? 0) + 1,
-				spawn: { x: spawn[0], z: spawn[1] },
-				strongholds,
-			}));
+			let epoch = 0;
+			setWorld((previous) => {
+				epoch = (previous?.epoch ?? 0) + 1;
+				return { engine, info, epoch, spawn: { x: spawn[0], z: spawn[1] }, strongholds: nearest };
+			});
+			engine
+				.strongholds(128)
+				.then((all) => {
+					if (!stale)
+						setWorld((current) =>
+							current?.epoch === epoch ? { ...current, strongholds: all } : current,
+						);
+				})
+				.catch(() => {});
 			setSelection(null);
-			setPin(null);
-			setBiome(null);
-			setFindResult(null);
+			setGoX("");
+			setGoZ("");
+			setFindResults({});
 		})().catch((e) => !stale && setError(String(e)));
 		return () => {
 			stale = true;
@@ -140,10 +179,26 @@ export default function SeedTool({ icons }: Props) {
 	const biomes = useMemo(() => {
 		if (!world) return [];
 		return Object.entries(world.info.names)
-			.map(([id, name]) => ({ id: Number(id), name }))
-			.filter(({ id, name }) => biomeDim(id) === dim && name !== "the_void")
-			.sort((a, b) => a.name.localeCompare(b.name));
-	}, [world, dim]);
+			.filter(([id, name]) => biomeDim(Number(id)) === dim && name !== "the_void")
+			.map(([id, name]) => {
+				const key = `biome.minecraft.${name}`;
+				const official = term(key);
+				// old versions have biomes the game no longer names
+				return { id: Number(id), name: official === key ? name.replace(/_/g, " ") : official };
+			})
+			.sort((a, b) => a.name.localeCompare(b.name, language));
+	}, [world, dim, term, language]);
+
+	// the picked biomes of this dimension and version, the ones the map highlights
+	const shownBiomes = useMemo(
+		() => biomes.filter((b) => pickedBiomes.includes(b.id)),
+		[biomes, pickedBiomes],
+	);
+	const highlight = useMemo(() => new Set(shownBiomes.map((b) => b.id)), [shownBiomes]);
+	const biomeColor = (id: number) =>
+		world
+			? `rgb(${world.info.colors[id * 3]} ${world.info.colors[id * 3 + 1]} ${world.info.colors[id * 3 + 2]})`
+			: undefined;
 
 	const toggleFeature = (id: string) =>
 		setFeatures((prev) => {
@@ -156,32 +211,30 @@ export default function SeedTool({ icons }: Props) {
 	const go = (x: number, z: number, blocksPerPixel?: number) =>
 		map.current?.goTo(x, z, blocksPerPixel);
 
-	const findBiome = async () => {
-		if (!world || biome === null) return;
-		setFinding(true);
-		setFindResult(null);
-		try {
-			const center = map.current?.center() ?? { x: 0, z: 0 };
-			const found = await world.engine.findBiome({
-				dim,
-				biome,
-				x: center.x,
-				z: center.z,
-				radius: 20000,
-			});
-			if (!found) {
-				setFindResult("Not found within 20,000 blocks");
-			} else {
-				const distance = Math.round(Math.hypot(found.x - center.x, found.z - center.z));
+	const findBiome = async (biome: number) => {
+		if (!world) return;
+		setFinding(biome);
+		const result = await (async (): Promise<FindResult> => {
+			try {
+				const center = map.current?.center() ?? { x: 0, z: 0 };
+				const found = await world.engine.findBiome({
+					dim,
+					biome,
+					x: center.x,
+					z: center.z,
+					radius: 20000,
+				});
+				if (!found) return { notFound: true };
 				setPin(found);
 				go(found.x, found.z, 4);
-				setFindResult(`Found at ${found.x}, ${found.z} (${distance} blocks away)`);
+				const distance = Math.round(Math.hypot(found.x - center.x, found.z - center.z));
+				return { found: { ...found, distance } };
+			} catch (e) {
+				return { error: String(e) };
 			}
-		} catch (e) {
-			setFindResult(String(e));
-		} finally {
-			setFinding(false);
-		}
+		})();
+		setFindResults((prev) => ({ ...prev, [biome]: result }));
+		setFinding(null);
 	};
 
 	const copyTeleport = async () => {
@@ -192,6 +245,14 @@ export default function SeedTool({ icons }: Props) {
 	};
 
 	const seedNumber = displaySeed(applied.seed);
+
+	const selectionTitle = (picked: Selection) => {
+		if (picked.chunk) return t("seed.chunk", { x: picked.chunk.cx, z: picked.chunk.cz });
+		if (picked.kind === "stronghold") return t("seed.stronghold");
+		if (picked.kind === "spawn") return t("seed.worldSpawn");
+		const feature = FEATURES.find((f) => f.id === picked.feature);
+		return feature ? featureName(feature) : t("seed.location");
+	};
 	const nearestStrongholds = useMemo(() => {
 		if (!world) return [];
 		const list: { x: number; z: number }[] = [];
@@ -202,22 +263,17 @@ export default function SeedTool({ icons }: Props) {
 	}, [world]);
 
 	return (
-		<section className="py-12">
-			<h1 className="display mb-2 text-center text-4xl">Seed Map</h1>
-			<p className="text-center text-muted-foreground">
-				Explore the world of any seed: biomes, structures, strongholds and slime chunks.
-			</p>
-
-			<Separator className="mx-auto my-4 max-w-lg" />
-
-			<div className="mx-auto grid w-full max-w-6xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_21rem]">
-				<div className="flex min-w-0 flex-col gap-3">
+		<section>
+			<div className="relative grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_21rem]">
+				<div className="flex min-w-0 flex-col gap-1 lg:sticky lg:top-3 lg:self-start">
 					<Heading
 						aside={
-							<span className="text-muted-foreground text-sm tabular-nums">Seed {seedNumber}</span>
+							<span className="font-pixel text-sm text-muted-foreground tabular-nums">
+								{seedNumber}
+							</span>
 						}
 					>
-						Map
+						{t("seed.map")}
 					</Heading>
 
 					<div className="relative h-[72svh] min-h-96 overflow-hidden rounded border bg-card">
@@ -234,14 +290,21 @@ export default function SeedTool({ icons }: Props) {
 								spawn={showSpawn ? world.spawn : null}
 								strongholds={showStrongholds ? world.strongholds : null}
 								pin={pin}
+								highlight={highlight}
+								chunk={selection?.chunk ?? null}
 								icons={icons}
+								scaleLabel={(blocks) => t("seed.scale", { count: blocks })}
+								ariaLabel={t("seed.worldMap")}
 								onHover={setHover}
-								onSelect={setSelection}
+								onSelect={(picked) => {
+									setSelection(picked);
+									setPin(picked);
+								}}
 							/>
 						)}
 						{(!world || error) && (
-							<div className="absolute inset-0 flex items-center justify-center bg-card/80 text-muted-foreground text-sm">
-								{error ?? "Generating world..."}
+							<div className="absolute inset-0 flex items-center justify-center bg-card/80 text-sm text-muted-foreground">
+								{error ?? t("seed.generating")}
 							</div>
 						)}
 
@@ -249,7 +312,7 @@ export default function SeedTool({ icons }: Props) {
 							<Button
 								variant="outline"
 								size="icon-sm"
-								aria-label="Zoom in"
+								aria-label={t("seed.zoomIn")}
 								onClick={() => map.current?.zoom(1)}
 							>
 								<PlusIcon />
@@ -257,7 +320,7 @@ export default function SeedTool({ icons }: Props) {
 							<Button
 								variant="outline"
 								size="icon-sm"
-								aria-label="Zoom out"
+								aria-label={t("seed.zoomOut")}
 								onClick={() => map.current?.zoom(-1)}
 							>
 								<MinusIcon />
@@ -268,37 +331,50 @@ export default function SeedTool({ icons }: Props) {
 							{hover ? (
 								<>
 									X {hover.x}, Z {hover.z}
-									{hover.biome && <span className="text-muted-foreground"> · {hover.biome}</span>}
+									{hover.biome && (
+										<span className="text-muted-foreground"> · {biomeName(hover.biome)}</span>
+									)}
 								</>
 							) : (
-								"Drag to pan · scroll to zoom · click for details"
+								t("seed.hint")
 							)}
 						</div>
 					</div>
 
 					{selection && (
-						<div className="flex flex-wrap items-center gap-3 rounded border bg-card p-3 text-sm">
-							<div className="min-w-0 flex-1">
-								<p className="font-semibold">{selection.label}</p>
-								<p className="text-muted-foreground tabular-nums">
-									X {selection.x}, Z {selection.z}
-									{selection.biome && ` · ${selection.biome}`}
-								</p>
+						<div className="flex flex-col gap-2.5 rounded border bg-card p-3 text-sm">
+							<div className="flex flex-wrap items-center gap-3">
+								<div className="min-w-0 flex-1">
+									<p className="font-semibold">{selectionTitle(selection)}</p>
+									<p className="text-muted-foreground tabular-nums">
+										X {selection.x}, Z {selection.z}
+										{selection.biome && ` · ${biomeName(selection.biome)}`}
+									</p>
+								</div>
+								<Button variant="outline" size="sm" onClick={copyTeleport}>
+									{copied ? <CheckIcon /> : <CopyIcon />}
+									{t("seed.copyTp")}
+								</Button>
 							</div>
-							<Button variant="outline" size="sm" onClick={copyTeleport}>
-								{copied ? <CheckIcon /> : <CopyIcon />}
-								Copy /tp
-							</Button>
+							{selection.chunk && world && (
+								<ChunkDetails
+									chunk={selection.chunk}
+									dim={dim}
+									engine={world.engine}
+									epoch={world.epoch}
+									icons={icons}
+								/>
+							)}
 						</div>
 					)}
 				</div>
 
-				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>World</Heading>
+				<div className="flex min-w-0 flex-col gap-1">
+					<Heading>{t("seed.world")}</Heading>
 					<div className="space-y-4 rounded border p-3">
 						<div className="space-y-2">
-							<label htmlFor="seed" className="text-muted-foreground text-sm">
-								Seed (number or text)
+							<label htmlFor="seed" className="block text-sm text-muted-foreground">
+								{t("seed.seed")}
 							</label>
 							<div className="flex gap-2">
 								<Input
@@ -307,18 +383,19 @@ export default function SeedTool({ icons }: Props) {
 									spellCheck={false}
 									onChange={(e) => setSeedInput(e.target.value)}
 									onKeyDown={(e) => e.key === "Enter" && apply()}
+									placeholder={t("seed.seedPlaceholder")}
 								/>
 								<Button
 									variant="outline"
 									size="icon"
-									aria-label="Random seed"
+									aria-label={t("seed.randomSeed")}
 									onClick={() => {
 										const seed = randomSeed();
 										setSeedInput(seed);
 										apply(seed);
 									}}
 								>
-									<DicesIcon />
+									<ShuffleIcon />
 								</Button>
 							</div>
 							<div className="flex gap-2">
@@ -326,47 +403,50 @@ export default function SeedTool({ icons }: Props) {
 									value={applied.version}
 									onValueChange={(version) => version && apply(seedInput, version)}
 								>
-									<SelectTrigger aria-label="Minecraft version" className="min-w-0 flex-1">
+									<SelectTrigger aria-label={t("seed.version")} className="min-w-0 flex-1">
 										<SelectValue>
-											{(value: string) => VERSIONS.find((v) => v.id === value)?.name}
+											{(value: string) => {
+												const version = VERSIONS.find((v) => v.id === value);
+												return version && versionName(version);
+											}}
 										</SelectValue>
 									</SelectTrigger>
 									<SelectContent>
 										{VERSIONS.map((v) => (
 											<SelectItem key={v.id} value={v.id}>
-												{v.name}
+												{versionName(v)}
 											</SelectItem>
 										))}
 									</SelectContent>
 								</Select>
-								<Button onClick={() => apply()}>Go</Button>
+								<Button onClick={() => apply()}>{t("seed.go")}</Button>
 							</div>
 						</div>
 
-						<div role="radiogroup" aria-label="Dimension" className="flex gap-1">
+						<div role="radiogroup" aria-label={t("seed.dimension")} className="flex gap-1">
 							{DIMENSIONS.map((d) => (
-								<button
-									key={d.id}
-									type="button"
-									role="radio"
-									aria-checked={dim === d.id}
-									onClick={() => {
-										setDim(d.id);
-										setBiome(null);
-										setPin(null);
-									}}
-									className={cn(
-										"flex-1 rounded border px-2 py-1.5 text-sm hover:bg-accent",
-										dim === d.id && "border-primary bg-primary/20 hover:bg-primary/30",
-									)}
-								>
-									{d.name}
-								</button>
+								<div key={d.id} className="">
+									<button
+										type="button"
+										role="radio"
+										aria-checked={dim === d.id}
+										onClick={() => {
+											setDim(d.id);
+											setPin(null);
+										}}
+										className={cn(
+											"flex-1 tile bg-secondary px-2 pt-1.5 pb-2 text-sm hover:bg-accent",
+											dim === d.id && "bg-primary/80 hover:border-primary hover:bg-primary/35",
+										)}
+									>
+										{term(d.key)}
+									</button>
+								</div>
 							))}
 						</div>
 
 						<div className="space-y-2">
-							<h3 className="text-muted-foreground text-sm">Go to</h3>
+							<h3 className="text-sm text-muted-foreground">{t("seed.goTo")}</h3>
 							<div className="flex gap-2">
 								<Input
 									aria-label="X"
@@ -374,6 +454,7 @@ export default function SeedTool({ icons }: Props) {
 									inputMode="numeric"
 									value={goX}
 									onChange={(e) => setGoX(e.target.value)}
+									onKeyDown={(e) => e.key === "Enter" && pin && go(pin.x, pin.z)}
 								/>
 								<Input
 									aria-label="Z"
@@ -381,15 +462,25 @@ export default function SeedTool({ icons }: Props) {
 									inputMode="numeric"
 									value={goZ}
 									onChange={(e) => setGoZ(e.target.value)}
+									onKeyDown={(e) => e.key === "Enter" && pin && go(pin.x, pin.z)}
 								/>
-								<Button variant="outline" onClick={() => go(Number(goX) || 0, Number(goZ) || 0)}>
-									Go
+								<Button variant="outline" onClick={() => go(pin?.x ?? 0, pin?.z ?? 0)}>
+									{t("seed.go")}
 								</Button>
 							</div>
 						</div>
 					</div>
 
-					<Heading>Features</Heading>
+					<div className="flex justify-between">
+						<Heading>{t("seed.structures")}</Heading>
+						<label
+							htmlFor="opt-grid"
+							className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground/60"
+						>
+							{t("seed.showGrid")}
+							<Checkbox id="opt-grid" checked={showGrid} onCheckedChange={setShowGrid} />
+						</label>
+					</div>
 					<div className="space-y-1 rounded border p-3">
 						{dimFeatures.map((feature) => (
 							<label
@@ -403,7 +494,7 @@ export default function SeedTool({ icons }: Props) {
 									onCheckedChange={() => toggleFeature(feature.id)}
 								/>
 								<ItemIcon icons={icons} item={feature.icon} className="size-5" />
-								{feature.name}
+								{featureName(feature)}
 							</label>
 						))}
 						{dim === 0 && (
@@ -418,7 +509,7 @@ export default function SeedTool({ icons }: Props) {
 										onCheckedChange={setShowStrongholds}
 									/>
 									<ItemIcon icons={icons} item={STRONGHOLD_ICON} className="size-5" />
-									Strongholds
+									{t("seed.strongholds")}
 								</label>
 								<label
 									htmlFor="opt-spawn"
@@ -426,7 +517,7 @@ export default function SeedTool({ icons }: Props) {
 								>
 									<Checkbox id="opt-spawn" checked={showSpawn} onCheckedChange={setShowSpawn} />
 									<ItemIcon icons={icons} item={SPAWN_ICON} className="size-5" />
-									World spawn
+									{t("seed.worldSpawn")}
 								</label>
 								<label
 									htmlFor="opt-slime"
@@ -434,64 +525,102 @@ export default function SeedTool({ icons }: Props) {
 								>
 									<Checkbox id="opt-slime" checked={showSlime} onCheckedChange={setShowSlime} />
 									<span className="inline-block size-3 rounded-sm bg-[#6edc5a]" />
-									Slime chunks
+									{t("seed.slimeChunks")}
 								</label>
 							</>
 						)}
-						<label htmlFor="opt-grid" className="flex cursor-pointer items-center gap-2 text-sm">
-							<Checkbox id="opt-grid" checked={showGrid} onCheckedChange={setShowGrid} />
-							<span className="inline-block size-3 rounded-sm border" />
-							Chunk grid (zoomed in)
-						</label>
 					</div>
 
-					<Heading>Biome finder</Heading>
+					<Heading>{t("seed.biomeFinder")}</Heading>
 					<div className="space-y-2 rounded border p-3">
 						<Select
-							value={biome === null ? "" : String(biome)}
-							onValueChange={(value) => value && setBiome(Number(value))}
+							value=""
+							onValueChange={(value) =>
+								value && setPickedBiomes((prev) => [...prev, Number(value)])
+							}
 						>
-							<SelectTrigger aria-label="Biome" className="w-full">
-								<SelectValue placeholder="Pick a biome">
-									{(value: string) =>
-										value ? (world?.info.names[Number(value)] ?? "").replace(/_/g, " ") : null
-									}
-								</SelectValue>
+							<SelectTrigger aria-label={t("seed.addBiome")} className="w-full">
+								<SelectValue placeholder={t("seed.addBiome")} />
 							</SelectTrigger>
 							<SelectContent>
-								{biomes.map(({ id, name }) => (
-									<SelectItem key={id} value={String(id)}>
-										<span
-											className="inline-block size-3 rounded-sm"
-											style={{
-												backgroundColor: world
-													? `rgb(${world.info.colors[id * 3]} ${world.info.colors[id * 3 + 1]} ${world.info.colors[id * 3 + 2]})`
-													: undefined,
-											}}
-										/>
-										{name.replace(/_/g, " ")}
-									</SelectItem>
-								))}
+								{biomes
+									.filter(({ id }) => !highlight.has(id))
+									.map(({ id, name }) => (
+										<SelectItem key={id} value={String(id)}>
+											<span
+												className="mr-2 inline-block size-3 translate-y-0.5 rounded-sm"
+												style={{ backgroundColor: biomeColor(id) }}
+											/>
+											{name}
+										</SelectItem>
+									))}
 							</SelectContent>
 						</Select>
-						<Button
-							variant="outline"
-							className="w-full"
-							disabled={biome === null || finding}
-							onClick={findBiome}
-						>
-							<SearchIcon />
-							{finding ? "Searching..." : "Find nearest to the map center"}
-						</Button>
-						{findResult && <p className="text-muted-foreground text-xs">{findResult}</p>}
+						{shownBiomes.length > 0 ? (
+							<>
+								<ul className="flex flex-col gap-1">
+									{shownBiomes.map(({ id, name }) => {
+										const result = findResults[id];
+										return (
+											<li key={id} className="flex gap-1">
+												<button
+													type="button"
+													disabled={finding !== null}
+													onClick={() => findBiome(id)}
+													aria-label={t("seed.goToNearest", { name })}
+													className="flex min-w-0 flex-1 flex-col items-start gap-0.5 tile bg-secondary px-2 pt-1 pb-2 text-left hover:bg-accent disabled:cursor-wait"
+												>
+													<span className="flex items-center gap-2 text-sm font-bold">
+														<span
+															className="inline-block size-3 shrink-0 border border-black/40"
+															style={{ backgroundColor: biomeColor(id) }}
+														/>
+														{name}
+													</span>
+													<span className="text-xs text-muted-foreground">
+														{finding === id
+															? t("seed.searching")
+															: !result
+																? t("seed.findNearest")
+																: "found" in result
+																	? t("seed.found", result.found)
+																	: "notFound" in result
+																		? t("seed.notFound")
+																		: result.error}
+													</span>
+												</button>
+												<button
+													type="button"
+													onClick={() => setPickedBiomes((prev) => prev.filter((b) => b !== id))}
+													aria-label={t("seed.removeBiome", { name })}
+													className="tile bg-secondary px-2 pb-1 hover:bg-accent"
+												>
+													<CloseIcon className="size-4" />
+												</button>
+											</li>
+										);
+									})}
+								</ul>
+								<Button
+									variant="outline"
+									size="sm"
+									className="w-full"
+									onClick={() => setPickedBiomes((prev) => prev.filter((b) => !highlight.has(b)))}
+								>
+									{t("seed.clearBiomes")}
+								</Button>
+							</>
+						) : (
+							<p className="text-xs leading-relaxed text-muted-foreground">{t("seed.biomeHint")}</p>
+						)}
 					</div>
 
 					{dim === 0 && world && (
 						<>
-							<Heading>Locations</Heading>
+							<Heading>{t("seed.locations")}</Heading>
 							<div className="rounded border p-1">
 								<CoordsRow
-									label="World spawn"
+									label={t("seed.worldSpawn")}
 									x={world.spawn.x}
 									z={world.spawn.z}
 									onGo={() => go(world.spawn.x, world.spawn.z)}
@@ -499,7 +628,7 @@ export default function SeedTool({ icons }: Props) {
 								{nearestStrongholds.map((s, i) => (
 									<CoordsRow
 										key={`${s.x},${s.z}`}
-										label={`Stronghold ${i + 1}`}
+										label={t("seed.strongholdNumber", { number: i + 1 })}
 										x={s.x}
 										z={s.z}
 										onGo={() => go(s.x, s.z)}
@@ -509,10 +638,7 @@ export default function SeedTool({ icons }: Props) {
 						</>
 					)}
 
-					<p className="text-muted-foreground text-xs leading-relaxed">
-						Java Edition. World generation is done by cubiomes and matches the game up to 1.21.4;
-						newer versions use the closest match.
-					</p>
+					<p className="text-xs leading-relaxed text-muted-foreground">{t("seed.note")}</p>
 				</div>
 			</div>
 		</section>

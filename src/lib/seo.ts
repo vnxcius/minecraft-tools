@@ -5,11 +5,15 @@
  * crawlers that do not run JavaScript get them too.
  */
 
+import { currentLanguage, LANGUAGES } from "@/i18n/current";
+import { PAGE_TEXT } from "@/i18n/pages";
+
 export const SITE_URL = "https://minecraft-tools.cc";
-export const SITE_NAME = "Minecraft Tools";
-export const OG_IMAGE = `${SITE_URL}/og.png`;
-export const OG_IMAGE_ALT =
-	"Minecraft Tools: useful calculators, designers and guides for Minecraft players";
+const SITE_NAME = "Minecraft Tools";
+// bump ?v= when the picture changes, link previews keep the old one cached by url
+const OG_IMAGE = `${SITE_URL}/og.png?v=2`;
+const OG_IMAGE_ALT =
+	"Minecraft Tools: seed map, villager trades, enchanting, banners, armor trims and more";
 
 export interface Page {
 	path: string;
@@ -19,16 +23,15 @@ export interface Page {
 	description: string;
 	/** the visible h1 of the page, used for the text served before JavaScript runs */
 	heading: string;
-	/** sitemap priority */
 	priority: number;
 }
 
 export const PAGES: Page[] = [
 	{
 		path: "/",
-		title: "Useful Minecraft Tools: Calculators, Designers and Guides",
+		title: "Useful Minecraft Tools: Calculators, Generators and Guides",
 		description:
-			"Free Minecraft tools in your browser: stack calculator, item checklist, armor trims, banner and shield designers, fireworks, potions, enchantments and a seed map.",
+			"Free Minecraft tools in your browser: seed map, villager trades, enchanting and anvil order, banner, shield and firework generators, armor trims and more.",
 		heading: "Useful tools for Minecraft",
 		priority: 1,
 	},
@@ -44,7 +47,7 @@ export const PAGES: Page[] = [
 		path: "/tool/item-checklist",
 		title: "Minecraft Item Checklist and Materials List Builder",
 		description:
-			"Build a materials list for your Minecraft build with every item up to the latest version, set quantity goals and tick items off as you gather them.",
+			"Build a materials list with every Minecraft item, set goals and tick items off as you gather them, with your build tutorial video playing beside it.",
 		heading: "Items Checklist",
 		priority: 0.8,
 	},
@@ -57,27 +60,27 @@ export const PAGES: Page[] = [
 		priority: 0.9,
 	},
 	{
-		path: "/tool/banner-crafting",
-		title: "Minecraft Banner Designer with All Patterns and Recipes",
+		path: "/tool/banner-generator",
+		title: "Minecraft Banner Generator with All Patterns and Recipes",
 		description:
 			"Design Minecraft banners with all 16 colors and 42 patterns. See the materials you need, the loom steps and get a /give command.",
-		heading: "Banner Designer",
+		heading: "Banner Generator",
 		priority: 0.9,
 	},
 	{
-		path: "/tool/shield-designer",
-		title: "Minecraft Shield Designer: Banner Patterns on Shields",
+		path: "/tool/shield-generator",
+		title: "Minecraft Shield Generator: Banner Patterns on Shields",
 		description:
 			"See any banner pattern on a shield before you craft it. Get the materials list and a /give command for your shield design.",
-		heading: "Shield Designer",
+		heading: "Shield Generator",
 		priority: 0.8,
 	},
 	{
-		path: "/tool/firework-crafting",
-		title: "Minecraft Firework Rocket and Star Crafting Tool",
+		path: "/tool/firework-generator",
+		title: "Minecraft Firework Generator: Rockets, Stars and Recipes",
 		description:
 			"Design firework stars with every shape, color, fade, trail and twinkle, watch them explode and get the crafting recipe and /give command.",
-		heading: "Firework Crafting",
+		heading: "Firework Generator",
 		priority: 0.8,
 	},
 	{
@@ -100,15 +103,81 @@ export const PAGES: Page[] = [
 		path: "/tool/seed-map",
 		title: "Minecraft Seed Map: Biomes, Villages and Structure Finder",
 		description:
-			"Explore any Minecraft seed in your browser: biomes, villages, strongholds, slime chunks, Nether and End structures, plus a nearest biome finder.",
+			"Explore any Minecraft seed in your browser: biomes, villages, strongholds, slime chunks and Nether and End structures. Highlight biomes and find the nearest.",
 		heading: "Seed Map",
 		priority: 0.9,
 	},
+	{
+		path: "/tool/enchant-order",
+		title: "Minecraft Enchantment Order Calculator: Cheapest Anvil Order",
+		description:
+			'Find the cheapest order to combine enchanted books in the anvil and avoid "Too Expensive!". Level cost of every step, for every item.',
+		heading: "Enchantment Order",
+		priority: 0.9,
+	},
+	{
+		path: "/tool/villager-trading",
+		title: "Minecraft Villager Trading Guide: Every Trade by Profession",
+		description:
+			"All villager and wandering trader trades by profession and level, enchanted book prices for librarians, and a search for who sells what.",
+		heading: "Villager Trading Guide",
+		priority: 0.9,
+	},
+	{
+		path: "/tool/nether-portal",
+		title: "Minecraft Nether Portal Calculator: Overworld to Nether",
+		description:
+			"Convert Overworld coordinates to the Nether and back to link nether portals. Divide by 8 going in, multiply by 8 coming out.",
+		heading: "Nether Portal Calculator",
+		priority: 0.8,
+	},
+	{
+		path: "/tool/slime-chunk-finder",
+		title: "Minecraft Slime Chunk Finder: Slime Chunks of Any Seed",
+		description:
+			"Find the slime chunks of any Minecraft seed on a map, with their coordinates, to build a slime farm. Runs in your browser.",
+		heading: "Slime Chunk Finder",
+		priority: 0.8,
+	},
+	{
+		path: "/tool/circle-generator",
+		title: "Minecraft Circle Generator: Circles, Ovals, Spheres and Domes",
+		description:
+			"Pixel circles, ovals, spheres and domes for Minecraft builds, layer by layer, with the exact number of blocks you need.",
+		heading: "Circle Generator",
+		priority: 0.8,
+	},
 ];
 
-export const pageByPath = (path: string) => PAGES.find((page) => page.path === path);
+const pageByPath = (path: string) => PAGES.find((page) => page.path === path);
+
+/**
+ * Pages that moved: old path -> new path. The app redirects them, and the prerender writes a page at
+ * the old path pointing crawlers (and old links) to the new one.
+ */
+export const MOVED: Record<string, string> = {
+	"/tool/banner-crafting": "/tool/banner-generator",
+	"/tool/shield-designer": "/tool/shield-generator",
+	"/tool/firework-crafting": "/tool/firework-generator",
+};
+
+/** a page in the language the site is shown in (always English for the prerendered html) */
+export function localizedPage(path: string): Page | undefined {
+	const page = pageByPath(path);
+	const language = currentLanguage();
+	if (!page || language === "en") return page;
+	return { ...page, ...PAGE_TEXT[language][path] };
+}
+
+/** "en", "pt-BR" -> the og:locale form "en_US", "pt_BR" */
+const LOCALES = { en: "en_US", "pt-BR": "pt_BR", es: "es_ES" } as const;
 
 export const urlOf = (path: string) => `${SITE_URL}${path === "/" ? "/" : path}`;
+
+/** the tool's picture, named after its page ("/tool/seed-map" -> /tools/seed-map.png) */
+const imageOf = (path: string) => `${SITE_URL}/tools/${path.split("/").pop()}.png`;
+
+const AUTHOR = { "@type": "Person", name: "Vinicius Simon" };
 
 /** structured data (JSON-LD) of a page */
 export function structuredData(page: Page) {
@@ -120,7 +189,20 @@ export function structuredData(page: Page) {
 				name: SITE_NAME,
 				url: SITE_URL,
 				description: page.description,
-				inLanguage: "en",
+				// one url per page, the language is picked on the site
+				inLanguage: LANGUAGES.map((language) => language.id),
+				author: AUTHOR,
+			},
+			{
+				"@context": "https://schema.org",
+				"@type": "ItemList",
+				name: "Tools",
+				itemListElement: PAGES.filter((tool) => tool.path !== "/").map((tool, index) => ({
+					"@type": "ListItem",
+					position: index + 1,
+					name: tool.heading,
+					url: urlOf(tool.path),
+				})),
 			},
 		];
 	}
@@ -131,12 +213,14 @@ export function structuredData(page: Page) {
 			name: page.heading,
 			url: urlOf(page.path),
 			description: page.description,
+			image: imageOf(page.path),
 			applicationCategory: "GameApplication",
 			operatingSystem: "Any (web browser)",
 			isAccessibleForFree: true,
 			offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 			isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
-			inLanguage: "en",
+			author: AUTHOR,
+			inLanguage: currentLanguage(),
 		},
 		{
 			"@context": "https://schema.org",
@@ -160,7 +244,7 @@ export function metaTags(page: Page): Meta[] {
 		{ name: "robots", content: "index, follow, max-image-preview:large" },
 		{ property: "og:type", content: "website" },
 		{ property: "og:site_name", content: SITE_NAME },
-		{ property: "og:locale", content: "en_US" },
+		{ property: "og:locale", content: LOCALES[currentLanguage()] },
 		{ property: "og:title", content: page.title },
 		{ property: "og:description", content: page.description },
 		{ property: "og:url", content: url },
@@ -178,13 +262,10 @@ export function metaTags(page: Page): Meta[] {
 
 /** `head` for a route: `head: () => pageHead("/tool/seed-map")` */
 export function pageHead(path: string) {
-	const page = pageByPath(path) as Page;
+	const page = localizedPage(path) as Page;
 	return {
 		meta: metaTags(page),
 		links: [{ rel: "canonical", href: urlOf(path) }],
-		scripts: structuredData(page).map((data) => ({
-			type: "application/ld+json",
-			children: JSON.stringify(data),
-		})),
+		// structured data is only in the prerendered html: React warns about <script> it renders
 	};
 }

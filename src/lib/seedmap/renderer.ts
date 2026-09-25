@@ -7,10 +7,18 @@ export interface MapPoint {
 	z: number;
 }
 
+export interface Chunk {
+	cx: number;
+	cz: number;
+}
+
 export interface Selection extends MapPoint {
 	kind: "feature" | "stronghold" | "spawn" | "point";
-	label: string;
+	/** the structure, for a "feature" selection; the page words the title in its language */
+	feature?: string;
 	biome?: string;
+	/** the chunk that was clicked, set when the chunk grid is on screen */
+	chunk?: Chunk;
 }
 
 export interface Hover extends MapPoint {
@@ -33,8 +41,14 @@ export interface MapState {
 	strongholds: Int32Array | null;
 	/** highlighted spot, e.g. the result of the biome finder */
 	pin: MapPoint | null;
+	/** biome ids shown in full color, every other biome dimmed; empty shows all as usual */
+	highlight: Set<number>;
+	/** outlined chunk, the one picked on the chunk grid */
+	chunk: Chunk | null;
 	/** item id -> icon url, the art of the markers */
 	icons: Record<string, string>;
+	/** the scale bar text in the language shown, "500 blocks" */
+	scaleLabel: (blocks: number) => string;
 }
 
 export interface MapCallbacks {
@@ -45,12 +59,24 @@ export interface MapCallbacks {
 const TILE_CELLS = 64;
 const SCALES = [1, 4, 16, 64, 256];
 const MIN_BPP = 0.25;
-const MAX_BPP = 128;
+/**
+ * Farthest zoom out. The nether and the end have no 1:256 biomes, so past 32 blocks per pixel they
+ * would need over a thousand 1:64 tiles on screen.
+ */
+const maxBpp = (dim: Dim) => (dim === 0 ? 128 : 32);
+/** tiles kept around; it grows when the view needs more */
 const MAX_TILES = 400;
+/** the chunk grid shows (and chunks can be picked) from this zoom in */
+const GRID_MAX_BPP = 1;
+/** where a double click takes you: chunks 32 pixels wide, comfortably on the grid */
+const CHUNK_BPP = 0.5;
 
 interface Tile {
 	bitmap: ImageBitmap;
 	ids: Int32Array;
+	/** the palette it was painted with; an older one gets repainted from the ids */
+	paint: number;
+	repainting?: boolean;
 }
 
 interface Area {
@@ -85,14 +111,25 @@ const clamp = (value: number, min: number, max: number) => Math.min(Math.max(val
 export class MapRenderer {
 	private view = { x: 0, z: 0, bpp: 4 };
 	private size = { w: 1, h: 1, ratio: 1 };
-	private tiles = new Map<string, Tile | "pending">();
+	/** finished tiles, least recently drawn first */
+	private tiles = new Map<string, Tile>();
+	/** tiles being generated right now */
+	private inFlight = new Set<string>();
+	/** tiles the view is missing, nearest to the center first */
+	private wanted: { key: string; dim: Dim; scale: number; tx: number; tz: number }[] = [];
+	/** tiles of the last frame, never evicted */
+	private onScreen = new Set<string>();
 	private features = new Map<string, Area & { points: Int32Array }>();
 	private fetching = new Set<string>();
+	/** rgb per biome id, with the highlight applied */
+	private palette = new Uint8Array(256 * 3);
+	private paint = 0;
 	private slime: { cx: number; cz: number; w: number; h: number; data: Uint8Array } | null = null;
 	private slimeFetching = false;
 	private hits: Hit[] = [];
 	private iconImages = new Map<string, HTMLImageElement>();
 	private frame = 0;
+	private glide = 0;
 	private overlayTimer = 0;
 	private observer: ResizeObserver;
 	private cleanup: (() => void)[] = [];
@@ -102,6 +139,7 @@ export class MapRenderer {
 		private state: MapState,
 		private callbacks: MapCallbacks,
 	) {
+		this.buildPalette();
 		this.observer = new ResizeObserver(() => this.resize());
 		this.observer.observe(canvas);
 		this.resize();
@@ -111,13 +149,17 @@ export class MapRenderer {
 	/** new props from the page; a new epoch or dimension starts from scratch */
 	update(state: MapState, callbacks: MapCallbacks) {
 		const reset = state.epoch !== this.state.epoch || state.dim !== this.state.dim;
+		const repaint = state.highlight !== this.state.highlight || state.info !== this.state.info;
 		this.state = state;
+		if (repaint) this.buildPalette();
 		this.callbacks = callbacks;
 		if (reset) {
 			this.tiles.clear();
+			this.wanted = [];
 			this.features.clear();
 			this.fetching.clear();
 			this.slime = null;
+			this.view.bpp = Math.min(this.view.bpp, maxBpp(state.dim));
 		}
 		this.requestDraw();
 		this.scheduleOverlays();
@@ -126,13 +168,37 @@ export class MapRenderer {
 	goTo(x: number, z: number, blocksPerPixel?: number) {
 		this.view.x = x;
 		this.view.z = z;
-		if (blocksPerPixel) this.view.bpp = clamp(blocksPerPixel, MIN_BPP, MAX_BPP);
+		if (blocksPerPixel) this.view.bpp = clamp(blocksPerPixel, MIN_BPP, maxBpp(this.state.dim));
 		this.requestDraw();
 		this.scheduleOverlays();
 	}
 
+	/** eases the view to a spot and zoom, instead of jumping there */
+	flyTo(x: number, z: number, blocksPerPixel: number, duration = 300) {
+		cancelAnimationFrame(this.glide);
+		const from = { ...this.view };
+		const to = { x, z, bpp: clamp(blocksPerPixel, MIN_BPP, maxBpp(this.state.dim)) };
+		const start = performance.now();
+		const step = (now: number) => {
+			const t = Math.min((now - start) / duration, 1);
+			const e = 1 - (1 - t) ** 3;
+			this.view.x = from.x + (to.x - from.x) * e;
+			this.view.z = from.z + (to.z - from.z) * e;
+			// zoom on a log scale, so every halving takes the same time
+			this.view.bpp = from.bpp * (to.bpp / from.bpp) ** e;
+			this.requestDraw();
+			if (t < 1) this.glide = requestAnimationFrame(step);
+			else this.scheduleOverlays();
+		};
+		this.glide = requestAnimationFrame(step);
+	}
+
 	zoom(direction: 1 | -1) {
-		this.view.bpp = clamp(this.view.bpp * (direction > 0 ? 0.5 : 2), MIN_BPP, MAX_BPP);
+		this.view.bpp = clamp(
+			this.view.bpp * (direction > 0 ? 0.5 : 2),
+			MIN_BPP,
+			maxBpp(this.state.dim),
+		);
 		this.requestDraw();
 		this.scheduleOverlays();
 	}
@@ -144,6 +210,7 @@ export class MapRenderer {
 	destroy() {
 		this.observer.disconnect();
 		cancelAnimationFrame(this.frame);
+		cancelAnimationFrame(this.glide);
 		window.clearTimeout(this.overlayTimer);
 		for (const remove of this.cleanup) remove();
 	}
@@ -184,32 +251,147 @@ export class MapRenderer {
 		};
 	}
 
-	private requestTile(key: string, dim: Dim, scale: number, tx: number, tz: number) {
-		const { engine, info, epoch } = this.state;
-		this.tiles.set(key, "pending");
+	/**
+	 * Sends the nearest wanted tiles to the engine, a few at a time: when the view moves on, the ones
+	 * not sent yet are dropped instead of generated for nothing.
+	 */
+	private pump() {
+		const limit = this.state.engine.parallel * 2;
+		while (this.inFlight.size < limit && this.wanted.length) {
+			const next = this.wanted.shift() as (typeof this.wanted)[number];
+			if (this.inFlight.has(next.key) || this.tiles.has(next.key)) continue;
+			this.generate(next);
+		}
+	}
+
+	/** biome colors, the ones not highlighted greyed and darkened */
+	private buildPalette() {
+		const { info, highlight } = this.state;
+		for (let id = 0; id < 256; id++) {
+			const [r, g, b] = [info.colors[id * 3], info.colors[id * 3 + 1], info.colors[id * 3 + 2]];
+			const dim = highlight.size > 0 && !highlight.has(id);
+			const grey = r * 0.3 + g * 0.59 + b * 0.11;
+			this.palette[id * 3] = dim ? 14 + grey * 0.2 + r * 0.08 : r;
+			this.palette[id * 3 + 1] = dim ? 14 + grey * 0.2 + g * 0.08 : g;
+			this.palette[id * 3 + 2] = dim ? 14 + grey * 0.2 + b * 0.08 : b;
+		}
+		this.paint++;
+	}
+
+	private toBitmap(ids: Int32Array) {
+		const pixels = new Uint8ClampedArray(TILE_CELLS * TILE_CELLS * 4);
+		for (let i = 0; i < ids.length; i++) {
+			const id = ids[i];
+			const known = id >= 0 && id < 256;
+			pixels[i * 4] = known ? this.palette[id * 3] : 40;
+			pixels[i * 4 + 1] = known ? this.palette[id * 3 + 1] : 40;
+			pixels[i * 4 + 2] = known ? this.palette[id * 3 + 2] : 40;
+			pixels[i * 4 + 3] = 255;
+		}
+		return createImageBitmap(new ImageData(pixels, TILE_CELLS, TILE_CELLS));
+	}
+
+	/** the tile's picture; one painted before the highlight changed is redone in the background */
+	private bitmap(tile: Tile) {
+		if (tile.paint !== this.paint && !tile.repainting) {
+			const paint = this.paint;
+			tile.repainting = true;
+			this.toBitmap(tile.ids)
+				.then((bitmap) => {
+					tile.bitmap.close();
+					tile.bitmap = bitmap;
+					tile.paint = paint;
+					this.requestDraw();
+				})
+				.finally(() => {
+					tile.repainting = false;
+				});
+		}
+		return tile.bitmap;
+	}
+
+	private generate({ key, dim, scale, tx, tz }: (typeof this.wanted)[number]) {
+		const { engine, epoch } = this.state;
+		this.inFlight.add(key);
 		engine
 			.tile({ dim, scale, x: tx * TILE_CELLS, z: tz * TILE_CELLS, size: TILE_CELLS })
 			.then(async (ids) => {
-				const pixels = new Uint8ClampedArray(TILE_CELLS * TILE_CELLS * 4);
-				for (let i = 0; i < ids.length; i++) {
-					const id = ids[i];
-					const known = id >= 0 && id < 256;
-					pixels[i * 4] = known ? info.colors[id * 3] : 40;
-					pixels[i * 4 + 1] = known ? info.colors[id * 3 + 1] : 40;
-					pixels[i * 4 + 2] = known ? info.colors[id * 3 + 2] : 40;
-					pixels[i * 4 + 3] = 255;
-				}
-				const bitmap = await createImageBitmap(new ImageData(pixels, TILE_CELLS, TILE_CELLS));
-				// a tile of an older world is not needed anymore
-				if (this.state.epoch !== epoch) return;
-				if (this.tiles.size >= MAX_TILES) {
-					const oldest = this.tiles.keys().next().value;
-					if (oldest !== undefined) this.tiles.delete(oldest);
-				}
-				this.tiles.set(key, { bitmap, ids });
+				const paint = this.paint;
+				const bitmap = await this.toBitmap(ids);
+				// a tile of an older world or another dimension is not needed anymore
+				if (this.state.epoch !== epoch || this.state.dim !== dim) return;
+				this.tiles.set(key, { bitmap, ids, paint });
+				this.evict();
 				this.requestDraw();
 			})
-			.catch(() => this.tiles.delete(key));
+			.catch(() => {})
+			.finally(() => {
+				this.inFlight.delete(key);
+				this.pump();
+			});
+	}
+
+	/** drops the least recently drawn tiles that are not on screen */
+	private evict() {
+		const capacity = Math.max(MAX_TILES, this.onScreen.size * 3);
+		for (const key of this.tiles.keys()) {
+			if (this.tiles.size <= capacity) break;
+			if (!this.onScreen.has(key)) this.tiles.delete(key);
+		}
+	}
+
+	/** a tile, marked as just used so the cache keeps it longest */
+	private use(key: string) {
+		const tile = this.tiles.get(key);
+		if (tile) {
+			this.tiles.delete(key);
+			this.tiles.set(key, tile);
+		}
+		return tile;
+	}
+
+	/**
+	 * While a tile is on its way, what the cache already has for that spot: a slice of a coarser
+	 * tile (after zooming in) or the finer tiles inside it (after zooming out).
+	 */
+	private drawStandIn(
+		ctx: CanvasRenderingContext2D,
+		scale: number,
+		tx: number,
+		tz: number,
+		x: number,
+		y: number,
+		px: number,
+	) {
+		const { epoch, dim } = this.state;
+		const span = scale * TILE_CELLS;
+		for (const coarser of SCALES.filter((s) => s > scale && s <= scale * 16)) {
+			const bigSpan = coarser * TILE_CELLS;
+			const bx = Math.floor((tx * span) / bigSpan);
+			const bz = Math.floor((tz * span) / bigSpan);
+			const big = this.tiles.get(`${epoch}:${dim}:${coarser}:${bx}:${bz}`);
+			if (!big) continue;
+			const cells = span / coarser;
+			const sx = (tx * span - bx * bigSpan) / coarser;
+			const sz = (tz * span - bz * bigSpan) / coarser;
+			ctx.drawImage(this.bitmap(big), sx, sz, cells, cells, x, y, px + 1, px + 1);
+			return;
+		}
+		const finer = scale / 4;
+		if (finer < 1) return;
+		for (let j = 0; j < 4; j++) {
+			for (let i = 0; i < 4; i++) {
+				const small = this.tiles.get(`${epoch}:${dim}:${finer}:${tx * 4 + i}:${tz * 4 + j}`);
+				if (small)
+					ctx.drawImage(
+						this.bitmap(small),
+						x + (i * px) / 4,
+						y + (j * px) / 4,
+						px / 4 + 1,
+						px / 4 + 1,
+					);
+			}
+		}
 	}
 
 	/** the marker art, loaded on first use; null until it has arrived */
@@ -226,6 +408,7 @@ export class MapRenderer {
 
 	private draw() {
 		const { dim, features, showSlime, showGrid, spawn, strongholds, pin, epoch, info } = this.state;
+		const picked = this.state.chunk;
 		const { w, h, ratio } = this.size;
 		const ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
 		ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -238,23 +421,33 @@ export class MapRenderer {
 		const toScreenY = (z: number) => (z - cz) / bpp + h / 2;
 		const { x0: left, z0: top, x1: right, z1: bottom } = this.visibleArea();
 
-		// biome tiles
 		const scale = pickScale(bpp, dim);
 		const span = scale * TILE_CELLS;
 		const px = span / bpp;
+		const onScreen = new Set<string>();
+		const wanted: typeof this.wanted = [];
 		for (let tz = Math.floor(top / span); tz <= Math.floor(bottom / span); tz++) {
 			for (let tx = Math.floor(left / span); tx <= Math.floor(right / span); tx++) {
 				const key = `${epoch}:${dim}:${scale}:${tx}:${tz}`;
-				const tile = this.tiles.get(key);
-				if (tile === undefined) this.requestTile(key, dim, scale, tx, tz);
-				else if (tile !== "pending") {
-					// one extra pixel hides the seams between tiles
-					ctx.drawImage(tile.bitmap, toScreenX(tx * span), toScreenY(tz * span), px + 1, px + 1);
+				onScreen.add(key);
+				const x = toScreenX(tx * span);
+				const y = toScreenY(tz * span);
+				const tile = this.use(key);
+				// one extra pixel hides the seams between tiles
+				if (tile) ctx.drawImage(this.bitmap(tile), x, y, px + 1, px + 1);
+				else {
+					this.drawStandIn(ctx, scale, tx, tz, x, y, px);
+					if (!this.inFlight.has(key)) wanted.push({ key, dim, scale, tx, tz });
 				}
 			}
 		}
+		const middle = { x: (left + right) / 2, z: (top + bottom) / 2 };
+		const distance = (t: { tx: number; tz: number }) =>
+			Math.hypot((t.tx + 0.5) * span - middle.x, (t.tz + 0.5) * span - middle.z);
+		this.wanted = wanted.sort((a, b) => distance(a) - distance(b));
+		this.onScreen = onScreen;
+		this.pump();
 
-		// slime chunks
 		const chunk = 16 / bpp;
 		if (showSlime && this.slime && dim === 0) {
 			const { cx: sx0, cz: sz0, w: sw, h: sh, data } = this.slime;
@@ -273,7 +466,7 @@ export class MapRenderer {
 		}
 
 		// chunk grid and the axes
-		if (showGrid && bpp <= 1) {
+		if (showGrid && bpp <= GRID_MAX_BPP) {
 			ctx.strokeStyle = "rgb(255 255 255 / 0.12)";
 			ctx.lineWidth = 1;
 			ctx.beginPath();
@@ -287,6 +480,19 @@ export class MapRenderer {
 			}
 			ctx.stroke();
 		}
+		// the picked chunk, also without the grid (a double click picks one wherever it is)
+		if (bpp <= GRID_MAX_BPP) {
+			if (picked) {
+				const x0 = Math.round(toScreenX(picked.cx * 16));
+				const y0 = Math.round(toScreenY(picked.cz * 16));
+				const size = Math.round(toScreenX((picked.cx + 1) * 16)) - x0;
+				ctx.fillStyle = "rgb(255 216 74 / 0.18)";
+				ctx.fillRect(x0, y0, size, size);
+				ctx.strokeStyle = "#ffd84a";
+				ctx.lineWidth = 2;
+				ctx.strokeRect(x0 + 1, y0 + 1, size - 2, size - 2);
+			}
+		}
 		ctx.strokeStyle = "rgb(255 255 255 / 0.35)";
 		ctx.lineWidth = 1;
 		ctx.beginPath();
@@ -296,7 +502,6 @@ export class MapRenderer {
 		ctx.lineTo(w, Math.round(toScreenY(0)) + 0.5);
 		ctx.stroke();
 
-		// markers
 		const hits: Hit[] = [];
 		const marker = (
 			x: number,
@@ -304,8 +509,8 @@ export class MapRenderer {
 			color: string,
 			text: string,
 			icon: string,
-			label: string,
 			kind: Selection["kind"],
+			feature: string | undefined,
 			big = bpp <= 8,
 		) => {
 			const sx = toScreenX(x);
@@ -330,13 +535,13 @@ export class MapRenderer {
 				ctx.fillRect(sx - s / 2, sy - s / 2, s, s);
 				if (big) {
 					ctx.fillStyle = "#fff";
-					ctx.font = "600 10px 'IBM Plex Mono', monospace";
+					ctx.font = "600 10px 'Geist Sans', sans-serif";
 					ctx.textAlign = "center";
 					ctx.textBaseline = "middle";
 					ctx.fillText(text, sx, sy + 0.5);
 				}
 			}
-			hits.push({ sx, sy, x, z, label, kind });
+			hits.push({ sx, sy, x, z, kind, feature });
 		};
 
 		for (const feature of FEATURES) {
@@ -351,8 +556,8 @@ export class MapRenderer {
 					feature.color,
 					feature.short,
 					feature.icon,
-					feature.name,
 					"feature",
+					feature.id,
 				);
 			}
 		}
@@ -364,36 +569,40 @@ export class MapRenderer {
 					"#7d3ad1",
 					"S",
 					STRONGHOLD_ICON,
-					"Stronghold",
 					"stronghold",
+					undefined,
 					true,
 				);
 			}
 		}
 		if (spawn && dim === 0)
-			marker(spawn.x, spawn.z, "#2f9e44", "W", SPAWN_ICON, "World spawn", "spawn", true);
+			marker(spawn.x, spawn.z, "#2f9e44", "W", SPAWN_ICON, "spawn", undefined, true);
 		this.hits = hits;
 
+		// the marked spot: a map pin whose tip sits on the block
 		if (pin) {
-			const sx = toScreenX(pin.x);
-			const sy = toScreenY(pin.z);
-			ctx.strokeStyle = "#fff";
-			ctx.lineWidth = 2;
+			const sx = toScreenX(pin.x + 0.5);
+			const sy = toScreenY(pin.z + 0.5);
+			ctx.fillStyle = "rgb(0 0 0 / 0.35)";
 			ctx.beginPath();
-			ctx.arc(sx, sy, 14, 0, Math.PI * 2);
-			for (const [dx, dy] of [
-				[1, 0],
-				[-1, 0],
-				[0, 1],
-				[0, -1],
-			]) {
-				ctx.moveTo(sx + dx * 8, sy + dy * 8);
-				ctx.lineTo(sx + dx * 20, sy + dy * 20);
-			}
+			ctx.ellipse(sx, sy, 6, 2.5, 0, 0, Math.PI * 2);
+			ctx.fill();
+			ctx.beginPath();
+			ctx.moveTo(sx, sy);
+			ctx.bezierCurveTo(sx - 4, sy - 9, sx - 10, sy - 14, sx - 10, sy - 21);
+			ctx.arc(sx, sy - 21, 10, Math.PI, 0);
+			ctx.bezierCurveTo(sx + 10, sy - 14, sx + 4, sy - 9, sx, sy);
+			ctx.fillStyle = "#e03131";
+			ctx.fill();
+			ctx.strokeStyle = "#1a1a1a";
+			ctx.lineWidth = 1.5;
 			ctx.stroke();
+			ctx.fillStyle = "#fff";
+			ctx.beginPath();
+			ctx.arc(sx, sy - 21, 3.5, 0, Math.PI * 2);
+			ctx.fill();
 		}
 
-		// scale bar
 		const nice = [10, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000].reduce((best, n) =>
 			Math.abs(n - 100 * bpp) < Math.abs(best - 100 * bpp) ? n : best,
 		);
@@ -402,10 +611,10 @@ export class MapRenderer {
 		ctx.fillRect(10, h - 30, barPx + 16, 20);
 		ctx.fillStyle = "#fff";
 		ctx.fillRect(18, h - 14, barPx, 2);
-		ctx.font = "11px 'IBM Plex Mono', monospace";
+		ctx.font = "11px 'Geist Sans', sans-serif";
 		ctx.textAlign = "left";
 		ctx.textBaseline = "alphabetic";
-		ctx.fillText(`${nice} blocks`, 18, h - 18);
+		ctx.fillText(this.state.scaleLabel(nice), 18, h - 18);
 	}
 
 	/** structures and slime chunks come from the engine for the area around the view */
@@ -495,10 +704,18 @@ export class MapRenderer {
 		const tx = Math.floor(x / span);
 		const tz = Math.floor(z / span);
 		const tile = this.tiles.get(`${epoch}:${dim}:${scale}:${tx}:${tz}`);
-		if (!tile || tile === "pending") return undefined;
+		if (!tile) return undefined;
 		const cellX = Math.floor((x - tx * span) / scale);
 		const cellZ = Math.floor((z - tz * span) / scale);
 		return info.names[tile.ids[cellZ * TILE_CELLS + cellX]];
+	}
+
+	/** a click on empty map; on the chunk grid it picks the chunk under the cursor */
+	private pointSelection(x: number, z: number): Selection {
+		const biome = this.biomeAt(x, z);
+		if (!this.state.showGrid || this.view.bpp > GRID_MAX_BPP) return { kind: "point", x, z, biome };
+		const chunk = { cx: Math.floor(x / 16), cz: Math.floor(z / 16) };
+		return { kind: "point", x, z, biome, chunk };
 	}
 
 	private nearestHit(sx: number, sy: number) {
@@ -520,6 +737,7 @@ export class MapRenderer {
 		let hoverFrame = 0;
 
 		const onDown = (event: PointerEvent) => {
+			cancelAnimationFrame(this.glide);
 			drag = { x: event.clientX, y: event.clientY, moved: 0 };
 			canvas.setPointerCapture(event.pointerId);
 		};
@@ -551,19 +769,39 @@ export class MapRenderer {
 				hit
 					? {
 							kind: hit.kind,
-							label: hit.label,
+							feature: hit.feature,
 							x: hit.x,
 							z: hit.z,
 							biome: this.biomeAt(hit.x, hit.z),
 						}
-					: { kind: "point", label: "Location", x: p.x, z: p.z, biome: this.biomeAt(p.x, p.z) },
+					: this.pointSelection(p.x, p.z),
 			);
 		};
 		const onLeave = () => this.callbacks.onHover(null);
+		// double click: zoom to the chunk grid, centered on the chunk under the cursor, and pick it
+		const onDoubleClick = (event: MouseEvent) => {
+			const p = this.toWorld(event);
+			const chunk = { cx: Math.floor(p.x / 16), cz: Math.floor(p.z / 16) };
+			const x = chunk.cx * 16 + 8;
+			const z = chunk.cz * 16 + 8;
+			this.flyTo(x, z, Math.min(this.view.bpp, CHUNK_BPP));
+			this.callbacks.onSelect({
+				kind: "point",
+				x: p.x,
+				z: p.z,
+				biome: this.biomeAt(p.x, p.z),
+				chunk,
+			});
+		};
 		const onWheel = (event: WheelEvent) => {
 			event.preventDefault();
+			cancelAnimationFrame(this.glide);
 			const before = this.toWorld(event);
-			const next = clamp(this.view.bpp * 2 ** (event.deltaY * 0.0015), MIN_BPP, MAX_BPP);
+			const next = clamp(
+				this.view.bpp * 2 ** (event.deltaY * 0.0015),
+				MIN_BPP,
+				maxBpp(this.state.dim),
+			);
 			this.view.bpp = next;
 			// keep the point under the cursor where it is
 			const rect = canvas.getBoundingClientRect();
@@ -578,6 +816,7 @@ export class MapRenderer {
 		canvas.addEventListener("pointerup", onUp);
 		canvas.addEventListener("pointerleave", onLeave);
 		canvas.addEventListener("wheel", onWheel, { passive: false });
+		canvas.addEventListener("dblclick", onDoubleClick);
 		this.cleanup.push(() => {
 			cancelAnimationFrame(hoverFrame);
 			canvas.removeEventListener("pointerdown", onDown);
@@ -585,6 +824,7 @@ export class MapRenderer {
 			canvas.removeEventListener("pointerup", onUp);
 			canvas.removeEventListener("pointerleave", onLeave);
 			canvas.removeEventListener("wheel", onWheel);
+			canvas.removeEventListener("dblclick", onDoubleClick);
 		});
 	}
 }

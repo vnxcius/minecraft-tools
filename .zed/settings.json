@@ -1,22 +1,50 @@
 {
+	// TypeScript 7 is the native compiler: it has no tsserver.js for vtsls, but ships its own language
+	// server, which the "tsgo" extension (TypeScript Language Server) runs as typescript-ls
+	"lsp": {
+		"typescript-ls": {
+			"settings": { "package_version": "7.0.2" }
+		}
+	},
 	"languages": {
 		"CSS": {
 			"language_servers": ["tailwindcss-language-server", "..."]
 		},
 		"JavaScript": {
-			"language_servers": ["oxlint", "oxfmt", "..."],
+			"language_servers": [
+				"typescript-ls",
+				"!vtsls",
+				"!typescript-language-server",
+				"oxlint",
+				"oxfmt",
+				"..."
+			],
 			"formatter": [{ "language_server": { "name": "oxfmt" } }],
 			"format_on_save": "on",
 			"code_actions_on_format": { "source.fixAll.oxc": true }
 		},
 		"TypeScript": {
-			"language_servers": ["oxlint", "oxfmt", "..."],
+			"language_servers": [
+				"typescript-ls",
+				"!vtsls",
+				"!typescript-language-server",
+				"oxlint",
+				"oxfmt",
+				"..."
+			],
 			"formatter": [{ "language_server": { "name": "oxfmt" } }],
 			"format_on_save": "on",
 			"code_actions_on_format": { "source.fixAll.oxc": true }
 		},
 		"TSX": {
-			"language_servers": ["oxlint", "oxfmt", "..."],
+			"language_servers": [
+				"typescript-ls",
+				"!vtsls",
+				"!typescript-language-server",
+				"oxlint",
+				"oxfmt",
+				"..."
+			],
 			"formatter": [{ "language_server": { "name": "oxfmt" } }],
 			"format_on_save": "on",
 			"code_actions_on_format": { "source.fixAll.oxc": true }

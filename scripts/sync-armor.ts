@@ -67,7 +67,6 @@ async function main() {
 	const lang = readJson<Record<string, string>>("lang/en_us.json");
 	await mkdir(join(OUT_DIR, "trim"), { recursive: true });
 
-	// armor layers
 	const armorIds = list("textures/entity/equipment/humanoid/").filter(
 		(id) => id !== "leather_overlay",
 	);
@@ -115,7 +114,6 @@ async function main() {
 		});
 	}
 
-	// trim patterns
 	const patternIds = list("textures/trims/entity/humanoid/");
 	for (const id of patternIds) {
 		await writeFile(

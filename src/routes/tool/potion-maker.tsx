@@ -4,7 +4,6 @@ import PotionMaker from "@/components/potion/potion-maker";
 import { latestVersion, loadItems } from "@/lib/items";
 
 export const Route = createFileRoute("/tool/potion-maker")({
-	// item icons (ingredients) come from the latest version of the CDN catalog
 	loader: async () => {
 		const items = await loadItems(latestVersion);
 		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };

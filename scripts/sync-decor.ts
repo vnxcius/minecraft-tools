@@ -1,5 +1,5 @@
 /**
- * Extracts a few block textures used as decoration (dirt footer, stone hero).
+ * Extracts the block textures behind the page: deepslate all around, dirt under the sky.
  *
  *   bun run decor:sync            # latest release
  *
@@ -10,7 +10,7 @@ import { join } from "node:path";
 import { openClientJar, resolveVersion } from "./lib/jar";
 
 const OUT_DIR = "public/decor";
-const BLOCKS = ["dirt", "stone", "deepslate"];
+const BLOCKS = ["dirt", "deepslate"];
 
 const version = await resolveVersion();
 console.log(`Minecraft version: ${version}`);

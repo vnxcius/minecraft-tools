@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { EyeClosedIcon, EyeIcon } from "@/components/ui/icons";
-import { useHeaderHeight } from "@/hooks/use-header-height";
+import { Eye as EyeIcon, EyeOff as EyeOffIcon } from "pixelarticons/react";
+import { useI18n } from "@/i18n";
 
 export default function StackCalculator() {
 	const [items, setItems] = useState<string>("0");
@@ -10,8 +10,7 @@ export default function StackCalculator() {
 	const [shulkers, setShulkers] = useState<number>(0);
 	const [chests, setChests] = useState<number>(0);
 	const [showStorage, setShowStorage] = useState<boolean>(true);
-
-	const { headerHeight } = useHeaderHeight();
+	const { t, tn, itemName } = useI18n();
 
 	const collapse = {
 		opacity: 0,
@@ -34,24 +33,17 @@ export default function StackCalculator() {
 		});
 	}, [items, stackSize]);
 	return (
-		<section style={{ height: `calc(100svh - ${headerHeight}px)` }}>
+		<section>
 			<div className="relative h-full py-12">
-				<h1 className="display mb-2 text-center text-4xl">Stack Calculator</h1>
-				<p className="text-center text-muted-foreground">
-					Calculate how many stacks are a given number of items.
-				</p>
-
-				<hr className="mx-auto my-4 max-w-lg" />
-
 				<button
 					type="button"
 					className="group mx-auto mb-3 flex w-fit items-center gap-2 duration-150 hover:text-primary hover:underline"
 					onClick={() => setShowStorage(!showStorage)}
 				>
 					<span className="rounded-sm p-1 group-hover:bg-background">
-						{showStorage ? <EyeIcon size={16} /> : <EyeClosedIcon size={16} />}
+						{showStorage ? <EyeIcon className="size-4" /> : <EyeOffIcon className="size-4" />}
 					</span>
-					<p>{showStorage ? "Storage needed" : "View necessary storage"}</p>
+					<p>{showStorage ? t("stack.storageNeeded") : t("stack.showStorage")}</p>
 				</button>
 
 				<AnimatePresence>
@@ -71,33 +63,31 @@ export default function StackCalculator() {
 							<div className="flex items-center gap-3 text-lg">
 								<img
 									src="/shulker_box.webp"
-									alt="Shulker Box Icon"
+									alt={itemName("shulker_box")}
 									className="select-none"
 									draggable={false}
 									width={36}
 									height={36}
 								/>
 								<p className="lowercase">
-									{shulkers || "0"} shulker boxes
-									<span className="block text-muted-foreground text-xs">
-										27 stacks per shulker box
+									{tn("stack.shulkers", shulkers)}
+									<span className="block text-xs text-muted-foreground">
+										{t("stack.perShulker")}
 									</span>
 								</p>
 							</div>
 							<div className="flex items-center gap-3 text-lg">
 								<img
 									src="/chest.webp"
-									alt="Chest Icon"
+									alt={itemName("chest")}
 									className="select-none"
 									draggable={false}
 									width={36}
 									height={36}
 								/>
 								<p className="lowercase">
-									{chests || "0"} double chests
-									<span className="block text-muted-foreground text-xs">
-										54 stacks per double chest
-									</span>
+									{tn("stack.chests", chests)}
+									<span className="block text-xs text-muted-foreground">{t("stack.perChest")}</span>
 								</p>
 							</div>
 						</motion.div>
@@ -109,37 +99,38 @@ export default function StackCalculator() {
 						<div className="flex items-center gap-2">
 							<img
 								src="/spruce_planks_stack.webp"
-								alt="Stack Spruce Planks Icon"
+								alt={t("stack.stackOf", { item: itemName("spruce_planks") })}
 								className="select-none"
 								draggable={false}
 								width={39}
 								height={39}
 							/>
-							<span className="text-lg lowercase">{result.stacks} stacks</span>
+							<span className="text-lg lowercase">{tn("stack.stacks", result.stacks)}</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<img
 								src="/spruce_planks.webp"
-								alt="Spruce Planks Icon"
+								alt={itemName("spruce_planks")}
 								className="select-none"
 								draggable={false}
 								width={37}
 								height={37}
 							/>
-							<span className="text-lg lowercase">{result.remainingItems} items</span>
+							<span className="text-lg lowercase">{tn("stack.items", result.remainingItems)}</span>
 						</div>
 					</div>
 					<div className="flex flex-col gap-1">
 						<label htmlFor="items" className="text-lg">
-							Items
+							{t("stack.itemsLabel")}
 						</label>
 						<input
 							type="number"
+							id="items"
 							name="items"
 							value={items}
 							onChange={(e) => setItems(e.target.value)}
 							placeholder="456"
-							className="rounded-sm border border-input bg-card px-2 py-1.5 text-lg focus:outline-0 focus:ring-2 focus:ring-primary/80"
+							className="rounded-sm border border-input bg-card px-2 py-1.5 text-lg focus:ring-2 focus:ring-primary/80 focus:outline-0"
 						/>
 					</div>
 
@@ -151,7 +142,7 @@ export default function StackCalculator() {
 								onChange={() => setStackSize(64)}
 								className="size-3 appearance-none border border-neutral-500 p-0.5 checked:bg-primary"
 							/>{" "}
-							64 items/stack
+							{t("stack.perStack", { count: 64 })}
 						</label>
 						<label>
 							<input
@@ -160,7 +151,7 @@ export default function StackCalculator() {
 								onChange={() => setStackSize(16)}
 								className="size-3 appearance-none border border-neutral-500 p-0.5 checked:bg-primary"
 							/>{" "}
-							16 items/stack
+							{t("stack.perStack", { count: 16 })}
 						</label>
 					</div>
 				</div>

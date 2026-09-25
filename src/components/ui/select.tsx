@@ -1,5 +1,5 @@
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import { CheckIcon, ChevronDownIcon } from "lucide-react";
+import { Check as CheckIcon, ChevronDown as ChevronDownIcon } from "pixelarticons/react";
 
 import { cn } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ function SelectTrigger({ className, children, ...props }: SelectPrimitive.Trigge
 		<SelectPrimitive.Trigger
 			data-slot="select-trigger"
 			className={cn(
-				"flex h-9 w-fit min-w-28 items-center justify-between gap-2 whitespace-nowrap rounded border border-input bg-transparent px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 md:text-sm dark:bg-input/30",
+				"flex h-9 w-fit min-w-28 items-center justify-between gap-2 rounded border border-input bg-card px-3 py-1 text-base whitespace-nowrap transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:opacity-50 md:text-sm",
 				"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
 				className,
 			)}
@@ -55,7 +55,7 @@ function SelectContent({
 				<SelectPrimitive.Popup
 					data-slot="select-content"
 					className={cn(
-						"data-open:fade-in-0 data-open:zoom-in-95 data-closed:fade-out-0 data-closed:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-none data-closed:animate-out data-open:animate-in",
+						"z-50 max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-none data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
 						className,
 					)}
 					{...props}
@@ -72,7 +72,7 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
 		<SelectPrimitive.Item
 			data-slot="select-item"
 			className={cn(
-				"relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-50",
+				"relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground",
 				className,
 			)}
 			{...props}

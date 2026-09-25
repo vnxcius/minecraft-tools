@@ -1,0 +1,5839 @@
+{
+	"version": "26.3",
+	"professions": [
+		{
+			"id": "armorer",
+			"workstation": "blast_furnace",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "smith/1/coal_emerald",
+							"wants": {
+								"item": "coal",
+								"count": 15
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "armorer/1/emerald_iron_leggings",
+							"wants": {
+								"item": "emerald",
+								"count": 7
+							},
+							"gives": {
+								"item": "iron_leggings",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "armorer/1/emerald_iron_boots",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "iron_boots",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "armorer/1/emerald_iron_helmet",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "iron_helmet",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "armorer/1/emerald_iron_chestplate",
+							"wants": {
+								"item": "emerald",
+								"count": 9
+							},
+							"gives": {
+								"item": "iron_chestplate",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "smith/2/iron_ingot_emerald",
+							"wants": {
+								"item": "iron_ingot",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "smith/2/emerald_bell",
+							"wants": {
+								"item": "emerald",
+								"count": 36
+							},
+							"gives": {
+								"item": "bell",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						},
+						{
+							"id": "armorer/2/emerald_chainmail_boots",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "chainmail_boots",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						},
+						{
+							"id": "armorer/2/emerald_chainmail_leggings",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "chainmail_leggings",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "armorer/3/lava_bucket_emerald",
+							"wants": {
+								"item": "lava_bucket",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						},
+						{
+							"id": "armorer/3/emerald_chainmail_helmet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "chainmail_helmet",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "armorer/3/emerald_chainmail_chestplate",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "chainmail_chestplate",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "armorer/3/emerald_shield",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "shield",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "armorer/3/diamond_emerald",
+							"wants": {
+								"item": "diamond",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "armorer/4/emerald_enchanted_diamond_leggings",
+							"wants": {
+								"item": "emerald",
+								"count": 14
+							},
+							"gives": {
+								"item": "diamond_leggings",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "armorer/4/emerald_enchanted_diamond_boots",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "diamond_boots",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "armorer/5/emerald_enchanted_diamond_helmet",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "diamond_helmet",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 30,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "armorer/5/emerald_enchanted_diamond_chestplate",
+							"wants": {
+								"item": "emerald",
+								"count": 16
+							},
+							"gives": {
+								"item": "diamond_chestplate",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 30,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "butcher",
+			"workstation": "smoker",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "butcher/1/chicken_emerald",
+							"wants": {
+								"item": "chicken",
+								"count": 14
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "butcher/1/porkchop_emerald",
+							"wants": {
+								"item": "porkchop",
+								"count": 7
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "butcher/1/rabbit_emerald",
+							"wants": {
+								"item": "rabbit",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "butcher/1/emerald_rabbit_stew",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "rabbit_stew",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "butcher/2/coal_emerald",
+							"wants": {
+								"item": "coal",
+								"count": 15
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "butcher/2/emerald_cooked_porkchop",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "cooked_porkchop",
+								"count": 5
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "butcher/2/emerald_cooked_chicken",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "cooked_chicken",
+								"count": 8
+							},
+							"maxUses": 16,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "butcher/3/mutton_emerald",
+							"wants": {
+								"item": "mutton",
+								"count": 7
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "butcher/3/beef_emerald",
+							"wants": {
+								"item": "beef",
+								"count": 10
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "butcher/4/dried_kelp_block_emerald",
+							"wants": {
+								"item": "dried_kelp_block",
+								"count": 10
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "butcher/5/sweet_berries_emerald",
+							"wants": {
+								"item": "sweet_berries",
+								"count": 10
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "cartographer",
+			"workstation": "cartography_table",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cartographer/1/paper_emerald",
+							"wants": {
+								"item": "paper",
+								"count": 24
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 2
+						},
+						{
+							"id": "cartographer/1/emerald_map",
+							"wants": {
+								"item": "emerald",
+								"count": 7
+							},
+							"gives": {
+								"item": "map",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cartographer/2/glass_pane_emerald",
+							"wants": {
+								"item": "glass_pane",
+								"count": 11
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_village_taiga_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "taiga_village_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"swamp",
+								"snow",
+								"plains"
+							]
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_explorer_swamp_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "swamp_hut_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"taiga",
+								"snow",
+								"jungle"
+							]
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_village_snowy_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "snowy_village_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"taiga",
+								"swamp"
+							]
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_village_savanna_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "savanna_village_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"plains",
+								"jungle",
+								"desert"
+							]
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_village_plains_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "plains_village_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"taiga",
+								"snow",
+								"savanna",
+								"desert"
+							]
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_explorer_jungle_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "jungle_pyramid_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"swamp",
+								"savanna",
+								"desert"
+							]
+						},
+						{
+							"id": "cartographer/2/emerald_and_compass_village_desert_map",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "desert_village_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "map",
+							"variants": [
+								"savanna",
+								"jungle"
+							]
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cartographer/3/compass_emerald",
+							"wants": {
+								"item": "compass",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						},
+						{
+							"id": "cartographer/3/emerald_and_compass_ocean_monument_map",
+							"wants": {
+								"item": "emerald",
+								"count": 13
+							},
+							"gives": {
+								"item": "ocean_monument_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10,
+							"kind": "map"
+						},
+						{
+							"id": "cartographer/3/emerald_and_compass_buried_trial_chambers_map",
+							"wants": {
+								"item": "emerald",
+								"count": 12
+							},
+							"gives": {
+								"item": "buried_trial_chambers_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10,
+							"kind": "map"
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cartographer/4/emerald_item_frame",
+							"wants": {
+								"item": "emerald",
+								"count": 7
+							},
+							"gives": {
+								"item": "item_frame",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "cartographer/4/emerald_white_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "white_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"snow",
+								"plains"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_orange_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "orange_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"savanna",
+								"desert"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_magenta_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "magenta_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "cartographer/4/emerald_blue_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "blue_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"snow",
+								"taiga"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_light_blue_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "light_blue_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"snow",
+								"swamp"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_yellow_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "yellow_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"plains",
+								"jungle"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_lime_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "lime_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"desert",
+								"taiga"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_pink_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "pink_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"taiga",
+								"plains"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_gray_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "gray_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "cartographer/4/emerald_cyan_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "cyan_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"desert",
+								"snow"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_purple_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "purple_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"taiga",
+								"swamp"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_brown_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "brown_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"plains",
+								"jungle"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_green_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "green_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"desert",
+								"savanna",
+								"jungle"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_red_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "red_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"variants": [
+								"snow",
+								"savanna"
+							]
+						},
+						{
+							"id": "cartographer/4/emerald_black_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "black_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cartographer/5/emerald_globe_banner_pattern",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "globe_banner_pattern",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "cartographer/5/emerald_and_compass_woodland_mansion_map",
+							"wants": {
+								"item": "emerald",
+								"count": 14
+							},
+							"gives": {
+								"item": "woodland_mansion_map",
+								"count": 1
+							},
+							"also": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30,
+							"kind": "map"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "cleric",
+			"workstation": "brewing_stand",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cleric/1/rotten_flesh_emerald",
+							"wants": {
+								"item": "rotten_flesh",
+								"count": 32
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "cleric/1/emerald_redstone",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "redstone",
+								"count": 2
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cleric/2/gold_ingot_emerald",
+							"wants": {
+								"item": "gold_ingot",
+								"count": 3
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "cleric/2/emerald_lapis_lazuli",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "lapis_lazuli",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cleric/3/rabbit_foot_emerald",
+							"wants": {
+								"item": "rabbit_foot",
+								"count": 2
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						},
+						{
+							"id": "cleric/3/emerald_glowstone",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "glowstone",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cleric/4/turtle_scute_emerald",
+							"wants": {
+								"item": "turtle_scute",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "cleric/4/glass_bottle_emerald",
+							"wants": {
+								"item": "glass_bottle",
+								"count": 9
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "cleric/4/emerald_ender_pearl",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "ender_pearl",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "cleric/5/nether_wart_emerald",
+							"wants": {
+								"item": "nether_wart",
+								"count": 22
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "cleric/5/emerald_experience_bottle",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "experience_bottle",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "farmer",
+			"workstation": "composter",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "farmer/1/wheat_emerald",
+							"wants": {
+								"item": "wheat",
+								"count": 20
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "farmer/1/potato_emerald",
+							"wants": {
+								"item": "potato",
+								"count": 26
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "farmer/1/carrot_emerald",
+							"wants": {
+								"item": "carrot",
+								"count": 22
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "farmer/1/beetroot_emerald",
+							"wants": {
+								"item": "beetroot",
+								"count": 15
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "farmer/1/emerald_bread",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "bread",
+								"count": 6
+							},
+							"maxUses": 16
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "farmer/2/pumpkin_emerald",
+							"wants": {
+								"item": "pumpkin",
+								"count": 6
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "farmer/2/emerald_pumpkin_pie",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "pumpkin_pie",
+								"count": 4
+							},
+							"maxUses": 12,
+							"xp": 5
+						},
+						{
+							"id": "farmer/2/emerald_apple",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "apple",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "farmer/3/emerald_cookie",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "cookie",
+								"count": 18
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "farmer/3/melon_emerald",
+							"wants": {
+								"item": "melon",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "farmer/4/emerald_cake",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "cake",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "farmer/4/emerald_suspicious_stew",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "suspicious_stew",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"kind": "stew"
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "farmer/5/emerald_golden_carrot",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "golden_carrot",
+								"count": 3
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "farmer/5/emerald_glistening_melon_slice",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "glistering_melon_slice",
+								"count": 3
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "fisherman",
+			"workstation": "barrel",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fisherman/1/string_emerald",
+							"wants": {
+								"item": "string",
+								"count": 20
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "fisherman/1/coal_emerald",
+							"wants": {
+								"item": "coal",
+								"count": 10
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "fisherman/1/raw_cod_and_emerald_cooked_cod",
+							"wants": {
+								"item": "cod",
+								"count": 6
+							},
+							"gives": {
+								"item": "cooked_cod",
+								"count": 6
+							},
+							"also": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16
+						},
+						{
+							"id": "fisherman/1/emerald_cod_bucket",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "cod_bucket",
+								"count": 1
+							},
+							"maxUses": 16
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fisherman/2/cod_emerald",
+							"wants": {
+								"item": "cod",
+								"count": 15
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "fisherman/2/salmon_and_emerald_cooked_salmon",
+							"wants": {
+								"item": "salmon",
+								"count": 6
+							},
+							"gives": {
+								"item": "cooked_salmon",
+								"count": 6
+							},
+							"also": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "fisherman/2/emerald_campfire",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "campfire",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fisherman/3/salmon_emerald",
+							"wants": {
+								"item": "salmon",
+								"count": 13
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "fisherman/3/emerald_enchanted_fishing_rod",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "fishing_rod",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 10,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "fisherman/4/tropical_fish_emerald",
+							"wants": {
+								"item": "tropical_fish",
+								"count": 6
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fisherman/5/pufferfish_emerald",
+							"wants": {
+								"item": "pufferfish",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "fisherman/5/oak_boat_emerald",
+							"wants": {
+								"item": "oak_boat",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "fisherman/5/spruce_boat_emerald",
+							"wants": {
+								"item": "spruce_boat",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30,
+							"variants": [
+								"taiga",
+								"snow"
+							]
+						},
+						{
+							"id": "fisherman/5/jungle_boat_emerald",
+							"wants": {
+								"item": "jungle_boat",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30,
+							"variants": [
+								"desert",
+								"jungle"
+							]
+						},
+						{
+							"id": "fisherman/5/acacia_boat_emerald",
+							"wants": {
+								"item": "acacia_boat",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "fisherman/5/dark_oak_boat_emerald",
+							"wants": {
+								"item": "dark_oak_boat",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "fletcher",
+			"workstation": "fletching_table",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fletcher/1/stick_emerald",
+							"wants": {
+								"item": "stick",
+								"count": 32
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "fletcher/1/emerald_arrow",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "arrow",
+								"count": 16
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "fletcher/1/gravel_and_emerald_flint",
+							"wants": {
+								"item": "gravel",
+								"count": 10
+							},
+							"gives": {
+								"item": "flint",
+								"count": 10
+							},
+							"also": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fletcher/2/flint_emerald",
+							"wants": {
+								"item": "flint",
+								"count": 26
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "fletcher/2/emerald_bow",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "bow",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fletcher/3/string_emerald",
+							"wants": {
+								"item": "string",
+								"count": 14
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "fletcher/3/emerald_crossbow",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "crossbow",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fletcher/4/feather_emerald",
+							"wants": {
+								"item": "feather",
+								"count": 24
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "fletcher/4/emerald_enchanted_bow",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "bow",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "fletcher/5/tripwire_hook_emerald",
+							"wants": {
+								"item": "tripwire_hook",
+								"count": 8
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "fletcher/5/emerald_enchanted_crossbow",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "crossbow",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "fletcher/5/arrow_and_emerald_tipped_arrow",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "tipped_arrow",
+								"count": 5
+							},
+							"also": {
+								"item": "arrow",
+								"count": 5
+							},
+							"maxUses": 12,
+							"xp": 30,
+							"kind": "tipped"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "leatherworker",
+			"workstation": "cauldron",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "leatherworker/1/leather_emerald",
+							"wants": {
+								"item": "leather",
+								"count": 6
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "leatherworker/1/emerald_dyed_leather_leggings",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "leather_leggings",
+								"count": 1
+							},
+							"maxUses": 12,
+							"kind": "dyed"
+						},
+						{
+							"id": "leatherworker/1/emerald_dyed_leather_chestplate",
+							"wants": {
+								"item": "emerald",
+								"count": 7
+							},
+							"gives": {
+								"item": "leather_chestplate",
+								"count": 1
+							},
+							"maxUses": 12,
+							"kind": "dyed"
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "leatherworker/2/flint_emerald",
+							"wants": {
+								"item": "flint",
+								"count": 26
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "leatherworker/2/emerald_dyed_leather_helmet",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "leather_helmet",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "dyed"
+						},
+						{
+							"id": "leatherworker/2/emerald_dyed_leather_boots",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "leather_boots",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "dyed"
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "leatherworker/3/rabbit_hide_emerald",
+							"wants": {
+								"item": "rabbit_hide",
+								"count": 9
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						},
+						{
+							"id": "leatherworker/3/emerald_dyed_leather_chestplate",
+							"wants": {
+								"item": "emerald",
+								"count": 7
+							},
+							"gives": {
+								"item": "leather_chestplate",
+								"count": 1
+							},
+							"maxUses": 12,
+							"kind": "dyed"
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "leatherworker/4/turtle_scute_emerald",
+							"wants": {
+								"item": "turtle_scute",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "leatherworker/4/emerald_dyed_leather_horse_armor",
+							"wants": {
+								"item": "emerald",
+								"count": 6
+							},
+							"gives": {
+								"item": "leather_horse_armor",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"kind": "dyed"
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "leatherworker/5/emerald_saddle",
+							"wants": {
+								"item": "emerald",
+								"count": 6
+							},
+							"gives": {
+								"item": "saddle",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "leatherworker/5/emerald_dyed_leather_helmet",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "leather_helmet",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "dyed"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "librarian",
+			"workstation": "lectern",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "librarian/1/paper_emerald",
+							"wants": {
+								"item": "paper",
+								"count": 24
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "librarian/1/emerald_and_book_enchanted_book",
+							"wants": {
+								"item": "emerald",
+								"count": 0
+							},
+							"gives": {
+								"item": "enchanted_book",
+								"count": 1
+							},
+							"also": {
+								"item": "book",
+								"count": 1
+							},
+							"maxUses": 12,
+							"kind": "book"
+						},
+						{
+							"id": "librarian/1/emerald_bookshelf",
+							"wants": {
+								"item": "emerald",
+								"count": 9
+							},
+							"gives": {
+								"item": "bookshelf",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "librarian/2/book_emerald",
+							"wants": {
+								"item": "book",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "librarian/2/emerald_and_book_enchanted_book",
+							"wants": {
+								"item": "emerald",
+								"count": 0
+							},
+							"gives": {
+								"item": "enchanted_book",
+								"count": 1
+							},
+							"also": {
+								"item": "book",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5,
+							"kind": "book"
+						},
+						{
+							"id": "librarian/2/emerald_lantern",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "lantern",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "librarian/3/ink_sac_emerald",
+							"wants": {
+								"item": "ink_sac",
+								"count": 5
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						},
+						{
+							"id": "librarian/3/emerald_and_book_enchanted_book",
+							"wants": {
+								"item": "emerald",
+								"count": 0
+							},
+							"gives": {
+								"item": "enchanted_book",
+								"count": 1
+							},
+							"also": {
+								"item": "book",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10,
+							"kind": "book"
+						},
+						{
+							"id": "librarian/3/emerald_glass",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "glass",
+								"count": 4
+							},
+							"maxUses": 12,
+							"xp": 10
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "librarian/4/writable_book_emerald",
+							"wants": {
+								"item": "writable_book",
+								"count": 2
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "librarian/4/emerald_book_and_enchanted_book",
+							"wants": {
+								"item": "emerald",
+								"count": 0
+							},
+							"gives": {
+								"item": "enchanted_book",
+								"count": 1
+							},
+							"also": {
+								"item": "book",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15,
+							"kind": "book"
+						},
+						{
+							"id": "librarian/4/emerald_clock",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "clock",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "librarian/4/emerald_compass",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "compass",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "librarian/5/emerald_yellow_candle",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "yellow_candle",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "librarian/5/emerald_red_candle",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "red_candle",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "mason",
+			"workstation": "stonecutter",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "mason/1/clay_ball_emerald",
+							"wants": {
+								"item": "clay_ball",
+								"count": 10
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "mason/1/emerald_brick",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "brick",
+								"count": 10
+							},
+							"maxUses": 16
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "mason/2/stone_emerald",
+							"wants": {
+								"item": "stone",
+								"count": 20
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "mason/2/emerald_chiseled_stone_bricks",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "chiseled_stone_bricks",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "mason/3/granite_emerald",
+							"wants": {
+								"item": "granite",
+								"count": 16
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "mason/3/andesite_emerald",
+							"wants": {
+								"item": "andesite",
+								"count": 16
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "mason/3/diorite_emerald",
+							"wants": {
+								"item": "diorite",
+								"count": 16
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "mason/3/emerald_dripstone_block",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "dripstone_block",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "mason/3/emerald_polished_andesite",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "polished_andesite",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "mason/3/emerald_polished_diorite",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "polished_diorite",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "mason/3/emerald_polished_granite",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "polished_granite",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 10
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "mason/4/quartz_emerald",
+							"wants": {
+								"item": "quartz",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "mason/4/emerald_white_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "white_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_orange_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "orange_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_magenta_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "magenta_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_light_blue_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_blue_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_yellow_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "yellow_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_lime_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "lime_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_pink_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "pink_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_gray_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "gray_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_light_gray_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_gray_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_cyan_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "cyan_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_purple_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "purple_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_blue_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "blue_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_brown_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "brown_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_green_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "green_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_red_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "red_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_black_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "black_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_white_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "white_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_orange_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "orange_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_magenta_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "magenta_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_light_blue_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_blue_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_yellow_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "yellow_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_lime_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "lime_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_pink_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "pink_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_gray_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "gray_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_light_gray_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_gray_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_cyan_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "cyan_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_purple_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "purple_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_blue_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "blue_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_brown_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "brown_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_green_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "green_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_red_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "red_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "mason/4/emerald_black_glazed_terracotta",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "black_glazed_terracotta",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "mason/5/emerald_quartz_pillar",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "quartz_pillar",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						},
+						{
+							"id": "mason/5/emerald_quartz_block",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "quartz_block",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "shepherd",
+			"workstation": "loom",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "shepherd/1/white_wool_emerald",
+							"wants": {
+								"item": "white_wool",
+								"count": 18
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "shepherd/1/brown_wool_emerald",
+							"wants": {
+								"item": "brown_wool",
+								"count": 18
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "shepherd/1/gray_wool_emerald",
+							"wants": {
+								"item": "gray_wool",
+								"count": 18
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "shepherd/1/black_wool_emerald",
+							"wants": {
+								"item": "black_wool",
+								"count": 18
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "shepherd/1/emerald_shears",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "shears",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "shepherd/2/white_dye_emerald",
+							"wants": {
+								"item": "white_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/2/gray_dye_emerald",
+							"wants": {
+								"item": "gray_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/2/black_dye_emerald",
+							"wants": {
+								"item": "black_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/2/light_blue_dye_emerald",
+							"wants": {
+								"item": "light_blue_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/2/lime_dye_emerald",
+							"wants": {
+								"item": "lime_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/2/emerald_white_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "white_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_orange_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "orange_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_magenta_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "magenta_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_light_blue_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_blue_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_yellow_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "yellow_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_lime_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "lime_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_pink_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "pink_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_gray_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "gray_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_light_gray_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_gray_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_cyan_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "cyan_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_purple_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "purple_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_blue_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "blue_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_brown_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "brown_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_green_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "green_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_red_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "red_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_black_wool",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "black_wool",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_white_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "white_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_orange_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "orange_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_magenta_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "magenta_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_light_blue_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_blue_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_yellow_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "yellow_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_lime_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "lime_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_pink_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "pink_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_gray_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "gray_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_light_gray_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "light_gray_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_cyan_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "cyan_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_purple_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "purple_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_blue_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "blue_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_brown_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "brown_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_green_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "green_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_red_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "red_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						},
+						{
+							"id": "shepherd/2/emerald_black_carpet",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "black_carpet",
+								"count": 4
+							},
+							"maxUses": 16,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "shepherd/3/yellow_dye_emerald",
+							"wants": {
+								"item": "yellow_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "shepherd/3/light_gray_dye_emerald",
+							"wants": {
+								"item": "light_gray_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "shepherd/3/orange_dye_emerald",
+							"wants": {
+								"item": "orange_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "shepherd/3/red_dye_emerald",
+							"wants": {
+								"item": "red_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "shepherd/3/pink_dye_emerald",
+							"wants": {
+								"item": "pink_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 20
+						},
+						{
+							"id": "shepherd/3/emerald_white_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "white_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_orange_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "orange_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_magenta_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "magenta_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_light_blue_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "light_blue_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_yellow_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "yellow_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_lime_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "lime_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_pink_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "pink_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_gray_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "gray_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_light_gray_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "light_gray_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_cyan_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "cyan_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_purple_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "purple_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_blue_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "blue_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_brown_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "brown_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_green_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "green_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_red_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "red_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "shepherd/3/emerald_black_bed",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "black_bed",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "shepherd/4/brown_dye_emerald",
+							"wants": {
+								"item": "brown_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "shepherd/4/purple_dye_emerald",
+							"wants": {
+								"item": "purple_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "shepherd/4/blue_dye_emerald",
+							"wants": {
+								"item": "blue_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "shepherd/4/green_dye_emerald",
+							"wants": {
+								"item": "green_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "shepherd/4/magenta_dye_emerald",
+							"wants": {
+								"item": "magenta_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "shepherd/4/cyan_dye_emerald",
+							"wants": {
+								"item": "cyan_dye",
+								"count": 12
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 30
+						},
+						{
+							"id": "shepherd/4/emerald_white_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "white_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_orange_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "orange_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_magenta_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "magenta_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_light_blue_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "light_blue_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_yellow_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "yellow_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_lime_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "lime_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_pink_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "pink_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_gray_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "gray_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_light_gray_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "light_gray_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_cyan_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "cyan_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_purple_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "purple_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_blue_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "blue_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_brown_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "brown_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_green_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "green_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_red_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "red_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						},
+						{
+							"id": "shepherd/4/emerald_black_banner",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "black_banner",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 15
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "shepherd/5/emerald_painting",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "painting",
+								"count": 3
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "toolsmith",
+			"workstation": "smithing_table",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "smith/1/coal_emerald",
+							"wants": {
+								"item": "coal",
+								"count": 15
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "toolsmith/1/emerald_stone_axe",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "stone_axe",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "toolsmith/1/emerald_stone_shovel",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "stone_shovel",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "toolsmith/1/emerald_stone_pickaxe",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "stone_pickaxe",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "toolsmith/1/emerald_stone_hoe",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "stone_hoe",
+								"count": 1
+							},
+							"maxUses": 12
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "smith/2/iron_ingot_emerald",
+							"wants": {
+								"item": "iron_ingot",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "smith/2/emerald_bell",
+							"wants": {
+								"item": "emerald",
+								"count": 36
+							},
+							"gives": {
+								"item": "bell",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "toolsmith/3/flint_emerald",
+							"wants": {
+								"item": "flint",
+								"count": 30
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						},
+						{
+							"id": "toolsmith/3/emerald_enchanted_iron_axe",
+							"wants": {
+								"item": "emerald",
+								"count": 1
+							},
+							"gives": {
+								"item": "iron_axe",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 10,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "toolsmith/3/emerald_enchanted_iron_shovel",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "iron_shovel",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 10,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "toolsmith/3/emerald_enchanted_iron_pickaxe",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "iron_pickaxe",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 10,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "toolsmith/3/emerald_diamond_hoe",
+							"wants": {
+								"item": "emerald",
+								"count": 4
+							},
+							"gives": {
+								"item": "diamond_hoe",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 10
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "toolsmith/4/emerald_enchanted_diamond_axe",
+							"wants": {
+								"item": "emerald",
+								"count": 12
+							},
+							"gives": {
+								"item": "diamond_axe",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "toolsmith/4/emerald_enchanted_diamond_shovel",
+							"wants": {
+								"item": "emerald",
+								"count": 5
+							},
+							"gives": {
+								"item": "diamond_shovel",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "toolsmith/4/diamond_emerald",
+							"wants": {
+								"item": "diamond",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "toolsmith/5/emerald_enchanted_diamond_pickaxe",
+							"wants": {
+								"item": "emerald",
+								"count": 13
+							},
+							"gives": {
+								"item": "diamond_pickaxe",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 30,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "weaponsmith",
+			"workstation": "grindstone",
+			"levels": [
+				{
+					"level": 1,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "smith/1/coal_emerald",
+							"wants": {
+								"item": "coal",
+								"count": 15
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 16,
+							"xp": 2
+						},
+						{
+							"id": "weaponsmith/1/emerald_iron_axe",
+							"wants": {
+								"item": "emerald",
+								"count": 3
+							},
+							"gives": {
+								"item": "iron_axe",
+								"count": 1
+							},
+							"maxUses": 12
+						},
+						{
+							"id": "weaponsmith/1/emerald_enchanted_iron_sword",
+							"wants": {
+								"item": "emerald",
+								"count": 2
+							},
+							"gives": {
+								"item": "iron_sword",
+								"count": 1
+							},
+							"maxUses": 12,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "smith/2/iron_ingot_emerald",
+							"wants": {
+								"item": "iron_ingot",
+								"count": 4
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 10
+						},
+						{
+							"id": "smith/2/emerald_bell",
+							"wants": {
+								"item": "emerald",
+								"count": 36
+							},
+							"gives": {
+								"item": "bell",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 5
+						}
+					]
+				},
+				{
+					"level": 3,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "weaponsmith/3/flint_emerald",
+							"wants": {
+								"item": "flint",
+								"count": 24
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 20
+						}
+					]
+				},
+				{
+					"level": 4,
+					"amount": 2,
+					"trades": [
+						{
+							"id": "weaponsmith/4/emerald_enchanted_diamond_axe",
+							"wants": {
+								"item": "emerald",
+								"count": 12
+							},
+							"gives": {
+								"item": "diamond_axe",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 15,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						},
+						{
+							"id": "weaponsmith/4/diamond_emerald",
+							"wants": {
+								"item": "diamond",
+								"count": 1
+							},
+							"gives": {
+								"item": "emerald",
+								"count": 1
+							},
+							"maxUses": 12,
+							"xp": 30
+						}
+					]
+				},
+				{
+					"level": 5,
+					"amount": 1,
+					"trades": [
+						{
+							"id": "weaponsmith/5/emerald_enchanted_diamond_sword",
+							"wants": {
+								"item": "emerald",
+								"count": 8
+							},
+							"gives": {
+								"item": "diamond_sword",
+								"count": 1
+							},
+							"maxUses": 3,
+							"xp": 30,
+							"kind": "enchanted",
+							"levels": [
+								5,
+								19
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"wanderingTrader": [
+		{
+			"id": "buying",
+			"amount": 2,
+			"trades": [
+				{
+					"id": "wandering_trader/water_bottle_emerald",
+					"wants": {
+						"item": "potion",
+						"count": 1
+					},
+					"gives": {
+						"item": "emerald",
+						"count": 1
+					},
+					"maxUses": 2,
+					"potion": "water"
+				},
+				{
+					"id": "wandering_trader/water_bucket_emerald",
+					"wants": {
+						"item": "water_bucket",
+						"count": 1
+					},
+					"gives": {
+						"item": "emerald",
+						"count": 2
+					},
+					"maxUses": 2
+				},
+				{
+					"id": "wandering_trader/milk_bucket_emerald",
+					"wants": {
+						"item": "milk_bucket",
+						"count": 1
+					},
+					"gives": {
+						"item": "emerald",
+						"count": 2
+					},
+					"maxUses": 2
+				},
+				{
+					"id": "wandering_trader/fermented_spider_eye_emerald",
+					"wants": {
+						"item": "fermented_spider_eye",
+						"count": 1
+					},
+					"gives": {
+						"item": "emerald",
+						"count": 3
+					},
+					"maxUses": 2
+				},
+				{
+					"id": "wandering_trader/baked_potato_emerald",
+					"wants": {
+						"item": "baked_potato",
+						"count": 4
+					},
+					"gives": {
+						"item": "emerald",
+						"count": 1
+					},
+					"maxUses": 2
+				},
+				{
+					"id": "wandering_trader/hay_block_emerald",
+					"wants": {
+						"item": "hay_block",
+						"count": 1
+					},
+					"gives": {
+						"item": "emerald",
+						"count": 1
+					},
+					"maxUses": 2
+				}
+			]
+		},
+		{
+			"id": "common",
+			"amount": 5,
+			"trades": [
+				{
+					"id": "wandering_trader/emerald_white_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "white_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_orange_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "orange_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_magenta_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "magenta_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_light_blue_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "light_blue_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_yellow_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "yellow_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_lime_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "lime_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_pink_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pink_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_gray_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "gray_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_light_gray_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "light_gray_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_cyan_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "cyan_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_purple_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "purple_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_blue_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "blue_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_brown_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "brown_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_green_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "green_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_red_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "red_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_black_dye",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "black_dye",
+						"count": 3
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_fish_bucket",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "tropical_fish_bucket",
+						"count": 1
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_pufferfish_bucket",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "pufferfish_bucket",
+						"count": 1
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_sea_pickle",
+					"wants": {
+						"item": "emerald",
+						"count": 2
+					},
+					"gives": {
+						"item": "sea_pickle",
+						"count": 1
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_slime_ball",
+					"wants": {
+						"item": "emerald",
+						"count": 4
+					},
+					"gives": {
+						"item": "slime_ball",
+						"count": 1
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_glowstone",
+					"wants": {
+						"item": "emerald",
+						"count": 2
+					},
+					"gives": {
+						"item": "glowstone",
+						"count": 1
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_nautilus_shell",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "nautilus_shell",
+						"count": 1
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_fern",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "fern",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_sugar_cane",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "sugar_cane",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_pumpkin",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pumpkin",
+						"count": 1
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_kelp",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "kelp",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_cactus",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "cactus",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_dandelion",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "dandelion",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_poppy",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "poppy",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_blue_orchid",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "blue_orchid",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_allium",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "allium",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_azure_bluet",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "azure_bluet",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_red_tulip",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "red_tulip",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_orange_tulip",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "orange_tulip",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_white_tulip",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "white_tulip",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_pink_tulip",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pink_tulip",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_oxeye_daisy",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "oxeye_daisy",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_cornflower",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "cornflower",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_lily_of_the_valley",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "lily_of_the_valley",
+						"count": 1
+					},
+					"maxUses": 7
+				},
+				{
+					"id": "wandering_trader/emerald_open_eyeblossom",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "open_eyeblossom",
+						"count": 1
+					},
+					"maxUses": 7
+				},
+				{
+					"id": "wandering_trader/emerald_wheat_seeds",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "wheat_seeds",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_beetroot_seeds",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "beetroot_seeds",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_pumpkin_seeds",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pumpkin_seeds",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_melon_seeds",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "melon_seeds",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_acacia_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "acacia_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_birch_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "birch_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_dark_oak_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "dark_oak_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_jungle_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "jungle_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_oak_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "oak_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_spruce_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "spruce_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_cherry_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "cherry_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_pale_oak_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "pale_oak_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_mangrove_propagule",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "mangrove_propagule",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_poplar_sapling",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "poplar_sapling",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_brain_coral_block",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "brain_coral_block",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_bubble_coral_block",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "bubble_coral_block",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_fire_coral_block",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "fire_coral_block",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_horn_coral_block",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "horn_coral_block",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_tube_coral_block",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "tube_coral_block",
+						"count": 1
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_vine",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "vine",
+						"count": 3
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_pale_hanging_moss",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pale_hanging_moss",
+						"count": 3
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_brown_mushroom",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "brown_mushroom",
+						"count": 3
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_red_mushroom",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "red_mushroom",
+						"count": 3
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_lily_pad",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "lily_pad",
+						"count": 5
+					},
+					"maxUses": 2
+				},
+				{
+					"id": "wandering_trader/emerald_small_dripleaf",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "small_dripleaf",
+						"count": 2
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_sand",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "sand",
+						"count": 8
+					},
+					"maxUses": 8
+				},
+				{
+					"id": "wandering_trader/emerald_red_sand",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "red_sand",
+						"count": 4
+					},
+					"maxUses": 6
+				},
+				{
+					"id": "wandering_trader/emerald_pointed_dripstone",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pointed_dripstone",
+						"count": 2
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_sulfur_spike",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "sulfur_spike",
+						"count": 2
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_rooted_dirt",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "rooted_dirt",
+						"count": 2
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_moss_block",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "moss_block",
+						"count": 2
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_pale_moss_block",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pale_moss_block",
+						"count": 2
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_wildflowers",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "wildflowers",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_dry_tall_grass",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "tall_dry_grass",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_firefly_bush",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "firefly_bush",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_golden_dandelion",
+					"wants": {
+						"item": "emerald",
+						"count": 2
+					},
+					"gives": {
+						"item": "golden_dandelion",
+						"count": 1
+					},
+					"maxUses": 12
+				},
+				{
+					"id": "wandering_trader/emerald_name_tag",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "name_tag",
+						"count": 1
+					},
+					"maxUses": 5
+				},
+				{
+					"id": "wandering_trader/emerald_shelf_mushroom",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "shelf_mushroom",
+						"count": 3
+					},
+					"maxUses": 12
+				}
+			]
+		},
+		{
+			"id": "uncommon",
+			"amount": 2,
+			"trades": [
+				{
+					"id": "wandering_trader/emerald_packed_ice",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "packed_ice",
+						"count": 1
+					},
+					"maxUses": 6
+				},
+				{
+					"id": "wandering_trader/emerald_blue_ice",
+					"wants": {
+						"item": "emerald",
+						"count": 6
+					},
+					"gives": {
+						"item": "blue_ice",
+						"count": 1
+					},
+					"maxUses": 6
+				},
+				{
+					"id": "wandering_trader/emerald_gunpowder",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "gunpowder",
+						"count": 4
+					},
+					"maxUses": 2
+				},
+				{
+					"id": "wandering_trader/emerald_podzol",
+					"wants": {
+						"item": "emerald",
+						"count": 3
+					},
+					"gives": {
+						"item": "podzol",
+						"count": 3
+					},
+					"maxUses": 6
+				},
+				{
+					"id": "wandering_trader/emerald_acacia_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "acacia_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_birch_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "birch_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_dark_oak_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "dark_oak_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_jungle_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "jungle_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_oak_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "oak_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_spruce_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "spruce_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_cherry_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "cherry_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_mangrove_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "mangrove_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_pale_oak_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "pale_oak_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_poplar_log",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "poplar_log",
+						"count": 8
+					}
+				},
+				{
+					"id": "wandering_trader/emerald_enchanted_iron_pickaxe",
+					"wants": {
+						"item": "emerald",
+						"count": 1
+					},
+					"gives": {
+						"item": "iron_pickaxe",
+						"count": 1
+					},
+					"maxUses": 1,
+					"kind": "enchanted",
+					"levels": [
+						5,
+						19
+					]
+				},
+				{
+					"id": "wandering_trader/emerald_long_invisibility_potion",
+					"wants": {
+						"item": "emerald",
+						"count": 5
+					},
+					"gives": {
+						"item": "potion",
+						"count": 1
+					},
+					"maxUses": 1,
+					"kind": "potion",
+					"potion": "long_invisibility"
+				}
+			]
+		}
+	],
+	"books": {
+		"tradeable": [
+			"protection",
+			"fire_protection",
+			"feather_falling",
+			"blast_protection",
+			"projectile_protection",
+			"respiration",
+			"aqua_affinity",
+			"thorns",
+			"depth_strider",
+			"sharpness",
+			"smite",
+			"bane_of_arthropods",
+			"knockback",
+			"fire_aspect",
+			"looting",
+			"sweeping_edge",
+			"efficiency",
+			"silk_touch",
+			"unbreaking",
+			"fortune",
+			"power",
+			"punch",
+			"flame",
+			"infinity",
+			"luck_of_the_sea",
+			"lure",
+			"loyalty",
+			"impaling",
+			"riptide",
+			"channeling",
+			"multishot",
+			"quick_charge",
+			"piercing",
+			"density",
+			"breach",
+			"lunge",
+			"binding_curse",
+			"vanishing_curse",
+			"frost_walker",
+			"mending"
+		],
+		"double": [
+			"binding_curse",
+			"vanishing_curse",
+			"swift_sneak",
+			"soul_speed",
+			"frost_walker",
+			"mending",
+			"wind_burst"
+		]
+	}
+}
