@@ -1,12 +1,14 @@
 import { Cancel as CancelIcon } from "pixelarticons/react";
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import armorData from "@/data/armor.json";
-import { type ArmorSelection, SLOTS, type Slot, type TrimSelection } from "@/lib/armor/scene";
+import { type ArmorSelection, SLOTS, type Slot, type TrimSelection } from "@/lib/armor/selection";
 import { useI18n } from "@/i18n";
 import { cn } from "@/lib/utils";
-import ArmorViewer from "./armor-viewer";
+
+// three.js is most of the page's code: the choices show while it loads
+const ArmorViewer = lazy(() => import("./armor-viewer"));
 
 interface Props {
 	/** item id -> icon url */
@@ -78,7 +80,9 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							<h2 className="font-bold">{t("armor.armor")}</h2>
 						</div>
 
-						<ArmorViewer armor={armor} trim={trim} className="h-[55svh] min-h-80" />
+						<Suspense fallback={<div className="h-[55svh] min-h-80 rounded-md border bg-card" />}>
+							<ArmorViewer armor={armor} trim={trim} className="h-[55svh] min-h-80" />
+						</Suspense>
 
 						<div className="space-y-2 rounded-md border p-3">
 							{SLOTS.map((slot) => (

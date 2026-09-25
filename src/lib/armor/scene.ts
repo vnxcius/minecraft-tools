@@ -1,20 +1,8 @@
 import * as THREE from "three";
 import armorData from "@/data/armor.json";
 import { type BoxSpec, buildBox } from "./geometry";
+import { type ArmorSelection, SLOTS, type Slot, type TrimSelection } from "./selection";
 import { armorTexture, plainTexture, trimTexture } from "./textures";
-
-export const SLOTS = ["helmet", "chestplate", "leggings", "boots"] as const;
-export type Slot = (typeof SLOTS)[number];
-
-/** armor material id per slot, null = empty slot */
-export type ArmorSelection = Record<Slot, string | null>;
-
-export interface TrimSelection {
-	pattern: string;
-	material: string;
-	/** slots that get the trim */
-	slots: Slot[];
-}
 
 const ARMOR_TEX: [number, number] = [64, 32];
 const STAND_TEX: [number, number] = [64, 64];

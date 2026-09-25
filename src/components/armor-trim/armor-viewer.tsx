@@ -4,12 +4,8 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Reload as ReloadIcon } from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n";
-import {
-	type ArmorSelection,
-	buildAvatar,
-	disposeAvatar,
-	type TrimSelection,
-} from "@/lib/armor/scene";
+import { buildAvatar, disposeAvatar } from "@/lib/armor/scene";
+import type { ArmorSelection, TrimSelection } from "@/lib/armor/selection";
 
 interface Props {
 	armor: ArmorSelection;
