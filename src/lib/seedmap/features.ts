@@ -214,6 +214,31 @@ export const VERSIONS: McVersion[] = [
 	{ id: "1.12", name: "1.12" },
 ];
 
+/** since 1.18 the biome depends on the height, and the caves have biomes of their own */
+export const hasCaveBiomes = (version: string) =>
+	VERSIONS.findIndex((v) => v.id === version) <= VERSIONS.findIndex((v) => v.id === "1.18");
+
+/**
+ * Heights the overworld map can be drawn at. Above the terrain every column shows its surface
+ * biome; lush and dripstone caves are most common around Y 0, the deep dark near the bottom (ancient
+ * cities sit at Y -51).
+ */
+export const LAYERS: { id: string; y: number; label: () => string }[] = [
+	{ id: "surface", y: 320, label: () => t("seed.surface") },
+	{ id: "caves", y: 0, label: () => t("seed.caves") },
+	{ id: "deep", y: -52, label: () => term("biome.minecraft.deep_dark") },
+];
+export const SURFACE_Y = LAYERS[0].y;
+export const MIN_Y = -64;
+export const MAX_Y = 320;
+
+/** cave biomes, and the height they show best at; picking one in the finder moves the map there */
+export const CAVE_BIOME_Y: Record<string, number> = {
+	lush_caves: 0,
+	dripstone_caves: 0,
+	deep_dark: -52,
+};
+
 export const versionName = (version: McVersion) =>
 	version.andNewer ? t("seed.versionAndNewer", { version: version.name }) : version.name;
 

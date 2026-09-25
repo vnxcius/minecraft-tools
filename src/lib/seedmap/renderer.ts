@@ -32,6 +32,8 @@ export interface MapState {
 	/** changes whenever the seed or version changes, drops everything that was cached */
 	epoch: number;
 	dim: Dim;
+	/** block height the biomes are drawn at; since 1.18 the caves have biomes of their own */
+	y: number;
 	/** ids of the structure features to show */
 	features: Set<string>;
 	showSlime: boolean;
@@ -116,7 +118,8 @@ export class MapRenderer {
 	/** tiles being generated right now */
 	private inFlight = new Set<string>();
 	/** tiles the view is missing, nearest to the center first */
-	private wanted: { key: string; dim: Dim; scale: number; tx: number; tz: number }[] = [];
+	private wanted: { key: string; dim: Dim; y: number; scale: number; tx: number; tz: number }[] =
+		[];
 	/** tiles of the last frame, never evicted */
 	private onScreen = new Set<string>();
 	private features = new Map<string, Area & { points: Int32Array }>();
@@ -310,11 +313,17 @@ export class MapRenderer {
 		return tile.bitmap;
 	}
 
-	private generate({ key, dim, scale, tx, tz }: (typeof this.wanted)[number]) {
+	/** cache key of a tile of the current world, dimension and height */
+	private key(scale: number, tx: number, tz: number) {
+		const { epoch, dim, y } = this.state;
+		return `${epoch}:${dim}:${y}:${scale}:${tx}:${tz}`;
+	}
+
+	private generate({ key, dim, y, scale, tx, tz }: (typeof this.wanted)[number]) {
 		const { engine, epoch } = this.state;
 		this.inFlight.add(key);
 		engine
-			.tile({ dim, scale, x: tx * TILE_CELLS, z: tz * TILE_CELLS, size: TILE_CELLS })
+			.tile({ dim, scale, x: tx * TILE_CELLS, z: tz * TILE_CELLS, size: TILE_CELLS, y })
 			.then(async (ids) => {
 				const paint = this.paint;
 				const bitmap = await this.toBitmap(ids);
@@ -363,13 +372,12 @@ export class MapRenderer {
 		y: number,
 		px: number,
 	) {
-		const { epoch, dim } = this.state;
 		const span = scale * TILE_CELLS;
 		for (const coarser of SCALES.filter((s) => s > scale && s <= scale * 16)) {
 			const bigSpan = coarser * TILE_CELLS;
 			const bx = Math.floor((tx * span) / bigSpan);
 			const bz = Math.floor((tz * span) / bigSpan);
-			const big = this.tiles.get(`${epoch}:${dim}:${coarser}:${bx}:${bz}`);
+			const big = this.tiles.get(this.key(coarser, bx, bz));
 			if (!big) continue;
 			const cells = span / coarser;
 			const sx = (tx * span - bx * bigSpan) / coarser;
@@ -381,7 +389,7 @@ export class MapRenderer {
 		if (finer < 1) return;
 		for (let j = 0; j < 4; j++) {
 			for (let i = 0; i < 4; i++) {
-				const small = this.tiles.get(`${epoch}:${dim}:${finer}:${tx * 4 + i}:${tz * 4 + j}`);
+				const small = this.tiles.get(this.key(finer, tx * 4 + i, tz * 4 + j));
 				if (small)
 					ctx.drawImage(
 						this.bitmap(small),
@@ -407,7 +415,7 @@ export class MapRenderer {
 	}
 
 	private draw() {
-		const { dim, features, showSlime, showGrid, spawn, strongholds, pin, epoch, info } = this.state;
+		const { dim, features, showSlime, showGrid, spawn, strongholds, pin, info } = this.state;
 		const picked = this.state.chunk;
 		const { w, h, ratio } = this.size;
 		const ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -428,7 +436,7 @@ export class MapRenderer {
 		const wanted: typeof this.wanted = [];
 		for (let tz = Math.floor(top / span); tz <= Math.floor(bottom / span); tz++) {
 			for (let tx = Math.floor(left / span); tx <= Math.floor(right / span); tx++) {
-				const key = `${epoch}:${dim}:${scale}:${tx}:${tz}`;
+				const key = this.key(scale, tx, tz);
 				onScreen.add(key);
 				const x = toScreenX(tx * span);
 				const y = toScreenY(tz * span);
@@ -437,7 +445,7 @@ export class MapRenderer {
 				if (tile) ctx.drawImage(this.bitmap(tile), x, y, px + 1, px + 1);
 				else {
 					this.drawStandIn(ctx, scale, tx, tz, x, y, px);
-					if (!this.inFlight.has(key)) wanted.push({ key, dim, scale, tx, tz });
+					if (!this.inFlight.has(key)) wanted.push({ key, dim, y: this.state.y, scale, tx, tz });
 				}
 			}
 		}
@@ -698,12 +706,12 @@ export class MapRenderer {
 
 	/** biome name from a tile that is already loaded */
 	private biomeAt(x: number, z: number) {
-		const { info, epoch, dim } = this.state;
+		const { info, dim } = this.state;
 		const scale = pickScale(this.view.bpp, dim);
 		const span = scale * TILE_CELLS;
 		const tx = Math.floor(x / span);
 		const tz = Math.floor(z / span);
-		const tile = this.tiles.get(`${epoch}:${dim}:${scale}:${tx}:${tz}`);
+		const tile = this.tiles.get(this.key(scale, tx, tz));
 		if (!tile) return undefined;
 		const cellX = Math.floor((x - tx * span) / scale);
 		const cellZ = Math.floor((z - tz * span) / scale);

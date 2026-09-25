@@ -83,8 +83,8 @@ export class SeedEngine {
 	slime(payload: Payload<"slime">) {
 		return this.request<Uint8Array>("slime", payload);
 	}
-	biomeAt(dim: Dim, x: number, z: number) {
-		return this.request<{ id: number; name: string | null }>("biomeAt", { dim, x, z });
+	biomeAt(dim: Dim, x: number, y: number, z: number) {
+		return this.request<{ id: number; name: string | null }>("biomeAt", { dim, x, y, z });
 	}
 	findBiome(payload: Payload<"findBiome">) {
 		return this.request<{ x: number; z: number } | null>("findBiome", payload, true);

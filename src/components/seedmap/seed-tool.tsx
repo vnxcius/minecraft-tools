@@ -22,12 +22,18 @@ import { SeedEngine } from "@/lib/seedmap/engine";
 import {
 	biomeDim,
 	biomeName,
+	CAVE_BIOME_Y,
 	DEFAULT_FEATURES,
 	DIMENSIONS,
 	FEATURES,
 	featureName,
+	hasCaveBiomes,
+	LAYERS,
+	MAX_Y,
+	MIN_Y,
 	SPAWN_ICON,
 	STRONGHOLD_ICON,
+	SURFACE_Y,
 	VERSIONS,
 	versionName,
 } from "@/lib/seedmap/features";
@@ -101,6 +107,9 @@ export default function SeedTool({ icons, slime = false }: Props) {
 	const [seedInput, setSeedInput] = useState(DEFAULT_SEED);
 	const [applied, setApplied] = useState({ seed: DEFAULT_SEED, version: VERSIONS[0].id });
 	const [dim, setDim] = useState<Dim>(0);
+	// the height the overworld biomes are drawn at, and its field (applied on Enter or leaving it)
+	const [y, setY] = useState(SURFACE_Y);
+	const [yInput, setYInput] = useState(String(SURFACE_Y));
 
 	const [features, setFeatures] = useState<Set<string>>(new Set(DEFAULT_FEATURES));
 	const [showSlime, setShowSlime] = useState(slime);
@@ -208,6 +217,25 @@ export default function SeedTool({ icons, slime = false }: Props) {
 			return next;
 		});
 
+	const setHeight = (height: number) => {
+		const clamped = Math.min(Math.max(Math.round(height), MIN_Y), MAX_Y);
+		setYInput(String(clamped));
+		if (clamped === y) return;
+		setY(clamped);
+		// what the finder found was at the old height
+		setFindResults({});
+	};
+	const applyYInput = () =>
+		/^\s*-?\d+\s*$/.test(yInput) ? setHeight(Number(yInput)) : setYInput(String(y));
+	const showLayers = dim === 0 && hasCaveBiomes(applied.version);
+
+	const pickBiome = (id: number) => {
+		setPickedBiomes((prev) => [...prev, id]);
+		// a cave biome is not on the surface: go down to where it shows
+		const caveY = world ? CAVE_BIOME_Y[world.info.names[id]] : undefined;
+		if (showLayers && caveY !== undefined && y === SURFACE_Y) setHeight(caveY);
+	};
+
 	const go = (x: number, z: number, blocksPerPixel?: number) =>
 		map.current?.goTo(x, z, blocksPerPixel);
 
@@ -221,6 +249,7 @@ export default function SeedTool({ icons, slime = false }: Props) {
 					dim,
 					biome,
 					x: center.x,
+					y,
 					z: center.z,
 					radius: 20000,
 				});
@@ -284,6 +313,7 @@ export default function SeedTool({ icons, slime = false }: Props) {
 								info={world.info}
 								epoch={world.epoch}
 								dim={dim}
+								y={y}
 								features={features}
 								showSlime={showSlime}
 								showGrid={showGrid}
@@ -445,6 +475,50 @@ export default function SeedTool({ icons, slime = false }: Props) {
 							))}
 						</div>
 
+						{showLayers && (
+							<div className="space-y-2">
+								<div className="flex items-center justify-between gap-2">
+									<h3 id="biome-height" className="text-sm text-muted-foreground">
+										{t("seed.height")}
+									</h3>
+									<label
+										htmlFor="biome-y"
+										className="flex items-center gap-1.5 text-sm text-muted-foreground"
+									>
+										Y
+										<Input
+											id="biome-y"
+											aria-label={t("seed.heightY", { min: MIN_Y, max: MAX_Y })}
+											title={t("seed.heightY", { min: MIN_Y, max: MAX_Y })}
+											inputMode="numeric"
+											className="h-7 w-16 text-center tabular-nums"
+											value={yInput}
+											onChange={(e) => setYInput(e.target.value)}
+											onBlur={applyYInput}
+											onKeyDown={(e) => e.key === "Enter" && applyYInput()}
+										/>
+									</label>
+								</div>
+								<div role="radiogroup" aria-labelledby="biome-height" className="flex gap-1">
+									{LAYERS.map((layer) => (
+										<button
+											key={layer.id}
+											type="button"
+											role="radio"
+											aria-checked={y === layer.y}
+											onClick={() => setHeight(layer.y)}
+											className={cn(
+												"min-w-0 flex-1 tile bg-secondary px-1 pt-1.5 pb-2 text-sm hover:bg-accent",
+												y === layer.y && "bg-primary/80 hover:border-primary hover:bg-primary/35",
+											)}
+										>
+											{layer.label()}
+										</button>
+									))}
+								</div>
+							</div>
+						)}
+
 						<div className="space-y-2">
 							<h3 className="text-sm text-muted-foreground">{t("seed.goTo")}</h3>
 							<div className="flex gap-2">
@@ -533,12 +607,7 @@ export default function SeedTool({ icons, slime = false }: Props) {
 
 					<Heading>{t("seed.biomeFinder")}</Heading>
 					<div className="space-y-2 rounded border p-3">
-						<Select
-							value=""
-							onValueChange={(value) =>
-								value && setPickedBiomes((prev) => [...prev, Number(value)])
-							}
-						>
+						<Select value="" onValueChange={(value) => value && pickBiome(Number(value))}>
 							<SelectTrigger aria-label={t("seed.addBiome")} className="w-full">
 								<SelectValue placeholder={t("seed.addBiome")} />
 							</SelectTrigger>

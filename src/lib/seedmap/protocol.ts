@@ -1,10 +1,10 @@
-/** messages between the page and the world generation worker */
+/** messages between the page and the world generation worker; heights (`y`) are in blocks */
 
 export type Dim = -1 | 0 | 1;
 
 export type Request = { id: number } & (
 	| { op: "init"; version: string; seed: string }
-	| { op: "tile"; dim: Dim; scale: number; x: number; z: number; size: number }
+	| { op: "tile"; dim: Dim; scale: number; x: number; z: number; size: number; y: number }
 	| {
 			op: "structures";
 			type: number;
@@ -17,8 +17,16 @@ export type Request = { id: number } & (
 	| { op: "strongholds"; count: number }
 	| { op: "spawn" }
 	| { op: "slime"; cx: number; cz: number; w: number; h: number }
-	| { op: "biomeAt"; dim: Dim; x: number; z: number }
-	| { op: "findBiome"; dim: Dim; biome: number; x: number; z: number; radius: number }
+	| { op: "biomeAt"; dim: Dim; x: number; y: number; z: number }
+	| {
+			op: "findBiome";
+			dim: Dim;
+			biome: number;
+			x: number;
+			y: number;
+			z: number;
+			radius: number;
+	  }
 );
 
 export type Response = { id: number; result?: unknown; error?: string };

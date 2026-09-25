@@ -76,12 +76,20 @@ function withBuffer<T>(w: Exports, bytes: number, fn: (pointer: number) => T): T
 	}
 }
 
-// the surface: block 63 at 1:1, and the same height in the 1:4 biome coordinates of coarser scales
-const surfaceY = (scale: number) => (scale === 1 ? 63 : 15);
+/** block height -> the height in the 1:4 biome coordinates of coarser scales */
+const scaledY = (scale: number, y: number) => (scale === 1 ? y : Math.floor(y / 4));
 
-function tile(w: Exports, dim: number, scale: number, x: number, z: number, size: number) {
+function tile(
+	w: Exports,
+	dim: number,
+	scale: number,
+	x: number,
+	z: number,
+	size: number,
+	y: number,
+) {
 	return withBuffer(w, size * size * 4, (pointer) => {
-		const error = w.biomes(dim, scale, x, z, size, size, surfaceY(scale), pointer);
+		const error = w.biomes(dim, scale, x, z, size, size, scaledY(scale, y), pointer);
 		if (error) throw new Error(`Could not generate biomes (${error})`);
 		return new Int32Array(w.memory.buffer, pointer, size * size).slice();
 	});
@@ -92,7 +100,15 @@ function tile(w: Exports, dim: number, scale: number, x: number, z: number, size
  * closest cell of the biome (16 times fewer samples than 1:16, the search used to take seconds), then
  * a 1:4 pass around that cell pins down the spot of it nearest to the point.
  */
-function findBiome(w: Exports, dim: number, biome: number, cx: number, cz: number, radius: number) {
+function findBiome(
+	w: Exports,
+	dim: number,
+	biome: number,
+	cx: number,
+	y: number,
+	cz: number,
+	radius: number,
+) {
 	const cells = 64;
 	const coarse = 64;
 	const span = cells * coarse;
@@ -105,7 +121,7 @@ function findBiome(w: Exports, dim: number, biome: number, cx: number, cz: numbe
 		for (let tz = -ring; tz <= ring; tz++) {
 			for (let tx = -ring; tx <= ring; tx++) {
 				if (Math.max(Math.abs(tx), Math.abs(tz)) !== ring) continue;
-				const ids = tile(w, dim, coarse, (home[0] + tx) * cells, (home[1] + tz) * cells, cells);
+				const ids = tile(w, dim, coarse, (home[0] + tx) * cells, (home[1] + tz) * cells, cells, y);
 				for (let i = 0; i < ids.length; i++) {
 					if (ids[i] !== biome) continue;
 					const x = (home[0] + tx) * span + (i % cells) * coarse + coarse / 2;
@@ -123,7 +139,7 @@ function findBiome(w: Exports, dim: number, biome: number, cx: number, cz: numbe
 	const size = 48;
 	const x0 = Math.floor(best.x / fine) - size / 2;
 	const z0 = Math.floor(best.z / fine) - size / 2;
-	const ids = tile(w, dim, fine, x0, z0, size);
+	const ids = tile(w, dim, fine, x0, z0, size, y);
 	let precise: { x: number; z: number; d: number } | null = null;
 	for (let i = 0; i < ids.length; i++) {
 		if (ids[i] !== biome) continue;
@@ -168,7 +184,7 @@ async function handle(request: Request) {
 			return { colors, names, dims };
 		}
 		case "tile":
-			return tile(w, request.dim, request.scale, request.x, request.z, request.size);
+			return tile(w, request.dim, request.scale, request.x, request.z, request.size, request.y);
 		case "structures":
 			return withBuffer(w, request.max * 8, (pointer) => {
 				const n = w.structures(
@@ -198,11 +214,12 @@ async function handle(request: Request) {
 				return new Uint8Array(w.memory.buffer, pointer, request.w * request.h).slice();
 			});
 		case "biomeAt": {
-			const id = w.biome_at(request.dim, request.x, 63, request.z);
+			const id = w.biome_at(request.dim, request.x, request.y, request.z);
 			return { id, name: cString(w, w.biome_name(id)) };
 		}
 		case "findBiome":
-			return findBiome(w, request.dim, request.biome, request.x, request.z, request.radius);
+			const { dim, biome, x, y, z, radius } = request;
+			return findBiome(w, dim, biome, x, y, z, radius);
 	}
 }
 
