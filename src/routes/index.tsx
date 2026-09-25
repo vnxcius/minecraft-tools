@@ -45,7 +45,13 @@ function Home() {
 	return (
 		<div className="flex flex-col gap-4">
 			<section className="flex flex-col items-center gap-3 section-box px-4 py-6 text-center">
-				<img src="/minecraft_tools.webp" alt="Minecraft Tools" className="w-full max-w-3xl" />
+				<img
+					src="/minecraft_tools.webp"
+					alt="Minecraft Tools"
+					width={794}
+					height={216}
+					className="w-full max-w-3xl"
+				/>
 				<h1 className="my-4 text-xl font-bold">{t("home.heading")}</h1>
 				<p className="max-w-xl">{t("home.intro")}</p>
 				<p className="my-4 text-sm text-muted-foreground">
