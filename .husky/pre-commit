@@ -1,0 +1,6 @@
+# staged files: format them (the fixes are staged too) and lint them
+bunx lint-staged
+# the whole project: types, unused code and the tests
+bun run typecheck
+bun run knip
+bun run test
