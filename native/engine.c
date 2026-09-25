@@ -122,7 +122,13 @@ EXPORT void biome_colors(unsigned char *out)
 }
 
 /* Name of a biome for the current version, pointer to a static string (NULL if unknown). */
-EXPORT const char *biome_name(int id) { return biome2str(cur_mc, id); }
+/* Name of a biome, or NULL when the current version does not generate it (cubiomes names every id,
+ * e.g. desert_hills in 1.21). Deep warm ocean was registered until 1.17 but never generated. */
+EXPORT const char *biome_name(int id)
+{
+    if (!biomeExists(cur_mc, id) || id == deep_warm_ocean) return NULL;
+    return biome2str(cur_mc, id);
+}
 
 EXPORT int structure_dim(int type)
 {
