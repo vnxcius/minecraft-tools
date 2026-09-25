@@ -67,6 +67,20 @@ export function resolveVersion(id?: string): McVersion {
 	return versions.find((v) => v.id === id) ?? latestVersion;
 }
 
+/**
+ * item id -> icon url. The newer catalog keeps some items only per variant ("suspicious_stew__1c0f0534",
+ * one per effect; potions, tipped arrows and enchanted books too), so each such item also gets the
+ * icon of one of its variants under its own id.
+ */
+export function iconMap(items: Item[]) {
+	const icons: Record<string, string> = Object.fromEntries(items.map((i) => [i.id, i.src]));
+	for (const { id, src } of items) {
+		const base = id.split("__")[0];
+		if (base !== id) icons[base] ??= src;
+	}
+	return icons;
+}
+
 export async function loadItems(version: McVersion): Promise<Item[]> {
 	const folders = await loaders[`../data/items/${version.id}.json`]();
 	return Object.entries(folders).map(([id, folder]) => ({

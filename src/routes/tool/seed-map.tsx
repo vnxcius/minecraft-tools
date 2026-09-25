@@ -1,7 +1,7 @@
 import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import SeedTool from "@/components/seedmap/seed-tool";
-import { latestVersion, loadItems } from "@/lib/items";
+import { iconMap, latestVersion, loadItems } from "@/lib/items";
 
 export const Route = createFileRoute("/tool/seed-map")({
 	// `?slime=true` opens the map with the slime chunks on (the slime chunk finder links here)
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/tool/seed-map")({
 	}),
 	loader: async () => {
 		const items = await loadItems(latestVersion);
-		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
+		return { icons: iconMap(items) };
 	},
 	head: () => pageHead("/tool/seed-map"),
 	component: SeedPage,

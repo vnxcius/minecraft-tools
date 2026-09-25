@@ -1,12 +1,12 @@
 import { pageHead } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import NetherPortal from "@/components/nether-portal";
-import { latestVersion, loadItems } from "@/lib/items";
+import { iconMap, latestVersion, loadItems } from "@/lib/items";
 
 export const Route = createFileRoute("/tool/nether-portal")({
 	loader: async () => {
 		const items = await loadItems(latestVersion);
-		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
+		return { icons: iconMap(items) };
 	},
 	head: () => pageHead("/tool/nether-portal"),
 	component: NetherPortalPage,
