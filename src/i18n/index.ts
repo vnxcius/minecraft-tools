@@ -15,7 +15,7 @@ import {
 	type Language,
 	setCurrentLanguage,
 } from "./current";
-import { MESSAGES, type MessageKey } from "./messages";
+import type { MessageKey, Messages } from "./messages";
 
 export { LANGUAGES, type Language, type MessageKey };
 
@@ -27,19 +27,38 @@ interface GameText {
 	terms: Record<string, string>;
 }
 
+interface Text {
+	messages: Messages;
+	game: GameText;
+}
+
 const STORAGE_KEY = "language";
 const loaders = import.meta.glob<GameText>("../data/lang/*.json", { import: "default" });
-const loaded = new Map<Language, GameText>();
+// one language's text at a time, the others only load when picked
+const messageLoaders: Record<Language, () => Promise<Messages>> = {
+	en: () => import("./messages/en").then((module) => module.en),
+	"pt-BR": () => import("./messages/pt-BR").then((module) => module.ptBR),
+	es: () => import("./messages/es").then((module) => module.es),
+};
+const loaded = new Map<Language, Promise<Text>>();
+let messages = {} as Messages;
 let game: GameText = { version: "", items: {}, terms: {} };
 
 const listeners = new Set<() => void>();
 let snapshot = { language: currentLanguage() };
 
-async function loadGame(language: Language) {
-	const cached = loaded.get(language);
-	if (cached) return cached;
-	const text = await loaders[`../data/lang/${language}.json`]();
-	loaded.set(language, text);
+/** the site text and the game names together, both requests at once */
+function loadText(language: Language) {
+	let text = loaded.get(language);
+	if (!text) {
+		text = Promise.all([
+			messageLoaders[language](),
+			loaders[`../data/lang/${language}.json`](),
+		]).then(([messages, game]) => ({ messages, game }));
+		// a failed request can be tried again
+		text.catch(() => loaded.delete(language));
+		loaded.set(language, text);
+	}
 	return text;
 }
 
@@ -60,8 +79,9 @@ function detect(): Language {
 	return "en";
 }
 
-function apply(language: Language, text: GameText) {
-	game = text;
+function apply(language: Language, text: Text) {
+	messages = text.messages;
+	game = text.game;
 	setCurrentLanguage(language);
 	document.documentElement.lang = language;
 	snapshot = { language };
@@ -71,11 +91,11 @@ function apply(language: Language, text: GameText) {
 /** before the first render, so every name is ready and nothing flashes in English */
 export async function initI18n() {
 	const language = detect();
-	apply(language, await loadGame(language));
+	apply(language, await loadText(language));
 }
 
 async function setLanguage(language: Language) {
-	const text = await loadGame(language);
+	const text = await loadText(language);
 	try {
 		localStorage.setItem(STORAGE_KEY, language);
 	} catch {
@@ -89,9 +109,9 @@ const subscribe = (listener: () => void) => {
 	return () => listeners.delete(listener);
 };
 
-/** "Hello {name}" with vars; a key missing in a language falls back to English */
+/** "Hello {name}" with vars; the type check makes sure every language has every key */
 export function t(key: MessageKey, vars?: Record<string, string | number>) {
-	const template = MESSAGES[currentLanguage()][key] ?? MESSAGES.en[key];
+	const template = messages[key];
 	return vars
 		? template.replace(/\{(\w+)\}/g, (_, name) => String(vars[name] ?? `{${name}}`))
 		: template;
