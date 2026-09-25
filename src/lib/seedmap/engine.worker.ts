@@ -41,19 +41,23 @@ interface Exports {
 
 const ctx = self as unknown as {
 	postMessage: (message: Response, transfer?: Transferable[]) => void;
-	onmessage: ((event: MessageEvent<Request>) => void) | null;
+	onmessage: ((event: MessageEvent<Request | WebAssembly.Module | string>) => void) | null;
 };
 
 let wasm: Exports | null = null;
-const ready = (async () => {
-	const response = await fetch("/engine/engine.wasm");
-	const { instance } = await WebAssembly.instantiate(await response.arrayBuffer(), {
-		// the engine never prints or reads files: every system call can be a no-op
-		wasi_snapshot_preview1: new Proxy({}, { get: () => () => 0 }),
-	});
-	wasm = instance.exports as unknown as Exports;
-	wasm._initialize?.();
-})();
+// the page compiles the generator once and sends it to every worker (see engine.ts)
+let receive: (setup: WebAssembly.Module | string) => void = () => {};
+const ready = new Promise<WebAssembly.Module | string>((resolve) => (receive = resolve)).then(
+	async (module) => {
+		if (typeof module === "string") throw new Error(module);
+		const instance = await WebAssembly.instantiate(module, {
+			// the engine never prints or reads files: every system call can be a no-op
+			wasi_snapshot_preview1: new Proxy({}, { get: () => () => 0 }),
+		});
+		wasm = instance.exports as unknown as Exports;
+		wasm._initialize?.();
+	},
+);
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -225,6 +229,10 @@ async function handle(request: Request) {
 
 ctx.onmessage = async (event) => {
 	const request = event.data;
+	if (request instanceof WebAssembly.Module || typeof request === "string") {
+		receive(request);
+		return;
+	}
 	try {
 		const result = await handle(request);
 		const transfer =

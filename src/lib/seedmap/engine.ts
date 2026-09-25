@@ -7,6 +7,24 @@ interface Call {
 	reject: (e: Error) => void;
 }
 
+let compiled: Promise<WebAssembly.Module> | null = null;
+
+/**
+ * The generator, downloaded and compiled once for every worker: each worker fetching it for itself
+ * downloaded the 2 MB file again, as none of them was cached yet.
+ */
+function compileEngine() {
+	compiled ??= fetch("/engine/engine.wasm").then(async (response) => {
+		// streaming compiles while it downloads, but only takes the application/wasm type
+		try {
+			return await WebAssembly.compileStreaming(response.clone());
+		} catch {
+			return WebAssembly.compile(await response.arrayBuffer());
+		}
+	});
+	return compiled;
+}
+
 /** one engine worker and the calls waiting on it */
 class Lane {
 	worker = new Worker(new URL("./engine.worker.ts", import.meta.url), { type: "module" });
@@ -15,6 +33,11 @@ class Lane {
 	slow = 0;
 
 	constructor() {
+		// the worker waits for the compiled generator, or the reason there is none
+		compileEngine().then(
+			(module) => this.worker.postMessage(module),
+			(error) => this.worker.postMessage(String(error)),
+		);
 		this.worker.onmessage = (event: MessageEvent<Response>) => {
 			const { id, result, error } = event.data;
 			const call = this.pending.get(id);
