@@ -74,6 +74,12 @@ export const PAGE_TEXT: Record<Exclude<Language, "en">, Record<string, PageText>
 				'Descubra a ordem mais barata para combinar livros encantados na bigorna e evitar o "Muito caro!". Custo em níveis de cada etapa, para cada item.',
 			heading: "Ordem de Encantamentos",
 		},
+		"/tool/enchanting-table": {
+			title: "Mesa de Encantamentos do Minecraft: chance de cada encantamento",
+			description:
+				"A chance exata de cada encantamento na mesa de encantamentos, por item, estantes, espaço e nível, em cada versão da Java Edition desde a 1.14.4.",
+			heading: "Probabilidades da Mesa de Encantamentos",
+		},
 		"/tool/villager-trading": {
 			title: "Trocas com Aldeões do Minecraft: todas as trocas por profissão",
 			description:
@@ -165,6 +171,12 @@ export const PAGE_TEXT: Record<Exclude<Language, "en">, Record<string, PageText>
 			description:
 				'Descubre el orden más barato para combinar libros encantados en el yunque y evitar el "¡Demasiado caro!". Coste en niveles de cada paso, para cada objeto.',
 			heading: "Orden de encantamientos",
+		},
+		"/tool/enchanting-table": {
+			title: "Mesa de encantamientos de Minecraft: probabilidad de encantar",
+			description:
+				"La probabilidad exacta de cada encantamiento en la mesa de encantamientos por objeto, librerías, ranura y nivel, en cada versión de Java Edition desde 1.14.4.",
+			heading: "Probabilidades de la mesa de encantamientos",
 		},
 		"/tool/villager-trading": {
 			title: "Comercio con aldeanos de Minecraft: todos los tratos por profesión",

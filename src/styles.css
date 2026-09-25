@@ -89,6 +89,9 @@
 	--slot: #8b8b8b;
 	--slot-light: #ffffff;
 	--slot-dark: #373737;
+	/* enchantment names, and the glint that sweeps over them */
+	--enchant: #8a5cf5;
+	--enchant-shine: #d4c2ff;
 }
 
 /* Dark palette: a night version of the same, slate panels on deepslate */
@@ -131,6 +134,8 @@
 	--slot: #555a60;
 	--slot-light: #767b82;
 	--slot-dark: #2a2c30;
+	--enchant: #b8a2ff;
+	--enchant-shine: #f3edff;
 }
 
 html {
@@ -231,4 +236,33 @@ html {
 	box-shadow:
 		inset 2px 2px 0 var(--slot-dark),
 		inset -2px -2px 0 var(--slot-light);
+}
+
+/* an enchanted name: the enchantment purple with a light band sweeping over it, like the glint on
+   an enchanted item in the game; it holds still for anyone who asks for less motion */
+@utility enchant-glint {
+	color: var(--enchant);
+	background-image: linear-gradient(
+		100deg,
+		var(--enchant) 40%,
+		var(--enchant-shine) 50%,
+		var(--enchant) 60%
+	);
+	background-size: 300% 100%;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: enchant-glint 4s linear infinite;
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		background-position: 100% 0;
+	}
+}
+
+@keyframes enchant-glint {
+	from {
+		background-position: 100% 0;
+	}
+	to {
+		background-position: -50% 0;
+	}
 }

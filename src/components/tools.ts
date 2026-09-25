@@ -72,6 +72,13 @@ export const TOOLS = [
 		related: ["/tool/best-enchantments", "/tool/3d-armor-trim-viewer", "/tool/potion-maker"],
 	},
 	{
+		id: "enchanting-table",
+		to: "/tool/enchanting-table",
+		category: "Guides",
+		image: "/tools/enchanting-table.png",
+		related: ["/tool/enchant-order", "/tool/best-enchantments", "/tool/villager-trading"],
+	},
+	{
 		id: "villager-trading",
 		to: "/tool/villager-trading",
 		category: "Guides",

@@ -26,6 +26,8 @@
 		"engine:build": "bun scripts/build-engine.ts",
 		"lang:sync": "bun scripts/sync-lang.ts",
 		"villagers:sync": "bun scripts/sync-villagers.ts",
+		"enchanting:sync": "bun scripts/sync-enchanting.ts",
+		"enchanting-scene:sync": "bun scripts/sync-enchanting-scene.ts",
 		"sync": "bun scripts/sync-all.ts"
 	},
 	"dependencies": {

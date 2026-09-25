@@ -410,6 +410,9 @@ export const ptBR: Messages = {
 	"tool.enchant-order.title": "Ordem de Encantamentos",
 	"tool.enchant-order.description":
 		'A ordem mais barata para combinar seus livros na bigorna, sem nunca ver "Muito caro!".',
+	"tool.enchanting-table.title": "Probabilidades da Mesa de Encantamentos",
+	"tool.enchanting-table.description":
+		"A chance de cada encantamento na mesa de encantamentos, por item, estantes e espaço.",
 	"tool.nether-portal.title": "Calculadora de Portais do Nether",
 	"tool.nether-portal.description":
 		"Converta coordenadas entre a Superfície e o Nether para construir portais ligados no lugar certo.",
@@ -429,6 +432,45 @@ export const ptBR: Messages = {
 		'A etapa {step} custa 40 níveis ou mais: a bigorna mostra "Muito caro!" no Modo Sobrevivência. Tire um encantamento ou comece com um item novo.',
 	"order.hint":
 		"Coloque a peça da esquerda no primeiro espaço da bigorna e a da direita no segundo. Cada etapa encarece a seguinte, e esta ordem mantém o total no mínimo. A próxima mudança neste item custará pelo menos {next} níveis a mais.",
+
+	// enchanting table odds (item, enchantment and bookshelf names come from the game)
+	"table.viewer": "Visualização 3D",
+	"table.hideViewer": "Ocultar",
+	"table.showViewer": "Mostrar",
+	"table.setup": "Mesa de encantamentos",
+	"table.version": "Versão do Minecraft (Java Edition)",
+	"table.versionRange": "{from} – {to}",
+	"table.versionAndNewer": "{version} ou mais recente",
+	"table.spear": "Lança",
+	"table.material": "Material",
+	"table.enchantability": "Encantabilidade {value}",
+	"table.shelves": "Estantes",
+	"table.shelvesHint":
+		"Estantes em volta da mesa que a fortalecem, sem nada no meio. Mais de {max} não mudam nada.",
+	"table.slots": "Espaço",
+	"table.slot.0": "Espaço de cima",
+	"table.slot.1": "Espaço do meio",
+	"table.slot.2": "Espaço de baixo",
+	"table.level": "Nível {level}",
+	"table.levels": "Níveis {min} a {max}",
+	"table.empty": "vazio {chance}",
+	"table.exact": "Nível exato",
+	"table.computing": "Calculando as chances...",
+	"table.oddsSlot": "{slot} com {count} estantes",
+	"table.oddsLevel": "Encantamento de nível {level}",
+	"table.emptyNote":
+		"Este espaço fica vazio {chance} das vezes, quando o custo seria menor que a posição dele. As chances abaixo valem para quando ele aparece.",
+	"table.enchantment": "Encantamento",
+	"table.anyLevel": "Qualquer nível",
+	"table.count": "Encantamentos que você recebe",
+	"table.enchantments.one": "{count} encantamento",
+	"table.enchantments.other": "{count} encantamentos",
+	"table.bookNote":
+		"Um livro que sorteia mais de um encantamento perde um deles ao acaso, então livros recebem menos.",
+	"table.hint":
+		"A chance de cada encantamento estar no item depois de encantado, calculada exatamente com as fórmulas e os dados do próprio jogo para a versão escolhida. O nível de um espaço muda sempre que a mesa sorteia de novo, então as chances cobrem todos os níveis que ele pode mostrar.",
+	"table.javaOnly":
+		"Java Edition a partir da {first}. Versões mais antigas e a Bedrock Edition não estão incluídas.",
 	"portal.howTitle": "Como ligar dois portais",
 	"portal.tipBuild":
 		"Construa o segundo portal nas coordenadas convertidas. X e Z são divididos por 8 ao entrar no Nether, e o Y continua igual.",

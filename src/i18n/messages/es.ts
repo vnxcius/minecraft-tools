@@ -416,6 +416,9 @@ export const es: Messages = {
 	"tool.enchant-order.title": "Orden de encantamientos",
 	"tool.enchant-order.description":
 		'El orden más barato para combinar tus libros en el yunque, sin llegar nunca a "¡Demasiado caro!".',
+	"tool.enchanting-table.title": "Probabilidades de la mesa de encantamientos",
+	"tool.enchanting-table.description":
+		"La probabilidad de cada encantamiento en la mesa de encantamientos, por objeto, librerías y ranura.",
 	"tool.nether-portal.title": "Calculadora de portales del Nether",
 	"tool.nether-portal.description":
 		"Convierte coordenadas entre el mundo superior y el Nether para construir portales enlazados en el sitio correcto.",
@@ -435,6 +438,45 @@ export const es: Messages = {
 		'El paso {step} cuesta 40 niveles o más: el yunque muestra "¡Demasiado caro!" en el modo supervivencia. Quita un encantamiento o empieza con un objeto nuevo.',
 	"order.hint":
 		"Pon la pieza de la izquierda en la primera casilla del yunque y la de la derecha en la segunda. Cada paso encarece el siguiente, y este orden deja el total lo más bajo posible. El próximo cambio en este objeto costará al menos {next} niveles más.",
+
+	// enchanting table odds (item, enchantment and bookshelf names come from the game)
+	"table.viewer": "Vista 3D",
+	"table.hideViewer": "Ocultar",
+	"table.showViewer": "Mostrar",
+	"table.setup": "Mesa de encantamientos",
+	"table.version": "Versión de Minecraft (Java Edition)",
+	"table.versionRange": "{from} – {to}",
+	"table.versionAndNewer": "{version} o posterior",
+	"table.spear": "Lanza",
+	"table.material": "Material",
+	"table.enchantability": "Encantabilidad {value}",
+	"table.shelves": "Librerías",
+	"table.shelvesHint":
+		"Librerías alrededor de la mesa que la potencian, sin nada en medio. Más de {max} no cambian nada.",
+	"table.slots": "Ranura",
+	"table.slot.0": "Ranura superior",
+	"table.slot.1": "Ranura central",
+	"table.slot.2": "Ranura inferior",
+	"table.level": "Nivel {level}",
+	"table.levels": "Niveles {min} a {max}",
+	"table.empty": "vacía {chance}",
+	"table.exact": "Nivel exacto",
+	"table.computing": "Calculando las probabilidades...",
+	"table.oddsSlot": "{slot} con {count} librerías",
+	"table.oddsLevel": "Encantamiento de nivel {level}",
+	"table.emptyNote":
+		"Esta ranura queda vacía el {chance} de las veces, cuando su coste sería menor que su posición. Las probabilidades de abajo son para cuando aparece.",
+	"table.enchantment": "Encantamiento",
+	"table.anyLevel": "Cualquier nivel",
+	"table.count": "Encantamientos que recibes",
+	"table.enchantments.one": "{count} encantamiento",
+	"table.enchantments.other": "{count} encantamientos",
+	"table.bookNote":
+		"Un libro que obtiene más de un encantamiento pierde uno de ellos al azar, así que los libros reciben menos.",
+	"table.hint":
+		"La probabilidad de que cada encantamiento esté en el objeto tras encantarlo, calculada con exactitud a partir de las fórmulas y los datos del propio juego para la versión elegida. El nivel de una ranura cambia cada vez que la mesa vuelve a sortear, así que sus probabilidades cubren todos los niveles que puede mostrar.",
+	"table.javaOnly":
+		"Java Edition desde la {first}. Las versiones anteriores y Bedrock Edition no están incluidas.",
 	"portal.howTitle": "Cómo enlazar dos portales",
 	"portal.tipBuild":
 		"Construye el segundo portal en las coordenadas convertidas. X y Z se dividen entre 8 al entrar en el Nether, y la Y no cambia.",

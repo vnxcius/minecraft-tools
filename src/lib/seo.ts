@@ -116,6 +116,14 @@ export const PAGES: Page[] = [
 		priority: 0.9,
 	},
 	{
+		path: "/tool/enchanting-table",
+		title: "Minecraft Enchanting Table Odds: Chance of Every Enchantment",
+		description:
+			"The exact chance of every enchantment at the enchanting table, by item, bookshelves, slot and level, for each Java Edition version since 1.14.4.",
+		heading: "Enchanting Table Probabilities",
+		priority: 0.9,
+	},
+	{
 		path: "/tool/villager-trading",
 		title: "Minecraft Villager Trading Guide: Every Trade by Profession",
 		description:

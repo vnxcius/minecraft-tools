@@ -410,6 +410,9 @@ export const en = {
 	"tool.enchant-order.title": "Enchantment Order",
 	"tool.enchant-order.description":
 		'The cheapest order to combine your books in the anvil, so you never hit "Too Expensive!".',
+	"tool.enchanting-table.title": "Enchanting Table Probabilities",
+	"tool.enchanting-table.description":
+		"The chance of every enchantment at the enchanting table, by item, bookshelves and slot.",
 	"tool.nether-portal.title": "Nether Portal Calculator",
 	"tool.nether-portal.description":
 		"Convert Overworld and Nether coordinates to build linked portals in the right spot.",
@@ -429,6 +432,45 @@ export const en = {
 		'Step {step} costs 40 levels or more: the anvil says "Too Expensive!" in Survival. Drop an enchantment or start from a fresh item.',
 	"order.hint":
 		"Put the left piece in the first anvil slot and the right one in the second. Every step makes the next one pricier, so this order keeps the total lowest. Your next change to this item will cost at least {next} extra levels.",
+
+	// enchanting table odds (item, enchantment and bookshelf names come from the game)
+	"table.viewer": "3D view",
+	"table.hideViewer": "Hide",
+	"table.showViewer": "Show",
+	"table.setup": "Enchanting table",
+	"table.version": "Minecraft version (Java Edition)",
+	"table.versionRange": "{from} – {to}",
+	"table.versionAndNewer": "{version} and newer",
+	"table.spear": "Spear",
+	"table.material": "Material",
+	"table.enchantability": "Enchantability {value}",
+	"table.shelves": "Bookshelves",
+	"table.shelvesHint":
+		"Bookshelves around the table that power it, with nothing in between. More than {max} change nothing.",
+	"table.slots": "Slot",
+	"table.slot.0": "Top slot",
+	"table.slot.1": "Middle slot",
+	"table.slot.2": "Bottom slot",
+	"table.level": "Level {level}",
+	"table.levels": "Levels {min} to {max}",
+	"table.empty": "empty {chance}",
+	"table.exact": "Exact level",
+	"table.computing": "Working out the odds...",
+	"table.oddsSlot": "{slot} with {count} bookshelves",
+	"table.oddsLevel": "Level {level} enchantment",
+	"table.emptyNote":
+		"This slot stays empty {chance} of the time, when its cost would be lower than its position. The odds below are for when it is offered.",
+	"table.enchantment": "Enchantment",
+	"table.anyLevel": "Any level",
+	"table.count": "Enchantments you get",
+	"table.enchantments.one": "{count} enchantment",
+	"table.enchantments.other": "{count} enchantments",
+	"table.bookNote":
+		"A book that rolls more than one enchantment loses one of them at random, so books get fewer.",
+	"table.hint":
+		"The chance of each enchantment being on the item once enchanted, worked out exactly from the game's own formulas and data for the version picked. A slot's level changes every time the table rerolls, so its odds cover every level it can show.",
+	"table.javaOnly":
+		"Java Edition from {first} on. Older versions and Bedrock Edition are not covered.",
 	"portal.howTitle": "How to link two portals",
 	"portal.tipBuild":
 		"Build the second portal at the converted coordinates. X and Z are divided by 8 going into the Nether, and Y stays the same.",

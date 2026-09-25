@@ -20,6 +20,7 @@ const STEPS: { name: string; script: string; versioned: boolean }[] = [
 	{ name: "banner", script: "sync-banner.ts", versioned: true },
 	{ name: "potions", script: "sync-potions.ts", versioned: true },
 	{ name: "decor", script: "sync-decor.ts", versioned: true },
+	{ name: "enchanting-scene", script: "sync-enchanting-scene.ts", versioned: true },
 	{ name: "villagers", script: "sync-villagers.ts", versioned: true },
 	{ name: "lang", script: "sync-lang.ts", versioned: true },
 ];

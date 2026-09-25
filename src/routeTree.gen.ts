@@ -15,6 +15,7 @@ import { Route as ToolBannerGeneratorRouteImport } from './routes/tool/banner-ge
 import { Route as ToolBestEnchantmentsRouteImport } from './routes/tool/best-enchantments'
 import { Route as ToolCircleGeneratorRouteImport } from './routes/tool/circle-generator'
 import { Route as ToolEnchantOrderRouteImport } from './routes/tool/enchant-order'
+import { Route as ToolEnchantingTableRouteImport } from './routes/tool/enchanting-table'
 import { Route as ToolFireworkGeneratorRouteImport } from './routes/tool/firework-generator'
 import { Route as ToolItemChecklistRouteImport } from './routes/tool/item-checklist'
 import { Route as ToolNetherPortalRouteImport } from './routes/tool/nether-portal'
@@ -53,6 +54,11 @@ const ToolCircleGeneratorRoute = ToolCircleGeneratorRouteImport.update({
 const ToolEnchantOrderRoute = ToolEnchantOrderRouteImport.update({
   id: '/tool/enchant-order',
   path: '/tool/enchant-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolEnchantingTableRoute = ToolEnchantingTableRouteImport.update({
+  id: '/tool/enchanting-table',
+  path: '/tool/enchanting-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolFireworkGeneratorRoute = ToolFireworkGeneratorRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
   '/tool/circle-generator': typeof ToolCircleGeneratorRoute
   '/tool/enchant-order': typeof ToolEnchantOrderRoute
+  '/tool/enchanting-table': typeof ToolEnchantingTableRoute
   '/tool/firework-generator': typeof ToolFireworkGeneratorRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/nether-portal': typeof ToolNetherPortalRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
   '/tool/circle-generator': typeof ToolCircleGeneratorRoute
   '/tool/enchant-order': typeof ToolEnchantOrderRoute
+  '/tool/enchanting-table': typeof ToolEnchantingTableRoute
   '/tool/firework-generator': typeof ToolFireworkGeneratorRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/nether-portal': typeof ToolNetherPortalRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/tool/best-enchantments': typeof ToolBestEnchantmentsRoute
   '/tool/circle-generator': typeof ToolCircleGeneratorRoute
   '/tool/enchant-order': typeof ToolEnchantOrderRoute
+  '/tool/enchanting-table': typeof ToolEnchantingTableRoute
   '/tool/firework-generator': typeof ToolFireworkGeneratorRoute
   '/tool/item-checklist': typeof ToolItemChecklistRoute
   '/tool/nether-portal': typeof ToolNetherPortalRoute
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/tool/best-enchantments'
     | '/tool/circle-generator'
     | '/tool/enchant-order'
+    | '/tool/enchanting-table'
     | '/tool/firework-generator'
     | '/tool/item-checklist'
     | '/tool/nether-portal'
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/tool/best-enchantments'
     | '/tool/circle-generator'
     | '/tool/enchant-order'
+    | '/tool/enchanting-table'
     | '/tool/firework-generator'
     | '/tool/item-checklist'
     | '/tool/nether-portal'
@@ -196,6 +207,7 @@ export interface FileRouteTypes {
     | '/tool/best-enchantments'
     | '/tool/circle-generator'
     | '/tool/enchant-order'
+    | '/tool/enchanting-table'
     | '/tool/firework-generator'
     | '/tool/item-checklist'
     | '/tool/nether-portal'
@@ -214,6 +226,7 @@ export interface RootRouteChildren {
   ToolBestEnchantmentsRoute: typeof ToolBestEnchantmentsRoute
   ToolCircleGeneratorRoute: typeof ToolCircleGeneratorRoute
   ToolEnchantOrderRoute: typeof ToolEnchantOrderRoute
+  ToolEnchantingTableRoute: typeof ToolEnchantingTableRoute
   ToolFireworkGeneratorRoute: typeof ToolFireworkGeneratorRoute
   ToolItemChecklistRoute: typeof ToolItemChecklistRoute
   ToolNetherPortalRoute: typeof ToolNetherPortalRoute
@@ -267,6 +280,13 @@ declare module '@tanstack/react-router' {
       path: '/tool/enchant-order'
       fullPath: '/tool/enchant-order'
       preLoaderRoute: typeof ToolEnchantOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tool/enchanting-table': {
+      id: '/tool/enchanting-table'
+      path: '/tool/enchanting-table'
+      fullPath: '/tool/enchanting-table'
+      preLoaderRoute: typeof ToolEnchantingTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tool/firework-generator': {
@@ -342,6 +362,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolBestEnchantmentsRoute: ToolBestEnchantmentsRoute,
   ToolCircleGeneratorRoute: ToolCircleGeneratorRoute,
   ToolEnchantOrderRoute: ToolEnchantOrderRoute,
+  ToolEnchantingTableRoute: ToolEnchantingTableRoute,
   ToolFireworkGeneratorRoute: ToolFireworkGeneratorRoute,
   ToolItemChecklistRoute: ToolItemChecklistRoute,
   ToolNetherPortalRoute: ToolNetherPortalRoute,
