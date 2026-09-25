@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build && bun scripts/prerender.ts && tsc --noEmit",
+		"build": "vite build && bun scripts/prerender.ts && bun scripts/check-size.ts && tsc --noEmit",
 		"preview": "vite preview",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix",
