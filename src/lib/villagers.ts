@@ -11,6 +11,16 @@ export interface Stack {
 	count: number;
 }
 
+/** one thing a random trade can come out as */
+export type Option =
+	/** levels: lowest and highest it can have; max: the enchantment's max level (1 has no numeral) */
+	| { type: "enchantment"; id: string; levels: number[]; max: number }
+	| { type: "dye"; id: string }
+	/** a suspicious stew effect and its seconds */
+	| { type: "effect"; id: string; seconds: number }
+	/** the potion of a tipped arrow, e.g. "long_swiftness" */
+	| { type: "potion"; id: string };
+
 export interface Trade {
 	id: string;
 	wants: Stack;
@@ -20,6 +30,10 @@ export interface Trade {
 	xp?: number;
 	kind?: "book" | "enchanted" | "dyed" | "map" | "stew" | "tipped" | "potion";
 	levels?: number[];
+	/** every way the random part can turn out: enchantments, dyes, stew effects or arrow potions */
+	options?: Option[];
+	/** how many dyes a "dyed" item is mixed from */
+	dyes?: number[];
 	potion?: string;
 	variants?: string[];
 }
@@ -85,6 +99,27 @@ export const levelName = (level: number) => term(`merchant.level.${level}`);
 export const variantName = (variant: string) =>
 	term(`biome.minecraft.${variant === "snow" ? "snowy_plains" : variant}`);
 
+/** a tipped arrow's name for a potion id: "long_swiftness" is Arrow of Swiftness (Extended) */
+function arrowName(potion: string) {
+	const name = term(`item.minecraft.tipped_arrow.effect.${potion.replace(/^(long|strong)_/, "")}`);
+	if (potion.startsWith("long_")) return t("potion.extendedName", { name });
+	return potion.startsWith("strong_") ? `${name} II` : name;
+}
+
+/** the name of an option, as the chip shows it */
+export function optionName(option: Option) {
+	switch (option.type) {
+		case "enchantment":
+			return term(`enchantment.minecraft.${option.id}`);
+		case "dye":
+			return itemName(`${option.id}_dye`);
+		case "effect":
+			return term(`effect.minecraft.${option.id}`);
+		case "potion":
+			return arrowName(option.id);
+	}
+}
+
 /** the name the item has in game; potions carry their own */
 export function stackName(stack: Stack, trade: Trade) {
 	if (stack.item === "potion" && trade.potion) {
@@ -114,5 +149,6 @@ export function searchText(trade: Trade) {
 		.map((stack) => stackName(stack, trade));
 	if (trade.kind === "book")
 		words.push(...BOOK_ENCHANTMENTS.map((id) => term(`enchantment.minecraft.${id}`)));
+	for (const option of trade.options ?? []) words.push(optionName(option));
 	return fold(words.join(" "));
 }

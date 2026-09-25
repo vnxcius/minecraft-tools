@@ -93,6 +93,33 @@ describe("villager trades", () => {
 		}
 	});
 
+	test("every random trade lists what it can turn out as, and each has a name", () => {
+		expect(publicFile("/villager/xp_orb.png")).toBe(true);
+		for (const { owner, group } of groups) {
+			for (const trade of group.trades) {
+				if (!["enchanted", "book", "dyed", "stew", "tipped"].includes(trade.kind ?? "")) continue;
+				expect(trade.options?.length, `${owner}: ${trade.id}`).toBeGreaterThan(0);
+				for (const option of trade.options ?? []) {
+					const where = `${trade.id}: ${option.id}`;
+					if (option.type === "enchantment") {
+						expect(lang.en.terms[`enchantment.minecraft.${option.id}`], where).toBeTruthy();
+						expect(option.levels[0], where).toBeGreaterThanOrEqual(1);
+						expect(option.levels[1], where).toBeLessThanOrEqual(option.max);
+					}
+					if (option.type === "dye") expect(lang.en.items[`${option.id}_dye`], where).toBeTruthy();
+					if (option.type === "effect") {
+						expect(lang.en.terms[`effect.minecraft.${option.id}`], where).toBeTruthy();
+						expect(publicFile(`/potion/effect/${option.id}.png`), where).toBe(true);
+					}
+					if (option.type === "potion") {
+						const base = option.id.replace(/^(long|strong)_/, "");
+						expect(lang.en.terms[`item.minecraft.tipped_arrow.effect.${base}`], where).toBeTruthy();
+					}
+				}
+			}
+		}
+	});
+
 	test("the enchantments librarians sell have names", () => {
 		for (const id of BOOK_ENCHANTMENTS)
 			expect(lang.en.terms[`enchantment.minecraft.${id}`], id).toBeTruthy();

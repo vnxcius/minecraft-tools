@@ -3,6 +3,8 @@ import PotionIcon from "@/components/potion/potion-icon";
 import { Heading, ItemIcon } from "@/components/tool-parts";
 import { Input } from "@/components/ui/input";
 import { type MessageKey, fold, useI18n } from "@/i18n";
+import { colorById } from "@/lib/banner";
+import { levelName as enchantmentLevel } from "@/lib/enchantments";
 import { potionById } from "@/lib/potions";
 import { cn } from "@/lib/utils";
 import {
@@ -11,6 +13,8 @@ import {
 	bookPrice,
 	DOUBLE_PRICE,
 	levelName,
+	type Option,
+	optionName,
 	PROFESSIONS,
 	price,
 	professionLabel,
@@ -68,6 +72,89 @@ function StackView({
 	);
 }
 
+/** past this many, a list of possibilities starts folded */
+const FOLDED = 16;
+
+function OptionChip({ option }: { option: Option }) {
+	const { t } = useI18n();
+	if (option.type === "enchantment") {
+		const [low, high] = option.levels;
+		const levels =
+			low === high ? enchantmentLevel(low) : `${enchantmentLevel(low)}–${enchantmentLevel(high)}`;
+		return (
+			<span className="border border-purple-500/40 bg-purple-500/10 px-1.5 py-0.5 text-purple-700 dark:text-purple-300">
+				{optionName(option)}
+				{option.max > 1 && ` ${levels}`}
+			</span>
+		);
+	}
+	// dyes get their color, effects and arrows the effect icon
+	const effect =
+		option.type === "effect"
+			? option.id
+			: option.type === "potion"
+				? potionById(option.id.replace(/^(long|strong)_/, ""))?.effects?.[0]?.icon
+				: undefined;
+	return (
+		<span className="inline-flex items-center gap-1 border border-border bg-secondary px-1.5 py-0.5 text-secondary-foreground">
+			{option.type === "dye" && (
+				<span
+					className="size-2.5 border border-black/40"
+					style={{ backgroundColor: colorById(option.id).hex }}
+				/>
+			)}
+			{effect && (
+				<img
+					src={`/potion/effect/${effect}.png`}
+					alt=""
+					width={18}
+					height={18}
+					className="size-3.5 pixelated"
+				/>
+			)}
+			{optionName(option)}
+			{option.type === "effect" && (
+				<span className="text-muted-foreground">
+					{t("villager.seconds", { count: option.seconds })}
+				</span>
+			)}
+		</span>
+	);
+}
+
+/** what a random trade can turn out as, folded when the list is long */
+function Options({ trade }: { trade: Trade }) {
+	const { t } = useI18n();
+	const [open, setOpen] = useState(false);
+	const options = trade.options ?? [];
+	if (options.length === 0) return null;
+	const label =
+		options[0].type === "enchantment"
+			? t("villager.canComeWith")
+			: options[0].type === "dye" && trade.dyes
+				? t("villager.dyedWith", { min: trade.dyes[0], max: trade.dyes[1] })
+				: t("villager.oneOf");
+	const folded = options.length > FOLDED && !open;
+	return (
+		<div className="flex flex-wrap items-center gap-1 text-xs">
+			<span className="text-muted-foreground">{label}</span>
+			{(folded ? options.slice(0, FOLDED) : options).map((option) => (
+				<OptionChip key={`${option.type}:${option.id}`} option={option} />
+			))}
+			{options.length > FOLDED && (
+				<button
+					type="button"
+					onClick={() => setOpen(!open)}
+					aria-expanded={open}
+					className="px-1.5 py-0.5 font-medium text-link hover:underline"
+				>
+					{open ? t("villager.showLess") : t("villager.showAll", { count: options.length })}
+				</button>
+			)}
+		</div>
+	);
+}
+
 function TradeRow({ trade, icons }: { trade: Trade; icons: Props["icons"] }) {
 	const { t } = useI18n();
 	const [min, max] = price(trade);
@@ -99,15 +186,27 @@ function TradeRow({ trade, icons }: { trade: Trade; icons: Props["icons"] }) {
 			</div>
 			{(notes.length > 0 || trade.maxUses || trade.xp) && (
 				<p className="text-xs text-muted-foreground">
-					{[
-						...notes,
-						trade.maxUses && t("villager.maxUses", { count: trade.maxUses }),
-						trade.xp && t("villager.xp", { count: trade.xp }),
-					]
+					{[...notes, trade.maxUses && t("villager.maxUses", { count: trade.maxUses })]
 						.filter(Boolean)
 						.join(" · ")}
+					{trade.xp && (
+						<>
+							{(notes.length > 0 || trade.maxUses) && " · "}
+							<span className="inline-flex items-center gap-1 align-bottom font-medium text-green-700 dark:text-green-400">
+								{t("villager.xp", { count: trade.xp })}
+								<img
+									src="/villager/xp_orb.png"
+									alt=""
+									width={16}
+									height={16}
+									className="size-4 pixelated"
+								/>
+							</span>
+						</>
+					)}
 				</p>
 			)}
+			<Options trade={trade} />
 		</li>
 	);
 }
