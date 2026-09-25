@@ -4,7 +4,6 @@ import type { Form } from "@/lib/potions";
 import { cn } from "@/lib/utils";
 
 interface Props {
-	/** liquid color, e.g. "#33ebff" */
 	color: string;
 	form: Form;
 	className?: string;
@@ -64,7 +63,7 @@ export default function PotionIcon({ color, form, className }: Props) {
 			width={16}
 			height={16}
 			aria-hidden
-			className={cn("size-8 shrink-0 [image-rendering:pixelated]", className)}
+			className={cn("size-8 shrink-0 pixelated", className)}
 		/>
 	);
 }

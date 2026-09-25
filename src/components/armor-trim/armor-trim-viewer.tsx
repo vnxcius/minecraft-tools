@@ -1,10 +1,10 @@
-import { BanIcon } from "lucide-react";
+import { Cancel as CancelIcon } from "pixelarticons/react";
 import { useMemo, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import armorData from "@/data/armor.json";
 import { type ArmorSelection, SLOTS, type Slot, type TrimSelection } from "@/lib/armor/scene";
+import { useI18n } from "@/i18n";
 import { cn } from "@/lib/utils";
 import ArmorViewer from "./armor-viewer";
 
@@ -13,14 +13,6 @@ interface Props {
 	icons: Record<string, string>;
 }
 
-const SLOT_LABELS: Record<Slot, string> = {
-	helmet: "Helmet",
-	chestplate: "Chestplate",
-	leggings: "Leggings",
-	boots: "Boots",
-};
-
-/** square icon button with a tooltip, highlighted like the selected cells of the checklist */
 function IconButton({
 	label,
 	selected,
@@ -50,7 +42,7 @@ function IconButton({
 	);
 }
 
-const NoneIcon = () => <BanIcon className="size-5 text-muted-foreground" />;
+const NoneIcon = () => <CancelIcon className="size-5 text-muted-foreground" />;
 
 export default function ArmorTrimViewer({ icons }: Props) {
 	const [armor, setArmor] = useState<ArmorSelection>({
@@ -59,6 +51,10 @@ export default function ArmorTrimViewer({ icons }: Props) {
 		leggings: "diamond",
 		boots: "diamond",
 	});
+	const { t, term, itemName } = useI18n();
+	const slotName = (slot: Slot) => t(`armor.slot.${slot}`);
+	const patternName = (id: string) => term(`trim_pattern.minecraft.${id}`);
+	const materialName = (id: string) => term(`trim_material.minecraft.${id}`);
 	const [pattern, setPattern] = useState<string | null>("coast");
 	const [material, setMaterial] = useState("gold");
 	const [trimSlots, setTrimSlots] = useState<Slot[]>([...SLOTS]);
@@ -75,18 +71,11 @@ export default function ArmorTrimViewer({ icons }: Props) {
 
 	return (
 		<section>
-			<div className="relative py-12">
-				<h1 className="display mb-2 text-center text-4xl">3D Armor Trim Viewer</h1>
-				<p className="text-center text-muted-foreground">
-					Preview every armor and trim combination on an armor stand.
-				</p>
-
-				<Separator className="mx-auto my-4 max-w-lg" />
-
-				<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_26rem]">
+			<div className="relative">
+				<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_26rem]">
 					<div className="flex min-w-0 flex-col gap-3">
 						<div className="flex h-9 items-center">
-							<h2 className="text-muted-foreground">Armor</h2>
+							<h2 className="font-bold">{t("armor.armor")}</h2>
 						</div>
 
 						<ArmorViewer armor={armor} trim={trim} className="h-[55svh] min-h-80" />
@@ -95,11 +84,11 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							{SLOTS.map((slot) => (
 								<div key={slot} className="flex items-center gap-3">
 									<span className="w-24 shrink-0 text-sm text-muted-foreground">
-										{SLOT_LABELS[slot]}
+										{slotName(slot)}
 									</span>
 									<div className="flex flex-wrap gap-0.5">
 										<IconButton
-											label="None"
+											label={t("armor.none")}
 											selected={armor[slot] === null}
 											onClick={() => setArmor((prev) => ({ ...prev, [slot]: null }))}
 										>
@@ -110,7 +99,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 											.map((a) => (
 												<IconButton
 													key={a.id}
-													label={a.name}
+													label={itemName(`${a.itemPrefix}_${slot}`)}
 													selected={armor[slot] === a.id}
 													onClick={() => setArmor((prev) => ({ ...prev, [slot]: a.id }))}
 												>
@@ -131,22 +120,20 @@ export default function ArmorTrimViewer({ icons }: Props) {
 
 					<div className="flex min-w-0 flex-col gap-3">
 						<div className="flex h-9 items-center justify-between">
-							<h2 className="text-muted-foreground">Trim</h2>
-							<span className="text-muted-foreground text-sm">
+							<h2 className="font-bold">{t("armor.trim")}</h2>
+							<span className="text-sm text-muted-foreground">
 								{pattern
-									? `${armorData.patterns.find((p) => p.id === pattern)?.name} · ${
-											armorData.materials.find((m) => m.id === material)?.name
-										}`
-									: "No trim"}
+									? `${patternName(pattern)} · ${materialName(material)}`
+									: t("armor.noTrim")}
 							</span>
 						</div>
 
 						<div className="space-y-4 rounded-md border p-3">
 							<div className="space-y-1.5">
-								<h3 className="text-muted-foreground text-sm">Pattern</h3>
+								<h3 className="text-sm text-muted-foreground">{t("armor.pattern")}</h3>
 								<div className="flex flex-wrap gap-0.5">
 									<IconButton
-										label="None"
+										label={t("armor.none")}
 										selected={pattern === null}
 										onClick={() => setPattern(null)}
 									>
@@ -155,7 +142,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 									{armorData.patterns.map((p) => (
 										<IconButton
 											key={p.id}
-											label={p.name}
+											label={patternName(p.id)}
 											selected={pattern === p.id}
 											onClick={() => setPattern(p.id)}
 										>
@@ -166,12 +153,12 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							</div>
 
 							<div className="space-y-1.5">
-								<h3 className="text-muted-foreground text-sm">Material</h3>
+								<h3 className="text-sm text-muted-foreground">{t("armor.material")}</h3>
 								<div className="flex flex-wrap gap-0.5">
 									{armorData.materials.map((m) => (
 										<IconButton
 											key={m.id}
-											label={m.name}
+											label={materialName(m.id)}
 											selected={material === m.id}
 											onClick={() => setMaterial(m.id)}
 										>
@@ -182,7 +169,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							</div>
 
 							<div className="space-y-1.5">
-								<h3 className="text-muted-foreground text-sm">Apply to</h3>
+								<h3 className="text-sm text-muted-foreground">{t("armor.applyTo")}</h3>
 								<div className="grid grid-cols-2 gap-2">
 									{SLOTS.map((slot) => (
 										<label key={slot} className="flex cursor-pointer items-center gap-2 text-sm">
@@ -190,7 +177,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 												checked={trimSlots.includes(slot)}
 												onCheckedChange={() => toggleSlot(slot)}
 											/>
-											{SLOT_LABELS[slot]}
+											{slotName(slot)}
 										</label>
 									))}
 								</div>

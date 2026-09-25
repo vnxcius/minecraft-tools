@@ -1,4 +1,10 @@
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon, CopyIcon, XIcon } from "lucide-react";
+import {
+	Check as CheckIcon,
+	ChevronDown as ChevronDownIcon,
+	ChevronUp as ChevronUpIcon,
+	Close as CloseIcon,
+	Copy as CopyIcon,
+} from "pixelarticons/react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,24 +14,24 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import {
 	type BannerDesign,
 	COLORS,
 	colorById,
 	giveCommand,
-	itemName,
+	colorName,
 	type Layer,
 	MAX_LAYERS,
 	materials,
 	PATTERNS,
-	patternById,
+	patternName,
 	type Kind,
 	shieldMaterials,
 } from "@/lib/banner";
 import { Heading, ItemIcon } from "@/components/tool-parts";
-import { cn } from "@/lib/utils";
+import { useI18n } from "@/i18n";
+import { cn, uid } from "@/lib/utils";
 import BannerCanvas from "./banner-canvas";
 
 interface Props {
@@ -47,7 +53,6 @@ function ColorDot({ color, className }: { color: string; className?: string }) {
 	);
 }
 
-/** the 16 dye colors as a grid of swatches */
 function Swatches({
 	value,
 	onChange,
@@ -57,6 +62,7 @@ function Swatches({
 	onChange: (color: string) => void;
 	label: string;
 }) {
+	useI18n();
 	return (
 		<div role="radiogroup" aria-label={label} className="flex flex-wrap gap-1.5">
 			{COLORS.map((color) => (
@@ -64,7 +70,7 @@ function Swatches({
 					<TooltipTrigger
 						role="radio"
 						aria-checked={value === color.id}
-						aria-label={color.name}
+						aria-label={colorName(color.id)}
 						onClick={() => onChange(color.id)}
 						className={cn(
 							"size-7 rounded-sm border border-foreground/20",
@@ -72,7 +78,7 @@ function Swatches({
 						)}
 						style={{ backgroundColor: color.hex }}
 					/>
-					<TooltipContent>{color.name}</TooltipContent>
+					<TooltipContent>{colorName(color.id)}</TooltipContent>
 				</Tooltip>
 			))}
 		</div>
@@ -82,7 +88,7 @@ function Swatches({
 export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 	const shield = kind === "shield";
 	const newLayer = (pattern: string, color: string): Layer => ({
-		key: crypto.randomUUID(),
+		key: uid(),
 		pattern,
 		color,
 	});
@@ -91,6 +97,7 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 	const [layers, setLayers] = useState<Layer[]>(() => [newLayer("straight_cross", "white")]);
 	const [newColor, setNewColor] = useState("red");
 	const [copied, setCopied] = useState(false);
+	const { t, itemName } = useI18n();
 
 	const design = useMemo<BannerDesign>(() => ({ base, layers }), [base, layers]);
 	const needed = useMemo(
@@ -116,36 +123,27 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 	};
 
 	return (
-		<section className="py-12">
-			<h1 className="display mb-2 text-center text-4xl">
-				{shield ? "Shield Designer" : "Banner Designer"}
-			</h1>
-			<p className="text-center text-muted-foreground">
-				Layer up to {MAX_LAYERS} patterns and dyes, then get the materials and the command.
-			</p>
-
-			<Separator className="mx-auto my-4 max-w-lg" />
-
-			<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_28rem]">
+		<section>
+			<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_28rem]">
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>{shield ? "Shield" : "Banner"}</Heading>
+					<Heading>{shield ? itemName("shield") : t("banner.banner")}</Heading>
 
 					<div className="flex items-center justify-center rounded border bg-card py-8">
 						<BannerCanvas
 							design={design}
 							kind={kind}
-							className={shield ? "h-[384px] w-[224px]" : "h-[420px] w-[200px]"}
+							className={shield ? "h-96 w-56" : "h-105 w-50"}
 						/>
 					</div>
 
 					<Heading
 						aside={
-							<span className="text-muted-foreground text-sm">
-								{layers.length}/{MAX_LAYERS} layers
+							<span className="text-sm text-muted-foreground">
+								{t("banner.layers", { count: layers.length, max: MAX_LAYERS })}
 							</span>
 						}
 					>
-						Materials
+						{t("banner.materials")}
 					</Heading>
 					<ul className="divide-y rounded border">
 						{needed.map((m) => (
@@ -153,42 +151,51 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 								<ItemIcon icons={icons} item={m.item} />
 								<div className="min-w-0 flex-1">
 									<p className="truncate text-sm">{itemName(m.item)}</p>
-									{m.note && <p className="truncate text-muted-foreground text-xs">{m.note}</p>}
+									{m.note && (
+										<p className="truncate text-xs text-muted-foreground">
+											{"recipe" in m.note
+												? m.note.recipe.map(itemName).join(" + ")
+												: t(m.note.message)}
+										</p>
+									)}
 								</div>
 								<span className="text-sm tabular-nums">×{m.count}</span>
 							</li>
 						))}
-						<li className="flex items-center gap-3 px-3 py-1.5 text-muted-foreground text-xs">
+						<li className="flex items-center gap-3 px-3 py-1.5 text-xs text-muted-foreground">
 							<ItemIcon icons={icons} item="loom" className="size-6" />
-							{shield
-								? "Apply the patterns to the banner in a loom (2 planks + 2 string), then craft the shield with the banner"
-								: "Apply the patterns in a loom (2 planks + 2 string)"}
+							{shield ? t("banner.loomHintShield") : t("banner.loomHint")}
 						</li>
 					</ul>
 
-					<Heading>Command</Heading>
+					<Heading>{t("banner.command")}</Heading>
 					<div className="flex items-start gap-2 rounded border bg-card p-3">
-						<code className="min-w-0 flex-1 break-all text-xs leading-relaxed">{command}</code>
-						<Button variant="outline" size="icon-sm" aria-label="Copy command" onClick={copy}>
+						<code className="min-w-0 flex-1 text-xs leading-relaxed break-all">{command}</code>
+						<Button
+							variant="outline"
+							size="icon-sm"
+							aria-label={t("banner.copyCommand")}
+							onClick={copy}
+						>
 							{copied ? <CheckIcon /> : <CopyIcon />}
 						</Button>
 					</div>
 				</div>
 
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Design</Heading>
+					<Heading>{t("banner.design")}</Heading>
 
 					<div className="space-y-5 rounded border p-3">
 						<div className="space-y-2">
-							<h3 className="text-muted-foreground text-sm">Base color</h3>
-							<Swatches value={base} onChange={setBase} label="Base color" />
+							<h3 className="text-sm text-muted-foreground">{t("banner.baseColor")}</h3>
+							<Swatches value={base} onChange={setBase} label={t("banner.baseColor")} />
 						</div>
 
 						<div className="space-y-2">
-							<h3 className="text-muted-foreground text-sm">Layers (bottom to top)</h3>
+							<h3 className="text-sm text-muted-foreground">{t("banner.layersTitle")}</h3>
 							{layers.length === 0 ? (
-								<p className="rounded border border-dashed p-3 text-center text-muted-foreground text-sm">
-									No layers yet. Pick a pattern below.
+								<p className="rounded border border-dashed p-3 text-center text-sm text-muted-foreground">
+									{t("banner.noLayers")}
 								</p>
 							) : (
 								<ul className="divide-y rounded border">
@@ -200,7 +207,7 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 												className="h-10 w-5 shrink-0 rounded-sm"
 											/>
 											<span className="min-w-0 flex-1 truncate text-sm">
-												{patternById(layer.pattern).name}
+												{patternName(layer.pattern, layer.color)}
 											</span>
 											<Select
 												value={layer.color}
@@ -211,14 +218,17 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 													)
 												}
 											>
-												<SelectTrigger aria-label="Layer color" className="h-8 min-w-0 px-2">
+												<SelectTrigger
+													aria-label={t("banner.layerColor")}
+													className="h-8 min-w-0 px-2"
+												>
 													<SelectValue>{(value: string) => <ColorDot color={value} />}</SelectValue>
 												</SelectTrigger>
 												<SelectContent align="end">
 													{COLORS.map((c) => (
 														<SelectItem key={c.id} value={c.id}>
 															<ColorDot color={c.id} />
-															{c.name}
+															{colorName(c.id)}
 														</SelectItem>
 													))}
 												</SelectContent>
@@ -226,7 +236,7 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 											<Button
 												variant="ghost"
 												size="icon-sm"
-												aria-label="Move layer down"
+												aria-label={t("banner.moveDown")}
 												disabled={i === 0}
 												onClick={() => move(i, -1)}
 											>
@@ -235,7 +245,7 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 											<Button
 												variant="ghost"
 												size="icon-sm"
-												aria-label="Move layer up"
+												aria-label={t("banner.moveUp")}
 												disabled={i === layers.length - 1}
 												onClick={() => move(i, 1)}
 											>
@@ -244,10 +254,10 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 											<Button
 												variant="ghost"
 												size="icon-sm"
-												aria-label="Remove layer"
+												aria-label={t("banner.removeLayer")}
 												onClick={() => setLayers((prev) => prev.filter((l) => l.key !== layer.key))}
 											>
-												<XIcon className="text-destructive" />
+												<CloseIcon className="text-destructive" />
 											</Button>
 										</li>
 									))}
@@ -256,19 +266,19 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 						</div>
 
 						<div className="space-y-2">
-							<h3 className="text-muted-foreground text-sm">New layer color</h3>
-							<Swatches value={newColor} onChange={setNewColor} label="New layer color" />
+							<h3 className="text-sm text-muted-foreground">{t("banner.newLayerColor")}</h3>
+							<Swatches value={newColor} onChange={setNewColor} label={t("banner.newLayerColor")} />
 						</div>
 
 						<div className="space-y-2">
-							<h3 className="text-muted-foreground text-sm">
-								{full ? `Layer limit reached (${MAX_LAYERS})` : "Add a pattern"}
+							<h3 className="text-sm text-muted-foreground">
+								{full ? t("banner.limit", { max: MAX_LAYERS }) : t("banner.addPattern")}
 							</h3>
 							<div className="flex flex-wrap gap-1">
 								{PATTERNS.map((pattern) => (
 									<Tooltip key={pattern.id}>
 										<TooltipTrigger
-											aria-label={`Add ${pattern.name}`}
+											aria-label={t("banner.addNamed", { name: patternName(pattern.id, newColor) })}
 											disabled={full}
 											onClick={() => setLayers((prev) => [...prev, newLayer(pattern.id, newColor)])}
 											className="rounded-sm p-1 hover:bg-accent disabled:opacity-40"
@@ -283,13 +293,13 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 											/>
 										</TooltipTrigger>
 										<TooltipContent>
-											{pattern.name}
+											{patternName(pattern.id, newColor)}
 											{pattern.item && " *"}
 										</TooltipContent>
 									</Tooltip>
 								))}
 							</div>
-							<p className="text-muted-foreground text-xs">* needs a banner pattern item</p>
+							<p className="text-xs text-muted-foreground">{t("banner.needsItem")}</p>
 						</div>
 					</div>
 				</div>

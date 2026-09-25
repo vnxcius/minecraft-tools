@@ -1,27 +1,34 @@
-import { CheckIcon, CopyIcon, PlusIcon, RotateCcwIcon, XIcon } from "lucide-react";
+import {
+	Check as CheckIcon,
+	Close as CloseIcon,
+	Copy as CopyIcon,
+	Plus as PlusIcon,
+	Reload as ReloadIcon,
+} from "pixelarticons/react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Heading, ItemIcon } from "@/components/tool-parts";
 import {
 	COLORS,
-	colorById,
+	colorName,
 	type Firework,
 	giveCommand,
 	hex,
-	itemName,
 	MAX_FADE,
 	materials,
 	maxColors,
 	maxStars,
 	SHAPES,
+	shapeName,
+	starColorName,
 	type Shape,
 	type Star,
 	starSteps,
 } from "@/lib/firework";
-import { cn } from "@/lib/utils";
+import { useI18n } from "@/i18n";
+import { cn, uid } from "@/lib/utils";
 import FireworkCanvas from "./firework-canvas";
 
 interface Props {
@@ -30,7 +37,7 @@ interface Props {
 }
 
 const newStar = (): Star => ({
-	key: crypto.randomUUID(),
+	key: uid(),
 	shape: "large_ball",
 	colors: ["red", "orange"],
 	fade: ["yellow"],
@@ -52,6 +59,7 @@ function MultiSwatches({
 	min?: number;
 	label: string;
 }) {
+	useI18n();
 	return (
 		<div role="group" aria-label={label} className="flex flex-wrap gap-1.5">
 			{COLORS.map((color) => {
@@ -60,7 +68,7 @@ function MultiSwatches({
 				return (
 					<Tooltip key={color.id}>
 						<TooltipTrigger
-							aria-label={color.name}
+							aria-label={colorName(color.id)}
 							aria-pressed={selected}
 							disabled={blocked}
 							onClick={() => onToggle(color.id)}
@@ -72,7 +80,7 @@ function MultiSwatches({
 						>
 							{selected && <CheckIcon className="size-4 text-white mix-blend-difference" />}
 						</TooltipTrigger>
-						<TooltipContent>{color.name}</TooltipContent>
+						<TooltipContent>{colorName(color.id)}</TooltipContent>
 					</Tooltip>
 				);
 			})}
@@ -85,6 +93,12 @@ export default function FireworkDesigner({ icons }: Props) {
 	const [stars, setStars] = useState<Star[]>(() => [newStar()]);
 	const [replayKey, setReplayKey] = useState(0);
 	const [copied, setCopied] = useState(false);
+	const { t, term, itemName } = useI18n();
+	// the star's own words for trail and twinkle, as a label ("com feixe de luz" -> "Com feixe de luz")
+	const label = (key: string) => {
+		const text = term(key);
+		return text.charAt(0).toUpperCase() + text.slice(1);
+	};
 
 	const firework = useMemo<Firework>(() => ({ flight, stars }), [flight, stars]);
 	const needed = useMemo(() => materials(firework), [firework]);
@@ -113,25 +127,18 @@ export default function FireworkDesigner({ icons }: Props) {
 	};
 
 	return (
-		<section className="py-12">
-			<h1 className="display mb-2 text-center text-4xl">Firework Crafting</h1>
-			<p className="text-center text-muted-foreground">
-				Design the stars of a rocket, watch them go off and get the crafting recipe.
-			</p>
-
-			<Separator className="mx-auto my-4 max-w-lg" />
-
-			<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_28rem]">
+		<section>
+			<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_28rem]">
 				<div className="flex min-w-0 flex-col gap-3">
 					<Heading
 						aside={
 							<Button variant="outline" size="sm" onClick={() => setReplayKey((k) => k + 1)}>
-								<RotateCcwIcon />
-								Replay
+								<ReloadIcon />
+								{t("firework.replay")}
 							</Button>
 						}
 					>
-						Preview
+						{t("firework.preview")}
 					</Heading>
 					<div className="flex justify-center rounded border bg-card p-3">
 						<FireworkCanvas firework={firework} replayKey={replayKey} />
@@ -139,12 +146,12 @@ export default function FireworkDesigner({ icons }: Props) {
 
 					<Heading
 						aside={
-							<span className="text-muted-foreground text-sm">
-								{stars.length}/{limit} stars
+							<span className="text-sm text-muted-foreground">
+								{t("firework.starsCount", { count: stars.length, max: limit })}
 							</span>
 						}
 					>
-						Materials
+						{t("firework.materials")}
 					</Heading>
 					<ul className="divide-y rounded border">
 						{needed.map((m) => (
@@ -153,34 +160,39 @@ export default function FireworkDesigner({ icons }: Props) {
 								<div className="min-w-0 flex-1">
 									<p className="truncate text-sm">{itemName(m.item)}</p>
 									{m.item === "gunpowder" && (
-										<p className="truncate text-muted-foreground text-xs">
-											{flight} for flight + {stars.length} for the stars
+										<p className="truncate text-xs text-muted-foreground">
+											{t("firework.gunpowderNote", { flight, stars: stars.length })}
 										</p>
 									)}
 								</div>
 								<span className="text-sm tabular-nums">×{m.count}</span>
 							</li>
 						))}
-						<li className="flex items-center gap-3 px-3 py-1.5 text-muted-foreground text-xs">
+						<li className="flex items-center gap-3 px-3 py-1.5 text-xs text-muted-foreground">
 							<ItemIcon icons={icons} item="firework_rocket" className="size-6" />
-							Craft the rocket with paper, the gunpowder and the stars in any order.
+							{t("firework.craftHint")}
 						</li>
 					</ul>
 
-					<Heading>Command</Heading>
+					<Heading>{t("firework.command")}</Heading>
 					<div className="flex items-start gap-2 rounded border bg-card p-3">
-						<code className="min-w-0 flex-1 break-all text-xs leading-relaxed">{command}</code>
-						<Button variant="outline" size="icon-sm" aria-label="Copy command" onClick={copy}>
+						<code className="min-w-0 flex-1 text-xs leading-relaxed break-all">{command}</code>
+						<Button
+							variant="outline"
+							size="icon-sm"
+							aria-label={t("firework.copyCommand")}
+							onClick={copy}
+						>
 							{copied ? <CheckIcon /> : <CopyIcon />}
 						</Button>
 					</div>
 				</div>
 
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Rocket</Heading>
+					<Heading>{t("firework.rocket")}</Heading>
 					<div className="space-y-2 rounded border p-3">
-						<h3 className="text-muted-foreground text-sm">Flight duration (gunpowder)</h3>
-						<div role="radiogroup" aria-label="Flight duration" className="flex gap-1">
+						<h3 className="text-sm text-muted-foreground">{t("firework.flight")}</h3>
+						<div role="radiogroup" aria-label={t("firework.flightLabel")} className="flex gap-1">
 							{[1, 2, 3].map((n) => (
 								<button
 									key={n}
@@ -189,8 +201,9 @@ export default function FireworkDesigner({ icons }: Props) {
 									aria-checked={flight === n}
 									onClick={() => changeFlight(n)}
 									className={cn(
-										"rounded border px-4 py-1.5 text-sm hover:bg-accent",
-										flight === n && "border-primary bg-primary/20 hover:bg-primary/30",
+										"tile bg-secondary px-4 pt-1.5 pb-2 text-sm hover:bg-accent",
+										flight === n &&
+											"border-primary bg-primary/25 hover:border-primary hover:bg-primary/35",
 									)}
 								>
 									{n}
@@ -208,11 +221,11 @@ export default function FireworkDesigner({ icons }: Props) {
 								onClick={() => setStars((prev) => [...prev, newStar()])}
 							>
 								<PlusIcon />
-								Add star
+								{t("firework.addStar")}
 							</Button>
 						}
 					>
-						Stars
+						{t("firework.stars")}
 					</Heading>
 
 					<ul className="space-y-3">
@@ -221,21 +234,27 @@ export default function FireworkDesigner({ icons }: Props) {
 							return (
 								<li key={star.key} className="space-y-4 rounded border p-3">
 									<div className="flex items-center justify-between">
-										<h3 className="font-pixel text-lg">Star {index + 1}</h3>
+										<h3 className="font-pixel text-lg">
+											{t("firework.star", { number: index + 1 })}
+										</h3>
 										<Button
 											variant="ghost"
 											size="icon-sm"
-											aria-label="Remove star"
+											aria-label={t("firework.removeStar")}
 											disabled={stars.length === 1}
 											onClick={() => setStars((prev) => prev.filter((s) => s.key !== star.key))}
 										>
-											<XIcon className="text-destructive" />
+											<CloseIcon className="text-destructive" />
 										</Button>
 									</div>
 
 									<div className="space-y-2">
-										<h4 className="text-muted-foreground text-sm">Shape</h4>
-										<div role="radiogroup" aria-label="Shape" className="flex flex-wrap gap-1">
+										<h4 className="text-sm text-muted-foreground">{t("firework.shape")}</h4>
+										<div
+											role="radiogroup"
+											aria-label={t("firework.shape")}
+											className="flex flex-wrap gap-1"
+										>
 											{SHAPES.map((shape) => (
 												<button
 													key={shape.id}
@@ -246,26 +265,26 @@ export default function FireworkDesigner({ icons }: Props) {
 														update(star.key, (s) => ({ ...s, shape: shape.id as Shape }))
 													}
 													className={cn(
-														"flex items-center gap-1.5 rounded border px-2 py-1 text-sm hover:bg-accent",
+														"flex items-center gap-1.5 tile bg-secondary px-2 pt-1 pb-1.5 text-sm hover:bg-accent",
 														star.shape === shape.id &&
-															"border-primary bg-primary/20 hover:bg-primary/30",
+															"border-primary bg-primary/25 hover:border-primary hover:bg-primary/35",
 													)}
 												>
 													{shape.item && (
 														<ItemIcon icons={icons} item={shape.item} className="size-5" />
 													)}
-													{shape.name}
+													{shapeName(shape.id)}
 												</button>
 											))}
 										</div>
 									</div>
 
 									<div className="space-y-2">
-										<h4 className="text-muted-foreground text-sm">
-											Colors ({star.colors.length}/{maxColors(star)})
+										<h4 className="text-sm text-muted-foreground">
+											{t("firework.colors", { count: star.colors.length, max: maxColors(star) })}
 										</h4>
 										<MultiSwatches
-											label="Colors"
+											label={t("firework.colorsLabel")}
 											value={star.colors}
 											min={1}
 											max={maxColors(star)}
@@ -276,9 +295,9 @@ export default function FireworkDesigner({ icons }: Props) {
 									</div>
 
 									<div className="space-y-2">
-										<h4 className="text-muted-foreground text-sm">Fade to (optional)</h4>
+										<h4 className="text-sm text-muted-foreground">{t("firework.fade")}</h4>
 										<MultiSwatches
-											label="Fade colors"
+											label={t("firework.fadeLabel")}
 											value={star.fade}
 											max={MAX_FADE}
 											onToggle={(id) =>
@@ -298,7 +317,7 @@ export default function FireworkDesigner({ icons }: Props) {
 												onCheckedChange={(trail) => update(star.key, (s) => ({ ...s, trail }))}
 											/>
 											<ItemIcon icons={icons} item="diamond" className="size-5" />
-											Trail
+											{label("item.minecraft.firework_star.trail")}
 										</label>
 										<label
 											htmlFor={`${star.key}-twinkle`}
@@ -310,13 +329,13 @@ export default function FireworkDesigner({ icons }: Props) {
 												onCheckedChange={(twinkle) => update(star.key, (s) => ({ ...s, twinkle }))}
 											/>
 											<ItemIcon icons={icons} item="glowstone_dust" className="size-5" />
-											Twinkle
+											{label("item.minecraft.firework_star.flicker")}
 										</label>
 									</div>
 
 									<div className="space-y-1.5 rounded bg-row p-2 text-xs">
 										<div className="flex flex-wrap items-center gap-1 text-muted-foreground">
-											<span className="mr-1">Craft:</span>
+											<span className="mr-1">{t("firework.craft")}</span>
 											{steps.craft.map((item, i) => (
 												<ItemIcon
 													// the same dye can only appear once, the rest is unique per star
@@ -326,18 +345,19 @@ export default function FireworkDesigner({ icons }: Props) {
 													className="size-6"
 												/>
 											))}
-											<span>→ Firework Star</span>
+											<span>→ {itemName("firework_star")}</span>
 										</div>
 										{steps.fade.length > 0 && (
 											<div className="flex flex-wrap items-center gap-1 text-muted-foreground">
-												<span className="mr-1">Then fade:</span>
+												<span className="mr-1">{t("firework.thenFade")}</span>
 												<ItemIcon icons={icons} item="firework_star" className="size-6" />
 												{steps.fade.map((item) => (
 													<ItemIcon key={item} icons={icons} item={item} className="size-6" />
 												))}
 												<span>
-													→ fades to{" "}
-													{star.fade.map((c) => colorById(c).name.toLowerCase()).join(", ")}
+													{t("firework.fadesTo", {
+														colors: star.fade.map(starColorName).join(", "),
+													})}
 												</span>
 											</div>
 										)}

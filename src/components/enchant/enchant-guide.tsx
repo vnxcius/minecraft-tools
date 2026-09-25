@@ -1,36 +1,59 @@
-import { CheckIcon, CopyIcon } from "lucide-react";
+import { Check as CheckIcon, Copy as CopyIcon } from "pixelarticons/react";
 import { useState } from "react";
 import { Heading, ItemIcon } from "@/components/tool-parts";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { type MessageKey, useI18n } from "@/i18n";
+import { rich } from "@/i18n/rich";
 import {
+	buildName,
 	enchantmentById,
+	enchantmentName,
 	GEAR,
 	GIVE_ITEM,
 	GROUPS,
 	gearById,
+	gearName,
 	giveCommand,
+	groupName,
+	levelName,
 	levelOf,
-	ROMAN,
 } from "@/lib/enchantments";
 import { cn } from "@/lib/utils";
+
+/** fills the {enchantment_id} placeholders of a tip with the official names, colored as in game */
+function WithEnchantments({ template }: { template: MessageKey }) {
+	const { t } = useI18n();
+	const text = t(template);
+	const ids = [...text.matchAll(/\{(\w+)\}/g)].map((match) => match[1]);
+	return rich(
+		text,
+		Object.fromEntries(
+			ids.map((id) => [
+				id,
+				<span key={id} className="text-[#b8a2ff]">
+					{enchantmentName(id)}
+				</span>,
+			]),
+		),
+	);
+}
 
 interface Props {
 	/** item id -> icon url */
 	icons: Record<string, string>;
 }
 
-/** "Protection IV" / "Mending" */
 function label(id: string, level: number) {
-	const { name, max } = enchantmentById(id);
-	return max === 1 ? name : `${name} ${ROMAN[level]}`;
+	const name = enchantmentName(id);
+	return enchantmentById(id).max === 1 ? name : `${name} ${levelName(level)}`;
 }
 
 export default function EnchantGuide({ icons }: Props) {
 	const [gearId, setGearId] = useState("chestplate");
 	const [buildIndex, setBuildIndex] = useState(0);
 	const [copied, setCopied] = useState(false);
+	const { t, itemName } = useI18n();
 
 	const gear = gearById(gearId);
 	const build = gear.builds[Math.min(buildIndex, gear.builds.length - 1)];
@@ -44,26 +67,19 @@ export default function EnchantGuide({ icons }: Props) {
 	};
 
 	return (
-		<section className="py-12">
-			<h1 className="display mb-2 text-center text-4xl">Best Enchantments</h1>
-			<p className="text-center text-muted-foreground">
-				Pick an armor piece, tool or weapon and see the enchantments worth putting on it.
-			</p>
-
-			<Separator className="mx-auto my-4 max-w-lg" />
-
-			<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+		<section>
+			<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Item</Heading>
+					<Heading>{t("enchant.item")}</Heading>
 					<div className="space-y-4 rounded border p-3">
 						{GROUPS.map((group) => (
 							<div key={group} className="space-y-1.5">
-								<h3 className="text-muted-foreground text-sm">{group}</h3>
+								<h3 className="text-sm text-muted-foreground">{groupName(group)}</h3>
 								<div className="flex flex-wrap gap-1">
 									{GEAR.filter((g) => g.group === group).map((g) => (
 										<Tooltip key={g.id}>
 											<TooltipTrigger
-												aria-label={g.name}
+												aria-label={gearName(g)}
 												aria-pressed={g.id === gearId}
 												onClick={() => {
 													setGearId(g.id);
@@ -77,7 +93,7 @@ export default function EnchantGuide({ icons }: Props) {
 											>
 												<ItemIcon icons={icons} item={g.icon} className="size-9" />
 											</TooltipTrigger>
-											<TooltipContent>{g.name}</TooltipContent>
+											<TooltipContent>{gearName(g)}</TooltipContent>
 										</Tooltip>
 									))}
 								</div>
@@ -87,31 +103,36 @@ export default function EnchantGuide({ icons }: Props) {
 				</div>
 
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Enchantments</Heading>
+					<Heading>{t("enchant.enchantments")}</Heading>
 
 					<div className="flex items-center gap-4 rounded border bg-card p-4">
 						<ItemIcon icons={icons} item={gear.icon} className="size-14" />
 						<div className="min-w-0">
-							<p className="font-pixel text-xl">{gear.name}</p>
-							<p className="mt-1 text-[#b8a2ff] text-sm">{summary}</p>
+							<p className="font-pixel text-xl">{gearName(gear)}</p>
+							<p className="mt-1 font-pixel text-sm text-[#b8a2ff]">{summary}</p>
 						</div>
 					</div>
 
 					{gear.builds.length > 1 && (
-						<div role="radiogroup" aria-label="Build" className="flex flex-wrap gap-1">
+						<div
+							role="radiogroup"
+							aria-label={t("enchant.buildLabel")}
+							className="flex flex-wrap gap-1"
+						>
 							{gear.builds.map((b, i) => (
 								<button
-									key={b.name}
+									key={buildName(b)}
 									type="button"
 									role="radio"
 									aria-checked={build === b}
 									onClick={() => setBuildIndex(i)}
 									className={cn(
-										"rounded border px-3 py-1.5 text-sm hover:bg-accent",
-										build === b && "border-primary bg-primary/20 hover:bg-primary/30",
+										"tile bg-secondary px-3 pt-1.5 pb-2 text-sm hover:bg-accent",
+										build === b &&
+											"border-primary bg-primary/25 hover:border-primary hover:bg-primary/35",
 									)}
 								>
-									{b.name}
+									{buildName(b)}
 								</button>
 							))}
 						</div>
@@ -122,36 +143,57 @@ export default function EnchantGuide({ icons }: Props) {
 							const level = levelOf(pick);
 							return (
 								<li key={pick.id} className="flex items-center gap-3 px-3 py-2">
-									<ItemIcon icons={icons} item="book" className="size-7" />
+									<img
+										src="/tools/enchanted_book.png"
+										className="size-7"
+										width={28}
+										height={28}
+										alt={itemName("enchanted_book")}
+									/>
 									<div className="min-w-0 flex-1">
-										<p className="text-sm">{enchantmentById(pick.id).name}</p>
-										<p className="text-muted-foreground text-xs">{pick.why}</p>
+										<p className="font-pixel text-base">{enchantmentName(pick.id)}</p>
+										<p className="text-xs text-muted-foreground">
+											<WithEnchantments template={pick.why} />
+										</p>
 									</div>
-									<span className="rounded bg-[#8a5cf5]/20 px-2 py-0.5 text-[#b8a2ff] text-sm tabular-nums">
-										{enchantmentById(pick.id).max === 1 ? "Max" : ROMAN[level]}
+									<span className="rounded bg-[#8a5cf5]/20 px-2 py-0.5 font-pixel text-sm text-[#b8a2ff] tabular-nums">
+										{enchantmentById(pick.id).max === 1 ? t("enchant.max") : levelName(level)}
 									</span>
 								</li>
 							);
 						})}
 					</ul>
 
-					{build.note && <p className="text-muted-foreground text-xs">Tip: {build.note}</p>}
+					{build.note && (
+						<p className="text-xs text-muted-foreground">
+							{rich(t("enchant.tip"), { text: <WithEnchantments template={build.note} /> })}
+						</p>
+					)}
 
 					{gear.conflicts && (
 						<div className="space-y-1 rounded border border-dashed p-3">
-							<h3 className="text-muted-foreground text-sm">Cannot go together</h3>
-							<ul className="list-disc space-y-0.5 pl-5 text-muted-foreground text-xs">
+							<h3 className="text-sm font-medium text-muted-foreground/80">
+								{t("enchant.cannotGoTogether")}
+							</h3>
+							<ul className="list-disc space-y-0.5 pl-5 text-xs text-muted-foreground">
 								{gear.conflicts.map((conflict) => (
-									<li key={conflict}>{conflict}</li>
+									<li key={conflict}>
+										<WithEnchantments template={conflict} />
+									</li>
 								))}
 							</ul>
 						</div>
 					)}
 
-					<Heading>Command</Heading>
+					<Heading>{t("enchant.command")}</Heading>
 					<div className="flex items-start gap-2 rounded border bg-card p-3">
-						<code className="min-w-0 flex-1 break-all text-xs leading-relaxed">{command}</code>
-						<Button variant="outline" size="icon-sm" aria-label="Copy command" onClick={copy}>
+						<code className="min-w-0 flex-1 text-xs leading-relaxed break-all">{command}</code>
+						<Button
+							variant="outline"
+							size="icon-sm"
+							aria-label={t("enchant.copyCommand")}
+							onClick={copy}
+						>
 							{copied ? <CheckIcon /> : <CopyIcon />}
 						</Button>
 					</div>

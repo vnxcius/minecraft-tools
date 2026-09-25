@@ -1,4 +1,5 @@
 import data from "@/data/banner.json";
+import { itemName, type MessageKey, term } from "@/i18n";
 import { loadImage } from "./image";
 
 export const MAX_LAYERS = 6;
@@ -8,45 +9,48 @@ export type Kind = "banner" | "shield";
 
 export interface DyeColor {
 	id: string;
-	name: string;
 	/** color banners are tinted with */
 	hex: string;
 }
 
 export const COLORS: DyeColor[] = [
-	{ id: "white", name: "White", hex: "#f9fffe" },
-	{ id: "light_gray", name: "Light Gray", hex: "#9d9d97" },
-	{ id: "gray", name: "Gray", hex: "#474f52" },
-	{ id: "black", name: "Black", hex: "#1d1d21" },
-	{ id: "brown", name: "Brown", hex: "#835432" },
-	{ id: "red", name: "Red", hex: "#b02e26" },
-	{ id: "orange", name: "Orange", hex: "#f9801d" },
-	{ id: "yellow", name: "Yellow", hex: "#fed83d" },
-	{ id: "lime", name: "Lime", hex: "#80c71f" },
-	{ id: "green", name: "Green", hex: "#5e7c16" },
-	{ id: "cyan", name: "Cyan", hex: "#169c9c" },
-	{ id: "light_blue", name: "Light Blue", hex: "#3ab3da" },
-	{ id: "blue", name: "Blue", hex: "#3c44aa" },
-	{ id: "purple", name: "Purple", hex: "#8932b8" },
-	{ id: "magenta", name: "Magenta", hex: "#c74ebd" },
-	{ id: "pink", name: "Pink", hex: "#f38baa" },
+	{ id: "white", hex: "#f9fffe" },
+	{ id: "light_gray", hex: "#9d9d97" },
+	{ id: "gray", hex: "#474f52" },
+	{ id: "black", hex: "#1d1d21" },
+	{ id: "brown", hex: "#835432" },
+	{ id: "red", hex: "#b02e26" },
+	{ id: "orange", hex: "#f9801d" },
+	{ id: "yellow", hex: "#fed83d" },
+	{ id: "lime", hex: "#80c71f" },
+	{ id: "green", hex: "#5e7c16" },
+	{ id: "cyan", hex: "#169c9c" },
+	{ id: "light_blue", hex: "#3ab3da" },
+	{ id: "blue", hex: "#3c44aa" },
+	{ id: "purple", hex: "#8932b8" },
+	{ id: "magenta", hex: "#c74ebd" },
+	{ id: "pink", hex: "#f38baa" },
 ];
 
 export const colorById = (id: string) => COLORS.find((c) => c.id === id) as DyeColor;
 
+/** a color by the name of its dye, "Light Blue Dye", clear on its own in every language */
+export const colorName = (id: string) => itemName(`${id}_dye`);
+
 export interface BannerPattern {
 	id: string;
-	name: string;
 	/** pattern item the loom needs for this pattern, e.g. "creeper_banner_pattern" */
 	item?: string;
 	/** crafting ingredients of that item */
 	recipe?: string[];
-	/** where to get the item when it cannot be crafted */
-	obtain?: string;
 }
 
 export const PATTERNS: BannerPattern[] = data.patterns;
-export const patternById = (id: string) => PATTERNS.find((p) => p.id === id) as BannerPattern;
+
+/** the game only names a pattern with its color: "White Saltire", "Aspa Branca" */
+export const patternName = (pattern: string, color: string) =>
+	term(`block.minecraft.banner.${pattern}.${color}`);
+const patternById = (id: string) => PATTERNS.find((p) => p.id === id) as BannerPattern;
 
 export interface Layer {
 	/** stable key for React, not part of the design */
@@ -148,10 +152,10 @@ export function giveCommand(design: BannerDesign, kind: Kind = "banner") {
 }
 
 export interface Material {
-	/** item id, used for the icon and name */
 	item: string;
 	count: number;
-	note?: string;
+	/** shown under the item: the recipe of a pattern item, or a site message */
+	note?: { recipe: string[] } | { message: MessageKey };
 }
 
 /** everything you need to craft the design: the banner, dyes and pattern items */
@@ -160,7 +164,7 @@ export function materials(design: BannerDesign): Material[] {
 		{ item: `${design.base}_wool`, count: 6 },
 		{ item: "stick", count: 1 },
 	];
-	const add = (item: string, count = 1, note?: string) => {
+	const add = (item: string, count = 1, note?: Material["note"]) => {
 		const existing = list.find((m) => m.item === item);
 		if (existing) existing.count += count;
 		else list.push({ item, count, note });
@@ -172,7 +176,9 @@ export function materials(design: BannerDesign): Material[] {
 			add(
 				pattern.item,
 				1,
-				pattern.recipe ? pattern.recipe.map(itemName).join(" + ") : pattern.obtain,
+				pattern.recipe
+					? { recipe: pattern.recipe }
+					: { message: `banner.obtain.${pattern.id}` as MessageKey },
 			);
 		}
 	}
@@ -182,11 +188,8 @@ export function materials(design: BannerDesign): Material[] {
 /** a shield is 6 planks and an iron ingot, the design itself comes from a banner */
 export function shieldMaterials(design: BannerDesign): Material[] {
 	return [
-		{ item: "oak_planks", count: 6, note: "Any planks" },
+		{ item: "oak_planks", count: 6, note: { message: "banner.anyPlanks" } },
 		{ item: "iron_ingot", count: 1 },
 		...materials(design),
 	];
 }
-
-export const itemName = (id: string) =>
-	id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());

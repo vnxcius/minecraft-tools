@@ -1,405 +1,391 @@
 /**
  * The best enchantments for every armor piece, tool and weapon (Java Edition).
  * Enchantment ids and max levels follow the game; the picks are the usual survival consensus.
+ * Names come from the game's language files; the explanations are site messages (src/i18n).
  */
+import { type MessageKey, t, term } from "@/i18n";
 
 export interface Enchantment {
 	/** id in the item component, e.g. "sharpness" */
 	id: string;
-	name: string;
 	max: number;
 }
 
 const ENCHANTMENTS: Enchantment[] = [
-	{ id: "protection", name: "Protection", max: 4 },
-	{ id: "fire_protection", name: "Fire Protection", max: 4 },
-	{ id: "blast_protection", name: "Blast Protection", max: 4 },
-	{ id: "projectile_protection", name: "Projectile Protection", max: 4 },
-	{ id: "thorns", name: "Thorns", max: 3 },
-	{ id: "respiration", name: "Respiration", max: 3 },
-	{ id: "aqua_affinity", name: "Aqua Affinity", max: 1 },
-	{ id: "depth_strider", name: "Depth Strider", max: 3 },
-	{ id: "frost_walker", name: "Frost Walker", max: 2 },
-	{ id: "feather_falling", name: "Feather Falling", max: 4 },
-	{ id: "soul_speed", name: "Soul Speed", max: 3 },
-	{ id: "swift_sneak", name: "Swift Sneak", max: 3 },
-	{ id: "sharpness", name: "Sharpness", max: 5 },
-	{ id: "smite", name: "Smite", max: 5 },
-	{ id: "bane_of_arthropods", name: "Bane of Arthropods", max: 5 },
-	{ id: "knockback", name: "Knockback", max: 2 },
-	{ id: "fire_aspect", name: "Fire Aspect", max: 2 },
-	{ id: "looting", name: "Looting", max: 3 },
-	{ id: "sweeping_edge", name: "Sweeping Edge", max: 3 },
-	{ id: "efficiency", name: "Efficiency", max: 5 },
-	{ id: "silk_touch", name: "Silk Touch", max: 1 },
-	{ id: "fortune", name: "Fortune", max: 3 },
-	{ id: "unbreaking", name: "Unbreaking", max: 3 },
-	{ id: "mending", name: "Mending", max: 1 },
-	{ id: "power", name: "Power", max: 5 },
-	{ id: "punch", name: "Punch", max: 2 },
-	{ id: "flame", name: "Flame", max: 1 },
-	{ id: "infinity", name: "Infinity", max: 1 },
-	{ id: "luck_of_the_sea", name: "Luck of the Sea", max: 3 },
-	{ id: "lure", name: "Lure", max: 3 },
-	{ id: "loyalty", name: "Loyalty", max: 3 },
-	{ id: "impaling", name: "Impaling", max: 5 },
-	{ id: "riptide", name: "Riptide", max: 3 },
-	{ id: "channeling", name: "Channeling", max: 1 },
-	{ id: "multishot", name: "Multishot", max: 1 },
-	{ id: "piercing", name: "Piercing", max: 4 },
-	{ id: "quick_charge", name: "Quick Charge", max: 3 },
-	{ id: "density", name: "Density", max: 5 },
-	{ id: "breach", name: "Breach", max: 4 },
-	{ id: "wind_burst", name: "Wind Burst", max: 3 },
+	{ id: "protection", max: 4 },
+	{ id: "fire_protection", max: 4 },
+	{ id: "blast_protection", max: 4 },
+	{ id: "projectile_protection", max: 4 },
+	{ id: "thorns", max: 3 },
+	{ id: "respiration", max: 3 },
+	{ id: "aqua_affinity", max: 1 },
+	{ id: "depth_strider", max: 3 },
+	{ id: "frost_walker", max: 2 },
+	{ id: "feather_falling", max: 4 },
+	{ id: "soul_speed", max: 3 },
+	{ id: "swift_sneak", max: 3 },
+	{ id: "sharpness", max: 5 },
+	{ id: "smite", max: 5 },
+	{ id: "bane_of_arthropods", max: 5 },
+	{ id: "knockback", max: 2 },
+	{ id: "fire_aspect", max: 2 },
+	{ id: "looting", max: 3 },
+	{ id: "sweeping_edge", max: 3 },
+	{ id: "efficiency", max: 5 },
+	{ id: "silk_touch", max: 1 },
+	{ id: "fortune", max: 3 },
+	{ id: "unbreaking", max: 3 },
+	{ id: "mending", max: 1 },
+	{ id: "power", max: 5 },
+	{ id: "punch", max: 2 },
+	{ id: "flame", max: 1 },
+	{ id: "infinity", max: 1 },
+	{ id: "luck_of_the_sea", max: 3 },
+	{ id: "lure", max: 3 },
+	{ id: "loyalty", max: 3 },
+	{ id: "impaling", max: 5 },
+	{ id: "riptide", max: 3 },
+	{ id: "channeling", max: 1 },
+	{ id: "multishot", max: 1 },
+	{ id: "piercing", max: 4 },
+	{ id: "quick_charge", max: 3 },
+	{ id: "density", max: 5 },
+	{ id: "breach", max: 4 },
+	{ id: "wind_burst", max: 3 },
 ];
 
 export const enchantmentById = (id: string) => ENCHANTMENTS.find((e) => e.id === id) as Enchantment;
 
-export const ROMAN = ["", "I", "II", "III", "IV", "V"];
+export const enchantmentName = (id: string) => term(`enchantment.minecraft.${id}`);
+
+/** official roman numeral of a level, "IV" */
+export const levelName = (level: number) => term(`enchantment.level.${level}`);
 
 export interface Pick {
 	id: string;
 	/** level to get, defaults to the maximum */
 	level?: number;
-	/** why it is worth it */
-	why: string;
+	why: MessageKey;
 }
 
 export interface Build {
-	name: string;
+	/** a site message, or the name of the enchantment the build is about */
+	name: MessageKey | { enchantment: string };
 	picks: Pick[];
-	note?: string;
+	/** template with {enchantment_id} placeholders, filled with the official names */
+	note?: MessageKey;
 }
 
 export interface Gear {
 	id: string;
-	name: string;
 	/** item whose icon represents it */
 	icon: string;
 	group: "Armor" | "Melee" | "Tools" | "Ranged" | "Other";
 	/** the first build is the best all-rounder */
 	builds: Build[];
-	/** enchantments that cannot go together on this item */
-	conflicts?: string[];
+	/** enchantments that cannot go together on this item, templates like the notes */
+	conflicts?: MessageKey[];
 }
 
-const p = (id: string, why: string, level?: number): Pick => ({ id, why, level });
+const p = (id: string, why: MessageKey, level?: number): Pick => ({ id, why, level });
+
+export const buildName = (build: Build) =>
+	typeof build.name === "string" ? t(build.name) : enchantmentName(build.name.enchantment);
+
+export const gearName = (gear: Gear) => t(`enchant.gear.${gear.id}` as MessageKey);
+export const groupName = (group: Gear["group"]) => t(`enchant.group.${group}`);
 
 const DURABILITY: Pick[] = [
-	p("unbreaking", "Makes the item last about 4 times longer"),
-	p("mending", "Repairs it with the XP you pick up"),
+	p("unbreaking", "enchant.why.unbreaking"),
+	p("mending", "enchant.why.mending"),
 ];
 
 export const GEAR: Gear[] = [
 	{
 		id: "helmet",
-		name: "Helmet",
 		icon: "diamond_helmet",
 		group: "Armor",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("protection", "Reduces almost all damage"),
-					p("respiration", "Breathe underwater for much longer"),
-					p("aqua_affinity", "Mine at normal speed underwater"),
+					p("protection", "enchant.why.protection"),
+					p("respiration", "enchant.why.respiration"),
+					p("aqua_affinity", "enchant.why.aquaAffinity"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Thorns",
+				name: { enchantment: "thorns" },
 				picks: [
-					p("protection", "Reduces almost all damage"),
-					p("thorns", "Hits attackers back, but wears the helmet down fast"),
-					p("respiration", "Breathe underwater for much longer"),
-					p("aqua_affinity", "Mine at normal speed underwater"),
+					p("protection", "enchant.why.protection"),
+					p("thorns", "enchant.why.thornsHelmet"),
+					p("respiration", "enchant.why.respiration"),
+					p("aqua_affinity", "enchant.why.aquaAffinity"),
 					...DURABILITY,
 				],
-				note: "Thorns costs durability every time it triggers, so you rely on Mending.",
+				note: "enchant.note.thorns",
 			},
 		],
-		conflicts: [
-			"Protection, Fire Protection, Blast Protection and Projectile Protection exclude each other",
-		],
+		conflicts: ["enchant.conflict.protection"],
 	},
 	{
 		id: "chestplate",
-		name: "Chestplate",
 		icon: "diamond_chestplate",
 		group: "Armor",
 		builds: [
 			{
-				name: "All-round",
-				picks: [p("protection", "Reduces almost all damage"), ...DURABILITY],
+				name: "enchant.build.allRound",
+				picks: [p("protection", "enchant.why.protection"), ...DURABILITY],
 			},
 			{
-				name: "Thorns",
+				name: { enchantment: "thorns" },
 				picks: [
-					p("protection", "Reduces almost all damage"),
-					p("thorns", "Hits attackers back, but wears the chestplate down fast"),
+					p("protection", "enchant.why.protection"),
+					p("thorns", "enchant.why.thornsChestplate"),
 					...DURABILITY,
 				],
-				note: "Thorns costs durability every time it triggers, so you rely on Mending.",
+				note: "enchant.note.thorns",
 			},
 			{
-				name: "Blast",
-				picks: [p("blast_protection", "Best against creepers, ghasts and TNT"), ...DURABILITY],
+				name: "enchant.build.blast",
+				picks: [p("blast_protection", "enchant.why.blastProtection"), ...DURABILITY],
 			},
 		],
-		conflicts: [
-			"Protection, Fire Protection, Blast Protection and Projectile Protection exclude each other",
-		],
+		conflicts: ["enchant.conflict.protection"],
 	},
 	{
 		id: "leggings",
-		name: "Leggings",
 		icon: "diamond_leggings",
 		group: "Armor",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("protection", "Reduces almost all damage"),
-					p("swift_sneak", "Sneak nearly as fast as you walk, great for the Deep Dark"),
+					p("protection", "enchant.why.protection"),
+					p("swift_sneak", "enchant.why.swiftSneak"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Blast",
+				name: "enchant.build.blast",
 				picks: [
-					p("blast_protection", "Best against creepers, ghasts and TNT"),
-					p("swift_sneak", "Sneak nearly as fast as you walk, great for the Deep Dark"),
+					p("blast_protection", "enchant.why.blastProtection"),
+					p("swift_sneak", "enchant.why.swiftSneak"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: [
-			"Protection, Fire Protection, Blast Protection and Projectile Protection exclude each other",
-		],
+		conflicts: ["enchant.conflict.protection"],
 	},
 	{
 		id: "boots",
-		name: "Boots",
 		icon: "diamond_boots",
 		group: "Armor",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("protection", "Reduces almost all damage"),
-					p("feather_falling", "Cuts fall damage, also protects against ender pearls"),
-					p("depth_strider", "Move faster underwater"),
-					p("soul_speed", "Run fast on soul sand and soul soil in the Nether"),
+					p("protection", "enchant.why.protection"),
+					p("feather_falling", "enchant.why.featherFalling"),
+					p("depth_strider", "enchant.why.depthStrider"),
+					p("soul_speed", "enchant.why.soulSpeed"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Frost Walker",
+				name: { enchantment: "frost_walker" },
 				picks: [
-					p("protection", "Reduces almost all damage"),
-					p("feather_falling", "Cuts fall damage, also protects against ender pearls"),
-					p("frost_walker", "Turns water into ice as you walk over it"),
-					p("soul_speed", "Run fast on soul sand and soul soil in the Nether"),
+					p("protection", "enchant.why.protection"),
+					p("feather_falling", "enchant.why.featherFalling"),
+					p("frost_walker", "enchant.why.frostWalker"),
+					p("soul_speed", "enchant.why.soulSpeed"),
 					...DURABILITY,
 				],
-				note: "Frost Walker and Depth Strider cannot be on the same boots.",
+				note: "enchant.note.frostWalker",
 			},
 		],
-		conflicts: [
-			"Depth Strider and Frost Walker exclude each other",
-			"Protection, Fire Protection, Blast Protection and Projectile Protection exclude each other",
-		],
+		conflicts: ["enchant.conflict.boots", "enchant.conflict.protection"],
 	},
 	{
 		id: "sword",
-		name: "Sword",
 		icon: "diamond_sword",
 		group: "Melee",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("sharpness", "The most damage against everything"),
-					p("looting", "More drops from mobs"),
-					p("fire_aspect", "Sets targets on fire and cooks the meat", 2),
-					p("sweeping_edge", "Sweep attacks hit more"),
+					p("sharpness", "enchant.why.sharpness"),
+					p("looting", "enchant.why.looting"),
+					p("fire_aspect", "enchant.why.fireAspectCook", 2),
+					p("sweeping_edge", "enchant.why.sweepingEdge"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Undead",
+				name: "enchant.build.undead",
 				picks: [
-					p("smite", "Extra damage to zombies, skeletons and other undead"),
-					p("looting", "More drops from mobs"),
-					p("fire_aspect", "Sets targets on fire", 2),
+					p("smite", "enchant.why.smite"),
+					p("looting", "enchant.why.looting"),
+					p("fire_aspect", "enchant.why.fireAspect", 2),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Spiders",
+				name: "enchant.build.spiders",
 				picks: [
-					p("bane_of_arthropods", "Extra damage to spiders, silverfish and bees"),
-					p("looting", "More drops from mobs"),
+					p("bane_of_arthropods", "enchant.why.baneOfArthropods"),
+					p("looting", "enchant.why.looting"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Sharpness, Smite and Bane of Arthropods exclude each other"],
+		conflicts: ["enchant.conflict.damage"],
 	},
 	{
 		id: "axe",
-		name: "Axe",
 		icon: "diamond_axe",
 		group: "Melee",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("sharpness", "More damage in a fight"),
-					p("efficiency", "Chop wood and break shields faster"),
+					p("sharpness", "enchant.why.sharpnessAxe"),
+					p("efficiency", "enchant.why.efficiencyAxe"),
 					...DURABILITY,
 				],
-				note: "Silk Touch is only worth it when you want the block itself, like bookshelves or leaves.",
+				note: "enchant.note.silkTouch",
 			},
 			{
-				name: "Silk Touch",
+				name: { enchantment: "silk_touch" },
 				picks: [
-					p("silk_touch", "Get the block itself, like leaves and bookshelves"),
-					p("efficiency", "Chop wood faster"),
+					p("silk_touch", "enchant.why.silkTouchAxe"),
+					p("efficiency", "enchant.why.efficiencyChop"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: [
-			"Sharpness, Smite and Bane of Arthropods exclude each other",
-			"Fortune and Silk Touch exclude each other",
-		],
+		conflicts: ["enchant.conflict.damage", "enchant.conflict.fortune"],
 	},
 	{
 		id: "mace",
-		name: "Mace",
 		icon: "mace",
 		group: "Melee",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("density", "More smash damage for every block you fall"),
-					p("wind_burst", "Launches you back up after a smash attack"),
-					p("fire_aspect", "Sets targets on fire", 2),
+					p("density", "enchant.why.density"),
+					p("wind_burst", "enchant.why.windBurst"),
+					p("fire_aspect", "enchant.why.fireAspect", 2),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Armor breaker",
+				name: "enchant.build.armorBreaker",
 				picks: [
-					p("breach", "Ignores most of the target's armor"),
-					p("wind_burst", "Launches you back up after a smash attack"),
-					p("fire_aspect", "Sets targets on fire", 2),
+					p("breach", "enchant.why.breach"),
+					p("wind_burst", "enchant.why.windBurst"),
+					p("fire_aspect", "enchant.why.fireAspect", 2),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Density, Breach, Smite and Bane of Arthropods exclude each other"],
+		conflicts: ["enchant.conflict.mace"],
 	},
 	{
 		id: "pickaxe",
-		name: "Pickaxe",
 		icon: "diamond_pickaxe",
 		group: "Tools",
 		builds: [
 			{
-				name: "Fortune",
+				name: { enchantment: "fortune" },
 				picks: [
-					p("efficiency", "Mine as fast as possible"),
-					p("fortune", "More drops from ores like diamonds and lapis"),
+					p("efficiency", "enchant.why.efficiencyMine"),
+					p("fortune", "enchant.why.fortunePickaxe"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Silk Touch",
+				name: { enchantment: "silk_touch" },
 				picks: [
-					p("efficiency", "Mine as fast as possible"),
-					p("silk_touch", "Collect ores, glass, ice and spawners' cages as blocks"),
+					p("efficiency", "enchant.why.efficiencyMine"),
+					p("silk_touch", "enchant.why.silkTouchPickaxe"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Fortune and Silk Touch exclude each other"],
+		conflicts: ["enchant.conflict.fortune"],
 	},
 	{
 		id: "shovel",
-		name: "Shovel",
 		icon: "diamond_shovel",
 		group: "Tools",
 		builds: [
 			{
-				name: "Silk Touch",
+				name: { enchantment: "silk_touch" },
 				picks: [
-					p("efficiency", "Dig as fast as possible"),
-					p("silk_touch", "Collect grass blocks, snow, clay, mycelium and podzol"),
+					p("efficiency", "enchant.why.efficiencyDig"),
+					p("silk_touch", "enchant.why.silkTouchShovel"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Fortune",
+				name: { enchantment: "fortune" },
 				picks: [
-					p("efficiency", "Dig as fast as possible"),
-					p("fortune", "More flint from gravel and more clay balls"),
+					p("efficiency", "enchant.why.efficiencyDig"),
+					p("fortune", "enchant.why.fortuneShovel"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Fortune and Silk Touch exclude each other"],
+		conflicts: ["enchant.conflict.fortune"],
 	},
 	{
 		id: "hoe",
-		name: "Hoe",
 		icon: "diamond_hoe",
 		group: "Tools",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("efficiency", "Clear leaves, hay bales and wart blocks faster"),
-					p("fortune", "More saplings, apples and sticks from leaves"),
+					p("efficiency", "enchant.why.efficiencyHoe"),
+					p("fortune", "enchant.why.fortuneHoe"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Silk Touch",
+				name: { enchantment: "silk_touch" },
 				picks: [
-					p("efficiency", "Clear leaves, hay bales and wart blocks faster"),
-					p("silk_touch", "Collect leaves, sculk and moss as blocks"),
+					p("efficiency", "enchant.why.efficiencyHoe"),
+					p("silk_touch", "enchant.why.silkTouchHoe"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Fortune and Silk Touch exclude each other"],
+		conflicts: ["enchant.conflict.fortune"],
 	},
 	{
 		id: "shears",
-		name: "Shears",
 		icon: "shears",
 		group: "Tools",
 		builds: [
 			{
-				name: "All-round",
-				picks: [p("efficiency", "Shear and clear wool, leaves and cobwebs faster"), ...DURABILITY],
+				name: "enchant.build.allRound",
+				picks: [p("efficiency", "enchant.why.efficiencyShears"), ...DURABILITY],
 			},
 		],
 	},
 	{
 		id: "fishing_rod",
-		name: "Fishing Rod",
 		icon: "fishing_rod",
 		group: "Tools",
 		builds: [
 			{
-				name: "All-round",
+				name: "enchant.build.allRound",
 				picks: [
-					p("luck_of_the_sea", "More treasure, less junk"),
-					p("lure", "Fish bite much sooner"),
+					p("luck_of_the_sea", "enchant.why.luckOfTheSea"),
+					p("lure", "enchant.why.lure"),
 					...DURABILITY,
 				],
 			},
@@ -407,105 +393,100 @@ export const GEAR: Gear[] = [
 	},
 	{
 		id: "bow",
-		name: "Bow",
 		icon: "bow",
 		group: "Ranged",
 		builds: [
 			{
-				name: "Infinity",
+				name: { enchantment: "infinity" },
 				picks: [
-					p("power", "Arrows hit much harder"),
-					p("infinity", "Shoot with a single arrow, no need to restock"),
-					p("flame", "Arrows set targets on fire"),
-					p("unbreaking", "Makes the bow last about 4 times longer"),
+					p("power", "enchant.why.power"),
+					p("infinity", "enchant.why.infinity"),
+					p("flame", "enchant.why.flame"),
+					p("unbreaking", "enchant.why.unbreakingBow"),
 				],
-				note: "Infinity and Mending cannot be on the same bow in Java Edition.",
+				note: "enchant.note.infinity",
 			},
 			{
-				name: "Mending",
+				name: { enchantment: "mending" },
 				picks: [
-					p("power", "Arrows hit much harder"),
-					p("punch", "Knocks targets back"),
-					p("flame", "Arrows set targets on fire"),
+					p("power", "enchant.why.power"),
+					p("punch", "enchant.why.punch"),
+					p("flame", "enchant.why.flame"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Infinity and Mending exclude each other"],
+		conflicts: ["enchant.conflict.infinity"],
 	},
 	{
 		id: "crossbow",
-		name: "Crossbow",
 		icon: "crossbow",
 		group: "Ranged",
 		builds: [
 			{
-				name: "Piercing",
+				name: { enchantment: "piercing" },
 				picks: [
-					p("quick_charge", "Reload much faster"),
-					p("piercing", "Arrows go through several mobs"),
+					p("quick_charge", "enchant.why.quickCharge"),
+					p("piercing", "enchant.why.piercing"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Multishot",
+				name: { enchantment: "multishot" },
 				picks: [
-					p("quick_charge", "Reload much faster"),
-					p("multishot", "Fires three arrows at once"),
+					p("quick_charge", "enchant.why.quickCharge"),
+					p("multishot", "enchant.why.multishot"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Multishot and Piercing exclude each other"],
+		conflicts: ["enchant.conflict.multishot"],
 	},
 	{
 		id: "trident",
-		name: "Trident",
 		icon: "trident",
 		group: "Ranged",
 		builds: [
 			{
-				name: "Loyalty",
+				name: { enchantment: "loyalty" },
 				picks: [
-					p("impaling", "Extra damage to mobs in water and rain"),
-					p("loyalty", "The trident flies back to you after a throw"),
+					p("impaling", "enchant.why.impaling"),
+					p("loyalty", "enchant.why.loyalty"),
 					...DURABILITY,
 				],
 			},
 			{
-				name: "Riptide",
+				name: { enchantment: "riptide" },
 				picks: [
-					p("riptide", "Launches you forward in water or rain"),
-					p("impaling", "Extra damage to mobs in water and rain"),
+					p("riptide", "enchant.why.riptide"),
+					p("impaling", "enchant.why.impaling"),
 					...DURABILITY,
 				],
-				note: "Riptide cannot be combined with Loyalty or Channeling.",
+				note: "enchant.note.riptide",
 			},
 			{
-				name: "Channeling",
+				name: { enchantment: "channeling" },
 				picks: [
-					p("channeling", "Calls lightning down on the target in a thunderstorm"),
-					p("loyalty", "The trident flies back to you after a throw"),
-					p("impaling", "Extra damage to mobs in water and rain"),
+					p("channeling", "enchant.why.channeling"),
+					p("loyalty", "enchant.why.loyalty"),
+					p("impaling", "enchant.why.impaling"),
 					...DURABILITY,
 				],
 			},
 		],
-		conflicts: ["Riptide excludes Loyalty and Channeling"],
+		conflicts: ["enchant.conflict.riptide"],
 	},
 	{
 		id: "elytra",
-		name: "Elytra",
 		icon: "elytra",
 		group: "Other",
-		builds: [{ name: "All-round", picks: [...DURABILITY] }],
+		builds: [{ name: "enchant.build.allRound", picks: [...DURABILITY] }],
 	},
 	{
 		id: "shield",
-		name: "Shield",
 		icon: "shield",
 		group: "Other",
-		builds: [{ name: "All-round", picks: [...DURABILITY] }],
+		builds: [{ name: "enchant.build.allRound", picks: [...DURABILITY] }],
 	},
 ];
 
@@ -541,3 +522,67 @@ export const GIVE_ITEM: Record<string, string> = {
 	elytra: "elytra",
 	shield: "shield",
 };
+
+const ARMOR = [
+	"protection",
+	"fire_protection",
+	"blast_protection",
+	"projectile_protection",
+	"thorns",
+];
+const TOOL = ["efficiency", "silk_touch", "fortune"];
+const DURABLE = ["unbreaking", "mending"];
+
+/** every enchantment each piece of gear can take in survival (Java Edition, curses left out) */
+export const ENCHANTABLE: Record<string, string[]> = {
+	helmet: [...ARMOR, "respiration", "aqua_affinity", ...DURABLE],
+	chestplate: [...ARMOR, ...DURABLE],
+	leggings: [...ARMOR, "swift_sneak", ...DURABLE],
+	boots: [...ARMOR, "feather_falling", "depth_strider", "frost_walker", "soul_speed", ...DURABLE],
+	sword: [
+		"sharpness",
+		"smite",
+		"bane_of_arthropods",
+		"knockback",
+		"fire_aspect",
+		"looting",
+		"sweeping_edge",
+		...DURABLE,
+	],
+	axe: ["sharpness", "smite", "bane_of_arthropods", ...TOOL, ...DURABLE],
+	mace: [
+		"density",
+		"breach",
+		"smite",
+		"bane_of_arthropods",
+		"fire_aspect",
+		"wind_burst",
+		...DURABLE,
+	],
+	pickaxe: [...TOOL, ...DURABLE],
+	shovel: [...TOOL, ...DURABLE],
+	hoe: [...TOOL, ...DURABLE],
+	shears: ["efficiency", ...DURABLE],
+	fishing_rod: ["luck_of_the_sea", "lure", ...DURABLE],
+	bow: ["power", "punch", "flame", "infinity", ...DURABLE],
+	crossbow: ["multishot", "piercing", "quick_charge", ...DURABLE],
+	trident: ["impaling", "loyalty", "riptide", "channeling", ...DURABLE],
+	elytra: DURABLE,
+	shield: DURABLE,
+};
+
+/** groups whose members exclude each other */
+const EXCLUSIVE = [
+	["protection", "fire_protection", "blast_protection", "projectile_protection"],
+	["sharpness", "smite", "bane_of_arthropods", "density", "breach"],
+	["silk_touch", "fortune"],
+	["infinity", "mending"],
+	["depth_strider", "frost_walker"],
+	["multishot", "piercing"],
+	["riptide", "loyalty"],
+	["riptide", "channeling"],
+];
+
+/** true when two enchantments cannot be on the same item (no gear takes Sharpness and Density) */
+export const excludes = (a: string, b: string) =>
+	a !== b && EXCLUSIVE.some((group) => group.includes(a) && group.includes(b));

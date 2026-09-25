@@ -1,23 +1,29 @@
-import { ArrowRightIcon, PlusIcon } from "lucide-react";
+import { ArrowRight as ArrowRightIcon, Plus as PlusIcon } from "pixelarticons/react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import {
 	canEnhance,
 	canExtend,
+	effectName,
 	effectSummary,
 	FORMS,
 	type Form,
 	fullName,
 	ingredientName,
 	PICKABLE,
+	potency,
 	potionById,
+	potionDetail,
+	potionName,
+	potionNote,
 	recipe,
 	totals,
 	type Upgrade,
 } from "@/lib/potions";
 import { Heading, ItemIcon } from "@/components/tool-parts";
+import { useI18n } from "@/i18n";
+import { rich } from "@/i18n/rich";
 import { cn } from "@/lib/utils";
 import PotionIcon from "./potion-icon";
 
@@ -26,7 +32,6 @@ interface Props {
 	icons: Record<string, string>;
 }
 
-/** row of mutually exclusive options */
 function Segmented<T extends string>({
 	label,
 	value,
@@ -40,7 +45,7 @@ function Segmented<T extends string>({
 }) {
 	return (
 		<div className="space-y-2">
-			<h3 className="text-muted-foreground text-sm">{label}</h3>
+			<h3 className="text-sm text-muted-foreground">{label}</h3>
 			<div role="radiogroup" aria-label={label} className="flex flex-wrap gap-1">
 				{options.map((option) => (
 					<button
@@ -51,8 +56,9 @@ function Segmented<T extends string>({
 						disabled={option.disabled}
 						onClick={() => onChange(option.id)}
 						className={cn(
-							"rounded border px-3 py-1.5 text-sm hover:bg-accent disabled:pointer-events-none disabled:opacity-40",
-							value === option.id && "border-primary bg-primary/20 hover:bg-primary/30",
+							"tile bg-secondary px-3 pt-1.5 pb-2 text-sm hover:bg-accent disabled:pointer-events-none disabled:opacity-40",
+							value === option.id &&
+								"border-primary bg-primary/25 hover:border-primary hover:bg-primary/35",
 						)}
 					>
 						{option.name}
@@ -69,6 +75,7 @@ export default function PotionMaker({ icons }: Props) {
 	const [requestedForm, setForm] = useState<Form>("potion");
 	const [bottles, setBottles] = useState(3);
 	const [bottlesText, setBottlesText] = useState("3");
+	const { t, tn, itemName } = useI18n();
 
 	const potion = potionById(potionId);
 	const hasEffect = Boolean(potion.effects);
@@ -88,23 +95,16 @@ export default function PotionMaker({ icons }: Props) {
 	const finished = last?.output.icon ?? { color: potion.color, form: "potion" as Form };
 
 	return (
-		<section className="py-12">
-			<h1 className="display mb-2 text-center text-4xl">Potion Maker</h1>
-			<p className="text-center text-muted-foreground">
-				Pick a potion and get the full brewing recipe, from water bottle to finished item.
-			</p>
-
-			<Separator className="mx-auto my-4 max-w-lg" />
-
-			<div className="mx-auto grid w-full max-w-5xl gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+		<section>
+			<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Potion</Heading>
+					<Heading>{t("potion.potion")}</Heading>
 
 					<div className="flex flex-wrap gap-0.5 rounded border p-3">
 						{PICKABLE.map((p) => (
 							<Tooltip key={p.id}>
 								<TooltipTrigger
-									aria-label={p.name}
+									aria-label={potionName(p)}
 									aria-pressed={p.id === potionId}
 									onClick={() => setPotionId(p.id)}
 									className={cn(
@@ -114,36 +114,46 @@ export default function PotionMaker({ icons }: Props) {
 								>
 									<PotionIcon color={p.color} form="potion" className="size-8" />
 								</TooltipTrigger>
-								<TooltipContent>{p.name}</TooltipContent>
+								<TooltipContent>{potionName(p)}</TooltipContent>
 							</Tooltip>
 						))}
 					</div>
 
-					<Heading>Options</Heading>
+					<Heading>{t("potion.options")}</Heading>
 					<div className="space-y-4 rounded border p-3">
 						<Segmented
-							label="Upgrade"
+							label={t("potion.upgrade")}
 							value={upgrade}
 							onChange={setUpgrade}
 							options={[
-								{ id: "none", name: "Normal" },
-								{ id: "extended", name: "Extended", disabled: !canExtend(potion) },
+								{ id: "none", name: t("potion.upgrade.none") },
+								{
+									id: "extended",
+									name: t("potion.upgrade.extended"),
+									disabled: !canExtend(potion),
+								},
 								{
 									id: "enhanced",
-									name: potion.enhanced ? `Enhanced (${potion.enhanced.level})` : "Enhanced",
+									name: potion.enhanced
+										? t("potion.upgrade.enhancedLevel", { level: potency(potion.enhanced.level) })
+										: t("potion.upgrade.enhanced"),
 									disabled: !canEnhance(potion),
 								},
 							]}
 						/>
 						<Segmented
-							label="Form"
+							label={t("potion.form")}
 							value={form}
 							onChange={setForm}
-							options={FORMS.map((f) => ({ ...f, disabled: f.id === "arrow" && !hasEffect }))}
+							options={FORMS.map((f) => ({
+								id: f.id,
+								name: itemName(f.item),
+								disabled: f.id === "arrow" && !hasEffect,
+							}))}
 						/>
-						<div className="space-y-2">
-							<label htmlFor="bottles" className="text-muted-foreground text-sm">
-								{form === "arrow" ? "Lingering potions to make (8 arrows each)" : "Bottles to make"}
+						<div className="space-y-2 space-x-2">
+							<label htmlFor="bottles" className="text-sm text-muted-foreground">
+								{form === "arrow" ? t("potion.lingeringForArrows") : t("potion.bottles")}
 							</label>
 							<Input
 								id="bottles"
@@ -151,7 +161,7 @@ export default function PotionMaker({ icons }: Props) {
 								min={1}
 								max={999}
 								inputMode="numeric"
-								className="w-28"
+								className="w-14"
 								value={bottlesText}
 								onChange={(e) => {
 									setBottlesText(e.target.value);
@@ -165,14 +175,14 @@ export default function PotionMaker({ icons }: Props) {
 				</div>
 
 				<div className="flex min-w-0 flex-col gap-3">
-					<Heading>Recipe</Heading>
+					<Heading>{t("potion.recipe")}</Heading>
 
 					<div className="flex items-center gap-4 rounded border bg-card p-4">
 						<PotionIcon color={finished.color} form={finished.form} className="size-14" />
 						<div className="min-w-0">
 							<p className="font-semibold">{fullName(potion, upgrade, form)}</p>
 							{summary && potion.effects ? (
-								<ul className="mt-1 space-y-0.5 text-muted-foreground text-sm">
+								<ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
 									{potion.effects.map((effect) => (
 										<li key={effect.icon} className="flex items-center gap-2">
 											<img
@@ -180,9 +190,9 @@ export default function PotionMaker({ icons }: Props) {
 												alt=""
 												width={18}
 												height={18}
-												className="size-[18px] [image-rendering:pixelated]"
+												className="size-4.5 pixelated"
 											/>
-											{effect.name}
+											{effectName(effect)}
 											{summary.level &&
 												potion.effects &&
 												potion.effects.length === 1 &&
@@ -192,12 +202,10 @@ export default function PotionMaker({ icons }: Props) {
 									))}
 								</ul>
 							) : (
-								<p className="mt-1 text-muted-foreground text-sm">
-									No effect, used as a base for other potions.
-								</p>
+								<p className="mt-1 text-sm text-muted-foreground">{t("potion.noEffect")}</p>
 							)}
 							{potion.detail && (
-								<p className="mt-1 text-muted-foreground text-xs">{potion.detail}</p>
+								<p className="mt-1 text-xs text-muted-foreground">{potionDetail(potion)}</p>
 							)}
 						</div>
 					</div>
@@ -205,8 +213,8 @@ export default function PotionMaker({ icons }: Props) {
 					<ol className="divide-y rounded border">
 						{steps.map((step, i) => (
 							<li key={`${step.output.name}-${i}`} className="space-y-2 p-3">
-								<p className="text-muted-foreground text-xs">
-									{i + 1}. {step.kind === "brew" ? "Brewing stand" : "Crafting table"}
+								<p className="text-xs text-muted-foreground">
+									{i + 1}. {itemName(step.kind === "brew" ? "brewing_stand" : "crafting_table")}
 								</p>
 								<div className="flex flex-wrap items-center gap-2 text-sm">
 									<span className="flex items-center gap-2">
@@ -244,32 +252,34 @@ export default function PotionMaker({ icons }: Props) {
 									</span>
 								</div>
 								{step.ingredients.length > 1 && (
-									<p className="text-muted-foreground text-xs">
-										Any one of these ingredients works.
-									</p>
+									<p className="text-xs text-muted-foreground">{t("potion.anyIngredient")}</p>
 								)}
 							</li>
 						))}
 						{steps.length === 0 && (
-							<li className="p-3 text-muted-foreground text-sm">Nothing to brew.</li>
+							<li className="p-3 text-sm text-muted-foreground">{t("potion.nothingToBrew")}</li>
 						)}
 					</ol>
 
-					{potion.note && <p className="text-muted-foreground text-xs">Tip: {potion.note}</p>}
+					{potion.note && (
+						<p className="text-xs text-muted-foreground">
+							{rich(t("potion.tip"), { text: potionNote(potion) })}
+						</p>
+					)}
 
 					<Heading
 						aside={
-							<span className="text-muted-foreground text-sm">
-								{needed.brews} {needed.brews === 1 ? "brew" : "brews"} per step
+							<span className="text-sm text-muted-foreground">
+								{tn("potion.brewsPerStep", needed.brews)}
 							</span>
 						}
 					>
-						Ingredients
+						{t("potion.ingredients")}
 					</Heading>
 					<ul className="divide-y rounded border">
 						<li className="flex items-center gap-3 px-3 py-1.5">
 							<PotionIcon color="#385dc6" form="potion" />
-							<span className="flex-1 text-sm">Water Bottle</span>
+							<span className="flex-1 text-sm">{potionName(potionById("water"))}</span>
 							<span className="text-sm tabular-nums">×{bottles}</span>
 						</li>
 						{needed.items.map(({ item, count }) => (
@@ -283,15 +293,15 @@ export default function PotionMaker({ icons }: Props) {
 							<li className="flex items-center gap-3 px-3 py-1.5">
 								<ItemIcon icons={icons} item="blaze_powder" />
 								<span className="flex-1 text-sm">
-									Blaze Powder{" "}
-									<span className="text-muted-foreground text-xs">(fuel, 20 brews each)</span>
+									{itemName("blaze_powder")}{" "}
+									<span className="text-xs text-muted-foreground">{t("potion.fuel")}</span>
 								</span>
 								<span className="text-sm tabular-nums">×{needed.fuel}</span>
 							</li>
 						)}
-						<li className="flex items-center gap-3 px-3 py-1.5 text-muted-foreground text-xs">
+						<li className="flex items-center gap-3 px-3 py-1.5 text-xs text-muted-foreground">
 							<ItemIcon icons={icons} item="brewing_stand" className="size-6" />
-							A brewing stand makes up to 3 bottles at once.
+							{t("potion.standCapacity")}
 						</li>
 					</ul>
 				</div>
