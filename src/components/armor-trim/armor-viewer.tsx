@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Reload as ReloadIcon } from "pixelarticons/react";
@@ -26,8 +26,20 @@ const TARGET = new THREE.Vector3(0, 15, 0);
 
 export default function ArmorViewer({ armor, trim, className }: Props) {
 	const host = useRef<HTMLDivElement>(null);
+	const orbit = useRef<OrbitControls | null>(null);
 	const stage = useRef<Stage | null>(null);
 	const { t } = useI18n();
+
+	// the controls unhook their keydown listener from the canvas's root node: while the viewer is
+	// still in the page that is the document, in a useEffect cleanup it is already the detached tree
+	// and the listener left on the document kept the whole page in memory
+	useLayoutEffect(
+		() => () => {
+			orbit.current?.dispose();
+			orbit.current = null;
+		},
+		[],
+	);
 
 	useEffect(() => {
 		const el = host.current as HTMLDivElement;
@@ -46,6 +58,7 @@ export default function ArmorViewer({ armor, trim, className }: Props) {
 
 		const camera = new THREE.PerspectiveCamera(30, 1, 1, 500);
 		const controls = new OrbitControls(camera, renderer.domElement);
+		orbit.current = controls;
 		controls.enablePan = false;
 		controls.minDistance = 30;
 		controls.maxDistance = 140;
@@ -92,7 +105,6 @@ export default function ArmorViewer({ armor, trim, className }: Props) {
 		return () => {
 			stage.current = null;
 			observer.disconnect();
-			controls.dispose();
 			if (avatar) disposeAvatar(avatar);
 			renderer.dispose();
 			renderer.domElement.remove();

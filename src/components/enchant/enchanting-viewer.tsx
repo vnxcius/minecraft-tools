@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Reload as ReloadIcon } from "pixelarticons/react";
@@ -19,10 +19,22 @@ const TARGET = new THREE.Vector3(0, 0.6, 0);
 /** the enchanting table setup in 3D: drag to turn around it, scroll to zoom */
 export default function EnchantingViewer({ item, shelves, className }: Props) {
 	const host = useRef<HTMLDivElement>(null);
+	const orbit = useRef<OrbitControls | null>(null);
 	const scene = useRef<EnchantingScene | null>(null);
 	const reset = useRef<() => void>(() => {});
 	const redraw = useRef<() => void>(() => {});
 	const { t } = useI18n();
+
+	// the controls unhook their keydown listener from the canvas's root node: while the viewer is
+	// still in the page that is the document, in a useEffect cleanup it is already the detached tree
+	// and the listener left on the document kept the whole page in memory
+	useLayoutEffect(
+		() => () => {
+			orbit.current?.dispose();
+			orbit.current = null;
+		},
+		[],
+	);
 
 	useEffect(() => {
 		const el = host.current as HTMLDivElement;
@@ -40,6 +52,7 @@ export default function EnchantingViewer({ item, shelves, className }: Props) {
 
 		const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
 		const controls = new OrbitControls(camera, renderer.domElement);
+		orbit.current = controls;
 		controls.enablePan = false;
 		controls.minDistance = 3;
 		controls.maxDistance = 16;
@@ -105,7 +118,6 @@ export default function EnchantingViewer({ item, shelves, className }: Props) {
 			seen.disconnect();
 			observer.disconnect();
 			document.removeEventListener("visibilitychange", onVisibility);
-			controls.dispose();
 			built.dispose();
 			scene.current = null;
 			renderer.dispose();
