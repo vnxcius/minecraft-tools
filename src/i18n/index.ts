@@ -54,7 +54,7 @@ function loadText(language: Language) {
 		text = Promise.all([
 			messageLoaders[language](),
 			loaders[`../data/lang/${language}.json`](),
-		]).then(([messages, game]) => ({ messages, game }));
+		]).then(([siteText, gameText]) => ({ messages: siteText, game: gameText }));
 		// a failed request can be tried again
 		text.catch(() => loaded.delete(language));
 		loaded.set(language, text);
