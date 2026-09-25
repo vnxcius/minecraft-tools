@@ -29,6 +29,7 @@
 		"enchanting:sync": "bun scripts/sync-enchanting.ts",
 		"enchanting-scene:sync": "bun scripts/sync-enchanting-scene.ts",
 		"related:sync": "bun scripts/sync-related.ts",
+		"images:optimize": "bun scripts/optimize-images.ts",
 		"sync": "bun scripts/sync-all.ts"
 	},
 	"dependencies": {

@@ -30,7 +30,8 @@ for unknown paths.
 
 A new tool goes in `src/components/tools.ts` (the header menu, search, main page, page title and
 the "Related tools" box read from it; `related` lists the three tools shown under it) and `PAGES` in
-`src/lib/seo.ts`, with a picture in `public/tools/`.
+`src/lib/seo.ts`, with a picture in `public/tools/` (then `bun run images:optimize`, which recompresses
+it losslessly).
 
 ## Game data
 

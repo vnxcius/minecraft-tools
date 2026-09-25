@@ -5,7 +5,7 @@
 import { writeFile } from "node:fs/promises";
 import { optimise } from "@jsquash/oxipng";
 
-async function optimisePng(png: Uint8Array) {
+export async function optimisePng(png: Uint8Array) {
 	const bytes = png.buffer.slice(png.byteOffset, png.byteOffset + png.byteLength) as ArrayBuffer;
 	const smaller = await optimise(bytes, { level: 6, optimiseAlpha: false, interlace: false });
 	// never bigger than what came in (the jar's own files are often optimal already)
