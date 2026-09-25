@@ -1,0 +1,93 @@
+{
+	"stack-calculator": [
+		"circle-generator",
+		"item-checklist",
+		"potion-maker",
+		"seed-map"
+	],
+	"item-checklist": [
+		"circle-generator",
+		"stack-calculator",
+		"nether-portal",
+		"enchant-order"
+	],
+	"3d-armor-trim-viewer": [
+		"shield-generator",
+		"banner-generator",
+		"firework-generator",
+		"enchanting-table"
+	],
+	"banner-generator": [
+		"shield-generator",
+		"villager-trading",
+		"firework-generator",
+		"3d-armor-trim-viewer"
+	],
+	"shield-generator": [
+		"banner-generator",
+		"villager-trading",
+		"firework-generator",
+		"3d-armor-trim-viewer"
+	],
+	"firework-generator": [
+		"banner-generator",
+		"shield-generator",
+		"3d-armor-trim-viewer",
+		"nether-portal"
+	],
+	"potion-maker": [
+		"villager-trading",
+		"enchant-order",
+		"best-enchantments",
+		"enchanting-table"
+	],
+	"best-enchantments": [
+		"enchant-order",
+		"enchanting-table",
+		"villager-trading",
+		"potion-maker"
+	],
+	"seed-map": [
+		"nether-portal",
+		"circle-generator",
+		"enchanting-table",
+		"item-checklist"
+	],
+	"enchant-order": [
+		"best-enchantments",
+		"enchanting-table",
+		"villager-trading",
+		"potion-maker"
+	],
+	"enchanting-table": [
+		"best-enchantments",
+		"enchant-order",
+		"villager-trading",
+		"potion-maker"
+	],
+	"villager-trading": [
+		"potion-maker",
+		"best-enchantments",
+		"enchant-order",
+		"shield-generator",
+		"banner-generator"
+	],
+	"nether-portal": [
+		"seed-map",
+		"slime-chunk-finder",
+		"best-enchantments",
+		"potion-maker"
+	],
+	"slime-chunk-finder": [
+		"nether-portal",
+		"item-checklist",
+		"circle-generator",
+		"enchanting-table"
+	],
+	"circle-generator": [
+		"stack-calculator",
+		"item-checklist",
+		"banner-generator",
+		"shield-generator"
+	]
+}

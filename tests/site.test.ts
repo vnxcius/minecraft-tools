@@ -1,7 +1,15 @@
 /** The pieces of the site that must agree: tools, routes, pages for search engines and translations. */
 import { existsSync, readdirSync } from "node:fs";
 import { describe, expect, test } from "vitest";
-import { TOOLS } from "@/components/tools";
+import { relatedTools, TOOLS } from "@/components/tools";
+import related from "@/data/related.json";
+import {
+	MAX_RELATED,
+	MIN_RELATED,
+	pickRelated,
+	rankRelated,
+	toolTexts,
+} from "../scripts/lib/related";
 import { LANGUAGES } from "@/i18n/current";
 import { MESSAGES } from "@/i18n/messages";
 import { PAGE_TEXT } from "@/i18n/pages";
@@ -25,15 +33,18 @@ describe("tools", () => {
 			expect(paths.has(`/tool/${file.replace(/\.tsx$/, "")}`), file).toBe(true);
 	});
 
-	test("each tool links three other existing tools", () => {
+	test("each tool links four or five other existing tools", () => {
 		for (const tool of TOOLS) {
-			expect(tool.related, tool.id).toHaveLength(3);
-			expect(new Set(tool.related).size, tool.id).toBe(3);
-			for (const path of tool.related) {
-				expect(path, tool.id).not.toBe(tool.to);
-				expect(paths.has(path), `${tool.id} -> ${path}`).toBe(true);
-			}
+			const links = relatedTools(tool);
+			expect(links.length, tool.id).toBeGreaterThanOrEqual(MIN_RELATED);
+			expect(links.length, tool.id).toBeLessThanOrEqual(MAX_RELATED);
+			expect(new Set(links).size, tool.id).toBe(links.length);
+			for (const other of links) expect(other.id, tool.id).not.toBe(tool.id);
 		}
+	});
+
+	test("the related tools are up to date (bun run related:sync)", async () => {
+		expect(pickRelated(rankRelated(await toolTexts()))).toEqual(related);
 	});
 });
 

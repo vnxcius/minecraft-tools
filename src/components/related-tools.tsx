@@ -1,16 +1,24 @@
 import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/i18n";
+import { cn } from "@/lib/utils";
 import { relatedTools, type Tool, toolDescription, toolTitle } from "./tools";
 
 export default function RelatedTools({ tool }: { tool: Tool }) {
 	const { t } = useI18n();
+	const links = relatedTools(tool);
 	return (
 		<section aria-labelledby="related-tools" className="mt-10 section-box p-3">
 			<h2 id="related-tools" className="mb-3 text-lg font-bold">
 				{t("site.relatedTools")}
 			</h2>
-			<ul className="grid gap-2 md:grid-cols-3">
-				{relatedTools(tool).map((related) => (
+			<ul
+				className={cn(
+					"grid gap-2 sm:grid-cols-2",
+					// four or five tools: one row on wide screens
+					links.length > 4 ? "lg:grid-cols-3 xl:grid-cols-5" : "xl:grid-cols-4",
+				)}
+			>
+				{links.map((related) => (
 					<li key={related.to}>
 						<Link
 							to={related.to}

@@ -28,6 +28,7 @@
 		"villagers:sync": "bun scripts/sync-villagers.ts",
 		"enchanting:sync": "bun scripts/sync-enchanting.ts",
 		"enchanting-scene:sync": "bun scripts/sync-enchanting-scene.ts",
+		"related:sync": "bun scripts/sync-related.ts",
 		"sync": "bun scripts/sync-all.ts"
 	},
 	"dependencies": {
