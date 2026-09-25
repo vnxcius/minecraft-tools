@@ -1,5 +1,6 @@
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/lib/theme";
+import { useEffect } from "react";
+import { useI18n } from "@/i18n";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -7,45 +8,57 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { DeviceLaptopIcon, LoaderIcon, MoonIcon, SunIcon } from "./ui/icons";
+import { Laptop as LaptopIcon, Moon as MoonIcon, Sun as SunIcon } from "pixelarticons/react";
 
-export default function ThemeSelector() {
-	const [isMounted, setIsMounted] = useState<boolean>(false);
+/** pressing T anywhere flips between light and dark; mount it once, the selector itself renders twice */
+export function ThemeHotkey() {
 	const { setTheme, resolvedTheme } = useTheme();
 
 	useEffect(() => {
-		queueMicrotask(() => setIsMounted(true));
-	}, []);
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== "t" && event.key !== "T") return;
+			if (event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+			// typing a "t" in the search, a seed or any other field must not change the theme
+			const target = event.target as HTMLElement | null;
+			if (
+				target?.closest("input, textarea, select, [contenteditable]:not([contenteditable=false])")
+			)
+				return;
+			setTheme(resolvedTheme === "dark" ? "light" : "dark");
+		};
+		window.addEventListener("keydown", onKeyDown);
+		return () => window.removeEventListener("keydown", onKeyDown);
+	}, [resolvedTheme, setTheme]);
 
-	if (!isMounted)
-		return (
-			<div className="flex size-8 items-center justify-center rounded border">
-				<LoaderIcon size={16} className="mx-auto w-fit animate-spin" />
-			</div>
-		);
+	return null;
+}
 
-	const icons = {
-		light: <SunIcon size={16} />,
-		dark: <MoonIcon size={16} />,
-	};
+export default function ThemeSelector() {
+	const { t } = useI18n();
+	const { setTheme, resolvedTheme } = useTheme();
 
-	const icon = icons[resolvedTheme as "light" | "dark"] ?? <DeviceLaptopIcon size={16} />;
+	const icon =
+		resolvedTheme === "dark" ? <MoonIcon className="size-4" /> : <SunIcon className="size-4" />;
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger className="flex size-8 cursor-pointer items-center justify-center rounded border text-muted-foreground hover:bg-accent hover:text-foreground">
+			<DropdownMenuTrigger
+				aria-label={t("site.theme")}
+				title={t("site.themeHint")}
+				className="flex size-8 cursor-pointer items-center justify-center border-2 border-black bg-black/75 text-[#bfbfbf] hover:text-white"
+			>
 				{icon}
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuItem onClick={() => setTheme("dark")}>
-					<MoonIcon size={18} /> Dark
+					<MoonIcon className="size-4.5" /> {t("site.theme.dark")}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme("light")}>
-					<SunIcon size={18} /> Light
+					<SunIcon className="size-4.5" /> {t("site.theme.light")}
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem onClick={() => setTheme("system")}>
-					<DeviceLaptopIcon size={18} /> System
+					<LaptopIcon className="size-4.5" /> {t("site.theme.system")}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

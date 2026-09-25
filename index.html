@@ -1,14 +1,26 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth" suppressHydrationWarning>
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="theme-color" content="#1e1e1c" />
+		<meta name="theme-color" content="#5ea8ef" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0b1628" media="(prefers-color-scheme: dark)" />
 		<meta name="color-scheme" content="dark light" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="manifest" href="/manifest.webmanifest" />
-		<!-- title, description, canonical, Open Graph and JSON-LD are added per page:
-		     by scripts/prerender.ts in the built html, and by the router at runtime -->
+		<!-- the saved theme (src/lib/theme.ts) before the first paint, so pages never flash -->
+		<script>
+			try {
+				var theme = localStorage.getItem("theme");
+				var dark =
+					theme === "dark" ||
+					(theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+				document.documentElement.classList.toggle("dark", dark);
+				document.documentElement.style.colorScheme = dark ? "dark" : "light";
+			} catch (e) {}
+		</script>
+		<!-- title, description and Open Graph come per page from scripts/prerender.ts and the router;
+     the JSON-LD structured data only from the prerendered html -->
 	</head>
 	<body>
 		<div id="root"></div>

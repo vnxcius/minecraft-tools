@@ -1,16 +1,17 @@
 import { cn } from "@/lib/utils";
 
-/** small section title with an optional note on the right, shared by the tool pages */
 export function Heading({
+	className,
 	children,
 	aside,
 }: {
 	children: React.ReactNode;
 	aside?: React.ReactNode;
+	className?: string;
 }) {
 	return (
 		<div className="flex h-9 items-center justify-between">
-			<h2 className="text-muted-foreground">{children}</h2>
+			<h2 className={cn("font-bold", className)}>{children}</h2>
 			{aside}
 		</div>
 	);
