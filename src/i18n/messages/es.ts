@@ -70,7 +70,7 @@ export const es: Messages = {
 	"home.heading": "Herramientas útiles para Minecraft",
 	"home.intro":
 		"Herramientas gratuitas para lo que haces en el juego cada día: contar pilas, planificar construcciones, diseñar estandartes y fuegos artificiales, elaborar pociones y explorar semillas. Todo funciona en tu navegador.",
-	"home.stats": "{count} herramientas · sin registro · {openSource}",
+	"home.stats": "{count} herramientas · sin registro · {openSource} · sin anuncios, nunca",
 	"home.openSource": "código abierto",
 	"home.allTools": "Todas las herramientas",
 	"home.missing.title": "¿Echas en falta alguna herramienta?",

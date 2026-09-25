@@ -70,7 +70,7 @@ export const ptBR: Messages = {
 	"home.heading": "Ferramentas úteis para Minecraft",
 	"home.intro":
 		"Ferramentas gratuitas para o que você faz no jogo todo dia: contar packs, planejar construções, criar estandartes e fogos de artifício, preparar poções e explorar sementes. Tudo roda no seu navegador.",
-	"home.stats": "{count} ferramentas · sem cadastro · {openSource}",
+	"home.stats": "{count} ferramentas · sem cadastro · {openSource} · sem anúncios, nunca",
 	"home.openSource": "código aberto",
 	"home.allTools": "Todas as ferramentas",
 	"home.missing.title": "Falta alguma ferramenta?",

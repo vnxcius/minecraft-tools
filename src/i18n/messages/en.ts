@@ -71,7 +71,7 @@ export const en = {
 	"home.heading": "Useful tools for Minecraft",
 	"home.intro":
 		"Free tools for the things you do in game every day: count stacks, plan builds, design banners and fireworks, brew potions and explore seeds. Everything runs in your browser.",
-	"home.stats": "{count} tools · no sign up · {openSource}",
+	"home.stats": "{count} tools · no sign up · {openSource} · no ads, ever",
 	"home.openSource": "open source",
 	"home.allTools": "All tools",
 	"home.missing.title": "Missing a tool?",
