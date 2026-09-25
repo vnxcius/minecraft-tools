@@ -90,6 +90,8 @@ bun run engine:build
 - Minecraft, its textures and item names belong to Mojang Studios and Microsoft. This project is not
   affiliated with them.
 
+Special thanks to GigiBandida for helping test and debug the features.
+
 ## AI disclosure
 
 AI assistants were used while developing this project, mainly to write and refactor code, and all of
