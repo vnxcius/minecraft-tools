@@ -1,6 +1,10 @@
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
 	"plugins": ["typescript", "react", "jsx-a11y", "oxc", "import"],
+	"jsPlugins": [{ "name": "tailwindcss", "specifier": "eslint-plugin-better-tailwindcss" }],
+	"settings": {
+		"better-tailwindcss": { "entryPoint": "src/styles.css" }
+	},
 	"categories": { "correctness": "error", "suspicious": "warn" },
 	"ignorePatterns": ["dist", "src/routeTree.gen.ts"],
 	"rules": {
@@ -9,6 +13,8 @@
 		"no-underscore-dangle": "off",
 		// svg icons use role="img"; the virtualized grid cells are intentionally role="gridcell"
 		"jsx-a11y/prefer-tag-over-role": "off",
-		"jsx-a11y/control-has-associated-label": "off"
+		"jsx-a11y/control-has-associated-label": "off",
+		// same order oxfmt's sortTailwindcss writes, so formatting clears it
+		"tailwindcss/enforce-consistent-class-order": "warn"
 	}
 }

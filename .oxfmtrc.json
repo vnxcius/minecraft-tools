@@ -1,5 +1,9 @@
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
 	"useTabs": true,
+	"sortTailwindcss": {
+		"stylesheet": "src/styles.css",
+		"functions": ["cn", "cva", "clsx", "twMerge"]
+	},
 	"ignorePatterns": ["bun.lock", "public", "src/routeTree.gen.ts", "src/data"]
 }
