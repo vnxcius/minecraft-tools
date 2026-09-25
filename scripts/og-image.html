@@ -1,16 +1,17 @@
 <!doctype html>
 <!--
-  Source of public/og.png (1200x630, the image link previews show).
-  Render it with any browser at that window size, e.g.
-    msedge --headless --allow-file-access-from-files --window-size=1200,630 --screenshot=public/og.png scripts/og-image.html
+  Source of public/og.png (1200x630, the image link previews show), drawn like the site: sky, grass and
+  dirt over deepslate, and the page panel. Render it with any browser at that window size, e.g.
+    chromium --headless --allow-file-access-from-files --window-size=1200,630 --screenshot=public/og.png scripts/og-image.html
 -->
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<style>
 			@font-face {
-				font-family: "Mojangles";
-				src: url("../src/assets/fonts/Minecraft-Seven_v2.woff2") format("woff2");
+				font-family: "Geist Sans";
+				src: url("../node_modules/@fontsource/geist-sans/files/geist-sans-latin-400-normal.woff2")
+					format("woff2");
 			}
 			* {
 				box-sizing: border-box;
@@ -21,88 +22,93 @@
 				height: 630px;
 				overflow: hidden;
 				position: relative;
-				background: #1e1e1c;
-				color: #ececea;
-				font-family: "Mojangles", monospace;
-			}
-			.stone {
-				position: absolute;
-				inset: 0;
-				opacity: 0.09;
+				background: #303030 url("../public/decor/deepslate.png") 0 0 / 64px;
+				background-blend-mode: multiply;
 				image-rendering: pixelated;
-				background: url("../public/decor/stone.png") 0 0 / 96px;
-				mask-image: linear-gradient(to bottom, black, transparent 85%);
+				font-family: "Geist Sans", sans-serif;
+				color: #202122;
+			}
+			.sky {
+				position: absolute;
+				inset: 0 0 auto;
+				height: 230px;
+				background: linear-gradient(to bottom, #5ea8ef, #a9d4f7);
 			}
 			.ground {
 				position: absolute;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				height: 96px;
-				border-top: 10px solid #5fa03a;
-				background: #5b4a3d url("../public/decor/dirt.png") 0 0 / 96px;
+				inset: auto 0 0;
+				height: 44px;
+				border-top: 6px solid #5fa03a;
+				background: #6b5645 url("../public/decor/dirt.png") 0 0 / 44px;
 				background-blend-mode: multiply;
-				image-rendering: pixelated;
 			}
-			.brand {
+			.logo {
 				position: absolute;
-				left: 80px;
-				top: 64px;
-				display: flex;
-				align-items: center;
-				gap: 20px;
-				font-size: 40px;
+				left: 56px;
+				top: 34px;
+				width: 400px;
 			}
-			.brand img {
-				width: 56px;
-				filter: invert(1);
+			.panel {
+				position: absolute;
+				left: 56px;
+				right: 56px;
+				top: 230px;
+				bottom: 0;
+				padding: 44px 52px;
+				background: #e6eff4;
+				border-top: 8px solid #b4bec3;
+				border-left: 8px solid #525252;
+				clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
 			}
 			h1 {
-				position: absolute;
-				left: 80px;
-				top: 160px;
-				width: 720px;
-				font-size: 92px;
-				line-height: 1.05;
-				color: #6cc349;
+				font-family: "Linux Libertine", Georgia, "Times New Roman", serif;
 				font-weight: 400;
+				font-size: 60px;
+				line-height: 1.1;
+				padding-bottom: 14px;
+				border-bottom: 2px solid #a2a9b1;
 			}
 			p {
-				position: absolute;
-				left: 80px;
-				top: 410px;
-				width: 720px;
+				margin-top: 20px;
 				font-size: 28px;
 				line-height: 1.35;
-				color: #aeaaa2;
+				color: #54595d;
 			}
-			.icons {
+			.tools {
 				position: absolute;
-				right: 70px;
-				top: 130px;
-				width: 300px;
-				display: grid;
-				grid-template-columns: repeat(2, 130px);
-				gap: 30px;
+				left: 52px;
+				bottom: 44px;
+				display: flex;
+				gap: 14px;
 			}
-			.icons img {
-				width: 130px;
-				image-rendering: pixelated;
-				filter: drop-shadow(0 8px 0 rgb(0 0 0 / 0.35));
+			.tools img {
+				width: 78px;
+				height: 78px;
+				padding: 9px;
+				background: #ebebeb;
+				border: 3px solid rgb(0 0 0 / 0.4);
+				box-shadow: inset 0 -5px 0 rgb(0 0 0 / 0.16);
 			}
 		</style>
 	</head>
 	<body>
-		<div class="stone"></div>
-		<div class="brand"><img src="../public/logo.svg" alt="" />Minecraft Tools</div>
-		<h1>Useful tools for Minecraft</h1>
-		<p>Stacks, banners, armor trims, potions, fireworks, enchantments and a seed map.</p>
-		<div class="icons">
-			<img src="../public/shulker_box.webp" alt="" />
-			<img src="../public/chest.webp" alt="" />
-			<img src="../public/spruce_planks_stack.webp" alt="" />
-			<img src="../public/stack_calculator_icon.webp" alt="" />
+		<div class="sky"><div class="ground"></div></div>
+		<img class="logo" src="../public/minecraft_tools.webp" alt="" />
+		<div class="panel">
+			<h1>Useful tools for Minecraft</h1>
+			<p>Seed map, villager trades, enchanting, banners, armor trims and more.</p>
+			<div class="tools">
+				<img src="../public/tools/seed-map.png" alt="" />
+				<img src="../public/tools/villager-trading.png" alt="" />
+				<img src="../public/tools/enchant-order.png" alt="" />
+				<img src="../public/tools/banner-generator.png" alt="" />
+				<img src="../public/tools/3d-armor-trim-viewer.png" alt="" />
+				<img src="../public/tools/potion-maker.png" alt="" />
+				<img src="../public/tools/firework-generator.png" alt="" />
+				<img src="../public/tools/item-checklist.png" alt="" />
+				<img src="../public/tools/stack-calculator.png" alt="" />
+				<img src="../public/tools/circle-generator.png" alt="" />
+			</div>
 		</div>
-		<div class="ground"></div>
 	</body>
 </html>

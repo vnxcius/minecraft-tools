@@ -1,11 +1,11 @@
 {
   "name": "Minecraft Tools",
   "short_name": "MC Tools",
-  "description": "Useful Minecraft tools: calculators, designers and guides.",
+  "description": "Free Minecraft tools in your browser: seed map, villager trades, enchanting, generators, guides and calculators.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#1e1e1c",
+  "background_color": "#303030",
   "theme_color": "#3c8527",
   "icons": [{ "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
 }
