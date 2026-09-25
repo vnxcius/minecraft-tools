@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import {
+	type Chunk,
 	type Hover,
 	type MapPoint,
 	MapRenderer,
@@ -8,7 +9,7 @@ import {
 } from "@/lib/seedmap/renderer";
 import { cn } from "@/lib/utils";
 
-export type { Hover, MapPoint, Selection };
+export type { Chunk, Hover, MapPoint, Selection };
 
 export interface SeedMapHandle {
 	goTo: (x: number, z: number, blocksPerPixel?: number) => void;
@@ -19,10 +20,11 @@ export interface SeedMapHandle {
 interface Props extends MapState {
 	onHover: (hover: Hover | null) => void;
 	onSelect: (selection: Selection) => void;
+	ariaLabel: string;
 	className?: string;
 }
 
-/** pannable, zoomable biome map; the drawing lives in MapRenderer, this only wires it to React */
+/** wires MapRenderer, which draws and handles input, to React */
 const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const renderer = useRef<MapRenderer | null>(null);
@@ -37,9 +39,13 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 		spawn,
 		strongholds,
 		pin,
+		highlight,
+		chunk,
 		icons,
+		scaleLabel,
 		onHover,
 		onSelect,
+		ariaLabel,
 		className,
 	} = props;
 
@@ -56,7 +62,10 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 			spawn,
 			strongholds,
 			pin,
+			highlight,
+			chunk,
 			icons,
+			scaleLabel,
 		};
 		if (renderer.current) renderer.current.update(state, { onHover, onSelect });
 		else
@@ -75,7 +84,10 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 		spawn,
 		strongholds,
 		pin,
+		highlight,
+		chunk,
 		icons,
+		scaleLabel,
 		onHover,
 		onSelect,
 	]);
@@ -98,7 +110,7 @@ const SeedMap = forwardRef<SeedMapHandle, Props>(function SeedMap(props, ref) {
 		<canvas
 			ref={canvasRef}
 			role="img"
-			aria-label="World map"
+			aria-label={ariaLabel}
 			className={cn("block size-full cursor-grab touch-none active:cursor-grabbing", className)}
 		/>
 	);

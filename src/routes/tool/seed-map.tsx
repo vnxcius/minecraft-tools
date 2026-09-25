@@ -4,7 +4,10 @@ import SeedTool from "@/components/seedmap/seed-tool";
 import { latestVersion, loadItems } from "@/lib/items";
 
 export const Route = createFileRoute("/tool/seed-map")({
-	// item icons that mark the structures on the map come from the latest version of the CDN catalog
+	// `?slime=true` opens the map with the slime chunks on (the slime chunk finder links here)
+	validateSearch: (search): { slime?: boolean } => ({
+		slime: search.slime === true || search.slime === "true" || undefined,
+	}),
 	loader: async () => {
 		const items = await loadItems(latestVersion);
 		return { icons: Object.fromEntries(items.map((i) => [i.id, i.src])) };
@@ -15,5 +18,7 @@ export const Route = createFileRoute("/tool/seed-map")({
 
 function SeedPage() {
 	const { icons } = Route.useLoaderData();
-	return <SeedTool icons={icons} />;
+	const { slime } = Route.useSearch();
+	// a new key when the finder turns the slime chunks on while the map is already open
+	return <SeedTool key={slime ? "slime" : "map"} icons={icons} slime={slime} />;
 }

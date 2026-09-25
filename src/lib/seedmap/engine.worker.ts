@@ -87,10 +87,15 @@ function tile(w: Exports, dim: number, scale: number, x: number, z: number, size
 	});
 }
 
-/** nearest cell of a biome around a point, searching in growing rings of 1:16 tiles */
+/**
+ * Nearest spot of a biome around a point. A coarse pass in growing rings of 1:64 tiles finds the
+ * closest cell of the biome (16 times fewer samples than 1:16, the search used to take seconds), then
+ * a 1:4 pass around that cell pins down the spot of it nearest to the point.
+ */
 function findBiome(w: Exports, dim: number, biome: number, cx: number, cz: number, radius: number) {
 	const cells = 64;
-	const span = cells * 16; // blocks per tile
+	const coarse = 64;
+	const span = cells * coarse;
 	const home = [Math.floor(cx / span), Math.floor(cz / span)];
 	let best: { x: number; z: number; d: number } | null = null;
 
@@ -100,18 +105,35 @@ function findBiome(w: Exports, dim: number, biome: number, cx: number, cz: numbe
 		for (let tz = -ring; tz <= ring; tz++) {
 			for (let tx = -ring; tx <= ring; tx++) {
 				if (Math.max(Math.abs(tx), Math.abs(tz)) !== ring) continue;
-				const ids = tile(w, dim, 16, (home[0] + tx) * cells, (home[1] + tz) * cells, cells);
+				const ids = tile(w, dim, coarse, (home[0] + tx) * cells, (home[1] + tz) * cells, cells);
 				for (let i = 0; i < ids.length; i++) {
 					if (ids[i] !== biome) continue;
-					const x = (home[0] + tx) * span + (i % cells) * 16 + 8;
-					const z = (home[1] + tz) * span + Math.floor(i / cells) * 16 + 8;
+					const x = (home[0] + tx) * span + (i % cells) * coarse + coarse / 2;
+					const z = (home[1] + tz) * span + Math.floor(i / cells) * coarse + coarse / 2;
 					const d = Math.hypot(x - cx, z - cz);
-					if (d <= radius && (!best || d < best.d)) best = { x, z, d };
+					if (d <= radius + coarse && (!best || d < best.d)) best = { x, z, d };
 				}
 			}
 		}
 	}
-	return best && { x: Math.round(best.x), z: Math.round(best.z) };
+	if (!best) return null;
+
+	// 1:4 around the coarse hit: the cell of the biome closest to the point
+	const fine = 4;
+	const size = 48;
+	const x0 = Math.floor(best.x / fine) - size / 2;
+	const z0 = Math.floor(best.z / fine) - size / 2;
+	const ids = tile(w, dim, fine, x0, z0, size);
+	let precise: { x: number; z: number; d: number } | null = null;
+	for (let i = 0; i < ids.length; i++) {
+		if (ids[i] !== biome) continue;
+		const x = (x0 + (i % size)) * fine + fine / 2;
+		const z = (z0 + Math.floor(i / size)) * fine + fine / 2;
+		const d = Math.hypot(x - cx, z - cz);
+		if (d <= radius && (!precise || d < precise.d)) precise = { x, z, d };
+	}
+	const found = precise ?? (best.d <= radius ? best : null);
+	return found && { x: Math.round(found.x), z: Math.round(found.z) };
 }
 
 async function handle(request: Request) {
