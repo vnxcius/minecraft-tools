@@ -5,9 +5,18 @@ export type Slot = (typeof SLOTS)[number];
 /** armor material id per slot, null = empty slot */
 export type ArmorSelection = Record<Slot, string | null>;
 
-export interface TrimSelection {
-	pattern: string;
+export interface SlotTrim {
+	/** null = no trim */
+	pattern: string | null;
 	material: string;
-	/** slots that get the trim */
-	slots: Slot[];
+}
+
+/** trim of each armor piece */
+export type TrimSelection = Record<Slot, SlotTrim>;
+
+/** player skin worn instead of the armor stand */
+export interface Skin {
+	url: string;
+	/** "Alex" model: 3px wide arms */
+	slim: boolean;
 }

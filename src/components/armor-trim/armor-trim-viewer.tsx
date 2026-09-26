@@ -1,9 +1,18 @@
-import { Cancel as CancelIcon } from "pixelarticons/react";
-import { lazy, Suspense, useMemo, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Cancel as CancelIcon, Close as CloseIcon } from "pixelarticons/react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import armorData from "@/data/armor.json";
-import { type ArmorSelection, SLOTS, type Slot, type TrimSelection } from "@/lib/armor/selection";
+import {
+	type ArmorSelection,
+	type Skin,
+	SLOTS,
+	type Slot,
+	type SlotTrim,
+	type TrimSelection,
+} from "@/lib/armor/selection";
+import { lookupSkin, NICKNAME, SkinLookupError, type SkinError } from "@/lib/armor/skin";
 import { useI18n } from "@/i18n";
 import { cn } from "@/lib/utils";
 
@@ -46,42 +55,89 @@ function IconButton({
 
 const NoneIcon = () => <CancelIcon className="size-5 text-muted-foreground" />;
 
+/** which pieces the trim choices edit */
+type Target = "all" | Slot;
+
+const DEFAULT_TRIM: SlotTrim = { pattern: "coast", material: "gold" };
+
 export default function ArmorTrimViewer({ icons }: Props) {
 	const [armor, setArmor] = useState<ArmorSelection>({
-		helmet: "diamond",
-		chestplate: "diamond",
-		leggings: "diamond",
-		boots: "diamond",
+		helmet: "netherite",
+		chestplate: "netherite",
+		leggings: "netherite",
+		boots: "netherite",
 	});
 	const { t, term, itemName } = useI18n();
 	const slotName = (slot: Slot) => t(`armor.slot.${slot}`);
 	const patternName = (id: string) => term(`trim_pattern.minecraft.${id}`);
 	const materialName = (id: string) => term(`trim_material.minecraft.${id}`);
-	const [pattern, setPattern] = useState<string | null>("coast");
-	const [material, setMaterial] = useState("gold");
-	const [trimSlots, setTrimSlots] = useState<Slot[]>([...SLOTS]);
+	const [trim, setTrim] = useState<TrimSelection>({
+		helmet: DEFAULT_TRIM,
+		chestplate: DEFAULT_TRIM,
+		leggings: DEFAULT_TRIM,
+		boots: DEFAULT_TRIM,
+	});
+	const [target, setTarget] = useState<Target>("all");
+	const targets = target === "all" ? SLOTS : [target];
 
-	const trim = useMemo<TrimSelection | null>(
-		() => (pattern ? { pattern, material, slots: trimSlots } : null),
-		[pattern, material, trimSlots],
-	);
+	// the value every targeted piece has, undefined when they differ
+	const shared = <K extends keyof SlotTrim>(key: K): SlotTrim[K] | undefined => {
+		const value = trim[targets[0]][key];
+		return targets.every((slot) => trim[slot][key] === value) ? value : undefined;
+	};
+	const pattern = shared("pattern");
+	const material = shared("material");
+	const updateTrim = (change: Partial<SlotTrim>) =>
+		setTrim((prev) => {
+			const next = { ...prev };
+			for (const slot of targets) next[slot] = { ...prev[slot], ...change };
+			return next;
+		});
 
-	const toggleSlot = (slot: Slot) =>
-		setTrimSlots((prev) =>
-			prev.includes(slot) ? prev.filter((s) => s !== slot) : [...prev, slot],
-		);
+	const [nickname, setNickname] = useState("");
+	const [skin, setSkin] = useState<Skin | null>(null);
+	const [skinLoading, setSkinLoading] = useState(false);
+	const [skinError, setSkinError] = useState<SkinError | "invalid" | null>(null);
+	const lookup = useRef<AbortController | null>(null);
+	useEffect(() => () => lookup.current?.abort(), []);
+
+	const loadSkin = async (event: React.FormEvent) => {
+		event.preventDefault();
+		const name = nickname.trim();
+		if (!NICKNAME.test(name)) return setSkinError("invalid");
+		lookup.current?.abort();
+		const controller = new AbortController();
+		lookup.current = controller;
+		setSkinError(null);
+		setSkinLoading(true);
+		try {
+			setSkin(await lookupSkin(name, controller.signal));
+		} catch (error) {
+			if (controller.signal.aborted) return;
+			setSkinError(error instanceof SkinLookupError ? error.reason : "network");
+		} finally {
+			if (lookup.current === controller) setSkinLoading(false);
+		}
+	};
+
+	const removeSkin = () => {
+		lookup.current?.abort();
+		setSkinLoading(false);
+		setSkinError(null);
+		setSkin(null);
+	};
 
 	return (
 		<section>
 			<div className="relative">
-				<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_26rem]">
+				<div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_34rem]">
 					<div className="flex min-w-0 flex-col gap-3">
 						<div className="flex h-9 items-center">
 							<h2 className="font-bold">{t("armor.armor")}</h2>
 						</div>
 
 						<Suspense fallback={<div className="h-[55svh] min-h-80 rounded-md border bg-card" />}>
-							<ArmorViewer armor={armor} trim={trim} className="h-[55svh] min-h-80" />
+							<ArmorViewer armor={armor} trim={trim} skin={skin} className="h-[55svh] min-h-80" />
 						</Suspense>
 
 						<div className="space-y-2 rounded-md border p-3">
@@ -126,20 +182,59 @@ export default function ArmorTrimViewer({ icons }: Props) {
 						<div className="flex h-9 items-center justify-between">
 							<h2 className="font-bold">{t("armor.trim")}</h2>
 							<span className="text-sm text-muted-foreground">
-								{pattern
-									? `${patternName(pattern)} · ${materialName(material)}`
-									: t("armor.noTrim")}
+								{pattern === undefined || material === undefined
+									? t("armor.mixed")
+									: pattern
+										? `${patternName(pattern)} · ${materialName(material)}`
+										: t("armor.noTrim")}
 							</span>
 						</div>
 
 						<div className="space-y-4 rounded-md border p-3">
+							<div className="space-y-1.5">
+								<h3 className="text-sm text-muted-foreground">{t("armor.applyTo")}</h3>
+								<div className="flex flex-wrap gap-1 lg:flex-nowrap">
+									{(["all", ...SLOTS] as const).map((value) => {
+										const slotPattern = value === "all" ? null : trim[value].pattern;
+										return (
+											<button
+												key={value}
+												type="button"
+												aria-pressed={target === value}
+												onClick={() => setTarget(value)}
+												className={cn(
+													"flex h-8 items-center justify-center gap-1.5 rounded-sm border px-2 text-sm whitespace-nowrap hover:bg-accent lg:flex-auto",
+													target === value &&
+														"bg-primary/30 ring-1 ring-primary hover:bg-primary/40",
+												)}
+											>
+												{value === "all" ? t("armor.allPieces") : slotName(value)}
+												{slotPattern && (
+													<img
+														src={
+															icons[
+																armorData.patterns.find((p) => p.id === slotPattern)?.item ?? ""
+															]
+														}
+														alt=""
+														width={16}
+														height={16}
+														className="size-4"
+													/>
+												)}
+											</button>
+										);
+									})}
+								</div>
+							</div>
+
 							<div className="space-y-1.5">
 								<h3 className="text-sm text-muted-foreground">{t("armor.pattern")}</h3>
 								<div className="flex flex-wrap gap-0.5">
 									<IconButton
 										label={t("armor.none")}
 										selected={pattern === null}
-										onClick={() => setPattern(null)}
+										onClick={() => updateTrim({ pattern: null })}
 									>
 										<NoneIcon />
 									</IconButton>
@@ -148,7 +243,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 											key={p.id}
 											label={patternName(p.id)}
 											selected={pattern === p.id}
-											onClick={() => setPattern(p.id)}
+											onClick={() => updateTrim({ pattern: p.id })}
 										>
 											<img src={icons[p.item]} alt="" width={32} height={32} className="size-8" />
 										</IconButton>
@@ -164,7 +259,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 											key={m.id}
 											label={materialName(m.id)}
 											selected={material === m.id}
-											onClick={() => setMaterial(m.id)}
+											onClick={() => updateTrim({ material: m.id })}
 										>
 											<img src={icons[m.item]} alt="" width={32} height={32} className="size-8" />
 										</IconButton>
@@ -172,20 +267,55 @@ export default function ArmorTrimViewer({ icons }: Props) {
 								</div>
 							</div>
 
-							<div className="space-y-1.5">
-								<h3 className="text-sm text-muted-foreground">{t("armor.applyTo")}</h3>
-								<div className="grid grid-cols-2 gap-2">
-									{SLOTS.map((slot) => (
-										<label key={slot} className="flex cursor-pointer items-center gap-2 text-sm">
-											<Checkbox
-												checked={trimSlots.includes(slot)}
-												onCheckedChange={() => toggleSlot(slot)}
-											/>
-											{slotName(slot)}
-										</label>
-									))}
+							<hr />
+
+							<form onSubmit={loadSkin} className="space-y-1.5">
+								<label htmlFor="armor-skin" className="block text-sm text-muted-foreground">
+									{t("armor.skin")}
+								</label>
+								<div className="space-y-1.5">
+									<div className="flex gap-2">
+										<Input
+											id="armor-skin"
+											value={nickname}
+											onChange={(e) => setNickname(e.target.value)}
+											placeholder={t("armor.nickname")}
+											maxLength={16}
+											autoComplete="off"
+											spellCheck={false}
+											aria-invalid={skinError !== null}
+											aria-describedby={skinError ? "armor-skin-error" : undefined}
+											className="h-8 max-w-56"
+										/>
+										<Button type="submit" size="sm" disabled={skinLoading}>
+											{skinLoading ? t("armor.loadingSkin") : t("armor.loadSkin")}
+										</Button>
+										{skin && (
+											<Tooltip>
+												<TooltipTrigger
+													render={
+														<Button
+															type="button"
+															variant="ghost"
+															size="icon-sm"
+															aria-label={t("armor.removeSkin")}
+															onClick={removeSkin}
+														/>
+													}
+												>
+													<CloseIcon />
+												</TooltipTrigger>
+												<TooltipContent>{t("armor.removeSkin")}</TooltipContent>
+											</Tooltip>
+										)}
+									</div>
+									{skinError && (
+										<p id="armor-skin-error" className="text-sm text-destructive">
+											{t(`armor.skinError.${skinError}`)}
+										</p>
+									)}
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>

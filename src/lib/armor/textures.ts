@@ -7,8 +7,13 @@ function loadImage(url: string): Promise<HTMLImageElement> {
 	if (!image) {
 		image = new Promise((resolve, reject) => {
 			const img = new Image();
+			// skins come from textures.minecraft.net: without CORS the canvas can't feed WebGL
+			img.crossOrigin = "anonymous";
 			img.onload = () => resolve(img);
-			img.onerror = () => reject(new Error(`Failed to load ${url}`));
+			img.onerror = () => {
+				images.delete(url);
+				reject(new Error(`Failed to load ${url}`));
+			};
 			img.src = url;
 		});
 		images.set(url, image);
@@ -43,6 +48,21 @@ const hexToRgb = (hex: string): [number, number, number] => {
 /** plain image as a nearest-filtered texture (armor stand) */
 export async function plainTexture(url: string) {
 	return toTexture((await draw(url)).canvas);
+}
+
+/**
+ * Player skin. A legacy 64x32 skin whose hat layer has no transparent pixel gets it cleared, like
+ * the game does: old skins often filled it with a solid color.
+ */
+export async function skinTexture(url: string) {
+	const { canvas, ctx } = await draw(url);
+	if (canvas.height === 32) {
+		const hat = ctx.getImageData(32, 0, 32, 16).data;
+		let opaque = true;
+		for (let i = 3; i < hat.length && opaque; i += 4) opaque = hat[i] >= 128;
+		if (opaque) ctx.clearRect(32, 0, 32, 16);
+	}
+	return toTexture(canvas);
 }
 
 /** armor layer; dyeable armor (leather) is tinted and gets its untinted overlay on top */

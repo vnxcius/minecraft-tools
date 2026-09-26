@@ -5,11 +5,12 @@ import { Reload as ReloadIcon } from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n";
 import { buildAvatar, disposeAvatar } from "@/lib/armor/scene";
-import type { ArmorSelection, TrimSelection } from "@/lib/armor/selection";
+import type { ArmorSelection, Skin, TrimSelection } from "@/lib/armor/selection";
 
 interface Props {
 	armor: ArmorSelection;
-	trim: TrimSelection | null;
+	trim: TrimSelection;
+	skin: Skin | null;
 	className?: string;
 }
 
@@ -20,7 +21,7 @@ interface Stage {
 
 const TARGET = new THREE.Vector3(0, 15, 0);
 
-export default function ArmorViewer({ armor, trim, className }: Props) {
+export default function ArmorViewer({ armor, trim, skin, className }: Props) {
 	const host = useRef<HTMLDivElement>(null);
 	const orbit = useRef<OrbitControls | null>(null);
 	const stage = useRef<Stage | null>(null);
@@ -109,14 +110,14 @@ export default function ArmorViewer({ armor, trim, className }: Props) {
 
 	useEffect(() => {
 		let stale = false;
-		buildAvatar(armor, trim).then((avatar) => {
+		buildAvatar(armor, trim, skin).then((avatar) => {
 			if (stale || !stage.current) return disposeAvatar(avatar);
 			stage.current.setAvatar(avatar);
 		});
 		return () => {
 			stale = true;
 		};
-	}, [armor, trim]);
+	}, [armor, trim, skin]);
 
 	return (
 		<div
