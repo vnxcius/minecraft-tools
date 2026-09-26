@@ -366,7 +366,7 @@ export default function EnchantingTable({ icons }: Props) {
 					</Heading>
 					{/* hidden, the viewer is not mounted at all: no WebGL, no animation */}
 					{viewer && (
-						<Suspense fallback={<div className="h-100 rounded border bg-card" />}>
+						<Suspense fallback={<div className="h-100 rounded border bg-viewer" />}>
 							<EnchantingViewer item={strip(current)} shelves={shelves} className="h-100" />
 						</Suspense>
 					)}

@@ -1,6 +1,7 @@
 /** The rules the tools compute with, checked against values worked out by hand from the game. */
 import { describe, expect, test } from "vitest";
 import { penalty, planOrder, TOO_EXPENSIVE } from "@/lib/anvil";
+import { parseSaved, type SavedViewer } from "@/lib/armor/saved";
 import { countBlocks, ellipse, sphereLayer } from "@/lib/circle";
 import { displaySeed, parseSeed } from "@/lib/seedmap/seed";
 import { bookPrice } from "@/lib/villagers";
@@ -148,5 +149,51 @@ describe("YouTube links", () => {
 		const video = { id, start: 42 };
 		expect(parseYouTube(watchUrl(video))).toEqual(video);
 		expect(embedUrl(video)).toBe(`https://www.youtube-nocookie.com/embed/${id}?rel=0&start=42`);
+	});
+});
+
+describe("saved armor trim viewer", () => {
+	const trim = { pattern: "coast", material: "gold" };
+	const defaults: SavedViewer = {
+		armor: {
+			helmet: "netherite",
+			chestplate: "netherite",
+			leggings: "netherite",
+			boots: "netherite",
+		},
+		trim: { helmet: trim, chestplate: trim, leggings: trim, boots: trim },
+		skin: null,
+	};
+
+	test("restores what was left", () => {
+		const saved: SavedViewer = {
+			armor: { helmet: "diamond", chestplate: null, leggings: "gold", boots: "leather" },
+			trim: {
+				helmet: { pattern: "silence", material: "diamond" },
+				chestplate: { pattern: null, material: "gold" },
+				leggings: trim,
+				boots: trim,
+			},
+			skin: { nickname: "jeb_", url: "https://textures.minecraft.net/texture/abc", slim: false },
+		};
+		expect(parseSaved(JSON.parse(JSON.stringify(saved)), defaults)).toEqual(saved);
+	});
+
+	test("falls back per piece on unknown or broken values", () => {
+		const parsed = parseSaved(
+			{
+				armor: { helmet: "unobtainium", boots: "iron" },
+				trim: {
+					helmet: { pattern: "nope", material: "gold" },
+					boots: { pattern: "rib", material: 3 },
+				},
+				skin: { nickname: "x", url: "https://evil.example/skin.png", slim: false },
+			},
+			defaults,
+		);
+		expect(parsed.armor).toEqual({ ...defaults.armor, boots: "iron" });
+		expect(parsed.trim).toEqual(defaults.trim);
+		expect(parsed.skin).toBeNull();
+		expect(parseSaved("garbage", defaults)).toBe(defaults);
 	});
 });

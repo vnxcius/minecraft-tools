@@ -31,7 +31,7 @@ function WithEnchantments({ template }: { template: MessageKey }) {
 		Object.fromEntries(
 			ids.map((id) => [
 				id,
-				<span key={id} className="text-[#b8a2ff]">
+				<span key={id} className="text-enchant">
 					{enchantmentName(id)}
 				</span>,
 			]),
@@ -109,7 +109,7 @@ export default function EnchantGuide({ icons }: Props) {
 						<ItemIcon icons={icons} item={gear.icon} className="size-14" />
 						<div className="min-w-0">
 							<p className="font-pixel text-xl">{gearName(gear)}</p>
-							<p className="mt-1 font-pixel text-sm text-[#b8a2ff]">{summary}</p>
+							<p className="mt-1 font-pixel text-sm text-enchant">{summary}</p>
 						</div>
 					</div>
 
@@ -156,7 +156,7 @@ export default function EnchantGuide({ icons }: Props) {
 											<WithEnchantments template={pick.why} />
 										</p>
 									</div>
-									<span className="rounded bg-[#8a5cf5]/20 px-2 py-0.5 font-pixel text-sm text-[#b8a2ff] tabular-nums">
+									<span className="rounded bg-enchant/20 px-2 py-0.5 font-pixel text-sm text-enchant tabular-nums">
 										{enchantmentById(pick.id).max === 1 ? t("enchant.max") : levelName(level)}
 									</span>
 								</li>

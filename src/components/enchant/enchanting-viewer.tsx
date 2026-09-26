@@ -132,7 +132,7 @@ export default function EnchantingViewer({ item, shelves, className }: Props) {
 	}, [item, shelves]);
 
 	return (
-		<div ref={host} className={cn("relative overflow-hidden rounded border bg-card", className)}>
+		<div ref={host} className={cn("relative overflow-hidden rounded border bg-viewer", className)}>
 			<Button
 				variant="outline"
 				size="icon-sm"

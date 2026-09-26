@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import armorData from "@/data/armor.json";
+import { loadSaved, save, type SavedViewer } from "@/lib/armor/saved";
 import {
 	type ArmorSelection,
-	type Skin,
 	SLOTS,
 	type Slot,
 	type SlotTrim,
@@ -15,6 +15,7 @@ import {
 import { lookupSkin, NICKNAME, SkinLookupError, type SkinError } from "@/lib/armor/skin";
 import { useI18n } from "@/i18n";
 import { cn } from "@/lib/utils";
+import SkinHead from "./skin-head";
 
 // three.js is most of the page's code: the choices show while it loads
 const ArmorViewer = lazy(() => import("./armor-viewer"));
@@ -60,23 +61,38 @@ type Target = "all" | Slot;
 
 const DEFAULT_TRIM: SlotTrim = { pattern: "coast", material: "gold" };
 
-export default function ArmorTrimViewer({ icons }: Props) {
-	const [armor, setArmor] = useState<ArmorSelection>({
+const NO_ARMOR: ArmorSelection = { helmet: null, chestplate: null, leggings: null, boots: null };
+
+const DEFAULTS: SavedViewer = {
+	armor: {
 		helmet: "netherite",
 		chestplate: "netherite",
 		leggings: "netherite",
 		boots: "netherite",
-	});
-	const { t, term, itemName } = useI18n();
-	const slotName = (slot: Slot) => t(`armor.slot.${slot}`);
-	const patternName = (id: string) => term(`trim_pattern.minecraft.${id}`);
-	const materialName = (id: string) => term(`trim_material.minecraft.${id}`);
-	const [trim, setTrim] = useState<TrimSelection>({
+	},
+	trim: {
 		helmet: DEFAULT_TRIM,
 		chestplate: DEFAULT_TRIM,
 		leggings: DEFAULT_TRIM,
 		boots: DEFAULT_TRIM,
-	});
+	},
+	skin: null,
+};
+
+export default function ArmorTrimViewer({ icons }: Props) {
+	const [saved] = useState(() => loadSaved(DEFAULTS));
+	const [armor, setArmor] = useState<ArmorSelection>(saved.armor);
+	const { t, term, itemName } = useI18n();
+	const slotName = (slot: Slot) => t(`armor.slot.${slot}`);
+	const patternName = (id: string) => term(`trim_pattern.minecraft.${id}`);
+	const materialName = (id: string) => term(`trim_material.minecraft.${id}`);
+	const [trim, setTrim] = useState<TrimSelection>(saved.trim);
+	// hides the armor to see the skin; picking a piece or a trim shows it again
+	const [armorHidden, setArmorHidden] = useState(false);
+	const pickArmor = (slot: Slot, id: string | null) => {
+		setArmorHidden(false);
+		setArmor((prev) => ({ ...prev, [slot]: id }));
+	};
 	const [target, setTarget] = useState<Target>("all");
 	const targets = target === "all" ? SLOTS : [target];
 
@@ -87,15 +103,17 @@ export default function ArmorTrimViewer({ icons }: Props) {
 	};
 	const pattern = shared("pattern");
 	const material = shared("material");
-	const updateTrim = (change: Partial<SlotTrim>) =>
+	const updateTrim = (change: Partial<SlotTrim>) => {
+		setArmorHidden(false);
 		setTrim((prev) => {
 			const next = { ...prev };
 			for (const slot of targets) next[slot] = { ...prev[slot], ...change };
 			return next;
 		});
+	};
 
-	const [nickname, setNickname] = useState("");
-	const [skin, setSkin] = useState<Skin | null>(null);
+	const [nickname, setNickname] = useState(saved.skin?.nickname ?? "");
+	const [skin, setSkin] = useState<SavedViewer["skin"]>(saved.skin);
 	const [skinLoading, setSkinLoading] = useState(false);
 	const [skinError, setSkinError] = useState<SkinError | "invalid" | null>(null);
 	const lookup = useRef<AbortController | null>(null);
@@ -111,7 +129,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 		setSkinError(null);
 		setSkinLoading(true);
 		try {
-			setSkin(await lookupSkin(name, controller.signal));
+			setSkin({ ...(await lookupSkin(name, controller.signal)), nickname: name });
 		} catch (error) {
 			if (controller.signal.aborted) return;
 			setSkinError(error instanceof SkinLookupError ? error.reason : "network");
@@ -127,6 +145,8 @@ export default function ArmorTrimViewer({ icons }: Props) {
 		setSkin(null);
 	};
 
+	useEffect(() => save({ armor, trim, skin }), [armor, trim, skin]);
+
 	return (
 		<section>
 			<div className="relative">
@@ -136,8 +156,20 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							<h2 className="font-bold">{t("armor.armor")}</h2>
 						</div>
 
-						<Suspense fallback={<div className="h-[55svh] min-h-80 rounded-md border bg-card" />}>
-							<ArmorViewer armor={armor} trim={trim} skin={skin} className="h-[55svh] min-h-80" />
+						<Suspense fallback={<div className="h-[55svh] min-h-80 rounded-md border bg-viewer" />}>
+							<ArmorViewer
+								armor={armorHidden ? NO_ARMOR : armor}
+								trim={trim}
+								skin={skin}
+								armorHidden={armorHidden}
+								onArmorHiddenChange={setArmorHidden}
+								onSkinError={() => {
+									// a remembered skin that no longer loads
+									setSkin(null);
+									setSkinError("network");
+								}}
+								className="h-[55svh] min-h-80"
+							/>
 						</Suspense>
 
 						<div className="space-y-2 rounded-md border p-3">
@@ -150,7 +182,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 										<IconButton
 											label={t("armor.none")}
 											selected={armor[slot] === null}
-											onClick={() => setArmor((prev) => ({ ...prev, [slot]: null }))}
+											onClick={() => pickArmor(slot, null)}
 										>
 											<NoneIcon />
 										</IconButton>
@@ -161,7 +193,7 @@ export default function ArmorTrimViewer({ icons }: Props) {
 													key={a.id}
 													label={itemName(`${a.itemPrefix}_${slot}`)}
 													selected={armor[slot] === a.id}
-													onClick={() => setArmor((prev) => ({ ...prev, [slot]: a.id }))}
+													onClick={() => pickArmor(slot, a.id)}
 												>
 													<img
 														src={icons[`${a.itemPrefix}_${slot}`]}
@@ -270,7 +302,11 @@ export default function ArmorTrimViewer({ icons }: Props) {
 							<hr />
 
 							<form onSubmit={loadSkin} className="space-y-1.5">
-								<label htmlFor="armor-skin" className="block text-sm text-muted-foreground">
+								<label
+									htmlFor="armor-skin"
+									className="flex items-center gap-2 text-sm font-semibold text-foreground"
+								>
+									<SkinHead url={skin?.url ?? null} />
 									{t("armor.skin")}
 								</label>
 								<div className="space-y-1.5">

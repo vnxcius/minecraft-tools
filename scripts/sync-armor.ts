@@ -8,6 +8,7 @@
  *   public/armor/<material>[_leggings].png     armor layer textures
  *   public/armor/trim/<pattern>[_leggings].png trim pattern textures (grayscale)
  *   public/armor/armor-stand.png               armor stand texture
+ *   public/armor/steve.png                     default player skin (skin field placeholder)
  *   src/data/armor.json                        materials, patterns, palettes, names
  *
  * The client jar is downloaded once and cached in .cache/.
@@ -59,6 +60,7 @@ async function main() {
 			f.startsWith("textures/palettes/") ||
 			f.startsWith("equipment/") ||
 			f === "textures/entity/armorstand/armorstand.png" ||
+			f === "textures/entity/player/wide/steve.png" ||
 			f === "lang/en_us.json",
 	);
 	const file = (path: string) => jar.file(path);
@@ -149,6 +151,7 @@ async function main() {
 		join(OUT_DIR, "armor-stand.png"),
 		file("textures/entity/armorstand/armorstand.png"),
 	);
+	await writePng(join(OUT_DIR, "steve.png"), file("textures/entity/player/wide/steve.png"));
 
 	const data = {
 		version,

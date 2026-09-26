@@ -270,9 +270,7 @@ function BookTable() {
 					{BOOK_ENCHANTMENTS.map((id, i) => (
 						<span key={id}>
 							{i > 0 && ", "}
-							<span className="text-[#8a5cf5] dark:text-[#b8a2ff]">
-								{term(`enchantment.minecraft.${id}`)}
-							</span>
+							<span className="text-enchant">{term(`enchantment.minecraft.${id}`)}</span>
 							{DOUBLE_PRICE.has(id) && " (×2)"}
 						</span>
 					))}

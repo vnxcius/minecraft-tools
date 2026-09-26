@@ -52,6 +52,7 @@ const ENCHANTMENTS: Enchantment[] = [
 	{ id: "density", max: 5 },
 	{ id: "breach", max: 4 },
 	{ id: "wind_burst", max: 3 },
+	{ id: "lunge", max: 3 },
 ];
 
 export const enchantmentById = (id: string) => ENCHANTMENTS.find((e) => e.id === id) as Enchantment;
@@ -236,6 +237,34 @@ export const GEAR: Gear[] = [
 				picks: [
 					p("bane_of_arthropods", "enchant.why.baneOfArthropods"),
 					p("looting", "enchant.why.looting"),
+					...DURABILITY,
+				],
+			},
+		],
+		conflicts: ["enchant.conflict.damage"],
+	},
+	{
+		id: "spear",
+		icon: "diamond_spear",
+		group: "Melee",
+		builds: [
+			{
+				name: "enchant.build.allRound",
+				picks: [
+					p("sharpness", "enchant.why.sharpness"),
+					p("lunge", "enchant.why.lunge"),
+					p("looting", "enchant.why.looting"),
+					p("fire_aspect", "enchant.why.fireAspectCook", 2),
+					...DURABILITY,
+				],
+			},
+			{
+				name: "enchant.build.undead",
+				picks: [
+					p("smite", "enchant.why.smite"),
+					p("lunge", "enchant.why.lunge"),
+					p("looting", "enchant.why.looting"),
+					p("fire_aspect", "enchant.why.fireAspect", 2),
 					...DURABILITY,
 				],
 			},
@@ -509,6 +538,7 @@ export const GIVE_ITEM: Record<string, string> = {
 	leggings: "netherite_leggings",
 	boots: "netherite_boots",
 	sword: "netherite_sword",
+	spear: "netherite_spear",
 	axe: "netherite_axe",
 	mace: "mace",
 	pickaxe: "netherite_pickaxe",
@@ -547,6 +577,16 @@ export const ENCHANTABLE: Record<string, string[]> = {
 		"fire_aspect",
 		"looting",
 		"sweeping_edge",
+		...DURABLE,
+	],
+	spear: [
+		"sharpness",
+		"smite",
+		"bane_of_arthropods",
+		"knockback",
+		"fire_aspect",
+		"looting",
+		"lunge",
 		...DURABLE,
 	],
 	axe: ["sharpness", "smite", "bane_of_arthropods", ...TOOL, ...DURABLE],

@@ -51,6 +51,7 @@ const BOOK_MULTIPLIER: Record<string, number> = {
 	wind_burst: 2,
 	density: 1,
 	breach: 2,
+	lunge: 1,
 };
 
 export const TOO_EXPENSIVE = 40;

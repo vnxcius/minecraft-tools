@@ -43,7 +43,7 @@ function PieceView({ piece, item, icons }: { piece: Piece; item: string; icons: 
 			<span className="min-w-0 text-xs leading-snug">
 				{piece.item && <span className="block font-semibold">{itemName(item)}</span>}
 				{piece.books.map((book) => (
-					<span key={book.enchantment} className="block text-[#8a5cf5] dark:text-[#b8a2ff]">
+					<span key={book.enchantment} className="block text-enchant">
 						{label(book)}
 					</span>
 				))}

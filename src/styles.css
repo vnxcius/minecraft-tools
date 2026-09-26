@@ -67,6 +67,8 @@
 	--color-popover: var(--popover);
 	--color-card-foreground: var(--card-foreground);
 	--color-card: var(--card);
+	--color-viewer: var(--viewer);
+	--color-enchant: var(--enchant);
 	--color-foreground: var(--foreground);
 	--color-background: var(--background);
 	/* square corners everywhere, like minecraft.wiki */
@@ -84,6 +86,8 @@
 	--foreground: #202122;
 	--card: #f8f9fa;
 	--card-foreground: #202122;
+	/* behind the 3D viewers and item previews: gray, flat white washes out the light textures */
+	--viewer: #d4d7db;
 	--popover: #f8f9fa;
 	--popover-foreground: #202122;
 	--primary: #3c8527;
@@ -119,7 +123,7 @@
 	--slot-light: #ffffff;
 	--slot-dark: #373737;
 	/* enchantment names, and the glint that sweeps over them */
-	--enchant: #8a5cf5;
+	--enchant: #6a3ad8;
 	--enchant-shine: #d4c2ff;
 }
 
@@ -129,6 +133,7 @@
 	--background: #1f2326;
 	--foreground: #dadde1;
 	--card: #282c30;
+	--viewer: #282c30;
 	--card-foreground: #dadde1;
 	--popover: #2b3034;
 	--popover-foreground: #dadde1;

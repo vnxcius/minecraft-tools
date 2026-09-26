@@ -128,7 +128,7 @@ export default function BannerDesigner({ icons, kind = "banner" }: Props) {
 				<div className="flex min-w-0 flex-col gap-3">
 					<Heading>{shield ? itemName("shield") : t("banner.banner")}</Heading>
 
-					<div className="flex items-center justify-center rounded border bg-card py-8">
+					<div className="flex items-center justify-center rounded border bg-viewer py-8">
 						<BannerCanvas
 							design={design}
 							kind={kind}

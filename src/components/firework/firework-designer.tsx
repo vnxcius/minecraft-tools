@@ -140,7 +140,7 @@ export default function FireworkDesigner({ icons }: Props) {
 					>
 						{t("firework.preview")}
 					</Heading>
-					<div className="flex justify-center rounded border bg-card p-3">
+					<div className="flex justify-center rounded border bg-viewer p-3">
 						<FireworkCanvas firework={firework} replayKey={replayKey} />
 					</div>
 
