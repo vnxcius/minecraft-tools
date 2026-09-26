@@ -59,9 +59,9 @@ export const ptBR: Messages = {
 	"tool.firework-generator.title": "Gerador de Fogos de Artifício",
 	"tool.firework-generator.description":
 		"Combine formatos, cores, feixes de luz e cintilação em estrelas de fogo de artifício, veja a explosão e obtenha a receita.",
-	"tool.seed-map.title": "Mapa da Semente",
+	"tool.seed-map.title": "Mapa da Seed",
 	"tool.seed-map.description":
-		"Explore o mundo de qualquer semente: biomas, vilas, fortalezas, chunks de slime e mais, tudo gerado no seu navegador.",
+		"Explore o mundo de qualquer seed: biomas, vilas, fortalezas, chunks de slime e mais, tudo gerado no seu navegador.",
 	"tool.best-enchantments.title": "Melhores Encantamentos",
 	"tool.best-enchantments.description":
 		"Os encantamentos que valem a pena em cada peça de armadura, ferramenta e arma, com o comando para obtê-los.",
@@ -69,7 +69,7 @@ export const ptBR: Messages = {
 	// main page
 	"home.heading": "Ferramentas úteis para Minecraft",
 	"home.intro":
-		"Ferramentas gratuitas para o que você faz no jogo todo dia: contar packs, planejar construções, criar estandartes e fogos de artifício, preparar poções e explorar sementes. Tudo roda no seu navegador.",
+		"Ferramentas gratuitas para o que você faz no jogo todo dia: contar packs, planejar construções, criar estandartes e fogos de artifício, preparar poções e explorar seeds. Tudo roda no seu navegador.",
 	"home.stats": "{count} ferramentas · sem cadastro · {openSource} · sem anúncios, nunca",
 	"home.openSource": "código aberto",
 	"home.allTools": "Todas as ferramentas",
@@ -335,9 +335,9 @@ export const ptBR: Messages = {
 		"Arraste para mover · role para dar zoom · clique para detalhes · clique duplo para aproximar",
 	"seed.copyTp": "Copiar comando tp",
 	"seed.world": "Mundo",
-	"seed.seed": "Semente",
-	"seed.seedPlaceholder": "Insira a semente aqui",
-	"seed.randomSeed": "Semente aleatória",
+	"seed.seed": "Seed",
+	"seed.seedPlaceholder": "Insira a seed aqui",
+	"seed.randomSeed": "Seed aleatória",
 	"seed.version": "Versão do Minecraft",
 	"seed.versionAndNewer": "{version} ou mais recente",
 	"seed.go": "Ir",
@@ -505,7 +505,7 @@ export const ptBR: Messages = {
 	// slime chunk finder (opens the seed map with the slime chunks on)
 	"tool.slime-chunk-finder.title": "Localizador de Chunks de Slime",
 	"tool.slime-chunk-finder.description":
-		"Veja os chunks de slime de qualquer semente no mapa e saiba onde montar sua fazenda de slime.",
+		"Veja os chunks de slime de qualquer seed no mapa e saiba onde montar sua fazenda de slime.",
 
 	// villager trading guide (professions, levels, items and enchantments come from the game)
 	"tool.villager-trading.title": "Guia de Trocas com Aldeões",

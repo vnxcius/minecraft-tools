@@ -63,10 +63,10 @@ export const PAGE_TEXT: Record<Exclude<Language, "en">, Record<string, PageText>
 			heading: "Melhores Encantamentos",
 		},
 		"/tool/seed-map": {
-			title: "Mapa da Semente do Minecraft: biomas, vilas e estruturas",
+			title: "Mapa da Seed do Minecraft: biomas, vilas e estruturas",
 			description:
-				"Explore qualquer semente do Minecraft: biomas, vilas, fortalezas, chunks de slime e estruturas do Nether e do End. Destaque biomas e ache o mais próximo.",
-			heading: "Mapa da Semente",
+				"Explore qualquer seed do Minecraft: biomas, vilas, fortalezas, chunks de slime e estruturas do Nether e do End. Destaque biomas e ache o mais próximo.",
+			heading: "Mapa da Seed",
 		},
 		"/tool/enchant-order": {
 			title: "Ordem de Encantamentos do Minecraft: a mais barata na bigorna",
